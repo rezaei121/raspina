@@ -6,7 +6,19 @@ Installation
 ============
 1. Download last release archive file from https://github.com/rezaei121/raspina/releases
 2. Unpack the downloaded file to a Web-accessible folder.
-3. Run install/index.php :)
+3. Set the write permissions 0777 on folders(apply to all files and subdirectories)
+	- frontend/assets
+	- backend/assets
+	- common/config
+	- common/files
+4. Run install/index.php
+
+Demo
+============
+http://developit.ir/demo/
+http://www.developit.ir/demo/backend/web/site/login
+Username: demo
+Password: 123456
 
 License
 =======
