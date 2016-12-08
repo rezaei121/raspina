@@ -15,8 +15,8 @@ Installation
 
 Demo
 ============
-http://developit.ir/demo/
-http://www.developit.ir/demo/backend/web/site/login
+http://developit.ir/raspina/
+http://www.developit.ir/raspina/backend/web/site/login
 Username: demo
 Password: 123456
 
