@@ -7,8 +7,8 @@ use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
+//use frontend\models\PasswordResetRequestForm;
+//use frontend\models\ResetPasswordForm;
 use yii\helpers\Url;
 
 /**
@@ -25,10 +25,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','login','logout','changePassword'],
+                'only' => ['index','login','logout','changePassword','requestPasswordReset'],
                 'rules' => [
                     [
-                        'actions' => ['login'],
+                        'actions' => ['login','requestPasswordReset'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -102,7 +102,7 @@ class SiteController extends Controller
 
         $user = \common\models\User::findIdentity(Yii::$app->user->id);
         $user->avatar = \common\models\User::getAvatar();
-        
+
         return $this->render('index',[
             'visitors' => $visitors->find()->orderBy('id DESC')->limit(20)->all(),
             'chart' => $visitors->chart(),
@@ -120,7 +120,6 @@ class SiteController extends Controller
     {
         $this->layout = 'login';
         if (!\Yii::$app->user->isGuest) {
-
             return $this->goHome();
         }
 
@@ -154,7 +153,7 @@ class SiteController extends Controller
     public function actionRequestPasswordReset()
     {
         $this->layout = 'login';
-        $model = new PasswordResetRequestForm();
+        $model = new \backend\models\PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('success', Yii::t('app','Check Your Email'));
@@ -181,7 +180,7 @@ class SiteController extends Controller
     {
         $this->layout = 'login';
         try {
-            $model = new ResetPasswordForm($token);
+            $model = new \backend\models\ResetPasswordForm($token);
         } catch (InvalidParamException $e) {
             throw new BadRequestHttpException($e->getMessage());
         }

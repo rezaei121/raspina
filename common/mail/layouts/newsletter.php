@@ -29,7 +29,7 @@ use yii\helpers\Url;
                 <?php if (isset($model)): ?>
                     <div style="clear: both; margin-top: 15px;"></div>
                     <div style="text-align: center">
-                        <a href="<?= $siteUrl ?>/post/view/<?= $model->id . '/' . urlencode($model->title) ?>.html"><?= Yii::t('app', 'Read More') ?></a>
+                        <a href="<?= $siteUrl ?>post/view/<?= $model->id . '/' . urlencode($model->title) ?>.html"><?= Yii::t('app', 'Read More') ?></a>
                     </div>
                     <div style="clear: both; margin-top: 25px;"></div>
                 <?php endif; ?>
@@ -40,7 +40,7 @@ use yii\helpers\Url;
             </div>
             <div style="text-align: center; margin-top: 15px; font-size: 11px;">
                 <a href="<?= $siteUrl ?>" style="text-decoration: none;" target="_blank"><?= $siteTitle ?></a> |
-                <a href="<?= $siteUrl ?>/newsletter/unsubscribe" style="text-decoration: none;" target="_blank"><?= Yii::t('app', 'Unsubscribe Newsletter') ?></a>
+                <a href="<?= $siteUrl ?>newsletter/unsubscribe" style="text-decoration: none;" target="_blank"><?= Yii::t('app', 'Unsubscribe Newsletter') ?></a>
             </div>
         </div></div>
     <?php $this->endBody() ?>

@@ -136,11 +136,13 @@ html, body {
 .raspina {
     background-color: #F68657;
     padding: 10px 20px 10px 20px;
+    width: 72px;
 }
 
 .rs-tools {
     width: 72px;
-    height: 100%;
+    min-height: 100%;
+    height: auto;
     background: #383A3F;
     color: #ffffff;
     position: absolute;
@@ -183,6 +185,7 @@ a:hover{
 
 .main-content {
     width: 100%;
+    min-height: 800px;
     margin-top: 20px;
 }
 

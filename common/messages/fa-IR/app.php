@@ -175,7 +175,7 @@ return [
     'Read More' => 'بیشتر بخوانید',
     'Powered By Raspina CMS' => 'قدرت گرفته از سیستم مدیریت محتوای رَسپینا',
     'Raspina' => 'رَسپینا',
-    'Version' => '1.8.3',
+    'Version' => '1.8.6',
     'Unsubscribe Newsletter' => 'لغو عضویت خبرنامه',
     'Success Unsubscribe Newsletter' => 'لغو عضویت خبرنامه با موفقیت انجام شد',
     'Newsletter Email Not Found' => 'ایمیل وارد شده در خبرنامه عضو نیست',

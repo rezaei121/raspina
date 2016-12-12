@@ -198,12 +198,9 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
     </div>
 </div>
 <div class="footer">
-    <div class="raspina pull-right" style="min-width: 72px;">
+    <div class="raspina" style="width: 72px; float: right">
         <div class="rs-name"><span class="fa fa-copyright" style="font-size: 18px;"></span></div>
         <div class="rs-version">2016</div>
-    </div>
-    <div class="copyright">
-
     </div>
     <div class="rsabout">
         <a href="http://www.developit.ir/" target="_blank"><?= Yii::t('app','Powered By Raspina CMS') ?></a>

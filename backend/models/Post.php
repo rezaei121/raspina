@@ -170,7 +170,7 @@ class Post extends \common\models\BaseModel
         $postCategoryTableName = \backend\models\PostCategory::tableName();
         $categoryTableName = \backend\models\Category::tableName();
 
-        $categories = $query->select("c.id,c.title")->from("{$postCategoryTableName} AS pc")->leftJoin("{$categoryTableName} AS c",'pc.category_id = c.id')->where("pc.post_id = {$postId}")->all();
+        $categories = $query->select("c.id,c.title")->from("{$postCategoryTableName} AS pc")->leftJoin("{$categoryTableName} AS c",'pc.category_id = c.id')->where(['pc.post_id' => $postId])->all();
         if($resultType == 'array')
         {
             return $categories;
@@ -258,7 +258,7 @@ class Post extends \common\models\BaseModel
     {
         $commentTable = \backend\models\Comment::tableName();
         $query = new \yii\db\Query();
-        return $query->select("*")->from($commentTable)->where("post_id = {$id} AND status = 1")->orderBy("id DESC")->all();
+        return $query->select("*")->from($commentTable)->where(['post_id' => $id,'status' => 1])->orderBy("id DESC")->all();
     }
 
     /**

@@ -53,7 +53,7 @@ class PostController extends BaseController
         $model->select(["p.*","u.last_name","u.surname","COUNT(c.id) AS comment_count","IF(p.more_text IS NOT NULL,'1','0') AS `more`"])->
         from("{$posTable} As p")->leftJoin("{$userTable} AS u","p.author_id = u.id")->
         leftJoin("{$commentTable} AS c","p.id = c.post_id  AND c.status = 1")->
-        where("p.id = {$id} AND p.title = '{$title}' AND p.status=1");
+        where(['p.id' => $id, 'p.title' => $title, 'p.status' => 1]);
         $model = $model->one();
 
         if(empty($model['title']))

@@ -19,7 +19,8 @@ class Site extends \common\models\BaseModel
     {
         return [
             [['search'], 'required'],
-            [['search'], 'string', 'max' => 255]
+            [['search'], 'string', 'max' => 255],
+            [['search'], 'safe']
         ];
     }
 

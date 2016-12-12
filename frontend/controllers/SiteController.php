@@ -109,11 +109,11 @@ class SiteController extends BaseController
 
         if(isset($request['category']))
         {
-            $query->andWhere("pc.category_id={$request['category']}");
+            $query->andWhere(['pc.category_id' => $request['category']]);
 
             $catQuery = new \yii\db\Query();
             $categoryTable = \backend\models\Category::tableName();
-            $catResult = $catQuery->select("id")->from("{$categoryTable}")->where("id={$request['category']} AND title = '{$request['title']}'")->one();
+            $catResult = $catQuery->select("id")->from("{$categoryTable}")->where(['id' => $request['category'],'title' => $request['title']])->one();
             if(empty($catResult))
             {
                 return $this->redirect(['site/error']);
@@ -123,12 +123,14 @@ class SiteController extends BaseController
 
         if(isset($request['tag']))
         {
-            $query->andWhere("p.tags LIKE '%{$request['tag']}%'");
+            $query->andWhere(['like','p.tags', $request['tag']]);
         }
 
         if(!empty($request['Site']['search']))
         {
-            $query->andWhere("p.title LIKE '%{$request['Site']['search']}%' OR p.short_text LIKE '%{$request['Site']['search']}%' OR p.more_text LIKE '%{$request['Site']['search']}%'");
+            $query->andWhere(['like','p.title', $request['Site']['search']]);
+            $query->orWhere(['like','p.short_text', $request['Site']['search']]);
+            $query->orWhere(['like','p.more_text', $request['Site']['search']]);
         }
 
         $dataProvider = new ActiveDataProvider([

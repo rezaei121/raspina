@@ -47,7 +47,7 @@ class Newsletter extends \common\models\BaseModel
 
     public function getMail($email)
     {
-        $mail = Newsletter::find()->where("email = '{$email}'")->one();
+        $mail = Newsletter::find()->where(['email' => $email])->one();
         return $mail;
     }
 }

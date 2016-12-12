@@ -19,8 +19,11 @@ class UserController extends \yii\web\Controller
 
         if($model->load($request) && $model->validate())
         {
-            $model->save();
-            Yii::$app->session->setFlash('success', Yii::t('app','Saved User Account'));
+            if($model->save())
+            {
+                Yii::$app->session->setFlash('success', Yii::t('app','Saved User Account'));
+            }
+
         }
 
         return $this->render('account',[

@@ -8,7 +8,9 @@ Installation
 2. Unpack the downloaded file to a Web-accessible folder.
 3. Set the write permissions 0777 on folders(apply to all files and subdirectories)
 	- frontend/assets
+	- frontend/runtime
 	- backend/assets
+	- backend/runtime
 	- common/config
 	- common/files
 4. Run install/index.php

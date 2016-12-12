@@ -78,10 +78,14 @@ class CommentController extends Controller
      */
     public function actionView($id)
     {
-        $model = Comment::find()->alias('comment')->joinWith('post')->where("comment.id={$id}")->one();
-        return $this->render('view', [
-            'model' => $model,
-        ]);
+        $model = Comment::find()->alias('comment')->joinWith('post')->where(['comment.id' => $id])->one();
+        if ($model !== null) {
+            return $this->render('view', [
+                'model' => $model,
+            ]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
     /**
