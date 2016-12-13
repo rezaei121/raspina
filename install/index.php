@@ -197,7 +197,7 @@
                 <div class="panel-heading">بررسی نیازمندی ها</div>
                 <div class="panel-body">
                     قبل از نصب لطفا
-<a href="requirements.php" target="_blank">نیازمندی های نرم افزار</a>
+<a href="../requirements.php" target="_blank">نیازمندی های نرم افزار</a>
                      را مشاهده و بررسی کنید.
                 </div>
             </div>
