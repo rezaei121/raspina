@@ -132,9 +132,15 @@ $requirements = array(
         'name' => 'PHP Intl Date Formatter',
         'mandatory' => true,
         'condition' => extension_loaded('intl'),
-        'condition' => extension_loaded('intl'),
         'by' => 'Date Formatter',
         'memo' => '"php_intl" should be disabled at php.ini',
+    ),
+    'mod_rewrite' => array(
+        'name' => 'Rewrite Mode',
+        'mandatory' => true,
+        'condition' => in_array('mod_rewrite', apache_get_modules()),
+        'by' => 'Url',
+        'memo' => '"mod_rewrite" should be disabled',
     ),
 );
 $requirementsChecker->checkYii()->check($requirements)->render();
