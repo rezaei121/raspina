@@ -1,3 +1,5 @@
+[![Beerpay](https://beerpay.io/rezaei121/raspina/badge.svg)](https://beerpay.io/rezaei121/raspina)
+
 Introduction
 ============
 Raspina CMS is a persian(rtl) content management system based on yii2 php framework.
