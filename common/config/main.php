@@ -46,6 +46,12 @@ return [
                 ],
             ],
         ],
+        'hashids' => [
+            'class' => 'light\hashids\Hashids',
+            'salt' => '$atj@.14e*B4',
+            'minHashLength' => 5,
+            //'alphabet' => 'abcdefghigk'
+        ],
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
             'locale' => 'fa_IR@calendar=persian',

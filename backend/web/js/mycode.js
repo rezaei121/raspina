@@ -15,7 +15,7 @@ $(document).ready(function(){
     });
 
     var post_id = null;
-    if(controller_name == 'post' && (action_name == 'create' || action_name == 'update'))
+    if(modules_name == 'post' && (action_name == 'create' || action_name == 'update'))
     {
         setInterval(function(){
             var pin_post = 0;

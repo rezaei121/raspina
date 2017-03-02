@@ -1,5 +1,4 @@
 <?php
-
 namespace backend\models;
 
 use Yii;
@@ -36,7 +35,7 @@ class Setting extends \common\models\BaseModel
             [['url', 'template', 'title'], 'required'],
             [['keyword'], 'string'],
             [['page_size'], 'integer'],
-            [['url'], 'string', 'max' => 2000],
+            [['url'], 'string', 'max' => 255],
             [['template', 'title', 'description', 'date_format'], 'string', 'max' => 255],
             [['sult'], 'string', 'max' => 17],
             [['activation_newsletter'], 'boolean']

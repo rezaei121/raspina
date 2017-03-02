@@ -1,5 +1,4 @@
 <?php
-
 namespace frontend\controllers;
 use Yii;
 
@@ -17,8 +16,7 @@ class ContactController extends BaseController
 
     public function actionIndex()
     {
-        $contact = new \backend\models\Contact;
-
+        $contact = new \frontend\models\Contact;
         $contact->create_time = time();
         $contact->ip = $_SERVER['REMOTE_ADDR'];
 
@@ -28,7 +26,6 @@ class ContactController extends BaseController
             Yii::$app->getSession()->setFlash('success', Yii::t('app','Contact Successfully Sent'));
         }
 
-        Yii::$app->view->title = Yii::t('app','Contact Me');
         return $this->render('contact',[
             'contact' => $contact
         ]);

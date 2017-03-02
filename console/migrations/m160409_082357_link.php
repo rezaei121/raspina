@@ -13,9 +13,9 @@ class m160409_082357_link extends Migration
         }
 
         $this->createTable('{{%link}}', [
-            'id' => $this->primaryKey(),
+            'id' => $this->primaryKey()->unsigned(),
             'title' => $this->string()->notNull(),
-            'url' => $this->string(2000)->notNull()
+            'url' => $this->string(255)->notNull()
         ],$tableOptions);
     }
 

@@ -14,7 +14,7 @@ use Yii;
  * @property Post $post
  * @property Category $category
  */
-class PostCategory extends \common\models\BaseModel
+class PostCategory extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -22,29 +22,6 @@ class PostCategory extends \common\models\BaseModel
     public static function tableName()
     {
         return '{{%post_category}}';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['post_id', 'category_id'], 'required'],
-            [['post_id', 'category_id'], 'integer']
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('app', 'ID'),
-            'post_id' => Yii::t('app', 'Post ID'),
-            'category_id' => Yii::t('app', 'Category ID'),
-        ];
     }
 
     /**

@@ -1,28 +1,31 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use yii\helpers\Url;
+use frontend\helpers\Raspina;
 use common\widgets\Alert;
-//use frontend\assets\AppAsset;
-//AppAsset::register($this);
+use frontend\assets\AppAsset;
+AppAsset::register($this);
 $site = $this->params;
 $this->beginPage();
+
+//var_dump();
+//exit();
 ?>
-<html lang="<?= $site['lang'] ?>">
+<html lang="<?= Raspina::lang() ?>">
 <head>
-	<meta charset="<?= $site['charset'] ?>">
-	<?= $site['csrfMetaTags'] ?>
-	<title><?= $site['title'] ?></title>
-	<meta name="description" content="<?= $site['description'] ?>">
-	<meta name="keywords" content="<?= $site['keywords'] ?>">
+	<meta charset="<?= Raspina::charset() ?>">
+	<?= Raspina::csrfMetaTags() ?>
+	<title><?= Raspina::title() ?></title>
+	<meta name="description" content="<?= Raspina::description() ?>">
+	<meta name="keywords" content="<?= Raspina::keywords() ?>">
 	<meta name="author" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=0.9, user-scalable=no" />
 	<?php $this->head() ?>
-	<link rel="stylesheet" href="<?= $site['templateUrl'] ?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?= $site['templateUrl'] ?>css/reset.css">
-	<link type="text/css" rel="stylesheet" href="<?= $site['templateUrl'] ?>css/font-awesome.min.css">
-	<link rel="stylesheet" href="<?= $site['templateUrl'] ?>css/style.css">
+	<link rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/reset.css">
+	<link type="text/css" rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/style.css">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING=> Respond.js doesn't work if you view the page via file=>// -->
 	<!--[if lt IE 9]>
@@ -38,8 +41,8 @@ $this->beginPage();
 		<div class="col-sm-12">
 				<span class="fa fa-globe top-icon"></span>
 				<span class="h-title">
-					<?= $site['subject'] ?><br>
-					<span class="h-description"><?= $site['site_description'] ?></span>
+					<?= Raspina::subject() ?><br>
+					<span class="h-description"><?= Raspina::siteDescription() ?></span>
 				</span>
 
 		</div>
@@ -48,11 +51,11 @@ $this->beginPage();
 
 	<div class="h-menu-box">
 			<ul class="h-menu">
-				<li><a href="<?= $site['url'] ?>">خانه</a></li>
-				<li><a href="<?= $site['url'] ?>about/index">درباره</a></li>
-				<li><a href="<?= $site['url'] ?>contact/index">تماس با من</a></li>
-				<li><a href="<?= $site['url'] ?>site/rss" target="_blank">RSS</a></li>
-				<li><a href="<?= $site['url'] ?>backend/web/site/login">ورود</a></li>
+				<li><a href="<?= Raspina::url() ?>">خانه</a></li>
+				<li><a href="<?= Raspina::url() ?>about/index">درباره</a></li>
+				<li><a href="<?= Raspina::url() ?>contact/index">تماس با من</a></li>
+				<li><a href="<?= Raspina::url() ?>site/rss" target="_blank">RSS</a></li>
+				<li><a href="<?= Raspina::url() ?>backend/web/user/login">ورود</a></li>
 			</ul>
 			<div class="clear"></div>
 	</div>
@@ -67,34 +70,34 @@ $this->beginPage();
 		</div>
 		<div class="col-sm-3">
 			<!-- -->
-			<?php if($site['about']['name']): ?>
+			<?php if(Raspina::authorName()): ?>
 	<div class="panel panel-default about-panel">
 		<div class="panel-body">
-			<?php if($site['about']['avatar']): ?>
-		<img class="about-image" src="<?= $site['url'] ?>common/files/avatar/<?= $site['about']['avatar'] ?>">
+			<?php if(Raspina::isAvatar()): ?>
+		<img class="about-image" src="<?= Raspina::avatarImage() ?>">
 			<?php endif ?>
-		<div class="about-name"><?= $site['about']['name'] ?></div>
-		<div class="about-text"><?= $site['about']['short_text'] ?></div>
+		<div class="about-name"><?= Raspina::authorName() ?></div>
+		<div class="about-text"><?= Raspina::aboutText() ?></div>
 
 			<div class="about-rs">
-				<?php if($site['about']['facebook']): ?>
-				<a href="<?= $site['about']['facebook'] ?>" target="_blank"><span class="fa fa-facebook"></span></a>
+				<?php if(Raspina::facebook()): ?>
+				<a href="<?= Raspina::facebook() ?>" target="_blank"><span class="fa fa-facebook"></span></a>
 				<?php endif ?>
 
-				<?php if($site['about']['twitter']): ?>
-				<a href="<?= $site['about']['twitter'] ?>" target="_blank"><span class="fa fa-twitter"></span></a>
+				<?php if(Raspina::twitter()): ?>
+				<a href="<?= Raspina::twitter() ?>" target="_blank"><span class="fa fa-twitter"></span></a>
 				<?php endif ?>
 
-				<?php if($site['about']['googleplus']): ?>
-				<a href="<?= $site['about']['googleplus'] ?>" target="_blank"><span class="fa fa-google-plus "></span></a>
+				<?php if(Raspina::googleplus()): ?>
+				<a href="<?= Raspina::googleplus() ?>" target="_blank"><span class="fa fa-google-plus "></span></a>
 				<?php endif ?>
 
-				<?php if($site['about']['instagram']): ?>
-				<a href="<?= $site['about']['instagram'] ?>" target="_blank"><span class="fa fa-instagram"></span></a>
+				<?php if(Raspina::instagram()): ?>
+				<a href="<?= Raspina::instagram() ?>" target="_blank"><span class="fa fa-instagram"></span></a>
 				<?php endif ?>
 
-				<?php if($site['about']['linkedin']): ?>
-				<a href="<?= $site['about']['linkedin'] ?>" target="_blank"><span class="fa fa-linkedin "></span></a>
+				<?php if(Raspina::linkedin()): ?>
+				<a href="<?= Raspina::linkedin() ?>" target="_blank"><span class="fa fa-linkedin "></span></a>
 				<?php endif ?>
 
 			</div>
@@ -110,7 +113,7 @@ $this->beginPage();
 						</div>
 						<div class="menu-title-line"></div>
 						<?php $form = ActiveForm::begin(['action'=> ['site/index'],'method'=> 'GET']) ?>
-							<?= $form->field($site['index'],'search')->textInput(['maxlength'=> true,'class'=> 'input margin-17','placeholder'=> 'متن جستجو...']) ?>
+							<?= $form->field(Raspina::siteModel(),'search')->textInput(['maxlength'=> true,'class'=> 'input margin-17','placeholder'=> 'متن جستجو...']) ?>
 							<?= Html::submitButton('بگرد!',['class'=> 'submit']) ?>
 						<?php ActiveForm::end() ?>
 					</div>
@@ -126,14 +129,14 @@ $this->beginPage();
 						</div>
 						<div class="menu-title-line"></div>
 						<?php $form = ActiveForm::begin(['action'=> ['newsletter/join']]) ?>
-							<?= $form->field($site['newsletter'],'email')->textInput(['maxlength'=> true,'class'=> 'input margin-17','placeholder'=> 'Emale Adress...','dir'=> 'ltr']) ?>
+							<?= $form->field(Raspina::newsletterModel(),'email')->textInput(['maxlength'=> true,'class'=> 'input margin-17','placeholder'=> 'Emale Adress...','dir'=> 'ltr']) ?>
 							<?= Html::submitButton('عضویت',['class'=> 'submit']) ?>
 						<?php ActiveForm::end() ?>
 					</div>
 				</div>
 			</div>
 
-	<?php if($site['categories']): ?>
+	<?php if(Raspina::categories()): ?>
 	<div class="post-border shadow">
 		<div class="panel panel-default post-panel menu-panel">
 			<div class="panel-body">
@@ -142,7 +145,7 @@ $this->beginPage();
 					<span class="menu-title-text">دسته بندی ها</span>
 				</div>
 				<div class="menu-title-line"></div>
-				<?php foreach((array)$site['categories'] as $id => $category): ?>
+				<?php foreach((array)Raspina::categories() as $id => $category): ?>
 					<div class="cat-item">
 						<?= Html::a($category,[0=> 'site/index','category'=> $id,'title'=>$category]); ?>
 					</div>
@@ -152,7 +155,7 @@ $this->beginPage();
 	</div>
 	<?php endif ?>
 
-			<?php if($site['links']): ?>
+			<?php if(Raspina::links()): ?>
 				<div class="post-border shadow">
 					<div class="panel panel-default post-panel menu-panel">
 						<div class="panel-body">
@@ -161,7 +164,7 @@ $this->beginPage();
 								<span class="menu-title-text">پیوند ها</span>
 							</div>
 							<div class="menu-title-line"></div>
-							<?php foreach ((array)$site['links'] as $link): ?>
+							<?php foreach ((array)Raspina::links() as $link): ?>
 								<div class="cat-item">
 									<a href="<?= $link['url'] ?>" target="_blank"><?= $link['title'] ?></a>
 								</div>
@@ -181,8 +184,8 @@ $this->beginPage();
 	<span><a href="http://www.developit.ir" target="_blank">قدرت گرفته از رَسپینا</a></span>
 </div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="<?= $site['templateUrl'] ?>js/jquery-2.2.3.min.js"></script>
-	<script src="<?= $site['templateUrl'] ?>js/mycode.js"></script>
+	<script src="<?= Raspina::templateUrl() ?>js/jquery-2.2.3.min.js"></script>
+	<script src="<?= Raspina::templateUrl() ?>js/mycode.js"></script>
 <?php $this->endBody() ?>
 </body>
 </html>

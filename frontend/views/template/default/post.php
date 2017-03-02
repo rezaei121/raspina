@@ -2,18 +2,21 @@
 use yii\widgets\ActiveForm ;
 use yii\helpers\Html;
 use developit\captcha\Captcha ;
+use developit\pdate\Date;
+use frontend\helpers\Raspina;
+
+Raspina::title($model['title']);
 ?>
 <div class="post-border shadow">
     <div class="panel panel-default post-panel">
         <div class="panel-body">
             <div class="post-title"><?= Html::a($model['title'],[0 => 'post/view','id' => $model['id'],'title' => $model['title']]) ?></div>
             <!-- -->
-            <?php $postCategories = $postModel->getSelectedCategoriesTitle($model['id'],'array') ?>
             <?php if($postCategories): ?>
                 <span class="post-detail">
 					<span class="fa fa-list"></span>
-                    <?php foreach ($postCategories as $category): ?>
-						<?= Html::a($category['title'],[0 => 'site/index','category' => $category['id'],'title' => $category['title']]) ?><delimiter>،</delimiter>
+                    <?php foreach ($postCategories as $pc): ?>
+						<?= Html::a($pc['category']['title'],[0 => 'site/index','category' => $pc['category']['id'],'title' => $pc['category']['title']]) ?><delimiter>،</delimiter>
                     <?php endforeach ?>
 				</span>
             <?php endif ?>
@@ -23,7 +26,7 @@ use developit\captcha\Captcha ;
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-calendar"></span>
-                <?= Yii::$app->date->pdate($model['create_time']) ?>
+                <?= Date::widget(['value' => $model['create_time']]); ?>
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-comment-o"></span>
@@ -40,7 +43,7 @@ use developit\captcha\Captcha ;
                 <br>
                 <?= $model['more_text'] ?>
                 <?php if($model['update_time']): ?>
-                <span style="font-style: italic">این مطلب آخرین بار در تاریخ  <?= Yii::$app->date->pdate($model['update_time']) ?>  ویرایش شده است.</span>
+                <span style="font-style: italic">این مطلب آخرین بار در تاریخ  <?= Date::widget(['value' => $model['update_time']]) ?>  ویرایش شده است.</span>
                 <?php endif ?>
                 <?php if($model['tags']): ?>
                 <hr class="more-hr">
@@ -79,7 +82,7 @@ use developit\captcha\Captcha ;
             <div class="post-text">
                 <!-- -->
                     <?php foreach($comments as $c): ?>
-                        <div class="comment-title"><span><?= $c['name'] ?></span> در تاریخ <span><?= Yii::$app->date->pdate($c['create_time']) ?></span> نوشته: </div>
+                        <div class="comment-title"><span><?= $c['name'] ?></span> در تاریخ <span><?= Date::widget(['value' => $c['create_time']]) ?></span> نوشته: </div>
                         <div class="comment-text"><?= nl2br($c['text']) ?></div>
                         <?php if($c['reply_text']): ?>
                             <div class="comment-reply"><span>پاسخ مدیر: </span><br> <?= nl2br($c['reply_text']) ?></div>

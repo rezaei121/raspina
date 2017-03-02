@@ -1,0 +1,24 @@
+{
+    "name": "developit/yii2-jcrop",
+    "description": " yii2 image cropping extension ",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","jcrop","crop image"],
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Ehsan Rezaei",
+            "email": "mr.rezaee121@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-imagine": "*",
+        "bower-asset/Jcrop": "=0.9.12",
+        "bower-asset/simple-ajax-uploader": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "developit\\jcrop\\": "src"
+        }
+    }
+}

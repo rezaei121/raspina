@@ -1,24 +1,21 @@
 <?php
-
 namespace frontend\controllers;
-
-use frontend\controllers\BaseController;
 use Yii;
 use frontend\models\Newsletter;
-//use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
-//use yii\widgets\ActiveForm;
-//use yii\web\Controller;
 /**
  * NewsletterController implements the CRUD actions for Newsletter model.
  */
 class NewsletterController extends BaseController
 {
-    public $layout = '';
-    public function __construct($id, $module, $config = [])
+    public function actions()
     {
-        parent::__construct($id, $module, $config);
         $this->layout = $this->setting['layout'];
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ]
+        ];
     }
 
     public function behaviors()
@@ -67,27 +64,22 @@ class NewsletterController extends BaseController
         $model->scenario = 'unsubscribe';
 
         $request = Yii::$app->request->post();
+
         if($model->load($request) && $model->validate())
         {
             $findModel = $model->findOne(['email' => $model->email]);
             if($findModel !== null)
             {
                 $findModel->delete();
-                \Yii::$app->getSession()->setFlash('message', [
-                    'text' => Yii::t('app','Success Unsubscribe Newsletter'),
-                    'class' => 'success'
-                ]);
+                Yii::$app->session->setFlash('success', Yii::t('app','Success Unsubscribe Newsletter'));
             }
             else
             {
-                \Yii::$app->getSession()->setFlash('message', [
-                    'text' => Yii::t('app','Newsletter Email Not Found'),
-                    'class' => 'error'
-                ]);
+                Yii::$app->session->setFlash('error', Yii::t('app','Newsletter Email Not Found'));
             }
         }
 
-        return $this->render('unsubscribe.twig', [
+        return $this->render('unsubscribe', [
             'model' => $model,
         ]);
     }

@@ -15,6 +15,7 @@ class ComposerStaticInitaed39ad1b5103541f523a8477fafa0f1
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\imagine\\' => 12,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
@@ -23,9 +24,14 @@ class ComposerStaticInitaed39ad1b5103541f523a8477fafa0f1
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
+        'l' => 
+        array (
+            'light\\hashids\\' => 14,
+        ),
         'd' => 
         array (
             'developit\\pdate\\' => 16,
+            'developit\\jcrop\\' => 16,
             'developit\\captcha\\' => 18,
         ),
         'c' => 
@@ -42,6 +48,10 @@ class ComposerStaticInitaed39ad1b5103541f523a8477fafa0f1
         'yii\\swiftmailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
+        ),
+        'yii\\imagine\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-imagine',
         ),
         'yii\\gii\\' => 
         array (
@@ -71,9 +81,17 @@ class ComposerStaticInitaed39ad1b5103541f523a8477fafa0f1
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
+        'light\\hashids\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/light/hashids/src',
+        ),
         'developit\\pdate\\' => 
         array (
             0 => __DIR__ . '/..' . '/developit/yii2-pdate',
+        ),
+        'developit\\jcrop\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/developit/yii2-jcrop/src',
         ),
         'developit\\captcha\\' => 
         array (
@@ -90,8 +108,19 @@ class ComposerStaticInitaed39ad1b5103541f523a8477fafa0f1
     );
 
     public static $prefixesPsr0 = array (
+        'I' => 
+        array (
+            'Imagine' => 
+            array (
+                0 => __DIR__ . '/..' . '/imagine/imagine/lib',
+            ),
+        ),
         'H' => 
         array (
+            'Hashids' => 
+            array (
+                0 => __DIR__ . '/..' . '/hashids/hashids/lib',
+            ),
             'HTMLPurifier' => 
             array (
                 0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',

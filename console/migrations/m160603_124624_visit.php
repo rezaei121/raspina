@@ -12,10 +12,10 @@ class m160603_124624_visit extends Migration
         }
 
         $this->createTable('{{%visitors}}', [
-            'id' => $this->primaryKey(),
+            'id' => $this->primaryKey()->unsigned(),
             'ip' => $this->string(20),
-            'visit_date' => $this->integer(11),
-            'group_date' => $this->integer(11),
+            'visit_date' => $this->integer(11)->unsigned(),
+            'group_date' => $this->integer(11)->unsigned(),
             'location' => $this->string(2000),
             'browser' => $this->string(60),
             'os' => $this->string(30),

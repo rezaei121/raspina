@@ -1,5 +1,4 @@
 <?php
-
 namespace backend\controllers;
 
 use Yii;
@@ -56,7 +55,7 @@ class SettingController extends Controller
             if(isset($request['keyword']))
             {
                 $keywords = explode(',',$model->keyword);
-                $model->keyword = \backend\models\Post::setSelect2Value($request['keyword'],$keywords);
+                $model->keyword = \backend\modules\post\models\Post::setSelect2Value($request['keyword'],$keywords);
             }
 
             $url_len = mb_strlen($model->url) - 1;

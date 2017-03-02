@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'yii\\swiftmailer\\' => array($vendorDir . '/yiisoft/yii2-swiftmailer'),
+    'yii\\imagine\\' => array($vendorDir . '/yiisoft/yii2-imagine'),
     'yii\\gii\\' => array($vendorDir . '/yiisoft/yii2-gii'),
     'yii\\faker\\' => array($vendorDir . '/yiisoft/yii2-faker'),
     'yii\\debug\\' => array($vendorDir . '/yiisoft/yii2-debug'),
@@ -14,7 +15,9 @@ return array(
     'yii\\codeception\\' => array($vendorDir . '/yiisoft/yii2-codeception'),
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'light\\hashids\\' => array($vendorDir . '/light/hashids/src'),
     'developit\\pdate\\' => array($vendorDir . '/developit/yii2-pdate'),
+    'developit\\jcrop\\' => array($vendorDir . '/developit/yii2-jcrop/src'),
     'developit\\captcha\\' => array($vendorDir . '/developit/yii2-captcha'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),

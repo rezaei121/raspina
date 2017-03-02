@@ -13,14 +13,14 @@ class m160415_054931_comment extends Migration
         }
 
         $this->createTable('{{%comment}}', [
-            'id' => $this->primaryKey(),
-            'post_id' => $this->integer(11)->notNull(),
+            'id' => $this->primaryKey()->unsigned(),
+            'post_id' => $this->integer(11)->notNull()->unsigned(),
             'name' => $this->string(60)->notNull(),
             'email' => $this->string(255)->notNull(),
             'text' => $this->text()->notNull(),
-            'status' => $this->integer(1)->notNull()->defaultValue(0),
+            'status' => $this->integer(1)->notNull()->defaultValue(0)->unsigned(),
             'reply_text' => $this->text(),
-            'create_time' => $this->integer(11)->notNull(),
+            'create_time' => $this->integer(11)->notNull()->unsigned(),
             'ip' => $this->string(20),
         ],$tableOptions);
 

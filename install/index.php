@@ -6,23 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=0.9, user-scalable=no" />
     <link rel="stylesheet" href="../backend/web/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../backend/web/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../backend/web/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/install.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style type="text/css">
-        body {font-family: Tahoma; direction: rtl; font-size: 12px;}
-        .input-box {}
-        .input-box input{width: 100%; padding: 10px; border: 1px solid #cccccc; font-family: Tahoma; border-radius: 2px; margin-bottom: 20px}
-        .input-box div{ margin-bottom: 6px;}
-        .btn-primary {font-size: 12px;}
-        .error {background: #d9534f; color: #ffffff; padding: 15px; margin-bottom: 25px; border-radius: 4px;}
-        .success {background: #00a65a; color: #ffffff; padding: 15px; margin-bottom: 25px; border-radius: 4px;}
-        .error a{color: #ffffff; font-weight: bold}
-        .success a{color: #ffffff; font-weight: bold}
-    </style>
+
+    <script src="../backend/web/js/jquery-2.2.3.min.js"></script>
+    <script src="../backend/web/js/bootstrap.min.js"></script>
+    <script src="assets/js/install.js"></script>
 </head>
 <body>
 <div class="container">
@@ -63,8 +59,8 @@
             catch (Exception $e)
             {
                 $message = $e->getMessage();
-                echo '<div class="error">به دلیل خطای زیر امکان اتصال به پایگاه داده وجود ندارد. <a href="../install/">صفحه نصب رسپینا</a></div>';
                 echo '<div class="error" dir="ltr">' . $message . '</div>';
+                echo '<div class="info-box"><a href="../install/">Install Page</a></div>';
                 return false;
             }
 
@@ -81,8 +77,9 @@
             catch (Exception $e)
             {
                 $message = $e->getMessage();
-                echo '<div class="error">به دلیل خطای زیر امکان ایجاد فایل db_config.php در مسیر common/config/  . <a href="/install">صفحه نصب رسپینا</a>وجود ندارد</div>';
+                echo '<div class="error">can not create db_config.php file to common/config/</div>';
                 echo '<div class="error" dir="ltr">' . $message . '</div>';
+                echo '<div class="info-box"><a href="../install/">Install Page</a></div>';
                 return false;
             }
 
@@ -119,7 +116,7 @@
             );
             $application = new yii\web\Application($config);
 
-            $model = new \frontend\models\SignupForm();
+            $model = new \common\models\SignupForm();
 //            $signupData = [
 //                'username' => $data['username'],
 //                'password' => $data['password'],
@@ -127,38 +124,38 @@
 //            ];
             if((trim($data['url'])) == 'http://www.')
             {
-                echo '<div class="error">آدرس وبسایت وارد شده صحیح نیست</div>';
+                echo '<div class="error">url not valid</div>';
                 return false;
             }
 
             if(mb_strlen(trim($data['username'])) < 4)
             {
-                echo '<div class="error">نام کاربری حداقل باید 5 کاراکتر باشد</div>';
+                echo '<div class="error">username must least 3 character</div>';
                 return false;
             }
 
             if(mb_strlen(trim($data['password'])) < 5)
             {
-                echo '<div class="error">کلمه عبور حداقل باید 6 کاراکتر باشد</div>';
+                echo '<div class="error">password must least 6 character</div>';
                 return false;
             }
 
             if(mb_strlen(trim($data['last_name'])) < 2 || mb_strlen(trim($data['surname'])) < 2)
             {
-                echo '<div class="error">نام و نام خانوادگلی هر کدام حداقل باید 3 کاراکتر باشند</div>';
+                echo '<div class="error">name or last name must least 3 character</div>';
                 return false;
             }
 
             if(!preg_match("/^[A-Za-z0-9\\.|-|_]*[@]{1}[A-Za-z0-9\\.|-|_]*[.]{1}[a-z]{2,5}$/",($data['email'])))
             {
-                echo '<div class="error">ایمیل وارد شده معتبر نیست</div>';
+                echo '<div class="error">email not valid</div>';
                 return false;
             }
 
             $user = $model->signup($data['username'],$data['password'],$data['email'],$data['last_name'],$data['surname']);
             if(empty($user->username))
             {
-                echo '<div class="error">متاسفانه مشکلی در هنگام ایجاد حساب کاربری به وجود آمد، تمام محتوای دیتابیس را پاک کنید و از نو عملیات نصب را انجام دهید</div>';
+                echo '<div class="error">sorry there was a problem when creating an account, all tables database to delete and re-do the installation</div>';
                 return false;
             }
 
@@ -182,11 +179,11 @@
 
             if(!$setting->save())
             {
-                echo '<div class="error">متاسفانه مشکلی در هنگام ایجاد تنظیمات به وجود آمد، تمام محتوای دیتابیس را پاک کنید و از نو عملیات نصب را انجام دهید</div>';
+                echo '<div class="error">sorry there was a problem when creating settings, all tables database to delete and re-do the installation</div>';
                 return false;
             }
 
-            echo '<div class="success">عملیات نصب با موفقیت انجام شد. جهت حفظ امنیت سایت هر چه سریعتر پوشه ../install/ را از هاست خود حذف کنید. <a href="'.$data['url'].'">مشاهده وبسایت</a></div>';
+            echo '<div class="success">The installation has been completed successfully. In order to secure the site as soon as possible remove folders ../install/ from your host. <a href="'.$data['url'].'">view blog</a></div>';
             return false;
         }
 
@@ -194,11 +191,134 @@
         </div>
         <div class="col-lg-12" style="margin: 0px auto">
             <div class="panel panel-default">
-                <div class="panel-heading">بررسی نیازمندی ها</div>
+                <div class="panel-heading shadow"><h3>1) Raspina Application Requirement Checker</h3></div>
                 <div class="panel-body">
-                    قبل از نصب لطفا
-<a href="../requirements.php" target="_blank">نیازمندی های نرم افزار</a>
-                     را مشاهده و بررسی کنید.
+                    <?php
+                    require_once(dirname(__FILE__) . '/requirements/YiiRequirementChecker.php');
+                    $requirementsChecker = new YiiRequirementChecker();
+
+                    $gdMemo = $imagickMemo = 'Either GD PHP extension with FreeType support or ImageMagick PHP extension with PNG support is required for image CAPTCHA.';
+                    $gdOK = $imagickOK = false;
+
+                    if (extension_loaded('imagick')) {
+                        $imagick = new Imagick();
+                        $imagickFormats = $imagick->queryFormats('PNG');
+                        if (in_array('PNG', $imagickFormats)) {
+                            $imagickOK = true;
+                        } else {
+                            $imagickMemo = 'Imagick extension should be installed with PNG support in order to be used for image CAPTCHA.';
+                        }
+                    }
+
+                    if (extension_loaded('gd')) {
+                        $gdInfo = gd_info();
+                        if (!empty($gdInfo['FreeType Support'])) {
+                            $gdOK = true;
+                        } else {
+                            $gdMemo = 'GD extension should be installed with FreeType support in order to be used for image CAPTCHA.';
+                        }
+                    }
+
+                    /**
+                     * Adjust requirements according to your application specifics.
+                     */
+                    $requirements = array(
+                        // Database :
+                        array(
+                            'name' => 'PDO extension',
+                            'mandatory' => true,
+                            'condition' => extension_loaded('pdo'),
+                            'by' => 'All DB-related classes',
+                        ),
+                        array(
+                            'name' => 'PDO SQLite extension',
+                            'mandatory' => false,
+                            'condition' => extension_loaded('pdo_sqlite'),
+                            'by' => 'All DB-related classes',
+                            'memo' => 'Required for SQLite database.',
+                        ),
+                        array(
+                            'name' => 'PDO MySQL extension',
+                            'mandatory' => false,
+                            'condition' => extension_loaded('pdo_mysql'),
+                            'by' => 'All DB-related classes',
+                            'memo' => 'Required for MySQL database.',
+                        ),
+                        array(
+                            'name' => 'PDO PostgreSQL extension',
+                            'mandatory' => false,
+                            'condition' => extension_loaded('pdo_pgsql'),
+                            'by' => 'All DB-related classes',
+                            'memo' => 'Required for PostgreSQL database.',
+                        ),
+                        // Cache :
+                        array(
+                            'name' => 'Memcache extension',
+                            'mandatory' => false,
+                            'condition' => extension_loaded('memcache') || extension_loaded('memcached'),
+                            'by' => '<a href="http://www.yiiframework.com/doc-2.0/yii-caching-memcache.html">MemCache</a>',
+                            'memo' => extension_loaded('memcached') ? 'To use memcached set <a href="http://www.yiiframework.com/doc-2.0/yii-caching-memcache.html#$useMemcached-detail">MemCache::useMemcached</a> to <code>true</code>.' : ''
+                        ),
+                        array(
+                            'name' => 'APC extension',
+                            'mandatory' => false,
+                            'condition' => extension_loaded('apc'),
+                            'by' => '<a href="http://www.yiiframework.com/doc-2.0/yii-caching-apccache.html">ApcCache</a>',
+                        ),
+                        // CAPTCHA:
+                        array(
+                            'name' => 'GD PHP extension with FreeType support',
+                            'mandatory' => false,
+                            'condition' => $gdOK,
+                            'by' => '<a href="http://www.yiiframework.com/doc-2.0/yii-captcha-captcha.html">Captcha</a>',
+                            'memo' => $gdMemo,
+                        ),
+                        array(
+                            'name' => 'ImageMagick PHP extension with PNG support',
+                            'mandatory' => false,
+                            'condition' => $imagickOK,
+                            'by' => '<a href="http://www.yiiframework.com/doc-2.0/yii-captcha-captcha.html">Captcha</a>',
+                            'memo' => $imagickMemo,
+                        ),
+                        // PHP ini :
+                        'phpExposePhp' => array(
+                            'name' => 'Expose PHP',
+                            'mandatory' => false,
+                            'condition' => $requirementsChecker->checkPhpIniOff("expose_php"),
+                            'by' => 'Security reasons',
+                            'memo' => '"expose_php" should be disabled at php.ini',
+                        ),
+                        'phpAllowUrlInclude' => array(
+                            'name' => 'PHP allow url include',
+                            'mandatory' => false,
+                            'condition' => $requirementsChecker->checkPhpIniOff("allow_url_include"),
+                            'by' => 'Security reasons',
+                            'memo' => '"allow_url_include" should be disabled at php.ini',
+                        ),
+                        'phpSmtp' => array(
+                            'name' => 'PHP mail SMTP',
+                            'mandatory' => false,
+                            'condition' => strlen(ini_get('SMTP')) > 0,
+                            'by' => 'Email sending',
+                            'memo' => 'PHP mail SMTP server required',
+                        ),
+                        'phpIntl' => array(
+                            'name' => 'PHP Intl Date Formatter',
+                            'mandatory' => true,
+                            'condition' => extension_loaded('intl'),
+                            'by' => 'Date Formatter',
+                            'memo' => '"php_intl" should be disabled at php.ini',
+                        ),
+                        'mod_rewrite' => array(
+                            'name' => 'Rewrite Mode',
+                            'mandatory' => true,
+                            'condition' => in_array('mod_rewrite', apache_get_modules()),
+                            'by' => 'Url',
+                            'memo' => '"mod_rewrite" should be disabled',
+                        ),
+                    );
+                    $requirementsChecker->checkYii()->check($requirements)->render();
+                    ?>
                 </div>
             </div>
         </div>
@@ -206,31 +326,31 @@
         <br>
         <div class="col-lg-12" style="margin: 0px auto">
             <div class="panel panel-default">
-                <div class="panel-heading">تنظیمات دیتابیس</div>
+                <div class="panel-heading"><h3>2) DB Config</h3></div>
                 <div class="panel-body">
 
                     <div class="input-box">
-                        <div>سیستم مدیریت پایگاه داده</div>
-                        <input type="text" name="data[dbms]" value="mysql" dir="ltr">
+                        <div>database management system</div>
+                        <input type="text" name="data[dbms]" value="mysql" dir="ltr" readonly="readonly">
                     </div>
 
                     <div class="input-box">
-                        <div>هاست</div>
+                        <div>host</div>
                         <input type="text" name="data[host]" value="localhost" dir="ltr">
                     </div>
 
                     <div class="input-box">
-                        <div>نام دیتابیس</div>
+                        <div>database name</div>
                         <input type="text" name="data[db_name]" value="" dir="ltr">
                     </div>
 
                     <div class="input-box">
-                        <div>نام کاربری دیتابیس</div>
+                        <div>database username</div>
                         <input type="text" name="data[db_username]" value="" dir="ltr">
                     </div>
 
                     <div class="input-box">
-                        <div>کلمه عبور دیتابیس</div>
+                        <div>database password</div>
                         <input type="password" name="data[db_password]" value="" dir="ltr">
                     </div>
 
@@ -241,11 +361,11 @@
         <br>
         <div class="col-lg-12" style="margin: 0px auto">
             <div class="panel panel-default">
-                <div class="panel-heading">تنظیمات وبسایت</div>
+                <div class="panel-heading"><h3>3) Blog Settings</h3></div>
                 <div class="panel-body">
 
                     <div class="input-box">
-                        <div>آدرس وبسایت <span>به عنوان مثال: www.site.ir</span></div>
+                        <div>url, for example: www.myblog.mydomain</div>
 						<?php
 							$url = 'http://www.' . $_SERVER['HTTP_HOST'] . '/';
 							if($_SERVER['HTTP_HOST'] == 'localhost')
@@ -257,32 +377,32 @@
                     </div>
 
                     <div class="input-box">
-                        <div>عنوان وبسایت</div>
+                        <div>title</div>
                         <input type="text" name="data[title]" value="">
                     </div>
 
                     <div class="input-box">
-                        <div>نام (حداقل 3 کاراکتر)</div>
+                        <div>your name, least 3 character</div>
                         <input type="text" name="data[last_name]" value="">
                     </div>
 
                     <div class="input-box">
-                        <div>نام خانوادگی(حداقل 3 کاراکتر)</div>
+                        <div>your last name, least 3 character</div>
                         <input type="text" name="data[surname]" value="">
                     </div>
 
                     <div class="input-box">
-                        <div>نام کاربری(جهت لاگین در پنل مدیریت، حداقل 5 کاراکتر)</div>
+                        <div>username, least 5 character</div>
                         <input type="text" name="data[username]" value="" dir="ltr">
                     </div>
 
 					<div class="input-box">
-                        <div>کلمه عبور (<span>حداقل 6 کاراکتر، از کلمه های عبور ساده و قابل حدس استفاده نکنید</span>)</div>
+                        <div>password, least 5 character</div>
                         <input type="password" name="data[password]" value="" dir="ltr">
                     </div>
 					
                     <div class="input-box">
-                        <div>آدرس ایمیل(<span>جهت بازیابی کلمه عبور آدرس ایمیل حقیقی خود را وارد کنید</span>)</div>
+                        <div>email</div>
                         <input type="text" name="data[email]" value="" dir="ltr">
 
                     </div>
@@ -294,30 +414,18 @@
         <br>
         <div class="col-lg-12" style="margin: 0px auto">
             <div class="panel panel-default">
-                <div class="panel-heading">شرایط استفاده(قوانین و مقررات)</div>
-                <div class="panel-body">
-                    <div style="text-align: center; font-weight: bold;">متن حاضر متعلق به سیستم مدیریت محتوای رَسپینا می باشد و علاوه بر مفاد زیر بعنوان یک پروژه ایرانی، قوانین و مقررات جمهوری اسلامی ایران نیز بر آن حاکم است.</div><br>
-                    <div style="">1) نباید اطلاعاتی را که دارای حساسیت می باشند برروی سایت قرار دهید و رَسپینا مسئولیتی درخصوص سوء استفاده از این اطلاعات را قبول نمی کنند.</div><br>
-                    <div style="">2) مجاز به انتشار اطلاعات محرمانه مملکتی، اطلاعات محرمانه اشخاص ثالث، مطالب نفرت آمیز، ....، غیر اخلاقی و غیر قانونی در وبسایت خود نمی باشید.</div><br>
-                    <div style="">3) رَسپینا تحت هیچ شرایطی مسئولیت خسارتهای وارده در اثر اعتماد و اتکا به اطلاعات قرار گرفته در وبسایت شما را نمی پذیرد.</div><br>
-                    <div style="">4) رَسپینا یک نرم افزار جهت راه انداری وبلاگ یا وبسایت شماست و مسئولیت کامل مطالب و محتوای قرار داده شده در آن بر عهده صاحب آن وبلاگ یا وبسایت خواهد بود.</div><br>
-                    <div style="">5) در صورتیکه کلمه عبور خود را فراموش نمودید با استفاده از لینک "فراموشی کلمه عبور" می توانید آنرا دریافت کنید و رَسپینا مسئولیتی در قبال ارسال این اطلاعات برای شما به طرق دیگر نخواهد داشت.</div><br>
-                    <div style="">6) سرویس حاضر به همان شکلی که هست و بدون هر گونه تعهدی ارائه شده و در مورد قطع شدن خدمات، خالی از اشکال بودن آن، رفع اشکالات و یا تطابق آن با نیازهای شما تعهدی ندارد.</div><br>
-                    <div style="">7) رَسپینا دارای قسمت پشتیبانی می باشد و تلاش خود را همواره جهت ارائه خدمات مطلوب می نماید ولیکن تعهدی نسبت به سرعت پاسخگوئی، عدم پاسخگوئی به سوالات و غیره ندارد.</div><br>
-                    <div style="">8) رَسپینا تمامی تلاش خود جهت حفظ و صیانت از اطلاعات شما بعمل خواهد آورد ولیکن اگر چنانچه به هر دلیل بدون اطلاع و رضایت شما، اطلاعات شما توسط اشخاص ثالث مورد سوء استفاده و یا تخریب گردد رَسپینا مسئولیتی در مورد این اتفاقات نخواهد داشت.</div><br>
-                    <div style="">9) مجاز به انتشار هیچ مفهوم و محتوایی که به حقوق انحصاری و تجاری افراد و حق چاپ و نشر (Copy Right) و سایر حقوق دیگران تجاوز نمایند، نمی باشید.</div><br>
-                    <div style="">10) نظر به قانون حقوق مولفین و مصنفین عرضه غیر قانونی محصولات فرهنگی از جمله دانلود نمودن آلبوم های موسیقی بدون مجوز ناشر در سایت ممنوع است.</div><br>
-                    <div style="">11) بیان عقاید مختلف با احترام به اصول فکری و اخلاقی دیگران و با پرهیز از توهین و فحاشی در وبلاگها مجاز می باشد.</div><br>
-                    <div style="">12) بکار بردن کلمات و یا تصاویر خلاف شئونات اخلاقی و مذهبی ممنوع می باشد.</div><br>
-                    <div style="">13) مطالب مستهجن، افترا آمیز، دشنام و خارج از اخلاق یا بی حرمتی به مقدسات فرهنگی و مذهبی در هیچ یک از وبلاگها مجاز نمی باشد.</div><br>
-                    <div style="">14) بیان لطیفه هائی که منجر به اهانت به هم وطنان و یا اقشار خاص گردد و خلاف شئونات اخلاقی باشد مجاز نمی باشد.</div><br>
-                    <div style="">15) پیشنهاد و یا تشویق به هر نوع فعالیت غیر قانونی مجاز نمی باشد.</div><br>
-                    <div style="">16) قراردادن لینک به سایتهای غیر قانونی و غیر اخلاقی و مبتذل و همچنین سایتهائی که به اشکال مختلف روابط و رفتارهای فرهنگی و اخلاقی و عرفی و قانونی جامعه را پایمال نماید مجاز نمی باشد.</div><br>
-                    <div style="">17) جعل هویت اشخاص حقیقی و یا حقوقی اعم از شرکتها، نهادها و سازمانها و نسبت دادن بیانات و سخنان دروغین به ایشان مجاز نمی باشد.</div><br>
-                    <div style="">18) نصب رَسپینا به معنی مطالعه کامل شرایط استفاده(قوانین و مقررات) و قبول موارد آن می باشد.</div><br>
-                    <div style="">19) رَسپینا متن باز و تحت مجوز GPL-3.0 منتشر شده است و هیچگونه مسئولیت و تعهدی در قبال نسخه های دیگر آن که توسط اشخاص دیگر تغییر، توسعه و در جایی به جز منبع اصلی رَسپینا منتشر شده است را ندارد.</div><br>
-                    <div style="">20) منبع اصلی رَسپینا <a href="https://github.com/rezaei121/raspina" target="_blank">https://github.com/rezaei121/raspina</a> می باشد و باید این نرم افزار را از همین منبع دانلود و نصب کنید.</div><br>
-                    <div style="text-align: center; font-weight: bold; color: #973634">در صورتی که با شرایط استفاده(قوانین و مقررات) مخالفت دارید،یعنی مجاز به استفاده از رَسپینا نیستید و باید سیستم مدیریت محتوای رَسپینا را از هاست شخصی خود پاک کنید.</div>
+                <div class="panel-heading"><h3>4) Privacy Policy And Terms of Service</h3></div>
+                <div class="panel-body rtl">
+                    <div style="">1) رَسپینا یک نرم افزار جهت راه انداری وبلاگ یا وبسایت است و مسئولیت کامل مطالب و محتوای قرار داده شده در آن بر عهده صاحب آن وبلاگ یا وبسایت خواهد بود.</div><br>
+                    <div style="">2) رَسپینا تحت هیچ شرایطی مسئولیت خسارتهای وارده در اثر اعتماد و اتکا به اطلاعات قرار گرفته در وبسایت شما را نمی پذیرد.</div><br>
+                    <div style="">3) در صورتیکه کلمه عبور خود را فراموش نمودید با استفاده از لینک "فراموشی کلمه عبور" می توانید آنرا دریافت کنید و رَسپینا مسئولیتی در قبال ارسال این اطلاعات برای شما به طرق دیگر نخواهد داشت.</div><br>
+                    <div style="">4) سرویس حاضر به همان شکلی که هست و بدون هر گونه تعهدی ارائه شده و در مورد قطع شدن خدمات، خالی از اشکال بودن آن، رفع اشکالات و یا تطابق آن با نیازهای شما تعهدی ندارد.</div><br>
+                    <div style="">5) رَسپینا دارای قسمت پشتیبانی می باشد و تلاش خود را همواره جهت ارائه خدمات مطلوب می نماید ولیکن تعهدی نسبت به سرعت پاسخگوئی، عدم پاسخگوئی به سوالات و غیره ندارد.</div><br>
+                    <div style="">6) رَسپینا تمامی تلاش خود جهت حفظ و صیانت از اطلاعات شما بعمل خواهد آورد ولیکن اگر چنانچه به هر دلیل بدون اطلاع و رضایت شما، اطلاعات شما توسط اشخاص ثالث مورد سوء استفاده و یا تخریب گردد رَسپینا مسئولیتی در مورد این اتفاقات نخواهد داشت.</div><br>
+                    <div style="">7) نصب رَسپینا به معنی مطالعه کامل Privacy Policy And Terms of Service و قبول موارد آن می باشد.</div><br>
+                    <div style="">8) رَسپینا متن باز و تحت مجوز GPL-3.0 منتشر شده است و هیچگونه مسئولیت و تعهدی در قبال نسخه های دیگر آن که توسط اشخاص دیگر تغییر، توسعه و در جایی به جز منبع اصلی رَسپینا منتشر شده است را ندارد.</div><br>
+                    <div style="">9) منبع اصلی رَسپینا <a href="https://github.com/rezaei121/raspina" target="_blank">https://github.com/rezaei121/raspina</a> می باشد و باید این نرم افزار را از همین منبع دانلود و نصب کنید.</div><br>
+                    <div style="text-align: center; font-weight: bold; color: #973634">در صورتی که با Privacy Policy And Terms of Service مخالفت دارید،یعنی مجاز به استفاده از رَسپینا نیستید و باید سیستم مدیریت محتوای رَسپینا را از هاست شخصی خود پاک کنید.</div>
                 </div>
             </div>
         </div>
@@ -325,10 +433,9 @@
         <br>
         <div class="col-lg-12" style="margin: 0px auto">
             <div class="panel panel-default">
-                <div class="panel-heading">نصب رَسپینا</div>
+                <div class="panel-heading"><h3>5) Install</h3></div>
                 <div class="panel-body">
-                <div style="text-align: center">ممکن است عملیات نصب کمی طول بکشد، لطفا شکیبا باشید</div><br>
-                <div style="text-align: center"><button class="btn btn-primary">نصب</button></div>
+                <div style="text-align: center"><button class="btn btn-primary btn-lg">Install</button></div>
 
                 </div>
             </div>
@@ -340,7 +447,6 @@
     </div>
     </form>
 </div>
-
 
 </body>
 </html>

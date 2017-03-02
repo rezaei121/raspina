@@ -13,14 +13,14 @@ class m160415_051211_category extends Migration
         }
 
         $this->createTable('{{%category}}', [
-            'id' => $this->primaryKey(),
+            'id' => $this->primaryKey()->unsigned(),
             'title' => $this->string(255)->notNull()->unique()
         ],$tableOptions);
 
         $this->createTable('{{%post_category}}', [
-            'id' => $this->primaryKey(),
-            'post_id' => $this->integer(11)->notNull(),
-            'category_id' => $this->integer(11)->notNull()
+            'id' => $this->primaryKey()->unsigned(),
+            'post_id' => $this->integer(11)->notNull()->unsigned(),
+            'category_id' => $this->integer(11)->notNull()->unsigned()
         ],$tableOptions);
 
         $this->addForeignKey('fk_post_category','{{%post_category}}','category_id','{{%category}}','id','CASCADE');

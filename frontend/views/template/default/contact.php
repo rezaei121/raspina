@@ -2,11 +2,14 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use developit\captcha\Captcha;
+use frontend\helpers\Raspina;
+
+Raspina::title(Yii::t('app','Contact Me'));
 ?>
 <div class="post-border shadow">
     <div class="panel panel-default post-panel">
         <div class="panel-body">
-            <div class="post-title">تماس با من</div>
+            <div class="post-title"><?= Yii::t('app','Contact Me') ?></div>
             <div class="post-text">
                 <!-- -->
                 <?php $form = ActiveForm::begin() ?>

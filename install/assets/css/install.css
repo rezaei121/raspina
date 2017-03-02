@@ -1,0 +1,30 @@
+.input-box {}
+.input-box input{width: 100%; padding: 10px; border: 1px solid #cccccc; font-family: Tahoma; border-radius: 2px; margin-bottom: 20px}
+.input-box div{ margin-bottom: 6px;}
+.btn-primary {font-size: 12px;}
+.error {background: #d9534f; color: #ffffff; padding: 15px; margin-bottom: 25px; border-radius: 4px;}
+.success {background: #00a65a; color: #ffffff; padding: 15px; margin-bottom: 25px; border-radius: 4px;}
+.error a{color: #ffffff; font-weight: bold}
+
+.info-box {background: #383A3F; color: #ffffff; padding: 15px; margin-bottom: 25px; border-radius: 4px;text-align: center}
+.info-box a{color: #ffffff; font-weight: bold; text-align: center}
+
+.success a{color: #ffffff; font-weight: bold}
+
+.panel-default {border: none}
+.panel-default>.panel-heading { background-color: #383A3F; border: none; color: #FFFFFF; border-radius: 3px; border-left: 5px solid #F6B352}
+.clear {clear:both}
+.success, .success a {color: #000000}
+.h1, .h2, .h3, h1, h2, h3 {margin-top: 10px;}
+/*h3 span {background-color: #F6B352; padding: 3px 10px 3px 10px; border-radius: 50%; margin-right: 15px;}*/
+.shadow {
+    -webkit-box-shadow: 0px 5px 10px -6px #cccccc;
+    -moz-box-shadow: 0px 5px 10px -6px #cccccc;
+    box-shadow: 0px 5px 10px -6px #cccccc;
+}
+
+.alert-info {}
+.alert {border-radius: 3px;}
+.btn-group-lg>.btn, .btn-lg {border-radius: 3px;}
+.rtl {font-family: Tahoma; font-size: 12px; direction: rtl; text-align: right}
+

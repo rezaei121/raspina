@@ -1,6 +1,6 @@
 <?php
-
 namespace frontend\controllers;
+use frontend\models\About;
 use Yii;
 
 class AboutController extends BaseController
@@ -12,11 +12,9 @@ class AboutController extends BaseController
 
     public function actionIndex()
     {
-        $query = new \yii\db\Query();
-        $about = $query->select('*')->from(\backend\models\About::tableName())->one();
-        Yii::$app->view->title = Yii::t('app','About Me');
+        $model = new About();
         return $this->render('about',[
-            'about' => $about
+            'about' => $model->get()
         ]);
     }
 

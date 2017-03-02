@@ -12,16 +12,16 @@ class m160522_144801_setting extends Migration
         }
 
         $this->createTable('{{%setting}}', [
-            'id' => $this->primaryKey(),
-            'url' => $this->string(2000)->notNull(),
+            'id' => $this->primaryKey()->unsigned(),
+            'url' => $this->string(255)->notNull(),
             'template' => $this->string(255)->notNull(),
             'title' => $this->string(255)->notNull(),
             'description' => $this->string(255),
             'keyword' => $this->text(),
-            'page_size' => $this->integer(3)->notNull()->defaultValue(0),
+            'page_size' => $this->integer(3)->notNull()->defaultValue(0)->unsigned(),
             'date_format' => $this->string(255),
             'sult' => $this->string(17),
-            'activation_newsletter' => $this->integer(1)->defaultValue(1)
+            'activation_newsletter' => $this->integer(1)->defaultValue(1)->unsigned()
         ],$tableOptions);
     }
 

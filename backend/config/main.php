@@ -13,7 +13,26 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'post' => [
+            'class' => 'backend\modules\post\post',
+        ],
+        'newsletter' => [
+            'class' => 'backend\modules\newsletter\newsletter',
+        ],
+        'link' => [
+            'class' => 'backend\modules\link\link',
+        ],
+        'file' => [
+            'class' => 'backend\modules\file\file',
+        ],
+        'contact' => [
+            'class' => 'backend\modules\contact\contact',
+        ],
+        'about' => [
+            'class' => 'backend\modules\about\about',
+        ],
+    ],
     'components' => [
         'request' => [
             'baseUrl' => $baseUrl,
@@ -22,6 +41,7 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['user/login'],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

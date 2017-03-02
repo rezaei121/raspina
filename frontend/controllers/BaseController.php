@@ -30,7 +30,7 @@ class BaseController extends Controller
         return Yii::getAlias('@frontend/views/template/') . $this->setting['template'] . '/';
     }
 
-    public function setOptions()
+    private function _setOptions()
     {
         #set date format
         if(!defined('DATE_FROMAT'))
@@ -74,14 +74,10 @@ class BaseController extends Controller
         # templateDir
         Yii::$app->view->params['templateDir'] = $this->setting['templateDir'];
         # title
-        if(!empty(Yii::$app->view->title))
-        {
-            Yii::$app->view->title = ' - ' . Yii::$app->view->title;
-        }
-        Yii::$app->view->title = $this->setting['title'] . Yii::$app->view->title;
-        Yii::$app->view->params['title'] = Html::encode(Yii::$app->view->title);
+        Yii::$app->view->title = $this->setting['title'];
+
         Yii::$app->view->params['subject'] = $this->setting['title'];
-        Yii::$app->view->params['site_description'] = $this->setting['description'];
+        Yii::$app->view->params['siteDescription'] = $this->setting['description'];
         # lang
         Yii::$app->view->params['lang'] = Yii::$app->language;
         # charset
@@ -91,32 +87,27 @@ class BaseController extends Controller
         # url
         Yii::$app->view->params['url'] = $this->setting['url'];
         # categories
-        Yii::$app->view->params['categories'] = \backend\models\Category::getAllCategories();
+        Yii::$app->view->params['categories'] = \frontend\models\Category::getAll();
         # links
-        Yii::$app->view->params['links'] = \backend\models\Link::getLinks();
+        Yii::$app->view->params['links'] = \frontend\models\Link::getAll();
         # about
         $about = new \yii\db\Query();
-        Yii::$app->view->params['about'] = $about->select('avatar,name,short_text,facebook,twitter,googleplus,instagram,linkedin')->from(\backend\models\About::tableName())->one();
+        Yii::$app->view->params['about'] = $about->select('avatar,name,short_text,facebook,twitter,googleplus,instagram,linkedin')->from(\frontend\models\About::tableName())->one();
         # model
-        Yii::$app->view->params['newsletter'] = new \backend\models\Newsletter;
+        Yii::$app->view->params['newsletter'] = new \frontend\models\Newsletter;
         # site
         Yii::$app->view->params['index'] = new \frontend\models\Site;
     }
 
     public function render($view, $params = [])
     {
-        $this->setOptions();
-
-        if(Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'rss')
-        {
-            return parent::render($view,$params);
-        }
+        $this->_setOptions();
 
         // visit +
         $exception = Yii::$app->errorHandler->exception;
         if(empty($exception))
         {
-            $visitors = new \backend\models\Visitors;
+            $visitors = new \common\models\Visitors;
             $visitors->add();
         }
 

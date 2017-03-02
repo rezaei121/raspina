@@ -83,9 +83,9 @@ return [
     'Comment Successfully Sent' => 'نظر شما با موفقیت ارسال گردید و پس از بررسی مدیر نمایش داده خواهد شد',
     'Contact Successfully Sent' => 'پیام شما با موفقیت ارسال شد',
     'Link Successfully Created' => 'پیوند جدید با موفقیت افزوده شد',
-    'Link Successfully Updated' => 'پیوند با موفقیت به روز شد',
+    'Link Successfully Updated' => 'پیوند با موفقیت بروز شد',
     'Category Successfully Created' => 'دسته جدید با موفقیت افزوده شد',
-    'Category Successfully Updated' => 'دسته با موفقیت به روز شد',
+    'Category Successfully Updated' => 'دسته با موفقیت بروز شد',
     'Search' => 'جستجو',
     'Contact Me' => 'تماس با من',
     'About Me' => 'درباره من',
@@ -200,4 +200,5 @@ return [
     'Edit Password' => 'تغییر کلمه عبور',
     'User Profile' => 'حساب کاربری',
     'Cannot Create, Update Or Delete Contens' => 'در نسخه demo امکان افزودن، ویرایش یا حذف محتویات وجود ندارد',
+    'Type And Enter' => 'عنوان مورد نظر خود را نوشته و سپس Enter بزنید.'
 ];

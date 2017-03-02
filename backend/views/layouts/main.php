@@ -7,6 +7,7 @@ use common\widgets\Alert;
 
 AppAsset::register($this);
 
+$modules_id = Yii::$app->controller->module->id;
 $controller_id = Yii::$app->controller->id;
 $action_id = Yii::$app->controller->action->id;
 $entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
@@ -24,6 +25,7 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
     <?php $this->head() ?>
     <script type="text/javascript">
         var base_url = '<?= Url::base() ?>';
+        var modules_name = '<?= $modules_id ?>';
         var controller_name = '<?= $controller_id ?>';
         var action_name = '<?= $action_id ?>';
         var entity_id = '<?= $entity_id ?>';
@@ -39,17 +41,16 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
         </div>
     </a>
     <ul class="top-item pull-right">
-        <a href="<?= Url::base() . '/post/create'; ?>">
+        <a href="<?= Url::base() . '/post/default/create'; ?>">
             <li>
                 <div class="fa fa-plus"></div>
             </li>
         </a>
-        <a href="<?= Url::base() . '/comment'; ?>">
-            <li class="<?= $active = ($controller_id == 'comment') ? 'rs-active' : '' ?>">
+        <a href="<?= Url::base() . '/post/comment'; ?>">
+            <li class="<?= $active = ($modules_id == 'comment') ? 'rs-active' : '' ?>">
                 <div class="fa fa-comments"></div>
                 <?php
-                    $model = new \backend\models\Comment;
-                    $countNotAccepted = $model->getCountNotAccepted();
+                    $countNotAccepted = \backend\modules\post\models\Comment::getCountNotAccepted();
                     if($countNotAccepted):
                 ?>
                     <div class="item-notification"><?= $countNotAccepted ?></div>
@@ -57,11 +58,10 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
             </li>
         </a>
         <a href="<?= Url::base() . '/contact'; ?>">
-            <li class="<?= $active = ($controller_id == 'contact') ? 'rs-active' : '' ?>">
+            <li class="<?= $active = ($modules_id == 'contact') ? 'rs-active' : '' ?>">
                 <div class="fa fa-envelope-o"></div>
                 <?php
-                    $model = new \backend\models\Contact;
-                    $CountNotVisited = $model->getCountNotVisited();
+                    $CountNotVisited = \backend\modules\contact\models\Contact::getCountNotVisited();
                     if($CountNotVisited):
                 ?>
                 <div class="item-notification"><?= $CountNotVisited ?></div>
@@ -69,11 +69,10 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
             </li>
         </a>
         <?php
-        $model = new \backend\models\Newsletter;
-        $countMails = $model->getCountMails();
+        $countMails = backend\modules\newsletter\models\Newsletter::getCountMails();
         ?>
         <a href="<?= Url::base() . '/newsletter'; ?>">
-            <li class="<?= $active = ($controller_id == 'newsletter' && $action_id == 'index') ? 'rs-active' : '' ?>">
+            <li class="<?= $active = ($modules_id == 'newsletter' && $action_id == 'index') ? 'rs-active' : '' ?>">
                 <div class="fa fa-users"></div>
                 <?php if($countMails): ?>
                 <div class="item-notification"><?= $countMails ?></div>
@@ -83,7 +82,7 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
     </ul>
 
     <ul class="top-item pull-left">
-        <a href="<?= Url::base() . '/site/logout'; ?>">
+        <a href="<?= Url::base() . '/user/logout'; ?>">
             <li>
                 <div class="fa fa-sign-out"></div>
             </li>
@@ -101,13 +100,13 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
                     <div class="rs-tool-title"><?= Yii::t('app','View Site') ?></div>
                 </div>
             </a>
-            <div class="group-items <?= $active = ($controller_id == 'post' || $controller_id == 'category') ? 'rs-open' : '' ?>">
-                <div class="rs-item  <?= $active = ($controller_id == 'post' || $controller_id == 'category') ? 'rs-active' : '' ?>">
+            <div class="group-items <?= $active = ($modules_id == 'post' || $modules_id == 'category') ? 'rs-open' : '' ?>">
+                <div class="rs-item  <?= $active = ($modules_id == 'post' || $modules_id == 'category') ? 'rs-active' : '' ?>">
                     <div class="fa fa-file-text-o rs-icon"></div>
-                    <div class="rs-tool-title">مطالب</div>
+                    <div class="rs-tool-title"><?= Yii::t('app', 'Posts') ?></div>
                 </div>
                 <div class="sub-item">
-                    <a href="<?= Url::base() . '/post/create'; ?>">
+                    <a href="<?= Url::base() . '/post/default/create'; ?>">
                         <div class="rs-item">
                             <div class="fa fa fa-plus rs-icon"></div>
                             <div class="rs-tool-title"><?= Yii::t('app','Create Post') ?></div>
@@ -126,7 +125,7 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
                         </div>
                     </a>
 
-                    <a href="<?= Url::base() . '/category'; ?>">
+                    <a href="<?= Url::base() . '/post/category'; ?>">
                         <div class="rs-item">
                             <div class="fa fa fa-book rs-icon"></div>
                             <div class="rs-tool-title"><?= Yii::t('app','Categories') ?></div>
@@ -135,26 +134,26 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
                 </div>
             </div>
 
-            <a href="<?= Url::base() . '/newsletter/create'; ?>">
-                <div class="rs-item <?= $active = ($controller_id == 'newsletter' && $action_id == 'create') ? 'rs-active' : '' ?>">
+            <a href="<?= Url::base() . '/newsletter/default/create'; ?>">
+                <div class="rs-item <?= $active = ($modules_id == 'newsletter' && $action_id == 'create') ? 'rs-active' : '' ?>">
                     <div class="fa fa-envelope-o rs-icon"></div>
                     <div class="rs-tool-title"><?= Yii::t('app','Send Newsletter') ?></div>
                 </div>
             </a>
 
             <a href="<?= Url::base() . '/link'; ?>">
-                <div class="rs-item <?= $active = ($controller_id == 'link') ? 'rs-active rs-open' : '' ?>">
+                <div class="rs-item <?= $active = ($modules_id == 'link') ? 'rs-active rs-open' : '' ?>">
                     <div class="fa fa-link rs-icon"></div>
                     <div class="rs-tool-title"><?= Yii::t('app','Links') ?></div>
                 </div>
             </a>
-            <div class="group-items <?= $active = ($controller_id == 'file') ? 'rs-open' : '' ?>"">
-                <div class="rs-item <?= $active = ($controller_id == 'file') ? 'rs-active' : '' ?>"">
+            <div class="group-items <?= $active = ($modules_id == 'file') ? 'rs-open' : '' ?>"">
+                <div class="rs-item <?= $active = ($modules_id == 'file') ? 'rs-active' : '' ?>"">
                     <div class="fa fa-upload rs-icon"></div>
                     <div class="rs-tool-title"><?= Yii::t('app','Files Manager') ?></div>
                 </div>
                 <div class="sub-item">
-                    <a href="<?= Url::base() . '/file/upload'; ?>">
+                    <a href="<?= Url::base() . '/file/default/upload'; ?>">
                         <div class="rs-item">
                             <div class="fa fa fa-plus rs-icon"></div>
                             <div class="rs-tool-title"><?= Yii::t('app','Upload File') ?></div>

@@ -2,7 +2,7 @@
 namespace frontend\controllers;
 use common\components\CaptchaAction;
 use Yii;
-use backend\models\Post;
+use frontend\models\Post;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -22,7 +22,6 @@ class PostController extends BaseController
             ]
         ];
     }
-
 
     /**
      * @inheritdoc
@@ -44,64 +43,32 @@ class PostController extends BaseController
      */
     public function actionView($id,$title)
     {
-        $postModel = new \backend\models\Post();
-        $query = $model = new \yii\db\Query();
-        $posTable = Post::tableName();
-        $userTable = \common\models\User::tableName();
-        $commentTable = \backend\models\Comment::tableName();
+        $postModel = $this->findModel($id,$title);
+        $postModel->plusView();
+        $model = $postModel->get();
 
-        $model->select(["p.*","u.last_name","u.surname","COUNT(c.id) AS comment_count","IF(p.more_text IS NOT NULL,'1','0') AS `more`"])->
-        from("{$posTable} As p")->leftJoin("{$userTable} AS u","p.author_id = u.id")->
-        leftJoin("{$commentTable} AS c","p.id = c.post_id  AND c.status = 1")->
-        where(['p.id' => $id, 'p.title' => $title, 'p.status' => 1]);
-        $model = $model->one();
+        $model['tags'] = !empty($model['tags'])? explode(',',$model['tags']) : null;
+        $this->view->params['keywords'] = $model['keywords'];
+        $this->view->params['description'] = $model['meta_description'];
 
-        if(empty($model['title']))
-        {
-            return $this->redirect(['site/error']);
-        }
-
-        $postModel->plusView($model['id']);
-
-        if($model['tags'])
-        {
-            $model['tags'] = explode(',',$model['tags']);
-        }
-
-        if($model['keywords'])
-        {
-            $this->view->params['keywords'] = $model['keywords'];
-        }
-
-        if($model['meta_description'])
-        {
-            $this->view->params['description'] = $model['meta_description'];
-        }
-
-        $this->view->params['customParam'] = 'ehsan rezaee';
-        $this->init();
-
-        $commentModel = new \backend\models\Comment;
-        $commentModel->ip = $_SERVER['REMOTE_ADDR'];
-        $commentModel->scenario = 'post-view';
+        $commentModel = new \frontend\models\Comment;
         // insert comment
+        $commentModel->ip = $_SERVER['REMOTE_ADDR'];
         $commentModel->post_id = $id;
         $commentModel->create_time = time();
 
         $request = Yii::$app->request->post();
-
         if($commentModel->load($request) && $model['comment_active'] && $commentModel->save())
         {
             Yii::$app->getSession()->setFlash('success', Yii::t('app','Comment Successfully Sent'));
         }
 
-        Yii::$app->view->title = $model['title'];
         return $this->render('post', [
             'model' => $model,
             'commentModel' => $commentModel,
-            'comments' => $postModel->getPostComment($model['id']),
-            'postModel' => $postModel,
-            'postRelated' => $postModel->getRelated($model['id'], $model['title'])
+            'comments' => $postModel->getComments()->all(),
+            'postRelated' => $postModel->getRelated()->all(),
+            'postCategories' => $postModel->getPostCategories()->all()
         ]);
     }
 
@@ -112,9 +79,9 @@ class PostController extends BaseController
      * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id,$title)
     {
-        if (($model = Post::findOne($id)) !== null) {
+        if (($model = Post::findOne(['id' => $id, 'title' => $title])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

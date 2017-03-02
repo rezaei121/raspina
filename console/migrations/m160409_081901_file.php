@@ -13,15 +13,15 @@ class m160409_081901_file extends Migration
         }
 
         $this->createTable('{{%file}}', [
-            'id' => $this->primaryKey(),
+            'id' => $this->primaryKey()->unsigned(),
             'name' => $this->string()->notNull(),
-            'size' => $this->integer()->notNull(),
+            'size' => $this->integer()->notNull()->unsigned(),
             'extension' => $this->string(4)->notNull(),
             'content_type' => $this->string(55)->notNull(),
-            'upload_date' => $this->integer()->notNull(),
-            'user_id' => $this->integer(11)->notNull(),
+            'upload_date' => $this->integer()->notNull()->unsigned(),
+            'user_id' => $this->integer(11)->notNull()->unsigned(),
             'real_name' =>  $this->string()->notNull(),
-            'download_count' => $this->integer(11)->notNull()->defaultValue(0),
+            'download_count' => $this->integer(11)->notNull()->defaultValue(0)->unsigned(),
         ],$tableOptions);
     }
 

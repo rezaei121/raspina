@@ -6,6 +6,7 @@ use common\widgets\Alert;
 
 AppAsset::register($this);
 
+$modules_id = Yii::$app->controller->module->id;
 $controller_id = Yii::$app->controller->id;
 $action_id = Yii::$app->controller->action->id;
 ?>
@@ -22,6 +23,7 @@ $action_id = Yii::$app->controller->action->id;
     <?php $this->head() ?>
     <script type="text/javascript">
         var base_url = '<?= Url::base() ?>';
+        var modules_name = '<?= $modules_id ?>';
         var controller_name = '<?= $controller_id ?>';
         var action_name = '<?= $action_id ?>';
     </script>

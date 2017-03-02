@@ -63,7 +63,7 @@ class SiteController extends BaseController
     {
         $this->layout = 'blank.php';
 
-        $posTable = \backend\models\Post::tableName();
+        $posTable = \frontend\models\Post::tableName();
         $userTable = \common\models\User::tableName();
 
         $query = new Yii\db\Query();
@@ -87,10 +87,10 @@ class SiteController extends BaseController
     {
         $query = new \yii\db\Query();
 
-        $posTable = \backend\models\Post::tableName();
+        $posTable = \frontend\models\Post::tableName();
         $userTable = \common\models\User::tableName();
-        $commentTable = \backend\models\Comment::tableName();
-        $postCategoryTable = \backend\models\PostCategory::tableName();
+        $commentTable = \frontend\models\Comment::tableName();
+        $postCategoryTable = \frontend\models\PostCategory::tableName();
 
         // update posts status
         $query->createCommand()->update($posTable,['status' => 1],"status = 2 AND create_time <=" . time())->execute();
@@ -112,13 +112,12 @@ class SiteController extends BaseController
             $query->andWhere(['pc.category_id' => $request['category']]);
 
             $catQuery = new \yii\db\Query();
-            $categoryTable = \backend\models\Category::tableName();
+            $categoryTable = \frontend\models\Category::tableName();
             $catResult = $catQuery->select("id")->from("{$categoryTable}")->where(['id' => $request['category'],'title' => $request['title']])->one();
             if(empty($catResult))
             {
                 return $this->redirect(['site/error']);
             }
-            Yii::$app->view->title = $request['title'];
         }
 
         if(isset($request['tag']))

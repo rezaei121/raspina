@@ -111,4 +111,22 @@ return array (
       '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug',
     ),
   ),
+  'yiisoft/yii2-imagine' => 
+  array (
+    'name' => 'yiisoft/yii2-imagine',
+    'version' => '2.1.0.0',
+    'alias' => 
+    array (
+      '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
+    ),
+  ),
+  'developit/yii2-jcrop' => 
+  array (
+    'name' => 'developit/yii2-jcrop',
+    'version' => '1.0.0.0',
+    'alias' => 
+    array (
+      '@developit/jcrop' => $vendorDir . '/developit/yii2-jcrop/src',
+    ),
+  ),
 );
