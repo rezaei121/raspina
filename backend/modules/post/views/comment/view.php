@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'  => Date::widget(['value' => $model->create_time]),
             ],
             'text:ntext',
-            'reply_text:ntext',
+            'reply_text:html',
         ],
     ]) ?>
 <?= Html::endPanel() ?>

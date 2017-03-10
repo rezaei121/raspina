@@ -209,11 +209,12 @@ class User extends \common\models\BaseModel implements IdentityInterface
 
     public static function getAvatar()
     {
-        $baseDir = Yii::getAlias('@common') . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'avatar' . DIRECTORY_SEPARATOR;
         $baseUrl = Yii::$app->setting->getValue('url') . 'common/files/avatar/';
-        if(file_exists($baseDir . Yii::$app->user->id . '.jpg'))
+        $avatarPath = Yii::getAlias('@user_avatar') . DIRECTORY_SEPARATOR . Yii::$app->hashids->encode(Yii::$app->user->id) . '.jpg';
+
+        if(file_exists($avatarPath))
         {
-            return $baseUrl . Yii::$app->user->id . '.jpg';
+            return $baseUrl . Yii::$app->hashids->encode(Yii::$app->user->id) . '.jpg';
         }
         else
         {

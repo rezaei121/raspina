@@ -5,7 +5,6 @@
 CREATE TABLE `rs_about` (
   `id` int(11) UNSIGNED NOT NULL,
   `user_id` int(11) UNSIGNED NOT NULL,
-  `avatar` varchar(15) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `name` varchar(55) DEFAULT NULL,
   `short_text` text,
@@ -221,7 +220,8 @@ CREATE TABLE `rs_visitors` (
   `location` varchar(2000) DEFAULT NULL,
   `browser` varchar(60) DEFAULT NULL,
   `os` varchar(30) DEFAULT NULL,
-  `referer` varchar(2000) DEFAULT NULL
+  `referer` varchar(2000) DEFAULT NULL,
+  `user_agent` varchar(2000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

@@ -54,16 +54,13 @@ class Raspina
 
     public static function isAvatar()
     {
-        if(Yii::$app->view->params['about']['avatar'])
-        {
-            return true;
-        }
-        return false;
+        $avatarPath = Yii::getAlias('@user_avatar') . DIRECTORY_SEPARATOR . Yii::$app->hashids->encode(Yii::$app->user->id) . '.jpg';
+        return file_exists($avatarPath);
     }
 
     public static function avatarImage()
     {
-        return Yii::$app->view->params['url'] . 'common/files/avatar/' . Yii::$app->view->params['about']['avatar'];
+        return Yii::$app->view->params['url'] . 'common/files/avatar/' . Yii::$app->hashids->encode(Yii::$app->user->id) . '.jpg';
     }
 
     public static function authorName()

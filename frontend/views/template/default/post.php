@@ -3,7 +3,6 @@ use yii\widgets\ActiveForm ;
 use yii\helpers\Html;
 use developit\captcha\Captcha ;
 use developit\pdate\Date;
-use frontend\helpers\Raspina;
 
 Raspina::title($model['title']);
 ?>
