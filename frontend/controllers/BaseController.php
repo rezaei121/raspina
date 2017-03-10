@@ -92,7 +92,7 @@ class BaseController extends Controller
         Yii::$app->view->params['links'] = \frontend\models\Link::getAll();
         # about
         $about = new \yii\db\Query();
-        Yii::$app->view->params['about'] = $about->select('avatar,name,short_text,facebook,twitter,googleplus,instagram,linkedin')->from(\frontend\models\About::tableName())->one();
+        Yii::$app->view->params['about'] = $about->select('user_id,name,short_text,facebook,twitter,googleplus,instagram,linkedin')->from(\frontend\models\About::tableName())->one();
         # model
         Yii::$app->view->params['newsletter'] = new \frontend\models\Newsletter;
         # site

@@ -5,11 +5,7 @@ use frontend\helpers\Raspina;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 AppAsset::register($this);
-$site = $this->params;
 $this->beginPage();
-
-//var_dump();
-//exit();
 ?>
 <html lang="<?= Raspina::lang() ?>">
 <head>

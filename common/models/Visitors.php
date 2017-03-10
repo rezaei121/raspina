@@ -12,6 +12,8 @@ use Yii;
  * @property string $location
  * @property string $browser
  * @property string $os
+ * @property string $referer
+ * @property string $user_agent
  */
 class Visitors extends \common\models\BaseModel
 {
@@ -73,6 +75,7 @@ class Visitors extends \common\models\BaseModel
             $visitor->browser = Yii::$app->browser->getBrowser() . ' ' . Yii::$app->browser->getVersion();
             $visitor->os = Yii::$app->browser->getPlatform();
             $visitor->referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '-';
+            $visitor->user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '-';
             $visitor->save();
         }
     }

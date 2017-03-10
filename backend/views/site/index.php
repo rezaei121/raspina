@@ -2,6 +2,7 @@
 /* @var $this yii\web\View */
 use yii\helpers\Url;
 use yii\grid\GridView;
+use common\helpers\Raspina;
 $this->title = Yii::t('app','Statistics and information');
 
 $this->registerJsFile(Yii::$app->homeUrl . 'js/chart.bundle.min.js');

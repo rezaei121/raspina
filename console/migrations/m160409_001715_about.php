@@ -15,7 +15,6 @@ class m160409_001715_about extends Migration
         $this->createTable('{{%about}}', [
             'id' => $this->primaryKey()->unsigned(),
             'user_id' => $this->integer()->notNull()->unique()->unsigned(),
-            'avatar' => $this->string(15),
             'email' => $this->string(255),
             'name' => $this->string(55),
             'short_text' => $this->text(),

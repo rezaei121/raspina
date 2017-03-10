@@ -25,7 +25,12 @@ class Comment extends \common\models\BaseModel
     }
 
     public $post_title;
-
+    public function rules()
+    {
+        return [
+            ['reply_text', 'required','on' => 'comment-reply']
+        ];
+    }
     /**
      * @inheritdoc
      */
