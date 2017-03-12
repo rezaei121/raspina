@@ -1,7 +1,6 @@
 <?php
 use backend\helpers\Html;
 use yii\grid\GridView;
-use developit\pdate\Date;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\file\models\FileSearch */
@@ -49,7 +48,7 @@ $setting = Yii::$app->setting->get();
             [
                 'attribute' => 'upload_date',
                 'value' => function($model){
-                    return Date::widget(['value' => $model->upload_date]);
+                    return Yii::$app->date->pdate($model->upload_date);
                 }
             ],
             [

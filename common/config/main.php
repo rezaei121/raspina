@@ -60,7 +60,7 @@ return [
             'timeFormat' => 'php:H:i:s',
         ],
         'date' => [
-            'class' => 'common\components\date',
+            'class' => 'developit\pdate\DateTime',
         ],
         'browser' => [
             'class' => 'common\components\browser',

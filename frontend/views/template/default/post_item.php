@@ -24,7 +24,7 @@
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-calendar"></span>
-                <?= Yii::$app->date->pdate($model['create_time']) ?>
+                <?= Yii::$app->date->pdate($model['create_time'], DATE_FROMAT) ?>
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-comment-o"></span>

@@ -1,7 +1,6 @@
 <?php
 use yii\grid\GridView;
 use backend\helpers\Html;
-use developit\pdate\Date;
 
 /* @var $model backend\modules\post\models\Post */
 
@@ -36,7 +35,7 @@ $postStatus = $model->postStatus();
         [
             'attribute' => 'create_time',
             'value' => function($model){
-                return Date::widget(['value' => $model->create_time]);
+                return  Yii::$app->date->pdate($model->create_time);
             },
             'contentOptions' => ['width' => '15%'],
         ],

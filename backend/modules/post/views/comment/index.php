@@ -1,7 +1,6 @@
 <?php
 use backend\helpers\Html;
 use yii\grid\GridView;
-use developit\pdate\Date;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\post\models\CommentSearch */
@@ -49,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'create_time',
                 'value' => function($model){
-                    return Date::widget(['value' => $model->create_time]);
+                    return  Yii::$app->date->pdate($model->create_time);
                 }
             ],
             [

@@ -20,7 +20,7 @@
         "yiisoft/yii2-swiftmailer": "*",
         "developit/yii2-captcha": "~1.0",
         "developit/yii2-jcrop": "*",
-        "developit/yii2-pdate": "~1.0",
+        "developit/yii2-pdate": "~2.0",
         "light/hashids" : "*"
     },
     "require-dev": {

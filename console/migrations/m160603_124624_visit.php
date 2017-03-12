@@ -19,8 +19,7 @@ class m160603_124624_visit extends Migration
             'location' => $this->string(2000),
             'browser' => $this->string(60),
             'os' => $this->string(30),
-            'referer' => $this->string(2000),
-            'user_agent' => $this->string(2000)
+            'referer' => $this->string(2000)
         ],$tableOptions);
     }
 

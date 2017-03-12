@@ -1,8 +1,6 @@
 <?php
-
 use backend\helpers\Html;
 use yii\widgets\DetailView;
-use developit\pdate\Date;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\post\models\Comment */
@@ -45,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'label'  => Yii::t('app', 'Create Time'),
-                'value'  => Date::widget(['value' => $model->create_time]),
+                'value'  =>  Yii::$app->date->pdate($model->create_time),
             ],
             'text:ntext',
             'reply_text:html',

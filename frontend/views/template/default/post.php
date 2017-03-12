@@ -2,7 +2,7 @@
 use yii\widgets\ActiveForm ;
 use yii\helpers\Html;
 use developit\captcha\Captcha ;
-use developit\pdate\Date;
+use frontend\helpers\Raspina;
 
 Raspina::title($model['title']);
 ?>
@@ -25,7 +25,7 @@ Raspina::title($model['title']);
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-calendar"></span>
-                <?= Date::widget(['value' => $model['create_time']]); ?>
+                <?=  Yii::$app->date->pdate($model['create_time'], DATE_FROMAT); ?>
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-comment-o"></span>
@@ -42,7 +42,7 @@ Raspina::title($model['title']);
                 <br>
                 <?= $model['more_text'] ?>
                 <?php if($model['update_time']): ?>
-                <span style="font-style: italic">این مطلب آخرین بار در تاریخ  <?= Date::widget(['value' => $model['update_time']]) ?>  ویرایش شده است.</span>
+                <span style="font-style: italic">این مطلب آخرین بار در تاریخ  <?=  Yii::$app->date->pdate($model['update_time'], DATE_FROMAT) ?>  ویرایش شده است.</span>
                 <?php endif ?>
                 <?php if($model['tags']): ?>
                 <hr class="more-hr">

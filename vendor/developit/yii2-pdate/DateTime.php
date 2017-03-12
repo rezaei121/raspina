@@ -1,40 +1,25 @@
 <?php
-namespace common\components;
+namespace developit\pdate;
 
 use Yii;
-use yii\base\Component;
 
-class date extends Component
+class DateTime
 {
-    public function pdate($timestamp,$dateFormat = '')
+    public function pdate($timestamp = null,$dateFormat = 'HH:mm - yyyy/MM/dd')
     {
-        if(empty($dateFormat))
+        if($timestamp === null)
         {
-            // $dateFormat = $setting;
-            if(defined('DATE_FROMAT'))
-            {
-                $dateFormat = DATE_FROMAT;
-            }
-            else
-            {
-                $dateFormat = 'HH:mm - yyyy/MM/dd';
-            }
-        }
-
-
-        if(empty($timestamp))
-        {
-            return FALSE;
+            $timestamp = time();
         }
 
         $fmt = new \IntlDateFormatter(
-                'fa_IR@calendar=persian',
-                \IntlDateFormatter::FULL,
-                \IntlDateFormatter::FULL,
-                'Iran',
-                \IntlDateFormatter::TRADITIONAL,
-                $dateFormat
-            );
+            'fa_IR@calendar=persian',
+            \IntlDateFormatter::FULL,
+            \IntlDateFormatter::FULL,
+            'Iran',
+            \IntlDateFormatter::TRADITIONAL,
+            $dateFormat
+        );
         return $this->fa_to_en_numbers($fmt->format($timestamp));
     }
 
