@@ -27,4 +27,7 @@
 .alert {border-radius: 3px;}
 .btn-group-lg>.btn, .btn-lg {border-radius: 3px;}
 .rtl {font-family: Tahoma; font-size: 12px; direction: rtl; text-align: right}
+.input-error {color: #990000; margin-top: -20px; margin-bottom: 20px !important; font-size: 11px;}
+.border-error {border-color: #990000 !important; border-left: 3px solid #990000 !important;}
+.install-submit-error {text-align: center;color: #990000; margin-top: 10px;}
 

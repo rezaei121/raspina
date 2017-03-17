@@ -33,11 +33,11 @@ $(document).ready(function(){
             var tags = $('#post_tags').val();
             var keywords = $('#post_keywords').val();
             var status = 0;
-            var url = base_url + '/post/create';
+            var url = base_url + '/post/default/create';
             if(action_name == 'update')
             {
                 status = $('#post-status').val();
-                url = base_url + '/post/update?id=' + entity_id;
+                url = base_url + '/post/default/update?id=' + entity_id;
             }
             var data = {
                 title: $('#post-title').val(),

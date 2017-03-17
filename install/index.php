@@ -331,22 +331,22 @@
 
                     <div class="input-box">
                         <div>database management system</div>
-                        <input type="text" name="data[dbms]" value="mysql" dir="ltr" readonly="readonly">
+                        <input class="required" type="text" name="data[dbms]" value="mysql" dir="ltr" readonly="readonly">
                     </div>
 
                     <div class="input-box">
                         <div>host</div>
-                        <input type="text" name="data[host]" value="localhost" dir="ltr">
+                        <input class="required" type="text" name="data[host]" value="localhost" dir="ltr">
                     </div>
 
                     <div class="input-box">
                         <div>database name</div>
-                        <input type="text" name="data[db_name]" value="" dir="ltr">
+                        <input class="required" type="text" name="data[db_name]" value="" dir="ltr">
                     </div>
 
                     <div class="input-box">
                         <div>database username</div>
-                        <input type="text" name="data[db_username]" value="" dir="ltr">
+                        <input class="required" type="text" name="data[db_username]" value="" dir="ltr">
                     </div>
 
                     <div class="input-box">
@@ -373,37 +373,37 @@
 								$url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 							}
 						?>
-                        <input type="text" name="data[url]" value="<?= $url ?>" dir="ltr">
+                        <input class="required" type="text" name="data[url]" value="<?= $url ?>" dir="ltr">
                     </div>
 
                     <div class="input-box">
                         <div>title</div>
-                        <input type="text" name="data[title]" value="">
+                        <input class="required" type="text" name="data[title]" value="">
                     </div>
 
                     <div class="input-box">
                         <div>your name, least 3 character</div>
-                        <input type="text" name="data[last_name]" value="">
+                        <input class="required min-3" type="text" name="data[last_name]" value="">
                     </div>
 
                     <div class="input-box">
                         <div>your last name, least 3 character</div>
-                        <input type="text" name="data[surname]" value="">
+                        <input class="required min-3" type="text" name="data[surname]" value="">
                     </div>
 
                     <div class="input-box">
                         <div>username, least 5 character</div>
-                        <input type="text" name="data[username]" value="" dir="ltr">
+                        <input class="required min-5" type="text" name="data[username]" value="" dir="ltr">
                     </div>
 
 					<div class="input-box">
                         <div>password, least 5 character</div>
-                        <input type="password" name="data[password]" value="" dir="ltr">
+                        <input class="required min-5" type="password" name="data[password]" value="" dir="ltr">
                     </div>
 					
                     <div class="input-box">
                         <div>email</div>
-                        <input type="text" name="data[email]" value="" dir="ltr">
+                        <input class="required email" type="text" name="data[email]" value="" dir="ltr">
 
                     </div>
 
@@ -435,7 +435,10 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><h3>5) Install</h3></div>
                 <div class="panel-body">
-                <div style="text-align: center"><button class="btn btn-primary btn-lg">Install</button></div>
+                <div style="text-align: center">
+                    <button class="btn btn-primary btn-lg install-submit">Install</button>
+                    <div class="install-submit-error"></div>
+                </div>
 
                 </div>
             </div>
