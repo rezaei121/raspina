@@ -103,7 +103,7 @@ return [
     'total visitors' => 'بازدید کل',
     'statistics and information' => 'آمار و اطلاعات',
     'today' => 'امروز',
-    'ip' => 'ip',
+    'ip' => 'IP',
     'last visited' => 'آخرین بازدید ها',
     'date visited' => 'زمان بازدید',
     'os' => 'سیستم عامل',
@@ -177,4 +177,5 @@ return [
     'user profile' => 'حساب کاربری',
     'cannot create, update or delete contens' => 'در نسخه demo امکان افزودن، ویرایش یا حذف محتویات وجود ندارد',
     'type and enter' => 'عنوان مورد نظر خود را نوشته و سپس enter بزنید.',
+    'detail' => 'جزئیات',
 ];

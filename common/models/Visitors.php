@@ -72,7 +72,7 @@ class Visitors extends \common\models\BaseModel
             $visitor->location = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             $visitor->browser = Yii::$app->browser->getBrowser() . ' ' . Yii::$app->browser->getVersion();
             $visitor->os = Yii::$app->browser->getPlatform();
-            $visitor->referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '-';
+            $visitor->referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
             $visitor->save();
         }
     }

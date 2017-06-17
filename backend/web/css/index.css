@@ -222,12 +222,12 @@ a:hover{
 }
 
 .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-    padding: 8px;
-    line-height: 1.42857143;
-    vertical-align: top;
-    border-top: none;
-    direction: rtl; text-align: right
-}
+     padding: 8px;
+     line-height: 1.42857143;
+     vertical-align: top;
+     border-top: none;
+     direction: rtl; text-align: right
+ }
 
 .table-bordered {
     border: 1px solid #f4f4f4;
@@ -267,10 +267,11 @@ td {
     padding-left: 13px;
 }
 
+
 .last-visitors-item {
     padding-left: 10px;
     color: #333333;
-    float: right
+    float: right;
 }
 
 .user-box-bg {

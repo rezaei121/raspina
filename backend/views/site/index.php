@@ -102,28 +102,61 @@ $this->registerJsFile(Yii::$app->homeUrl . 'js/chart_config.js');
         <div class="panel-body">
             <!-- -->
             <div class="last-visitors">
-                <table class="table table-striped table-bordered">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><?= Yii::t('app', 'ip') ?></th>
+                            <th><?= Yii::t('app','date') ?></th>
+                            <th class="last-visitors-default-col"><?= Yii::t('app','os') ?></th>
+                            <th class="last-visitors-default-col"><?= Yii::t('app','browser') ?></th>
+                            <th class="last-visitors-default-col"><?= Yii::t('app','location') ?></th>
+                            <th class="last-visitors-default-col"><?= Yii::t('app','referer') ?></th>
+                            <th class="last-visitors-detail"><?= Yii::t('app','detail') ?></th>
+                        </tr>
+                    </thead>
                     <tbody>
+                    <?php $url = Yii::$app->setting->getValue('url'); ?>
                     <?php foreach ((array)$visitors as $v): ?>
                         <tr>
-                            <td>
-                                <div>
-                                                <span class="last-visitors-item">
-                                                    <span class="fa fa-user"></span> <?= $v['ip']; ?>
-                                                </span>
-                                                <span class="last-visitors-item">
-                                                    <span class="fa fa-clock-o"></span> <?= Yii::$app->date->pdate($v['visit_date']); ?>
-                                                </span>
-                                                <span class="last-visitors-item">
-                                                    <span class="fa fa-desktop"></span> <?= $v['os']; ?>
-                                                </span>
-                                                <span class="last-visitors-item">
-                                                    <span class="fa fa-tablet"></span> <?= $v['browser']; ?>
-                                                </span>
+                            <td><?= $v['ip']; ?></td>
+                            <td><?= Yii::$app->date->pdate($v['visit_date']); ?></td>
+                            <td class="last-visitors-default-col"><?= $v['os']; ?></td>
+                            <?php
+                            $browser = explode(' ', $v['browser']);
+                            $browserVesion = (isset($browser[1]) && (int)$browser[1] > 0) ? (int)$browser[1] : null;
+                            ?>
+                            <td class="last-visitors-default-col"><?= $browser[0] . ' ' . $browserVesion; ?></td>
+                            <?php
+                                $locationTitle = str_replace($url, null, $v['location']);
+                                $locationTitle = preg_replace(['/^post\/view\/\d+\//', '/.html$/', '/site\/index.*%5B/', '/about\/index$/', '/contact\/index$/', '/^\/|\/$/'], null, $locationTitle);
+                                if($locationTitle == '')
+                                {
+                                    $locationTitle = 'site/index';
+                                }
+                                $locationTitle = urldecode($locationTitle);
+                                $locationTitle = (mb_strlen($locationTitle) > 20) ? mb_substr($locationTitle, 0, 19, 'utf-8') . '...' : $locationTitle;
+
+                                $refererTitle = (mb_strlen($v['referer']) > 20) ? mb_substr($v['referer'], 0, 19, 'utf-8') . '...' : $v['referer'];
+                            ?>
+                            <td class="last-visitors-default-col"><a href="<?= $v['location']; ?>" target="_blank" style="text-align: left; direction: rtl"><?= urldecode($locationTitle) ?></a></td>
+                            <td style="direction: ltr" class="last-visitors-default-col">
+                                <?php if($v['referer'] != null): ?>
+                                    <a href="<?= $v['referer'] ?>" target="_blank"><?= $refererTitle ?></a>
+                                <?php endif ?>
+                            </td>
+                            <td class="last-visitors-detail">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="padding: 3px 7px 3px 7px; line-height: 0px;">
+                                        <span class="fa fa-bars"></span></button>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="#os"><span class="fa fa-desktop"></span> <?= $v['os'] ?></a></li>
+                                        <li><a href="#browser"><span class="fa fa-tablet"></span> <?= $browser[0] . ' ' . $browserVesion; ?></a></li>
+                                        <li><a href="<?= $v['location'] ?>" target="_blank"><span class="fa fa-map-marker"></span> <?= $locationTitle ?></a></li>
+                                        <?php if($v['referer'] != null): ?>
+                                            <li><a href="<?= $v['referer'] ?>" target="_blank" style="direction: ltr"><?= $refererTitle ?> <span class="fa fa-link"></span></a></li>
+                                        <?php endif ?>
+                                    </ul>
                                 </div>
-                                <div class="clear"></div>
-                                <span><?= Yii::t('app','Location') ?></span>: <a href="<?= $v['location']; ?>" target="_blank" style="text-align: left; direction: rtl"><?= urldecode(rtrim($v['location'],'/')); ?></a><br>
-                                <span><?= Yii::t('app','Referer') ?></span>: <a href="<?= $v['referer']; ?>" target="_blank"><?= urldecode(rtrim($v['referer'],'/')); ?></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
