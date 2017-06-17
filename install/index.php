@@ -159,15 +159,15 @@
                 return false;
             }
 
-            $link = new \backend\models\Link();
-            $link->title = 'انجمن ایران پی اچ پی';
-            $link->url = 'http://www.forum.iranphp.org/index.php';
-            $link->save();
-
-            $link2 = new \backend\models\Link();
-            $link2->title = 'احسان رضایی - توسعه دهنده وب';
-            $link2->url = 'http://www.developit.ir';
-            $link2->save();
+//            $link = new \backend\models\Link();
+//            $link->title = 'انجمن ایران پی اچ پی';
+//            $link->url = 'http://www.forum.iranphp.org/index.php';
+//            $link->save();
+//
+//            $link2 = new \backend\models\Link();
+//            $link2->title = 'احسان رضایی - توسعه دهنده وب';
+//            $link2->url = 'http://www.developit.ir';
+//            $link2->save();
 
             $setting = new \backend\models\Setting();
             $setting->url = $data['url'];

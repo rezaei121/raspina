@@ -175,5 +175,5 @@ return [
     'Edit Password' => 'Update Password',
     'User Profile' => 'User Profile',
     'Cannot Create, Update Or Delete Contens' => 'در نسخه demo امکان افزودن، ویرایش یا حذف محتویات وجود ندارد',
-    'Type And Enter' => 'عنوان مورد نظر خود را نوشته و سپس Enter بزنید.'
+    'Type And Enter' => 'عنوان مورد نظر خود  نوشته و سپس Enter بزنید.'
 ];
