@@ -113,7 +113,6 @@ class Visitors extends \common\models\BaseModel
 
         $labels = $visit_data = $visitor_data = [];
         $max_visit = 0;
-        $this_month_visitors = $this_month_visit = 0;
         foreach ((array)$result as $r)
         {
             $labels[] = "'" . Yii::$app->date->pdate($r['visit_date'],'YY/MM/dd') . "'";
@@ -124,8 +123,6 @@ class Visitors extends \common\models\BaseModel
             {
                 $max_visit = $r['visit'];
             }
-            $this_month_visit += $r['visit'];
-            $this_month_visitors += $r['visitor'];
         }
 
         $labels = '[' . implode(',',$labels) . ']';
@@ -155,9 +152,7 @@ class Visitors extends \common\models\BaseModel
             'today_visitors' => (int)$today_visitors,
             'today_visit' => (int)$today_visit,
             'yesterday_visitors' => (int)$yesterday_visitors,
-            'yesterday_visit' => (int)$yesterday_visit,
-            'this_month_visitors' => $this_month_visitors,
-            'this_month_visit' => $this_month_visit
+            'yesterday_visit' => (int)$yesterday_visit
         ];
         return $chart;
     }

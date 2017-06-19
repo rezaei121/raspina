@@ -30,7 +30,8 @@ var config = {
         legend: {
             labels: {
                 // This more specific font property overrides the global property
-                fontSize: 10
+                fontSize: 10,
+                fontFamily: 'sahel'
             }
         },
         title:{
@@ -72,81 +73,8 @@ var config = {
     }
 };
 
-
-var config2 = {
-    type: 'pie',
-    data: {
-        datasets: [{
-            data: pie_chart_data,
-            backgroundColor: [
-                "#F46F5A",
-                "#52B8DD",
-                "#7E86E5",
-                "#D0D6B3",
-                "#E5C687",
-                "#FFCC00",
-            ],
-        }],
-        labels: [
-            "google",
-            "yahoo",
-            "bing",
-            "baidu",
-            "aol",
-            "ask"
-        ]
-    },
-    options: {
-        responsive: true,
-        legend: {
-            position: 'left'
-        }
-    }
-};
-
-var config3 = {
-    type: 'horizontalBar',
-    data: {
-        labels: ["06 - 00", "12 - 06", "18 - 12", "24 - 18"],
-        datasets: [{
-            label: visit_labels,
-            backgroundColor: "rgba(153,187,255,0.5)",
-            data: visit_period_data
-        }]
-
-    },
-    options: {
-        // Elements options apply to all of the options unless overridden in a dataset
-        // In this case, we are setting the border of each horizontal bar to be 2px wide and green
-        responsive: true,
-        legend: {
-            display: false
-        },
-        scales: {
-            xAxes: [{
-                display: true,
-                stacked: true,
-                scaleLabel: {
-                    show: true,
-                    labelString: 'Value'
-                },
-                ticks: {
-                    suggestedMin: 0
-                }
-            }]
-        }
-    }
-};
-
 window.onload = function() {
     createChart();
-    var ctx2 = document.getElementById("chart_pie").getContext("2d");
-    window.myPie = new Chart(ctx2, config2);
-    window.myPie.update();
-
-    var ctx = document.getElementById("line").getContext("2d");
-    window.line = new Chart(ctx,config3);
-    window.line.update();
 };
 
 window.onresize = function() {
@@ -156,7 +84,7 @@ window.onresize = function() {
 function createChart() {
 
     var width = $(document).width();
-    var datasets_count = 31; // all
+    var datasets_count = 30; // all
     if(width <= 980)
     {
         datasets_count = 20
@@ -177,10 +105,10 @@ function createChart() {
     var new_chart_labels = chart_labels.slice(chart_labels.length-datasets_count,chart_labels.length);
     var new_visitor_data = visitor_data.slice(visitor_data.length-datasets_count,visitor_data.length);
     var new_visit_data = visit_data.slice(visit_data.length-datasets_count,visit_data.length);
+
     config.data.labels = new_chart_labels;
     config.data.datasets[0].data = new_visitor_data;
     config.data.datasets[1].data = new_visit_data;
-
     var ctx = document.getElementById("chart_visitors").getContext("2d");
     window.myLine = new Chart(ctx, config);
 }

@@ -1,5 +1,19 @@
 $(document).ready(function(){
 
+    $("#content-1").mCustomScrollbar({
+        autoHideScrollbar:false,
+        theme:"dark",
+        snapAmount:40,
+        scrollButtons:{enable:true},
+        keyboard:{scrollAmount:40},
+        mouseWheel:{deltaFactor:40},
+        scrollInertia:400
+    });
+
+    $('.last-visitors-lock').click(function () {
+        $(this).hide();
+    });
+
     $('.group-items').hover(function(){
         var class_name = $(this).attr('class').trim();
         if(class_name == 'group-items')
