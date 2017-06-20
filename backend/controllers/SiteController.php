@@ -103,6 +103,7 @@ class SiteController extends Controller
         $user->avatar = \common\models\User::getAvatar();
 
         return $this->render('index',[
+            'visitorsModel' => $visitors,
             'visitors' => $visitors->find()->orderBy('id DESC')->limit(100)->all(),
             'chart' => $visitors->chart(),
             'posts' => $postsDataProvider,

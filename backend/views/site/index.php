@@ -89,8 +89,8 @@ $this->registerJsFile(Yii::$app->homeUrl . 'js/chart_config.js');
                     </thead>
                     <tbody>
                     <?php
-                        $url = Yii::$app->setting->getValue('url');
-                        $i = 1
+                    $url = Yii::$app->setting->getValue('url');
+                    $i = 1;
                     ?>
                     <?php foreach ((array)$visitors as $v): ?>
                         <tr>
@@ -99,23 +99,13 @@ $this->registerJsFile(Yii::$app->homeUrl . 'js/chart_config.js');
                             <td><?= Yii::$app->date->pdate($v['visit_date']); ?></td>
                             <td class="last-visitors-default-col"><?= $v['os']; ?></td>
                             <?php
-                            $browser = explode(' ', $v['browser']);
-                            $browserVesion = (isset($browser[1]) && (int)$browser[1] > 0) ? (int)$browser[1] : null;
-                            ?>
-                            <td class="last-visitors-default-col"><?= $browser[0] . ' ' . $browserVesion; ?></td>
-                            <?php
-                                $locationTitle = str_replace($url, null, $v['location']);
-                                $locationTitle = preg_replace(['/^post\/view\/\d+\//', '/.html$/', '/site\/index.*%5B/', '/about\/index$/', '/contact\/index$/', '/^\/|\/$/'], null, $locationTitle);
-                                if($locationTitle == '')
-                                {
-                                    $locationTitle = 'site/index';
-                                }
-                                $locationTitle = urldecode($locationTitle);
-                                $locationTitle = (mb_strlen($locationTitle) > 20) ? mb_substr($locationTitle, 0, 19, 'utf-8') . '...' : $locationTitle;
+                            $browserDetail = $visitorsModel->getBrowserDetail($v['browser']);
 
-                                $refererTitle = (mb_strlen($v['referer']) > 20) ? mb_substr($v['referer'], 0, 19, 'utf-8') . '...' : $v['referer'];
+                            $locationTitle = $visitorsModel->getTitle($url, $v['location']);
+                            $refererTitle = $visitorsModel->getTitle($url, $v['referer']);
                             ?>
-                            <td class="last-visitors-default-col"><a href="<?= $v['location']; ?>" target="_blank" style="text-align: left; direction: rtl"><?= urldecode($locationTitle) ?></a></td>
+                            <td class="last-visitors-default-col"><?= $browserDetail['browser'] . ' ' . $browserDetail['version']; ?></td>
+                            <td class="last-visitors-default-col"><a href="<?= $v['location']; ?>" target="_blank" style="text-align: left; direction: rtl"><?= $locationTitle ?></a></td>
                             <td style="direction: ltr" class="last-visitors-default-col">
                                 <?php if($v['referer'] != null): ?>
                                     <a href="<?= $v['referer'] ?>" target="_blank"><?= $refererTitle ?></a>
@@ -127,7 +117,7 @@ $this->registerJsFile(Yii::$app->homeUrl . 'js/chart_config.js');
                                         <span class="fa fa-bars"></span></button>
                                     <ul class="dropdown-menu pull-right">
                                         <li><a href="#os"><span class="fa fa-desktop"></span> <?= $v['os'] ?></a></li>
-                                        <li><a href="#browser"><span class="fa fa-tablet"></span> <?= $browser[0] . ' ' . $browserVesion; ?></a></li>
+                                        <li><a href="#browser"><span class="fa fa-tablet"></span> <?= $browserDetail['browser'] . ' ' . $browserDetail['version']; ?></a></li>
                                         <li><a href="<?= $v['location'] ?>" target="_blank"><span class="fa fa-map-marker"></span> <?= $locationTitle ?></a></li>
                                         <?php if($v['referer'] != null): ?>
                                             <li><a href="<?= $v['referer'] ?>" target="_blank" style="direction: ltr"><?= $refererTitle ?> <span class="fa fa-link"></span></a></li>

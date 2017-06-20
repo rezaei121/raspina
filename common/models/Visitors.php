@@ -2,6 +2,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "{{%visitors}}".
@@ -157,6 +158,39 @@ class Visitors extends \common\models\BaseModel
         return $chart;
     }
 
+    /**
+     * get a link address(url) and shorten it for use title
+     * @param $linkAddress
+     * @return string
+     */
+    public function getTitle($url, $linkAddress)
+    {
+        $title = str_replace($url, null, $linkAddress);
+        $title = preg_replace(['/^post\/view\/\d+\//', '/.html$/', '/site\/index.*%5B/', '/about\/index$/', '/contact\/index$/', '/^\/|\/$/'], null, $title);
+        if($title == '')
+        {
+            $title = 'site/index';
+        }
+        $title = urldecode($title);
+        $title = (mb_strlen($title) > 20) ? mb_substr($title, 0, 19, 'utf-8') . '...' : $title;
+
+        return $title;
+    }
+
+    /**
+     * @param $browserDetail
+     * @return array
+     */
+    public function getBrowserDetail($browserDetail)
+    {
+        $browser = explode(' ', $browserDetail);
+        $browserVesion = (isset($browser[1]) && (int)$browser[1] > 0) ? (int)$browser[1] : null;
+        return [
+            'browser' => $browser[0],
+            'version' => $browserVesion,
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
