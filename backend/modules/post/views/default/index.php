@@ -11,36 +11,56 @@ $postStatus = $model->postStatus();
 ?>
 
 <?= Html::beginPanel($this->title) ?>
+
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
+    'layout' => "{items}\n{pager}",
     'columns' => [
         [
             'attribute' => 'title',
-            'value' => 'title',
-            'contentOptions' => ['width' => '50%']
+            'format' => 'raw',
+            'value' => function($model)
+            {
+                return Html::a($model->title, ['view','id'=>$model->id]);
+            }
         ],
         [
             'attribute' => 'status',
+            'format' => 'raw',
             'value' => function($model) use($postStatus) {
-                return $postStatus[$model->status];
+                $classLabel = 'label-blue';
+                if($model->status == 0) $classLabel = 'label-yellow';
+                if($model->status == 2) $classLabel = 'label-green';
+
+                return  "<span class=\"label {$classLabel}\">{$postStatus[$model->status]}</span>";
             },
-            'contentOptions' => ['width' => '15%'],
+            'headerOptions' => ['class'=>'auto-fit'],
+            'filterOptions' => ['class'=>'auto-fit'],
+            'contentOptions' => ['class' => 'auto-fit align-center'],
             'filter' => $postStatus
         ],
         [
             'attribute' => 'view',
-            'contentOptions' => ['width' => '10%'],
+            'headerOptions' => ['class'=>'auto-fit'],
+            'filterOptions' => ['class'=>'auto-fit'],
+            'contentOptions' => ['class' => 'auto-fit align-center'],
         ],
         [
             'attribute' => 'created_at',
             'value' => function($model){
-                return  Yii::$app->date->pdate($model->created_at);
+                return  Yii::$app->date->asDateTime($model->created_at);
             },
-            'contentOptions' => ['width' => '15%'],
+            'headerOptions' => ['class'=>'auto-fit'],
+            'filterOptions' => ['class'=>'auto-fit'],
+            'contentOptions' => ['class' => 'auto-fit align-center ltr'],
         ],
         [
-            'class' => 'yii\grid\ActionColumn'
+            'class' => \backend\components\grid\ActionColumn::className(),
+            'headerOptions' => ['class'=>'auto-fit'],
+            'filterOptions' => ['class'=>'auto-fit'],
+            'contentOptions' => ['class' => 'action-column auto-fit'],
+            'template' => '{update}'
         ],
     ],
 ]) ?>

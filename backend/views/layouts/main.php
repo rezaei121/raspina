@@ -59,7 +59,7 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : null;
     </div>
 </div>
 
-<?php if($controller_id == 'site' && $action_id == 'index'): ?>
+<?php if(($controller_id == 'site' || $modules_id == 'post') && $action_id == 'index'): ?>
 <a href="<?= Url::base() . '/post/default/create'; ?>">
     <div class="pen">
         <img class="pen-icon" src="<?= Yii::$app->setting->getValue('url') ?>/backend/web/img/pen.svg">

@@ -7,9 +7,9 @@ return [
     'More Text' => 'ادامه متن',
     'Tags' => 'برچسب ها',
     'Status' => 'وضعیت',
-    'Create Time' => 'تاریخ ارسال',
+    'Created At' => 'تاریخ ارسال',
     'Date' => 'تاریخ',
-    'Update Time' => 'تاریخ بروزرسانی',
+    'Updated At' => 'تاریخ بروزرسانی',
     'Posts' => 'مطالب',
     'Posts2' => 'مطالب',
     'Update' => 'بروزرسانی',
@@ -176,5 +176,7 @@ return [
     'Type And Enter' => 'عنوان مورد نظر خود را نوشته و سپس Enter بزنید.',
     'More' => 'بیشتر',
     'Send In Future Date Not Valid' => 'تاریخ ارسال باید بزرگتر از تاریخ جاری باشد',
-    'Create' => 'افزودن'
+    'Create' => 'افزودن',
+    'Author' => 'نویسنده',
+    'Actions' => 'عملیات',
 ];

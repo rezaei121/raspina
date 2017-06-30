@@ -121,10 +121,10 @@ class Post extends \common\models\Post
         }
     }
 
-    public static function getSelectedCategoriesTitle($postId,$resultType = 'string')
+    public function getSelectedCategoriesTitle($resultType = 'string')
     {
         $query = new \yii\db\Query;
-        $categories = $query->select("c.id,c.title")->from(['pc' => PostCategory::tableName()])->leftJoin(['c' => Category::tableName()], 'pc.category_id = c.id')->where(['pc.post_id' => $postId])->all();
+        $categories = $query->select("c.id,c.title")->from(['pc' => PostCategory::tableName()])->leftJoin(['c' => Category::tableName()], 'pc.category_id = c.id')->where(['pc.post_id' => $this->id])->all();
 
         if($resultType == 'array')
         {
