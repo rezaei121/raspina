@@ -30,7 +30,7 @@ html, body {
     font-size: 12px;
     background-color: #fafbfd;
     color: #333333;
-    direction: ltr;
+    direction: rtl;
     text-align: right;
     height: 100%
 }
@@ -109,6 +109,12 @@ html, body {
     bottom: 20px;
     right: 30px;
     z-index: 2;
+    cursor: pointer;
+}
+
+.pen:hover {
+    background-color: #eba431;
+    transition: all 0.2s ease;
 }
 
 .pen img{
@@ -134,7 +140,6 @@ html, body {
 
 .panel-heading {
     text-align: right;
-    direction: rtl;
     border: none;
     font-weight: bold
 }
@@ -151,6 +156,7 @@ html, body {
     border: none;
     border-radius: 0px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    direction: rtl;
 }
 
 #chart_visitors {
@@ -171,22 +177,22 @@ html, body {
 .last-visitors-lock {
     height: 300px;
     width: inherit;
-    background-color: #000000;
+    background-color: #FFFFFF;
     position: relative;
     z-index: 1;
     margin-bottom: -300px;
-    opacity: 0.1;
+    opacity: 0.5;
     text-align: center;
     cursor: pointer;
     border-radius: 2px;
 }
 
 .last-visitors-lock .icon{
-    font-size: 82px; color: #FFFFFF; margin-top: 100px;
+    font-size: 82px; color: #000000; margin-top: 100px;
 }
 
 .last-visitors-lock .message{
-    font-size: 24px; color: #FFFFFF;
+    font-size: 24px; color: #000000;
 }
 
 .last-visitors th,.last-visitors td {
@@ -240,10 +246,6 @@ html, body {
     margin-left: 13px;
 }
 
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
-    background-color: #cccccc;
-}
-
 .btn-login:hover, .btn-login:focus, .btn-login:active, .btn-login.active, .open > .dropdown-toggle.btn-login {
     background-color: #F6B352;
     color: #ffffff;
@@ -264,16 +266,20 @@ html, body {
 }
 
 .btn {
-    border: 1px solid #ddd;
     letter-spacing: 1px;
     text-transform: uppercase;
     border-radius: 1px;
+    font-size: 12px;
+    padding: 8px 14px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .btn:focus, .btn:active:focus, .btn.active:focus {
     outline: 0 none;
 }
 
+/* btn default */
 .btn-default {
     background: #FDFDFD;
     color: #333333;
@@ -284,14 +290,33 @@ html, body {
     border: 1px solid #CCC !important;
 }
 
-.display-none {
-    display: none;
-}
-
 .btn-default:active, .btn-default.active {
     background: #FDFDFD;
     box-shadow: none;
 }
+
+/* btn success */
+.btn-success {
+    background: #61a2d7;
+    color: #FFFFFF;
+    border: none !important;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-success {
+    background: #4f98d7 !important;
+}
+
+.btn-success:active, .btn-success.active {
+    background: #4f98d7;
+    box-shadow: none;
+}
+
+
+.display-none {
+    display: none;
+}
+
+
 
 .dropdown-menu {
     border-radius: 2px;
@@ -315,6 +340,81 @@ html, body {
 
 .last-visitors-default-col {
     display: table-cell;
+}
+
+.form-control {
+    border-radius: 1px;
+    border-color: #cccccc;
+    box-shadow: none;
+    outline: none;
+    font-size: 12px;
+    color: #333333;
+}
+
+input, select {
+    direction: rtl;
+    outline: none;
+}
+
+.control-label {
+    padding-bottom: 5px;
+}
+
+input[type="checkbox"] {
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.select2-container--krajee .select2-selection--multiple .select2-search--inline .select2-search__field {font-weight: normal !important; font-size: 12px !important; text-align: right !important; direction: rtl !important;}
+.select2-container--krajee .select2-selection--multiple .select2-selection__choice {font-size: 12px;}
+
+.breadcrumb {
+    background-color: #FFFFFF;
+    direction: rtl;
+    border-radius: 2px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.clear {
+    clear: both
+}
+
+.center-text {
+    text-align: center;
+}
+
+.display-none {
+    display: none;
+}
+
+.visibility-hidden {
+    visibility: hidden;
+    height: 1px; overflow: hidden;
+}
+
+.post-more-section {
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.post-more-section hr{
+    margin: 0px;
+}
+
+.post-more-btn {
+    width: 200px;
+    margin-top: -7px;
+}
+
+#post-short_text, #post-more_text {
+    height: 250px !important;
 }
 
 @media screen and (max-width: 980px) {

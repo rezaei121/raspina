@@ -67,7 +67,7 @@ class SiteController extends BaseController
         $userTable = \common\models\User::tableName();
 
         $query = new Yii\db\Query();
-        $posts = $query->select(["p.id","p.title","p.short_text","p.create_time","u.username"])->
+        $posts = $query->select(["p.id","p.title","p.short_text","p.created_at","u.username"])->
         from("{$posTable} As p")->
         leftJoin("{$userTable} AS u","p.author_id = u.id")->
         groupBy("p.id")->
@@ -93,10 +93,10 @@ class SiteController extends BaseController
         $postCategoryTable = \frontend\models\PostCategory::tableName();
 
         // update posts status
-        $query->createCommand()->update($posTable,['status' => 1],"status = 2 AND create_time <=" . time())->execute();
+        $query->createCommand()->update($posTable,['status' => 1],"status = 2 AND created_at <=" . time())->execute();
 
         // select posts
-        $query->select(["p.pin_post","p.id","p.title","p.short_text","p.create_time","p.view","u.last_name","u.surname","COUNT(DISTINCT c.id) AS comment_count","IF(p.more_text != '','1','0') AS `more`","GROUP_CONCAT(DISTINCT pc.category_id) AS category_ids"])->
+        $query->select(["p.pin_post","p.id","p.title","p.short_text","p.created_at","p.view","u.last_name","u.surname","COUNT(DISTINCT c.id) AS comment_count","IF(p.more_text != '','1','0') AS `more`","GROUP_CONCAT(DISTINCT pc.category_id) AS category_ids"])->
         from("{$posTable} As p")->
         leftJoin("{$userTable} AS u","p.author_id = u.id")->
         leftJoin("{$commentTable} AS c","p.id = c.post_id AND c.status = 1")->

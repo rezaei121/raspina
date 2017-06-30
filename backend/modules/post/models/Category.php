@@ -11,7 +11,7 @@ use Yii;
  *
  * @property PostCategory[] $postCategories
  */
-class Category extends \common\models\BaseModel
+class Category extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -8,11 +8,13 @@ use backend\modules\post\models\Post;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+
 /**
  * Default controller for the `posts` module
  */
 class DefaultController extends Controller
 {
+
     public function behaviors()
     {
         return [
@@ -66,6 +68,15 @@ class DefaultController extends Controller
         ]);
     }
 
+    protected function fillModel($model)
+    {
+        $request = Yii::$app->request->post();
+        $model->tags = (isset($request['tags']) && !empty($request['tags'])) ? implode(',', $request['tags']) : null;
+        $model->keywords = (isset($request['keywords']) && !empty($request['keywords'])) ? implode(',', $request['keywords']) : null;
+
+        return $model;
+    }
+
     /**
      * Creates a new Post model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -73,58 +84,24 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Post();
-
-        $model->comment_active = true;
+        $model = new Post;
+        $model->comment_active = 1;
         $model->status = 1;
-        $post_id = null;
 
         $request = Yii::$app->request->post();
-        if(isset($request['Post']['post_id']) && $request['Post']['post_id'] != '')
-        {
-            $post_id = $request['Post']['post_id'];
-            $model = $this->findModel((int)$post_id);
-            unset($request['Post']['post_id']);
-        }
 
         if ($model->load($request) && $model->validate())
         {
-            $currentTime = time("now");
-            $model->create_time = $currentTime;
-            $model->author_id = Yii::$app->user->id;
-            $model->tags = (isset($request['tags']) && !empty($request['tags']))? implode(',',$request['tags']) : null;
-            $model->keywords = (isset($request['keywords']) && !empty($request['keywords']))? implode(',',$request['keywords']) : null;
-
-            if($model->status == 2 && isset($request['Post']['date']))
-            {
-                $selectedTime = explode('/',$request['Post']['date']);
-                $model->create_time = Yii::$app->date->jalali_to_gregorian($selectedTime[0],$selectedTime[1],$selectedTime[2],$request['Post']['hour'],$request['Post']['minute']);
-                if($currentTime > $model->create_time)
-                {
-                    $model->status == 1;
-                    $model->create_time = $currentTime;
-                }
-            }
-
-            if(Yii::$app->request->isAjax)
-            {
-                $model->save();
-                return $model->id;
-            }
-
-            if(!Yii::$app->request->isAjax && $model->save())
+            $model = $this->fillModel($model);
+            if($model->save())
             {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
 
-        if(!Yii::$app->request->isAjax)
-        {
-            Yii::$app->session->setFlash('warning', Yii::t('app','Auto Save'));
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -137,54 +114,49 @@ class DefaultController extends Controller
     {
         $model = $this->findModel($id);
         $request = Yii::$app->request->post();
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate())
+        if ($model->load($request) && $model->validate())
         {
-            $currentTime = time("now");
-            $model->update_time = $currentTime;
-            # set new tags
-            if(isset($request['tags']))
-            {
-                $tags = explode(',',$model->tags);
-                $model->tags = $model->setSelect2Value($request['tags'],$tags);
-            }
-
-            if(isset($request['keywords']))
-            {
-                $keywords = explode(',',$model->keywords);
-                $model->keywords = $model->setSelect2Value($request['keywords'],$keywords);
-            }
-
-            if($model->status == 2 && isset($request['Post']['date']))
-            {
-                $selectedTime = explode('/',$request['Post']['date']);
-                $model->create_time = Yii::$app->date->jalali_to_gregorian($selectedTime[0],$selectedTime[1],$selectedTime[2],$request['Post']['hour'],$request['Post']['minute']);
-                if($currentTime > $model->create_time)
-                {
-                    $model->status == 1;
-                    $model->create_time = $currentTime;
-                }
-            }
-
-            if(Yii::$app->request->isAjax)
-            {
-                $model->save();
-                return $model->id;
-            }
-
-            if(!Yii::$app->request->isAjax && $model->save())
+            $model = $this->fillModel($model);
+            if($model->save())
             {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionAutoSave()
+    {
         if(!Yii::$app->request->isAjax)
         {
-            Yii::$app->session->setFlash('warning', Yii::t('app','Auto Update'));
-            $model->tags = explode(',',$model->tags);
-            $model->keywords = explode(',',$model->keywords);
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            return false;
+        }
+
+        $model = new Post();
+        $post_id = null;
+        $request = Yii::$app->request->post();
+        if(isset($request['Post']['post_id']) && $request['Post']['post_id'] != '')
+        {
+            $post_id = $request['Post']['post_id'];
+            $model = $this->findModel((int)$post_id);
+        }
+
+        if ($model->load($request) && $model->validate())
+        {
+            $model = $this->fillModel($model);
+
+            if($model->status == 1)
+            {
+                $model->status = 0;
+            }
+
+            if($model->save())
+            {
+                return $model->id;
+            }
         }
     }
 

@@ -33,9 +33,9 @@ $postStatus = $model->postStatus();
             'contentOptions' => ['width' => '10%'],
         ],
         [
-            'attribute' => 'create_time',
+            'attribute' => 'created_at',
             'value' => function($model){
-                return  Yii::$app->date->pdate($model->create_time);
+                return  Yii::$app->date->pdate($model->created_at);
             },
             'contentOptions' => ['width' => '15%'],
         ],

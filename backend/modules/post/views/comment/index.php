@@ -46,9 +46,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => $model->getCommentStatus()
             ],
             [
-                'attribute' => 'create_time',
+                'attribute' => 'created_at',
                 'value' => function($model){
-                    return  Yii::$app->date->pdate($model->create_time);
+                    return  Yii::$app->date->pdate($model->created_at);
                 }
             ],
             [

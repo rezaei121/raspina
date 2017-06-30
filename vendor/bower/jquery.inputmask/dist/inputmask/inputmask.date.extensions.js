@@ -1,12 +1,13 @@
 /*!
 * inputmask.date.extensions.js
-* https://github.com/RobinHerbots/jquery.inputmask
-* Copyright (c) 2010 - 2016 Robin Herbots
+* https://github.com/RobinHerbots/Inputmask
+* Copyright (c) 2010 - 2017 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.4
+* Version: 3.3.7
 */
+
 !function(factory) {
-    "function" == typeof define && define.amd ? define([ "inputmask.dependencyLib", "inputmask" ], factory) : "object" == typeof exports ? module.exports = factory(require("./inputmask.dependencyLib"), require("./inputmask")) : factory(window.dependencyLib || jQuery, window.Inputmask);
+    "function" == typeof define && define.amd ? define([ "./dependencyLibs/inputmask.dependencyLib", "./inputmask" ], factory) : "object" == typeof exports ? module.exports = factory(require("./dependencyLibs/inputmask.dependencyLib"), require("./inputmask")) : factory(window.dependencyLib || jQuery, window.Inputmask);
 }(function($, Inputmask) {
     function isLeapYear(year) {
         return isNaN(year) || 29 === new Date(year, 2, 0).getDate();
@@ -70,14 +71,14 @@
             },
             postValidation: function(buffer, currentResult, opts) {
                 var dayMonthValue, year, bufferStr = buffer.join("");
-                return 0 === opts.mask.indexOf("y") ? (year = bufferStr.substr(0, 4), dayMonthValue = bufferStr.substr(4, 11)) : (year = bufferStr.substr(6, 11), 
+                return 0 === opts.mask.indexOf("y") ? (year = bufferStr.substr(0, 4), dayMonthValue = bufferStr.substring(4, 10)) : (year = bufferStr.substring(6, 10), 
                 dayMonthValue = bufferStr.substr(0, 6)), currentResult && (dayMonthValue !== opts.leapday || isLeapYear(year));
             },
             definitions: {
                 "1": {
                     validator: function(chrs, maskset, pos, strict, opts) {
                         var isValid = opts.regex.val1.test(chrs);
-                        return strict || isValid || chrs.charAt(1) !== opts.separator && "-./".indexOf(chrs.charAt(1)) === -1 || !(isValid = opts.regex.val1.test("0" + chrs.charAt(0))) ? isValid : (maskset.buffer[pos - 1] = "0", 
+                        return strict || isValid || chrs.charAt(1) !== opts.separator && -1 === "-./".indexOf(chrs.charAt(1)) || !(isValid = opts.regex.val1.test("0" + chrs.charAt(0))) ? isValid : (maskset.buffer[pos - 1] = "0", 
                         {
                             refreshFromBuffer: {
                                 start: pos - 1,
@@ -112,9 +113,9 @@
                 "2": {
                     validator: function(chrs, maskset, pos, strict, opts) {
                         var frontValue = opts.getFrontValue(maskset.mask, maskset.buffer, opts);
-                        frontValue.indexOf(opts.placeholder[0]) !== -1 && (frontValue = "01" + opts.separator);
+                        -1 !== frontValue.indexOf(opts.placeholder[0]) && (frontValue = "01" + opts.separator);
                         var isValid = opts.regex.val2(opts.separator).test(frontValue + chrs);
-                        return strict || isValid || chrs.charAt(1) !== opts.separator && "-./".indexOf(chrs.charAt(1)) === -1 || !(isValid = opts.regex.val2(opts.separator).test(frontValue + "0" + chrs.charAt(0))) ? isValid : (maskset.buffer[pos - 1] = "0", 
+                        return strict || isValid || chrs.charAt(1) !== opts.separator && -1 === "-./".indexOf(chrs.charAt(1)) || !(isValid = opts.regex.val2(opts.separator).test(frontValue + "0" + chrs.charAt(0))) ? isValid : (maskset.buffer[pos - 1] = "0", 
                         {
                             refreshFromBuffer: {
                                 start: pos - 1,
@@ -129,7 +130,7 @@
                         validator: function(chrs, maskset, pos, strict, opts) {
                             isNaN(maskset.buffer[pos + 1]) || (chrs += maskset.buffer[pos + 1]);
                             var frontValue = opts.getFrontValue(maskset.mask, maskset.buffer, opts);
-                            frontValue.indexOf(opts.placeholder[0]) !== -1 && (frontValue = "01" + opts.separator);
+                            -1 !== frontValue.indexOf(opts.placeholder[0]) && (frontValue = "01" + opts.separator);
                             var isValid = 1 === chrs.length ? opts.regex.val2pre(opts.separator).test(frontValue + chrs) : opts.regex.val2(opts.separator).test(frontValue + chrs);
                             return strict || isValid || !(isValid = opts.regex.val2(opts.separator).test(frontValue + "0" + chrs)) ? isValid : (maskset.buffer[pos] = "0", 
                             pos++, {
@@ -303,7 +304,7 @@
                             c: "0"
                         };
                         var isValid = opts.regex.hrs.test(chrs);
-                        if (!strict && !isValid && (chrs.charAt(1) === opts.timeseparator || "-.:".indexOf(chrs.charAt(1)) !== -1) && (isValid = opts.regex.hrs.test("0" + chrs.charAt(0)))) return maskset.buffer[pos - 1] = "0", 
+                        if (!strict && !isValid && (chrs.charAt(1) === opts.timeseparator || -1 !== "-.:".indexOf(chrs.charAt(1))) && (isValid = opts.regex.hrs.test("0" + chrs.charAt(0)))) return maskset.buffer[pos - 1] = "0", 
                         maskset.buffer[pos] = chrs.charAt(0), pos++, {
                             refreshFromBuffer: {
                                 start: pos - 2,
@@ -452,6 +453,26 @@
             placeholder: "yyyy/mm/dd",
             alias: "mm/dd/yyyy",
             clearIncomplete: !0
+        },
+        "yyyy-mm-dd hh:mm:ss": {
+            mask: "y-1-2 h:s:s",
+            placeholder: "yyyy-mm-dd hh:mm:ss",
+            alias: "datetime",
+            separator: "-",
+            leapday: "-02-29",
+            regex: {
+                val2pre: function(separator) {
+                    var escapedSeparator = Inputmask.escapeRegex.call(this, separator);
+                    return new RegExp("((0[13-9]|1[012])" + escapedSeparator + "[0-3])|(02" + escapedSeparator + "[0-2])");
+                },
+                val2: function(separator) {
+                    var escapedSeparator = Inputmask.escapeRegex.call(this, separator);
+                    return new RegExp("((0[1-9]|1[012])" + escapedSeparator + "(0[1-9]|[12][0-9]))|((0[13-9]|1[012])" + escapedSeparator + "30)|((0[13578]|1[02])" + escapedSeparator + "31)");
+                },
+                val1pre: new RegExp("[01]"),
+                val1: new RegExp("0[1-9]|1[012]")
+            },
+            onKeyDown: function(e, buffer, caretPos, opts) {}
         }
     }), Inputmask;
 });

@@ -24,13 +24,16 @@ class ComposerStaticInitaed39ad1b5103541f523a8477fafa0f1
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
+        'm' => 
+        array (
+            'meysampg\\intldate\\' => 18,
+        ),
         'l' => 
         array (
             'light\\hashids\\' => 14,
         ),
         'd' => 
         array (
-            'developit\\pdate\\' => 16,
             'developit\\jcrop\\' => 16,
             'developit\\captcha\\' => 18,
         ),
@@ -81,13 +84,13 @@ class ComposerStaticInitaed39ad1b5103541f523a8477fafa0f1
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
+        'meysampg\\intldate\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/meysampg/intldate',
+        ),
         'light\\hashids\\' => 
         array (
             0 => __DIR__ . '/..' . '/light/hashids/src',
-        ),
-        'developit\\pdate\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/developit/yii2-pdate',
         ),
         'developit\\jcrop\\' => 
         array (

@@ -1,6 +1,14 @@
 Yii Framework 2 swiftmailer extension Change Log
 ================================================
 
+2.0.7 May 01, 2017
+------------------
+
+- Bug #46: Fixed `yii\swiftmailer\Message` does not clones `$swiftMessage` during its own cloning (evpav, klimov-paul)
+- Enh #37: `yii\swiftmailer\Logger` now chooses logging level depending on incoming entry format (klimov-paul)
+- Enh #40: Added `yii\swiftmailer\Message::setHeaders()` allowing to setup custom headers in batch (klimov-paul)
+
+
 2.0.6 September 09, 2016
 ------------------------
 

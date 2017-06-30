@@ -11,7 +11,7 @@ use Yii;
  * @property string $size
  * @property string $upload_date
  */
-class File extends \common\models\BaseModel
+class File extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

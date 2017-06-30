@@ -3,7 +3,6 @@ use backend\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use dosamigos\tinymce\TinyMce;
-use mrlco\datepicker\Datepicker;
 use backend\modules\post\models\Category;
 use backend\modules\post\models\PostCategory;
 
@@ -13,7 +12,8 @@ use backend\modules\post\models\PostCategory;
 
 <?= Html::beginPanel($this->title) ?>
     <?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'auto_save')->checkbox(); ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Title')])->label(false) ?>
     <?= Select2::widget([
         'name' => 'post_categories',
         'id' => 'post-post_categories',
@@ -27,83 +27,99 @@ use backend\modules\post\models\PostCategory;
         ],
     ]); ?>
     <?= $form->field($model, 'short_text')->widget(TinyMce::className(), [
-        'options' => ['rows' => 12],
+        'options' => ['rows' => 20],
         'language' => 'fa',
         'clientOptions' => [
             'directionality' => "rtl",
             'entity_encoding' => "utf-8",
             'relative_urls' => false,
+            'menubar' => false,
+            'automatic_uploads' => true,
+            'images_upload_url' => 'postAcceptor.php',
+            'images_reuse_filename' => true,
             'plugins' => [
-                "advlist autolink lists link charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste link image"
+                "advlist autolink lists link charmap visualblocks code media table contextmenu image media codesample code"
             ],
-
-            'toolbar' => "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+            'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image upload table link | code"
         ]
-    ]);?>
-    <?= $form->field($model, 'more_text')->widget(TinyMce::className(), [
-        'options' => ['rows' => 12],
-        'language' => 'fa',
-        'clientOptions' => [
-            'directionality' => "rtl",
-            'relative_urls' => false,
-            'entity_encoding' => "utf-8",
-            'plugins' => [
-                "advlist autolink lists link charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste link image codesample"
-            ],
+    ])->label(false) ?>
 
-            'toolbar' => "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | codesample"
-        ]
-    ]);?>
-    <?= Select2::widget([
-        'name' => 'tags',
-        'id' => 'post_tags',
-        'value' => !empty($model->tags[0]) ? array_keys($model->tags) : [],
-        'class' => 'form-control',
-        'data' => !empty($model->tags[0]) ? $model->tags : [],
-        'options' => ['multiple' => true, 'placeholder' => Yii::t('app', 'Insert Tags')],
-        'pluginOptions' => [
-            'tags' => true,
-            'maximumInputLength' => 100
-        ],
-    ]); ?>
-    <?= Select2::widget([
-        'name' => 'keywords',
-        'id' => 'post_keywords',
-        'value' => !empty($model->keywords[0]) ? array_keys($model->keywords) : [],
-        'class' => 'form-control',
-        'data' => !empty($model->keywords[0]) ? $model->keywords : [],
-        'options' => ['multiple' => true, 'placeholder' => Yii::t('app', 'Insert Keywords')],
-        'pluginOptions' => [
-            'tags' => true,
-            'maximumInputLength' => 100
-        ],
-    ]); ?>
-    <?= $form->field($model, 'meta_description')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'status')->dropDownList($model->postStatus()) ?>
-    <?= '<div class="display-none" id="status_2_datepicker">' ?>
-        <?= '<div class="" style="width:50px; float: right;">' . $form->field($model, 'minute')->textInput(['value'=>!empty($model->create_time) ? date('i',$model->create_time) : '59','class'=>'form-control center-text','maxlength' => true]) . '</div>' ?>
-        <?= '<div class="" style="float: right; margin: 18px 5px 0px 5px; font-size: 24px;">:</div>' ?>
-        <?= '<div class="" style="width:50px; float: right">' . $form->field($model, 'hour')->textInput(['value'=>!empty($model->create_time) ? date('H',$model->create_time) : '23','class'=>'form-control center-text','maxlength' => true]) . '</div>' ?>
-        <?= '<div class="" style="float: right;margin-right:5px">' . $form->field($model, 'date')->widget(
-            Datepicker::className(), [
-            'inline' => true,
-            'value' => !empty($model->create_time) ? date('Y/m/d',$model->create_time) : '',
-            'template' => '<div class="" style="background-color: #fff; width:100px">{input}</div>',
+    <div class="post-more-section">
+        <hr>
+        <div class="btn btn-default post-more-btn"><?= Yii::t('app', 'More') ?></div>
+    </div>
+
+    <div id="more-text-section" class="visibility-hidden" style="500px;">
+        <?= $form->field($model, 'more_text')->widget(TinyMce::className(), [
+            'options' => ['rows' => 20],
+            'language' => 'fa',
             'clientOptions' => [
-                'format' => 'YYYY/MM/DD'
+                'directionality' => "rtl",
+                'relative_urls' => false,
+                'entity_encoding' => "utf-8",
+                'menubar' => false,
+                'plugins' => [
+                    "advlist autolink lists link charmap visualblocks code media table contextmenu image media codesample code"
+                ],
+                'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image  table link | codesample | code"
             ]
-        ]) . '</div>' ?>
-    <?= '</div>' ?>
+        ])->label(false) ?>
+    </div>
+    <?php
+        $tags = $model->convertToAssociativeArray($model->tags);
+        echo Select2::widget([
+            'name' => 'tags',
+            'id' => 'post_tags',
+            'value' => $tags,
+            'class' => 'form-control',
+            'data' => $tags,
+            'options' => ['multiple' => true, 'placeholder' => Yii::t('app', 'Tags')],
+            'pluginOptions' => [
+                'tags' => true,
+                'maximumInputLength' => 100
+            ],
+        ]);
+    ?>
+    <?php
+        $keywords = $model->convertToAssociativeArray($model->keywords);
+        echo Select2::widget([
+            'name' => 'keywords',
+            'id' => 'post_keywords',
+            'value' => $keywords,
+            'class' => 'form-control',
+            'data' => $keywords,
+            'options' => ['multiple' => true, 'placeholder' => Yii::t('app', 'Keywords')],
+            'pluginOptions' => [
+                'tags' => true,
+                'tokenSeparators' => [','],
+                'maximumInputLength' => 100
+            ],
+        ]);
+    ?>
+    <?= $form->field($model, 'meta_description')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Meta Description')])->label(false) ?>
+    <?= $form->field($model, 'status')->dropDownList($model->postStatus(), ['placeholder' => Yii::t('app', 'Status')])->label(false) ?>
+
+    <?php
+        $createdAt = !empty($model->created_at) ? new \DateTime($model->created_at) : null;
+    ?>
+    <div id="post-date-section" class="display-none">
+        <div style="width:50px; float: right;">
+            <?= $form->field($model, 'minute')->textInput(['value'=>($createdAt !== null) ? $createdAt->format('i') : '59','class'=>'form-control center-text','maxlength' => true]) ?>
+        </div>
+        <div style="width:50px; float: right; margin-right:5px">
+            <?= $form->field($model, 'hour')->textInput(['value'=>!empty($createdAt !== null) ? $createdAt->format('H') : '23','class'=>'form-control center-text','maxlength' => true]) ?>
+        </div>
+        <div style="float: right;margin-right:5px">
+            <?= $form->field($model, 'date')->textInput(['value' =>  !empty($createdAt !== null) ? Yii::$app->date->asDate($createdAt) : Yii::$app->date->asDate('now', 'php:Y-m-d'), 'class' => 'form-control center-text', 'maxlength' => true]) ?>
+        </div>
+    </div>
+
     <?= $form->field($model, 'post_id')->hiddenInput()->label(false); ?>
     <div class="clear"></div>
     <?= $form->field($model, 'comment_active')->checkbox(); ?>
     <?= $form->field($model, 'pin_post')->checkbox(); ?>
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create Post') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    <div class="form-group center-text">
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 <?= Html::endPanel() ?>

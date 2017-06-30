@@ -10,7 +10,7 @@ AppAsset::register($this);
 $modules_id = Yii::$app->controller->module->id;
 $controller_id = Yii::$app->controller->id;
 $action_id = Yii::$app->controller->action->id;
-$entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
+$entity_id = isset($_GET['id'])? (int)$_GET['id'] : null;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -59,10 +59,13 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : 0;
     </div>
 </div>
 
-
-<div class="pen">
-    <img class="pen-icon" src="<?= Yii::$app->setting->getValue('url') ?>/backend/web/img/pen.svg">
-</div>
+<?php if($controller_id == 'site' && $action_id == 'index'): ?>
+<a href="<?= Url::base() . '/post/default/create'; ?>">
+    <div class="pen">
+        <img class="pen-icon" src="<?= Yii::$app->setting->getValue('url') ?>/backend/web/img/pen.svg">
+    </div>
+</a>
+<?php endif; ?>
 
 <div class="pull-left main-content">
     <div class="col-md-12">

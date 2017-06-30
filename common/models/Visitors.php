@@ -14,7 +14,7 @@ use yii\helpers\Url;
  * @property string $browser
  * @property string $os
  */
-class Visitors extends \common\models\BaseModel
+class Visitors extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

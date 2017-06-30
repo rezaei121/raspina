@@ -14,7 +14,7 @@ use Yii;
  *
  * @property Post $post
  */
-class Comment extends \common\models\BaseModel
+class Comment extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

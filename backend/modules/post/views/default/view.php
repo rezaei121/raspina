@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'view:ntext',
             [
                 'label'  => Yii::t('app', 'Create Time'),
-                'value'  => Yii::$app->date->pdate($model->create_time),
+                'value'  => Yii::$app->date->pdate($model->created_at),
             ],
             [
                 'label'  => Yii::t('app', 'Update Time'),

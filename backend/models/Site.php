@@ -12,7 +12,7 @@ use Yii;
  * @property string $size
  * @property string $upload_date
  */
-class Site extends \common\models\BaseModel
+class Site extends \yii\db\ActiveRecord
 {
 
     public static function tableName()

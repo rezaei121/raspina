@@ -1,8 +1,13 @@
 <?php
+$language = 'fa-IR';
+$calendar = 'persian';
+//$language = 'en-US';
+$timeZone = 'Asia/Tehran';
+
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'language' => 'fa-IR',
-    'timeZone' => 'Asia/Tehran',
+    'language' => $language,
+    'timeZone' => $timeZone,
     'components' => [
         'assetManager' => [
 //            'linkAssets' => true,
@@ -52,15 +57,13 @@ return [
             'minHashLength' => 5,
             //'alphabet' => 'abcdefghigk'
         ],
-        'formatter' => [
-            'class' => 'yii\i18n\Formatter',
-            'locale' => 'fa_IR@calendar=persian',
-            'dateFormat' => 'php:d-M-Y',
-            'datetimeFormat' => 'php:d-M-Y H:i:s',
-            'timeFormat' => 'php:H:i:s',
-        ],
         'date' => [
-            'class' => 'developit\pdate\DateTime',
+            'class' => 'yii\i18n\Formatter',
+            'locale' => 'en-US@calendar=persian',
+            'calendar' => \IntlDateFormatter::TRADITIONAL,
+            'dateFormat' => 'php:Y-m-d',
+            'datetimeFormat' => 'php:Y-m-d H:i',
+            'timeFormat' => 'php:H:i',
         ],
         'browser' => [
             'class' => 'common\components\browser',
