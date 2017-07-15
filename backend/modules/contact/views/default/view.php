@@ -1,45 +1,45 @@
 <?php
-
-use yii\helpers\Html;
+use backend\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Contact */
+/* @var $model backend\modules\contact\models\Contact */
 
-$this->title = $model->name;
+$this->title = Yii::t('app', 'View contact');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Contacts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-md-12">
-    <div class="panel panel-default">
-        <div class="panel-heading"><?= $this->title ?></div>
-        <div class="panel-body">
 
-<div class="contact-view">
+<?= Html::beginPanel(Yii::t('app','Status'), 'col-md-2 col-sm-4 col-xs-12', null, ['panel-heading', 'panel-status'], ['panel-body', 'panel-body-detail']) ?>
+<?php
+    $statusList = $model->getStatusList();
+    echo $statusList[$model->status];
+?>
+<?= Html::endPanel() ?>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+<?= Html::beginPanel(Yii::t('app','Created At'), 'col-md-2 col-sm-4 col-xs-12', null, ['panel-heading', 'panel-status'], ['panel-body', 'panel-body-detail ltr']) ?>
+<?= Yii::$app->date->asDatetime($model->created_at) ?>
+<?= Html::endPanel() ?>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'name',
-            'email:email',
-            'site',
-            'ip',
-            'message:ntext',
-        ],
-    ]) ?>
+<?= Html::beginPanel(Yii::t('app','Sender'), 'col-md-2 col-sm-4 col-xs-12', null, ['panel-heading', 'panel-status'], ['panel-body', 'panel-body-detail']) ?>
+<?= $model->name ?>
+<?= Html::endPanel() ?>
 
-</div>
+<?= Html::beginPanel(Yii::t('app','Email'), 'col-md-2 col-sm-4 col-xs-12', null, ['panel-heading', 'panel-status'], ['panel-body', 'panel-body-detail']) ?>
+<?= $model->email ?>
+<?= Html::endPanel() ?>
 
-        </div>
-    </div>
-</div>
+<?= Html::beginPanel(Yii::t('app','Site'), 'col-md-2 col-sm-4 col-xs-12', null, ['panel-heading', 'panel-status'], ['panel-body', 'panel-body-detail']) ?>
+<?= Html::a($model->site,$model->site,['target' => '_blank']) ?>
+<?= Html::endPanel() ?>
+
+<?= Html::beginPanel(Yii::t('app','IP'), 'col-md-2 col-sm-4 col-xs-12', null, ['panel-heading', 'panel-status'], ['panel-body', 'panel-body-detail']) ?>
+<?= $model->ip ?>
+<?= Html::endPanel() ?>
+
+<div class="clear"></div>
+
+<?= Html::beginPanel(Yii::t('app', 'Message')) ?>
+<?= Html::actionButtons(['delete']) ?>
+<?= nl2br($model->message) ?>
+<?= Html::endPanel() ?>

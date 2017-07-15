@@ -12,48 +12,76 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?= Html::beginPanel($this->title ) ?>
-    <?= Html::beginForm(['comment/bulk'],'post') ?>
-    <?= Html::dropDownList('action','confirmed',['delete' => Yii::t('app','Delete'),'confirmed' => Yii::t('app','Confirmed')],['class'=>'dropdown fa-bulk-dropdown',]) ?>
-    <?= Html::submitButton(Yii::t('app','Do'), ['class' => 'btn btn-primary fa-bulk-button',]) ?>
+    <?= Html::beginForm(['comment/group-actions'],'post') ?>
+    <?= Html::dropDownList('action','confirmed',['approve' => Yii::t('app','Approve'), 'delete' => Yii::t('app','Delete')],['class'=>'dropdown fa-bulk-dropdown',]) ?>
+    <?= Html::submitButton(Yii::t('app','Apply'), ['class' => 'btn-sm btn-primary fa-bulk-button', 'data-confirm' => Yii::t('app', 'Are you sure you want to do?')]) ?>
     <div class="fa-br"></div>
+<br>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout' => "{items}\n{pager}",
         'columns' => [
-            ['class' => 'yii\grid\CheckboxColumn'],
+            [
+                'class' => 'yii\grid\CheckboxColumn',
+                'headerOptions' => ['class'=>'fit'],
+                'contentOptions' => ['class' => 'fit align-center'],
+            ],
             [
                 'attribute' => 'post_title',
                 'format' => 'raw',
                 'value' => function($model){
-                    $sub_title = $model->post->title;
-                    if(mb_strlen($sub_title,'UTF-8') > 27)
-                    {
-                        $sub_title = mb_substr($model->post->title,0,30,'UTF-8') . '...';
-                    }
-                    $link = Html::a($sub_title,['default/view?id=' . $model->post_id]);
+                    $link = Html::a($model->post->title,['default/view', 'id' => $model->post_id]);
                     return $link;
-                }
+                },
+                'headerOptions' => ['class'=>'low-display-priority'],
+                'filterOptions' => ['class'=>'low-display-priority'],
+                'contentOptions' => ['class' => 'low-display-priority'],
             ],
-            'name',
-            'email:email',
+            [
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value' => function($model){
+                    $link = Html::a($model->name,['comment/view', 'id' => $model->id]);
+                    return $link;
+                },
+            ],
+            [
+                'attribute' => 'email',
+                'format' => 'email',
+                'headerOptions' => ['class'=>'auto-fit'],
+                'filterOptions' => ['class'=>'auto-fit'],
+                'contentOptions' => ['class' => 'auto-fit'],
+            ],
             [
                 'attribute' => 'status',
+                'format' => 'raw',
                 'value' => function($model){
                     $status = $model->getCommentStatus();
-                    return $status[$model->status];
+
+                    $classLabel = 'label-blue';
+                    if($model->status == 0) $classLabel = 'label-yellow';
+                    if($model->status == 1) $classLabel = 'label-green';
+
+                    return  "<span class=\"label {$classLabel}\">{$status[$model->status]}</span>";
                 },
-                'contentOptions' => ['width' => '10%'],
+                'contentOptions' => ['class' => 'fit'],
                 'filter' => $model->getCommentStatus()
             ],
             [
                 'attribute' => 'created_at',
                 'value' => function($model){
-                    return  Yii::$app->date->pdate($model->created_at);
-                }
+                    return  Yii::$app->date->asDateTime($model->created_at);
+                },
+                'headerOptions' => ['class'=>'auto-fit'],
+                'filterOptions' => ['class'=>'auto-fit'],
+                'contentOptions' => ['class' => 'auto-fit align-center ltr'],
             ],
             [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {delete}',
+                'class' => \backend\components\grid\ActionColumn::className(),
+                'contentOptions' => ['class' => 'action-column auto-fit'],
+                'headerOptions' => ['class'=>'auto-fit'],
+                'template' => '{view} {delete}'
             ],
         ],
     ]); ?>

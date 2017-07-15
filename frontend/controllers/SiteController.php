@@ -91,9 +91,8 @@ class SiteController extends BaseController
         $userTable = \common\models\User::tableName();
         $commentTable = \frontend\models\Comment::tableName();
         $postCategoryTable = \frontend\models\PostCategory::tableName();
-
         // update posts status
-        $query->createCommand()->update($posTable,['status' => 1],"status = 2 AND created_at <=" . time())->execute();
+        $query->createCommand()->update($posTable,['status' => 1],"status = 2 AND created_at <='" . (new \DateTime())->format('Y-m-d H:i:s'). "'")->execute();
 
         // select posts
         $query->select(["p.pin_post","p.id","p.title","p.short_text","p.created_at","p.view","u.last_name","u.surname","COUNT(DISTINCT c.id) AS comment_count","IF(p.more_text != '','1','0') AS `more`","GROUP_CONCAT(DISTINCT pc.category_id) AS category_ids"])->

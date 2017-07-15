@@ -10,7 +10,7 @@ use Yii;
  * @property string $id
  * @property string $email
  */
-class Newsletter extends \common\models\BaseModel
+class Newsletter extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

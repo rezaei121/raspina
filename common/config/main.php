@@ -1,13 +1,11 @@
 <?php
 $language = 'fa-IR';
 $calendar = 'persian';
-//$language = 'en-US';
-$timeZone = 'Asia/Tehran';
 
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'language' => $language,
-    'timeZone' => $timeZone,
+    'timeZone' => 'Asia/Tehran',
     'components' => [
         'assetManager' => [
 //            'linkAssets' => true,
@@ -60,6 +58,7 @@ return [
         'date' => [
             'class' => 'yii\i18n\Formatter',
             'locale' => 'en-US@calendar=persian',
+            'defaultTimeZone' => 'Asia/Tehran',
             'calendar' => \IntlDateFormatter::TRADITIONAL,
             'dateFormat' => 'php:Y-m-d',
             'datetimeFormat' => 'php:Y-m-d H:i',

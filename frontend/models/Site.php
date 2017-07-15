@@ -9,7 +9,7 @@ use Yii;
  * @property string $search
  *
  */
-class Site extends \common\models\BaseModel
+class Site extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

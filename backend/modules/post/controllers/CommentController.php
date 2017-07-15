@@ -19,10 +19,10 @@ class CommentController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','view','delete','create','update','bulk'],
+                'only' => ['index','view','delete','create','bulk'],
                 'rules' => [
                     [
-                        'actions' => ['index','view','delete','create','update','bulk'],
+                        'actions' => ['index','view','delete','create','group-actions'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -59,38 +59,41 @@ class CommentController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionApprove($id)
     {
-        $model = Comment::find()->alias('comment')->joinWith('post')->where(['comment.id' => $id])->one();
-        if ($model !== null) {
-            return $this->render('view', [
-                'model' => $model,
-            ]);
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+        $model = $this->findModel($id);
+        $model->status = 1;
+        var_dump($model->save());
+        if($model->save())
+        {
+            Yii::$app->session->setFlash('success', Yii::t('app','{object} approved.',[
+                'object' => Yii::t('app','Comment')
+            ]));
         }
+        return $this->redirect(['comment/view', 'id' => $id]);
     }
 
     /**
-     * Updates an existing Comment model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Displays a single Comment model.
      * @param string $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionView($id)
     {
         $model = $this->findModel($id);
-        $model->scenario = 'comment-reply';
-        Yii::$app->session->setFlash('warning', Yii::t('app','Auto Accept'));
+
+        $model->scenario = 'reply';
         if ($model->load(Yii::$app->request->post())) {
             $model->status = 1;
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            if($model->save())
+            {
+                Yii::$app->session->setFlash('success', Yii::t('app','Reply saved.'));
+            }
         }
+
+        return $this->render('view', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -105,22 +108,29 @@ class CommentController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionBulk()
+    public function actionGroupActions()
     {
         $GETrequest = Yii::$app->request->get();
         $selection = isset($GETrequest['id'])? (array)$GETrequest['id'] : (array)Yii::$app->request->post('selection');
         $action = isset($GETrequest['action'])? $GETrequest['action'] : Yii::$app->request->post('action');
 
-        if($action == 'confirmed')
+
+        if(empty($selection))
+        {
+            Yii::$app->session->setFlash('warning', Yii::t('app','No item selected.'));
+            return $this->redirect(['index']);
+        }
+
+        if($action == 'approve')
         {
             Comment::updateAll(['status' => 1],['id'=>$selection]);
-            Yii::$app->session->setFlash('success', Yii::t('app','Confirmed Successfully Applied'));
+            Yii::$app->session->setFlash('success', Yii::t('app','Comments approved.'));
         }
 
         if($action == 'delete')
         {
             Comment::deleteAll(['id'=>$selection]);
-            Yii::$app->session->setFlash('success', Yii::t('app','Delete Successfully Applied'));
+            Yii::$app->session->setFlash('error', Yii::t('app','Comments deleted.'));
         }
 
         return $this->redirect(['index']);

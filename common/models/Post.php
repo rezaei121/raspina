@@ -19,9 +19,8 @@ use Yii;
  * @property string $updated_at
  * @property integer $author_id
  * @property integer $pin_post
- * @property integer $comment_active
+ * @property integer $enable_comments
  * @property integer $view
- * @property integer $send_newsletter
  *
  * @property Comment[] $comments
  * @property User $author
@@ -45,7 +44,7 @@ class Post extends \yii\db\ActiveRecord
         return [
             [['title', 'short_text'], 'required'],
             [['short_text', 'more_text', 'tags', 'keywords'], 'string'],
-            [['status', 'author_id', 'pin_post', 'comment_active', 'view', 'send_newsletter'], 'integer'],
+            [['status', 'author_id', 'pin_post', 'enable_comments', 'view'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'meta_description'], 'string', 'max' => 255],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
@@ -70,7 +69,7 @@ class Post extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
             'author_id' => Yii::t('app', 'Author ID'),
             'pin_post' => Yii::t('app', 'Pin Post'),
-            'comment_active' => Yii::t('app', 'Comment Active'),
+            'enable_comments' => Yii::t('app', 'Enable Comments'),
             'view' => Yii::t('app', 'View')
         ];
     }

@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use developit\pdate\DateTime;
 use Yii;
 use yii\helpers\Url;
 
@@ -65,10 +66,8 @@ class Visitors extends \yii\db\ActiveRecord
     {
         if(!$this::isBot())
         {
-            $time = time();
             $visitor = new Visitors();
-            $visitor->visit_date = $time;
-            $visitor->group_date = (int)Yii::$app->date->pdate($time,'YMMdd');
+            $visitor->group_date = (new \DateTime())->format('Ymd');
             $visitor->ip = $_SERVER['REMOTE_ADDR'];
             $visitor->location = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             $visitor->browser = Yii::$app->browser->getBrowser() . ' ' . Yii::$app->browser->getVersion();
@@ -80,8 +79,8 @@ class Visitors extends \yii\db\ActiveRecord
 
     public function delete()
     {
-        $date = strtotime('-30 day');
-        Visitors::deleteAll("visit_date < {$date}");
+        $currentDate = new \DateTime();
+        Visitors::deleteAll(['<', 'visit_date', $currentDate->modify('-30 day')->format('Y-m-d H:i:s')]);
     }
 
     public function visit_period()
@@ -108,15 +107,15 @@ class Visitors extends \yii\db\ActiveRecord
 
     public function chart()
     {
-        $date = strtotime('-30 day');
+        $currentDate = new \DateTime();
         $visitor = new Yii\db\Query();
-        $result = $visitor->select('visit_date,group_date,COUNT(id) as `visit`,COUNT(DISTINCT ip) AS `visitor`')->from($this->tableName())->where('visit_date >= ' . $date)->groupBy('group_date')->all();
+        $result = $visitor->select('visit_date,group_date,COUNT(id) as `visit`,COUNT(DISTINCT ip) AS `visitor`')->from($this->tableName())->where(['>=', 'visit_date', $currentDate->modify('-30 day')->format('Y-m-d H:i:s')])->groupBy('group_date')->all();
 
         $labels = $visit_data = $visitor_data = [];
         $max_visit = 0;
         foreach ((array)$result as $r)
         {
-            $labels[] = "'" . Yii::$app->date->pdate($r['visit_date'],'YY/MM/dd') . "'";
+            $labels[] = "'" . Yii::$app->date->asDate($r['visit_date']) . "'";
             $visit_data[] = "'" . $r['visit'] . "'";
             $visitor_data[] = "'" . $r['visitor'] . "'";
 
@@ -197,7 +196,8 @@ class Visitors extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['visit_date','group_date'], 'integer'],
+            [['group_date'], 'integer'],
+            [['visit_date'], 'datetime', 'format' => 'php:Y-m-d H:i:s'],
             [['ip'], 'string', 'max' => 15],
             [['browser'], 'string', 'max' => 60],
             [['location'], 'string', 'max' => 1000],

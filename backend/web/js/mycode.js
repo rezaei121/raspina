@@ -36,7 +36,7 @@ $(document).ready(function(){
     {
         setInterval(function(){
             var pin_post = 0;
-            var comment_active = 0;
+            var enable_comments = 0;
 
             if(typeof $('#post-auto_save:checked').val() == 'undefined')
             {
@@ -47,9 +47,9 @@ $(document).ready(function(){
             {
                 pin_post = 1;
             }
-            if(typeof $('#post-comment_active:checked').val() != 'undefined')
+            if(typeof $('#post-enable_comments:checked').val() != 'undefined')
             {
-                comment_active = 1;
+                enable_comments = 1;
             }
 
             var post_categories = $('#post-post_categories').val();
@@ -67,7 +67,7 @@ $(document).ready(function(){
                 hour: $('#post-hour').val(),
                 date: $('#post-date').val(),
                 pin_post: pin_post,
-                comment_active: comment_active,
+                enable_comments: enable_comments,
                 post_id: post_id
             };
 

@@ -85,7 +85,7 @@ class DefaultController extends Controller
     public function actionCreate()
     {
         $model = new Post;
-        $model->comment_active = 1;
+        $model->enable_comments = 1;
         $model->status = 1;
 
         $request = Yii::$app->request->post();
@@ -95,6 +95,9 @@ class DefaultController extends Controller
             $model = $this->fillModel($model);
             if($model->save())
             {
+                Yii::$app->session->setFlash('success', Yii::t('app','{object} created.',[
+                    'object' => Yii::t('app','Post')
+                ]));
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -116,14 +119,18 @@ class DefaultController extends Controller
         $request = Yii::$app->request->post();
         if ($model->load($request) && $model->validate())
         {
-            $model = $this->fillModel($model);
+
             if($model->save())
             {
+                Yii::$app->session->setFlash('success', Yii::t('app','{object} updated.',[
+                    'object' => Yii::t('app','Post')
+                ]));
                 return $this->redirect(['view', 'id' => $model->id]);
             }
+
         }
 
-        return $this->render('create', [
+        return $this->render('update', [
             'model' => $model,
         ]);
     }
@@ -169,6 +176,9 @@ class DefaultController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        Yii::$app->session->setFlash('success', Yii::t('app','{object} deleted.',[
+            'object' => Yii::t('app','Post')
+        ]));
         return $this->redirect(['index']);
     }
 

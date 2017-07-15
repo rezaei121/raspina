@@ -20,7 +20,7 @@ use backend\modules\post\models\PostCategory;
         'value' => PostCategory::getSelectedCategories($model->id),
         'class' => 'form-control',
         'data' => Category::getAll(),
-        'options' => ['multiple' => true, 'placeholder' => Yii::t('app', 'Select Category')],
+        'options' => ['multiple' => true, 'placeholder' => Yii::t('app', 'Categories')],
         'pluginOptions' => [
             'tags' => true,
             'maximumInputLength' => 255
@@ -116,7 +116,7 @@ use backend\modules\post\models\PostCategory;
 
     <?= $form->field($model, 'post_id')->hiddenInput()->label(false); ?>
     <div class="clear"></div>
-    <?= $form->field($model, 'comment_active')->checkbox(); ?>
+    <?= $form->field($model, 'enable_comments')->checkbox(); ?>
     <?= $form->field($model, 'pin_post')->checkbox(); ?>
     <div class="form-group center-text">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
