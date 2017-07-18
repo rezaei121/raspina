@@ -4,6 +4,7 @@ use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\file\models\FileSearch */
+/* @var $searchModel backend\modules\file\models\File */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Files');
@@ -11,28 +12,36 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $setting = Yii::$app->setting->get();
 ?>
+
+<?= Html::beginPanel(Yii::t('app', 'Upload File')) ?>
+<?= $this->render('_form', [
+    'model' => $model,
+]) ?>
+<?= Html::endPanel() ?>
+
 <?= Html::beginPanel($this->title) ?>
-    <?php Yii::$app->session->getFlash(''); ?>
-    <?= Html::beginForm(['bulk'],'post') ?>
-    <?= Html::dropDownList('action','',['delete' => Yii::t('app','Delete')],['class'=>'dropdown fa-bulk-dropdown',]) ?>
-    <?= Html::submitButton(Yii::t('app','Do'), ['class' => 'btn btn-primary fa-bulk-button',]) ?>
+    <?php if($filesInfo['count']) echo Yii::t('app', 'So far, {count} files of {sum} MB have been uploaded',['count' => $filesInfo['count'], 'sum' => $filesInfo['sum']]); ?>
     <div class="fa-br"></div>
-    <?php if($filesInfo['count']) echo Yii::t('app', 'filesInfo',['count' => $filesInfo['count'], 'sum' => $filesInfo['sum']]); ?>
-    <div class="fa-br"></div>
+    <br>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout' => "{items}\n{pager}",
         'columns' => [
-            ['class' => 'yii\grid\CheckboxColumn'],
             [
                 'attribute' => 'name',
                 'format' => 'raw',
                 'value' => function($model) use($setting){
                     $url = $setting['url'] . 'file/download/' . Yii::$app->hashids->encode($model->id);
-                    return '<a href="'.$url.'" target="_blank">' . $model->name . '</a><br><input type="text" class="upload-box-link" value="'.$url.'">';
-                }
+                    return '<a href="'.$url.'" target="_blank"><input style="background-color:#EFEFEF; cursor: pointer" type="text" class="form-control readonly" value="'.$model->name.'"></a><br><input type="text" class="upload-box-link form-control ltr" value="'.$url.'">';
+                },
             ],
-            'extension',
+            [
+                'attribute' => 'extension',
+                'headerOptions' => ['class'=>'fit'],
+                'filterOptions' => ['class'=>'fit'],
+                'contentOptions' => ['class' => 'fit ltr align-center'],
+            ],
             [
                 'attribute' => 'size',
                 'value' => function($model){
@@ -40,19 +49,31 @@ $setting = Yii::$app->setting->get();
                         return number_format($model->size/1024,1) . ' ' . Yii::t('app','KB');
                     else
                         return number_format($model->size/1048576,1) . ' ' . Yii::t('app','MB');
-                }
+                },
+                'headerOptions' => ['class'=>'auto-fit'],
+                'filterOptions' => ['class'=>'auto-fit'],
+                'contentOptions' => ['class' => 'auto-fit ltr align-center'],
             ],
             [
-                'attribute' => 'download_count'
+                'attribute' => 'download_count',
+                'headerOptions' => ['class'=>'auto-fit'],
+                'filterOptions' => ['class'=>'auto-fit'],
+                'contentOptions' => ['class' => 'auto-fit ltr align-center'],
+
             ],
             [
-                'attribute' => 'upload_date',
+                'attribute' => 'uploaded_at',
                 'value' => function($model){
-                    return Yii::$app->date->pdate($model->upload_date);
-                }
+                    return Yii::$app->date->asDatetime($model->uploaded_at);
+                },
+                'headerOptions' => ['class'=>'auto-fit'],
+                'filterOptions' => ['class'=>'auto-fit'],
+                'contentOptions' => ['class' => 'auto-fit ltr'],
             ],
             [
-                'class' => 'yii\grid\ActionColumn',
+                'class' => \backend\components\grid\ActionColumn::className(),
+                'contentOptions' => ['class' => 'action-column fit'],
+                'headerOptions' => ['class'=>'fit'],
                 'template' => '{delete}'
             ],
         ],

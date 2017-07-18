@@ -105,6 +105,9 @@ class CommentController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        Yii::$app->session->setFlash('success', Yii::t('app','{object} deleted.',[
+            'object' => Yii::t('app','Comment')
+        ]));
         return $this->redirect(['index']);
     }
 

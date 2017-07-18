@@ -40,11 +40,50 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : null;
         <img class="user-profile" src="<?= Yii::$app->setting->getValue('url') ?>/backend/web/img/avatar.jpg">
     </div>
 
-        <div class="header-split" >
+        <div class="header-split">
             <div class="dropdown">
                     <span class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></span>
-                <ul class="dropdown-menu pull-left">
-                    <li><a href="#os"><span class="fa fa-desktop"></span> aaaaaa</a></li>
+                <ul class="dropdown-menu pull-left raspina-menu">
+                    <li><a href="<?= Url::base(); ?>/post/default">
+                            <div><span class="fa fa-file-text"></span></div>
+                            <div class="menu-title"><?= Yii::t('app', 'Posts') ?></div>
+                        </a>
+                    </li>
+                    <li><a href="<?= Url::base(); ?>/post/category">
+                            <div><span class="fa fa-book"></span></div>
+                            <div class="menu-title"><?= Yii::t('app', 'Categories') ?></div>
+                        </a>
+                    </li>
+                    <li><a href="<?= Url::base(); ?>/file/default">
+                            <div><span class="fa fa-upload"></span></div>
+                            <div class="menu-title"><?= Yii::t('app', 'Files') ?></div>
+                        </a>
+                    </li>
+                    <li><a href="#os">
+                            <div><span class="fa fa-paper-plane"></span></div>
+                            <div class="menu-title"><?= Yii::t('app', 'Newsletter') ?></div>
+                        </a>
+                    </li>
+                    <li><a href="#os">
+                            <div><span class="fa fa-link"></span></div>
+                            <div class="menu-title"><?= Yii::t('app', 'Links') ?></div>
+                        </a>
+                    </li>
+                    <li><a href="#os">
+                            <div><span class="fa fa-line-chart"></span></div>
+                            <div class="menu-title"><?= Yii::t('app', 'Statistics') ?></div>
+                        </a>
+                    </li>
+                    <li><a href="#os">
+                            <div><span class="fa fa-user"></span></div>
+                            <div class="menu-title"><?= Yii::t('app', 'Users') ?></div>
+                        </a>
+                    </li>
+                    <li><a href="#os">
+                            <div><span class="fa fa-cog"></span></div>
+                            <div class="menu-title"><?= Yii::t('app', 'Setting') ?></div>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

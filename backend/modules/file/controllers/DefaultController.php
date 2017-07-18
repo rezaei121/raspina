@@ -49,36 +49,23 @@ class DefaultController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $model = new File();
 
+        if (Yii::$app->request->isPost) {
+            $model->myfile = UploadedFile::getInstances($model, 'myfile');
+            $uploadFiles = $model->upload();
+            if(!empty($uploadFiles))
+            {
+                $connection = new Query();
+                $connection->createCommand()->batchInsert($model->tableName(),['name','extension','size','user_id','real_name','content_type'],$uploadFiles)->execute();
+                Yii::$app->session->setFlash('success', Yii::t('app','File uploaded.'));
+            }
+        }
+
         return $this->render('index', [
+            'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'filesInfo' => $model->filesInfo(),
             'url' => Yii::$app->setting->getValue('url')
-        ]);
-    }
-
-    /**
-     * Upload a new File(s).
-     * If creation is successful, the browser will be redirected to the 'index' page.
-     * @return mixed
-     */
-    public function actionUpload()
-    {
-        $model = new File();
-
-            if (Yii::$app->request->isPost) {
-                $model->myfile = UploadedFile::getInstances($model, 'myfile');
-                $uploadFiles = $model->upload();
-                if(!empty($uploadFiles))
-                {
-                    $connection = new Query();
-                    $connection->createCommand()->batchInsert($model->tableName(),['name','extension','size','upload_date','user_id','real_name','content_type'],$uploadFiles)->execute();
-                    return $this->redirect(['index'],302);
-                }
-            }
-
-        return $this->render('upload', [
-            'model' => $model,
         ]);
     }
 
@@ -88,7 +75,7 @@ class DefaultController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionDelete($id,$bulk = 0)
+    public function actionDelete($id)
     {
         $model = $this->findModel($id);
         if(RASPINA_ENV != 'demo')
@@ -96,11 +83,10 @@ class DefaultController extends Controller
             unlink(Yii::getAlias('@file_upload') . '/' . $model->real_name . '.' . $model->extension);
         }
         $model->delete();
-
-        if(!$bulk)
-        {
-            return $this->redirect(['index']);
-        }
+        Yii::$app->session->setFlash('success', Yii::t('app','{object} deleted.',[
+            'object' => Yii::t('app','File')
+        ]));
+        return $this->redirect(['index']);
     }
 
     /**
@@ -117,21 +103,5 @@ class DefaultController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    public function actionBulk()
-    {
-        $action = Yii::$app->request->post('action');
-        $selection=(array)Yii::$app->request->post('selection');
-
-        if($action == 'delete')
-        {
-            foreach ($selection as $id)
-            {
-                $this->actionDelete($id,1);
-            }
-        }
-
-        return $this->redirect(['index']);
     }
 }

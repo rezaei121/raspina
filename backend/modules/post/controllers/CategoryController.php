@@ -53,7 +53,9 @@ class CategoryController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {
-            Yii::$app->session->setFlash('success', Yii::t('app','Category Successfully Created'));
+            Yii::$app->session->setFlash('success', Yii::t('app','{object} created.',[
+                'object' => Yii::t('app','Category')
+            ]));
             return $this->redirect(['index', 'id' => $model->id]);
         }
 
@@ -74,8 +76,10 @@ class CategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('app','Category Successfully Updated'));
-            return $this->redirect(['index', 'id' => $model->id]);
+            Yii::$app->session->setFlash('success', Yii::t('app','{object} updated.',[
+                'object' => Yii::t('app','Category')
+            ]));
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -92,6 +96,9 @@ class CategoryController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        Yii::$app->session->setFlash('success', Yii::t('app','{object} deleted.',[
+            'object' => Yii::t('app','Category')
+        ]));
         return $this->redirect(['index']);
     }
 

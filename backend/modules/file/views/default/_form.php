@@ -7,20 +7,18 @@ use kartik\file\FileInput;
 /* @var $model backend\modules\file\models\File */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-<?= Html::beginPanel($this->title) ?>
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-    <?= $form->field($model, 'myfile[]')->widget(FileInput::classname(), [
-            'options' => ['accept' => '','multiple' => true],
-            'pluginOptions' => [
-                'initialCaption'=> '',
-                'showPreview' => false,
-                'showCaption' => true,
-                'showRemove' => true,
-                'showUpload' => false
-            ]
-        ])->label(Yii::t('app', 'File')); ?>
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-success']) ?>
-        </div>
-    <?php ActiveForm::end(); ?>
-<?= Html::endPanel() ?>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+<?= $form->field($model, 'myfile[]')->widget(FileInput::classname(), [
+    'options' => ['accept' => '', 'multiple' => true, 'placeholder' => Yii::t('app', 'File')],
+    'pluginOptions' => [
+        'initialCaption' => '',
+        'showPreview' => false,
+        'showCaption' => true,
+        'showRemove' => true,
+        'showUpload' => false
+    ]
+])->label(false); ?>
+<div class="align-center">
+    <?= Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-success']) ?>
+</div>
+<?php ActiveForm::end(); ?>

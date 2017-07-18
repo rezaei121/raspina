@@ -9,7 +9,7 @@ use Yii;
  * @property string $id
  * @property string $name
  * @property string $size
- * @property string $upload_date
+ * @property string $uploaded_at
  */
 class File extends \yii\db\ActiveRecord
 {
@@ -47,7 +47,6 @@ class File extends \yii\db\ActiveRecord
                         'name' => $file->baseName,
                         'extension' => $file->extension,
                         'size' => $file->size,
-                        'upload_date' => time("now"),
                         'user_id' => Yii::$app->user->id,
                         'real_name' => $real_name,
                         'content_type' => finfo_file($finfo, $file_path)
@@ -77,7 +76,7 @@ class File extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'size' => Yii::t('app', 'Size'),
             'extension' => Yii::t('app', 'Extension'),
-            'upload_date' => Yii::t('app', 'Upload Date'),
+            'uploaded_at' => Yii::t('app', 'Uploaded At'),
             'download_count' => Yii::t('app', 'Download Count')
         ];
     }

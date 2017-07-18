@@ -497,6 +497,12 @@ input[type="checkbox"] {
 .alert-danger {background-color: #d9534f; color: #FFFFFF}
 
 .action-buttons-panel {margin-bottom: 7px;}
+.raspina-menu {margin-top: 5px; width: 225px; padding:18px 5px 0px 5px;}
+.raspina-menu li{float: left; width: 70px; margin: 0px 0px 15px 0px; text-align: center;}
+.raspina-menu li>a:hover{background-color: inherit; color: inherit;}
+.raspina-menu .fa:hover, .raspina-menu li:hover{color: #666666}
+.raspina-menu span{font-size: 32px;}
+.menu-title {font-size: 9px; text-align: center; margin-top: 7px;}
 /**
 @media ...
 */
