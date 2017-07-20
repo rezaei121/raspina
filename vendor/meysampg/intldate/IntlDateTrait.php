@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * IntlDate is a trait for easy conversion date and time between multiple calendars
+ *
+ * @category Traits
+ * @package  Intldate
+ * @author   meysampg <p.g.meysam@gmail.com>
+ * @license  https://github.com/meysampg/intldate/blob/master/LICENSE MIT
+ * @version  1.1
+ * @link     https://github.com/meysampg/intldate
+ */
+
 namespace meysampg\intldate;
 
 use IntlDateFormatter;
@@ -8,14 +19,13 @@ use IntlCalendar;
 
 trait IntlDateTrait
 {
-    private $timezone = 'Asia/Tehran';
-    private $fromLocale;
-    private $toLocale;
-    private $fromCalendar;
-    private $toCalendar;
+    private $_fromLocale;
+    private $_toLocale;
+    private $_fromCalendar;
+    private $_toCalendar;
 
-    private $intlDateFormatter;
-    private $intlCalendar;
+    private $_intlDateFormatter;
+    private $_intlCalendar;
 
     static $CAL_PERSIAN = 'persian';
     static $CAL_JAPANESE = 'japanese';
@@ -28,6 +38,15 @@ trait IntlDateTrait
     static $CAL_ETHIOPIC = 'ethiopic';
     static $CAL_GREGORIAN = '';
 
+    /**
+     * Return final date and time on supplied format
+     *
+     * @param string $pattern pattern of datetime based on ICU standards
+     *
+     * @return string
+     *
+     * @since 1.0.0
+     */
     public function asDateTime($pattern = 'yyyy/MM/dd, HH:mm:ss')
     {
         $this->setFinalPattern($this->parsePattern($pattern));
@@ -35,41 +54,96 @@ trait IntlDateTrait
         return $this->getIntlDateFormatter()->format($this->getIntlCalendar());
     }
 
+    /**
+     * Return final time as a timestamp
+     *
+     * @return integer
+     *
+     * @since 1.0.0
+     */
     public function asTimestamp()
     {
         return $this->getIntlCalendar()->toDateTime()->format('U');
     }
 
-    public function fromTimestamp($timestamp)
+    /**
+     * Get datetime as a timestamp
+     *
+     * @param integer $timestamp timestamp on origin
+     *
+     * @return static
+     *
+     * @since 1.0.3
+     */
+    public function fromTimestamp($timestamp, $timezone = 'UTC')
     {
-        $dateArray = getdate($timestamp);
+        // [TODO] use DateTime object for parse timestamp
+        $oldTz = date_default_timezone_get();
+        date_default_timezone_set($timezone);
+        $timestamp = mktime(date("H", $timestamp), date("i", $timestamp), date("s", $timestamp), date("n", $timestamp), date("j", $timestamp), date("Y", $timestamp));
+        date_default_timezone_set('UTC');
+        $utcDT = gmdate('c', $timestamp);
+        $dateArray = getdate(strtotime(gmdate('c', $timestamp)));
+        date_default_timezone_set($oldTz);
         unset($dateArray[0]);
 
-        $this->from($dateArray);
+        $this->from($dateArray, 'en_US', null, $timezone);
 
         return $this;
     }
 
-    public function from($datetime = [], $locale = 'en_US', $calendar = null)
-    {
+    /**
+     * Get information of datetime on origin
+     *
+     * @param array  $datetime Array contains datetime information. Its elements
+     * are [year, month, day, hour, minute, second].
+     * @param string $locale   locale for showing datetime on it (e.g. `en_US` or
+     * `fa_IR`, 'es_US', ...)
+     * @param string $calendar Calendar on origin
+     * @param string $timezone Timezone on origin
+     *
+     * @return static
+     *
+     * @since 1.0.0
+     */
+    public function from(
+        $datetime = [],
+        $locale = 'en_US',
+        $calendar = null,
+        $timezone = 'UTC'
+    ) {
         $datetime = $this->parseDateTime($datetime);
         $calendar = $calendar ?: self::$CAL_GREGORIAN;
 
         $this->setIntlCalendar()
-             ->setFromCalendar($calendar)->setFromLocale($locale)
-             ->setOriginCalendar($this->getFromLocaleAndCalendar())
-             ->setOriginDate($datetime);
+            ->setFromCalendar($calendar)->setFromLocale($locale)
+            ->setOriginCalendar($this->getFromLocaleAndCalendar())
+            ->setOriginTimeZone($timezone)
+            ->setOriginDate($datetime);
 
         return $this;
     }
 
-    public function to($locale = 'en_US', $calendar = null)
-    {  
+    /**
+     * Convert datetime to a desired calendar
+     *
+     * @param string $locale   locale for showing new datetime
+     * @param mixed  $calendar calendar system for showing new datetime
+     * @param string $timezone timezone of destination
+     *
+     * @return static
+     */
+    public function to(
+        $locale = 'en_US',
+        $calendar = null,
+        $timezone = 'UTC'
+    ) {
         $calendar = $calendar !== null ? $calendar : self::$CAL_PERSIAN;
 
         $this->setIntlDateFormatter()
-             ->setToCalendar($calendar)->setToLocale($locale)
-             ->setFinalCalendar($this->getToLocaleAndCalendar());
+            ->setToCalendar($calendar)->setToLocale($locale)
+            ->setFinalTimeZone($timezone)
+            ->setFinalCalendar($this->getToLocaleAndCalendar());
 
         if ($calendar == self::$CAL_GREGORIAN) {
             $this->setFinalCalendarType(IntlDateFormatter::GREGORIAN);
@@ -80,142 +154,142 @@ trait IntlDateTrait
         return $this;
     }
 
-    public function fromPersian($datetime, $locale = 'en_US')
+    public function fromPersian($datetime, $locale = 'en_US', $timezone = 'UTC')
     {
-        $this->from($datetime, $locale, self::$CAL_PERSIAN);
+        $this->from($datetime, $locale, self::$CAL_PERSIAN, $timezone);
 
         return $this;
     }
 
-    public function toPersian($locale = 'fa')
+    public function toPersian($locale = 'fa', $timezone = 'UTC')
     {
-        $this->to($locale, self::$CAL_PERSIAN);
+        $this->to($locale, self::$CAL_PERSIAN, $timezone);
 
         return $this;
     }
 
-    public function fromJapanese($datetime, $locale = 'en_US')
+    public function fromJapanese($datetime, $locale = 'en_US', $timezone = 'UTC')
     {
-        $this->from($datetime, $locale, self::$CAL_JAPANESE);
+        $this->from($datetime, $locale, self::$CAL_JAPANESE, $timezone);
 
         return $this;
     }
 
-    public function toJapanese($locale = 'jp')
+    public function toJapanese($locale = 'jp', $timezone = 'UTC')
     {
-        $this->to($locale, self::$CAL_JAPANESE);
+        $this->to($locale, self::$CAL_JAPANESE, $timezone);
 
         return $this;
     }
 
-    public function fromBuddhist($datetime, $locale = 'en_US')
+    public function fromBuddhist($datetime, $locale = 'en_US', $timezone = 'UTC')
     {
-        $this->from($datetime, $locale, self::$CAL_BUDDHIST);
+        $this->from($datetime, $locale, self::$CAL_BUDDHIST, $timezone);
 
         return $this;
     }
 
-    public function toBuddhist($locale = 'th')
+    public function toBuddhist($locale = 'th', $timezone = 'UTC')
     {
-        $this->to($locale, self::$CAL_BUDDHIST);
+        $this->to($locale, self::$CAL_BUDDHIST, $timezone);
 
         return $this;
     }
 
-    public function fromChinese($datetime, $locale = 'en_US')
+    public function fromChinese($datetime, $locale = 'en_US', $timezone = 'UTC')
     {
-        $this->from($datetime, $locale, self::$CAL_CHINESE);
+        $this->from($datetime, $locale, self::$CAL_CHINESE, $timezone);
 
         return $this;
     }
 
-    public function toChinese($locale = 'ch')
+    public function toChinese($locale = 'ch', $timezone = 'UTC')
     {
-        $this->to($locale, self::$CAL_CHINESE);
+        $this->to($locale, self::$CAL_CHINESE, $timezone);
 
         return $this;
     }
 
-    public function fromIndian($datetime, $locale = 'en_US')
+    public function fromIndian($datetime, $locale = 'en_US', $timezone = 'UTC')
     {
-        $this->from($datetime, $locale, self::$CAL_INDIAN);
+        $this->from($datetime, $locale, self::$CAL_INDIAN, $timezone);
 
         return $this;
     }
 
-    public function toIndian($locale = 'hi')
+    public function toIndian($locale = 'hi', $timezone = 'UTC')
     {
-        $this->to($locale, self::$CAL_INDIAN);
+        $this->to($locale, self::$CAL_INDIAN, $timezone = 'UTC', $timezone);
 
         return $this;
     }
 
-    public function fromIslamic($datetime, $locale = 'en_US')
+    public function fromIslamic($datetime, $locale = 'en_US', $timezone = 'UTC')
     {
-        $this->from($datetime, $locale, self::$CAL_ISLAMIC);
+        $this->from($datetime, $locale, self::$CAL_ISLAMIC, $timezone);
 
         return $this;
     }
 
-    public function toIslamic($locale = 'ar')
+    public function toIslamic($locale = 'ar', $timezone = 'UTC')
     {
-        $this->to($locale, self::$CAL_ISLAMIC);
+        $this->to($locale, self::$CAL_ISLAMIC, $timezone);
 
         return $this;
     }
 
-    public function fromHebrew($datetime, $locale = 'en_US')
+    public function fromHebrew($datetime, $locale = 'en_US', $timezone = 'UTC')
     {
-        $this->from($datetime, $locale, self::$CAL_HEBREW);
+        $this->from($datetime, $locale, self::$CAL_HEBREW, $timezone);
 
         return $this;
     }
 
-    public function toHebrew($locale = 'he')
+    public function toHebrew($locale = 'he', $timezone = 'UTC')
     {
-        $this->to($locale, self::$CAL_HEBREW);
+        $this->to($locale, self::$CAL_HEBREW, $timezone);
 
         return $this;
     }
 
-    public function fromCoptic($datetime, $locale = 'en_US')
+    public function fromCoptic($datetime, $locale = 'en_US', $timezone = 'UTC')
     {
-        $this->from($datetime, $locale, self::$CAL_COPTIC);
+        $this->from($datetime, $locale, self::$CAL_COPTIC, $timezone);
 
         return $this;
     }
 
-    public function toCoptic($locale = 'en_US')
+    public function toCoptic($locale = 'en_US', $timezone = 'UTC')
     {
-        $this->to($locale, self::$CAL_COPTIC);
+        $this->to($locale, self::$CAL_COPTIC, $timezone);
 
         return $this;
     }
 
-    public function fromEthiopic($datetime, $locale = 'en_US')
+    public function fromEthiopic($datetime, $locale = 'en_US', $timezone = 'UTC')
     {
-        $this->from($datetime, $locale, self::$CAL_ETHIOPIC);
+        $this->from($datetime, $locale, self::$CAL_ETHIOPIC, $timezone);
 
         return $this;
     }
 
-    public function toEthiopic($locale = 'am')
+    public function toEthiopic($locale = 'am', $timezone = 'UTC')
     {
-        $this->to($locale, self::$CAL_ETHIOPIC);
+        $this->to($locale, self::$CAL_ETHIOPIC, $timezone);
 
         return $this;
     }
 
-    public function fromGregorian($datetime, $locale = 'en_US')
+    public function fromGregorian($datetime, $locale = 'en_US', $timezone = 'UTC')
     {
-        $this->from($datetime, $locale, self::$CAL_GREGORIAN);
+        $this->from($datetime, $locale, self::$CAL_GREGORIAN, $timezone);
 
         return $this;
     }
 
-    public function toGregorian($locale = 'en_US')
+    public function toGregorian($locale = 'en_US', $timezone = 'UTC')
     {
-        $this->to($locale, self::$CAL_GREGORIAN);
+        $this->to($locale, self::$CAL_GREGORIAN, $timezone);
 
         return $this;
     }
@@ -234,50 +308,50 @@ trait IntlDateTrait
 
     public function setFromLocale($locale)
     {
-        $this->fromLocale = trim($locale);
+        $this->_fromLocale = trim($locale);
 
         return $this;
     }
 
     public function getFromLocale()
     {
-        return $this->fromLocale;
+        return $this->_fromLocale;
     }
 
     public function setFromCalendar($calendar)
     {
-        $this->fromCalendar = '@calendar=' . trim($calendar);
+        $this->_fromCalendar = '@calendar=' . trim($calendar);
 
         return $this;
     }
 
     public function getFromCalendar()
     {
-        return $this->fromCalendar;
+        return $this->_fromCalendar;
     }
 
     public function setToLocale($locale)
     {
-        $this->toLocale = trim($locale);
+        $this->_toLocale = trim($locale);
 
         return $this;
     }
 
     public function getToLocale()
     {
-        return $this->toLocale;
+        return $this->_toLocale;
     }
 
     public function setToCalendar($calendar)
     {
-        $this->toCalendar = '@calendar=' . trim($calendar);
+        $this->_toCalendar = '@calendar=' . trim($calendar);
 
         return $this;
     }
 
     public function getToCalendar()
     {
-        return $this->toCalendar;
+        return $this->_toCalendar;
     }
 
     public function getFromLocaleAndCalendar()
@@ -459,14 +533,14 @@ trait IntlDateTrait
 
     /**
      * Parse DateTime information array to be in correct format.
-     * 
-     * @param array $datetimeArray array contains information of DateTime in 
+     *
+     * @param array $datetimeArray array contains information of DateTime in
      * `year, month, day, hour, minute, day` order. This parameter can be a
-     * either associative or non-associative array. For the former, keys must 
+     * either associative or non-associative array. For the former, keys must
      * be compitiable with http://php.net/manual/en/function.getdate.php. For
      * missing pieces of information, a corresponded part from 1970/1/Jan., 00:00:00
      * will be replaced.
-     * 
+     *
      * @return An `IntlDateFormatter` compitiable array.
      */
     private function parseDateTime($datetimeArray)
@@ -488,15 +562,14 @@ trait IntlDateTrait
     }
 
     public function setIntlDateFormatter(
-            $locale = "en_US",
-            $datetype = IntlDateFormatter::FULL,
-            $timetype = IntlDateFormatter::FULL,
-            $timezone = 'UTC',
-            $calendar = IntlDateFormatter::GREGORIAN,
-            $pattern = 'yyyy/MM/dd HH:mm:ss'
-        )
-    {
-        $this->intlDateFormatter = new IntlDateFormatter(
+        $locale = "en_US",
+        $datetype = IntlDateFormatter::FULL,
+        $timetype = IntlDateFormatter::FULL,
+        $timezone = 'UTC',
+        $calendar = IntlDateFormatter::GREGORIAN,
+        $pattern = 'yyyy/MM/dd HH:mm:ss'
+    ) {
+        $this->_intlDateFormatter = new IntlDateFormatter(
             $locale, // string $locale
             $datetype, // int $datetype
             $timetype, // int $timetype
@@ -510,16 +583,15 @@ trait IntlDateTrait
 
     public function getIntlDateFormatter()
     {
-        return $this->intlDateFormatter;
+        return $this->_intlDateFormatter;
     }
 
     public function setIntlCalendar(
-            $timezone = 'Asia/Tehran',
-            $locale = 'fa_IR@calendar=persian'
-        )
-    {
+        $timezone = 'UTC',
+        $locale = 'en_US@calendar=gregorian'
+    ) {
 
-        $this->intlCalendar = IntlCalendar::createInstance(
+        $this->_intlCalendar = IntlCalendar::createInstance(
             $timezone,
             $locale
         );
@@ -529,6 +601,6 @@ trait IntlDateTrait
 
     public function getIntlCalendar()
     {
-        return $this->intlCalendar;
+        return $this->_intlCalendar;
     }
 }

@@ -9,7 +9,7 @@ use Yii;
  * @property string $title
  * @property string $url
  */
-class Link extends \common\models\BaseModel
+class Link extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

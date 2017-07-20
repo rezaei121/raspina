@@ -64,7 +64,7 @@ $entity_id = isset($_GET['id'])? (int)$_GET['id'] : null;
                             <div class="menu-title"><?= Yii::t('app', 'Newsletter') ?></div>
                         </a>
                     </li>
-                    <li><a href="#os">
+                    <li><a href="<?= Url::base(); ?>/link">
                             <div><span class="fa fa-link"></span></div>
                             <div class="menu-title"><?= Yii::t('app', 'Links') ?></div>
                         </a>

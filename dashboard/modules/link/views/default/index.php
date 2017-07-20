@@ -10,15 +10,16 @@ $this->title = Yii::t('app', 'Links');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?= Html::beginPanel($this->title, 4) ?>
+<?= Html::beginPanel(Yii::t('app', 'Create Link')) ?>
                 <?= $this->render('_form', [
                     'model' => $model,
                 ]) ?>
 <?= Html::endPanel() ?>
 
-<?= Html::beginPanel($this->title, 8) ?>
+<?= Html::beginPanel($this->title) ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'layout' => "{items}\n{pager}",
         'columns' => [
             [
                 'attribute' => 'title',
@@ -28,8 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'text-align:left;direction:ltr'],
             ],
             [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{update} {delete}',
+                'class' => \dashboard\components\grid\ActionColumn::className(),
+                'contentOptions' => ['class' => 'action-column fit'],
+                'headerOptions' => ['class'=>'fit'],
+                'template' => '{update} {delete}'
             ],
         ],
     ]); ?>

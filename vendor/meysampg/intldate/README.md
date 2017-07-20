@@ -99,7 +99,7 @@ $CAL_GREGORIAN
 
 ShortHands
 ----------
-There are some shorthands for converting dates in a painless way (Yeah! With all of my proud, I'm a **Lazy** man :D). This shorthands are formatted as `fromYyyy()` for incoming date function and `toZzzz()` for outgoing date function such that, `Yyyy` and `Zzzz` are the name of calendars. For incoming function, the signature is `fromYyyy($datetimeArray, $locale = 'en_US')` and for outgoing is `toZzzz($locale = 'fa')`. Use `$locale` in incoming function if you have non-latin digits and use it on outgoing function, if you wanna show the converted date by latin digits (Based on region of calendar, `$locales` are defined, for example the default locate of `Persian` calendar for outgoing function is `fa`). Shorthands are listed in table.
+There are some shorthands for converting dates in a painless way (Yeah! With all of my proud, I'm a **Lazy** man :D). This shorthands are formatted as `fromYyyy()` for incoming date function and `toZzzz()` for outgoing date function such that, `Yyyy` and `Zzzz` are the name of calendars. For incoming function, the signature is `fromYyyy($datetimeArray, $locale = 'en_US', $timezone = 'UTC)` and for outgoing is `toZzzz($locale = 'fa', $timezone = 'UTC')`. Use `$locale` in incoming function if you have non-latin digits and use it on outgoing function, if you wanna show the converted date by latin digits (Based on region of calendar, `$locales` are defined, for example the default locate of `Persian` calendar for outgoing function is `fa`). Also with changing `$timezone` in both `fromYyyy` and `ToZzzz` functions, you can convert a datetime from one to another. Shorthands are listed in table.
 
 |   Incoming    |   Outgoing    |
 |---------------|---------------|
@@ -232,7 +232,7 @@ ToDo
   */
  ```
 
- - Write tests!
+ - ~~Write tests!~~
  
  Contribute
  ----------

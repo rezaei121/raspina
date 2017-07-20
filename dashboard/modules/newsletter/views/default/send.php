@@ -50,7 +50,6 @@ echo Select2::widget([
     'data' => $model->getAllMails(),
     'options' => ['multiple' => true, 'placeholder' => Yii::t('app', 'Tags')],
     'pluginOptions' => [
-        'tags' => true,
         'maximumInputLength' => 100
     ],
 ]);
