@@ -85,17 +85,17 @@ class Visitors extends \yii\db\ActiveRecord
 
     public function visit_period()
     {
-        $query = new Yii\db\Query();
-        $v1 = $query->select('COUNT(id)')->where("DATE_FORMAT(FROM_UNIXTIME(visit_date), '%H') BETWEEN 00 AND 06 ")->from($this->tableName())->scalar();
-        $v2 = $query->select('COUNT(id)')->where("DATE_FORMAT(FROM_UNIXTIME(visit_date), '%H') BETWEEN 07 AND 12 ")->from($this->tableName())->scalar();
-        $v3 = $query->select('COUNT(id)')->where("DATE_FORMAT(FROM_UNIXTIME(visit_date), '%H') BETWEEN 13 AND 18 ")->from($this->tableName())->scalar();
-        $v4 = $query->select('COUNT(id)')->where("DATE_FORMAT(FROM_UNIXTIME(visit_date), '%H') BETWEEN 19 AND 24 ")->from($this->tableName())->scalar();
+        $query = new \yii\db\Query();
+        $v1 = $query->select('COUNT(id)')->where("TIME(visit_date) BETWEEN '00:00:00' AND '06:59:59'")->from($this->tableName())->scalar();
+        $v2 = $query->select('COUNT(id)')->where("TIME(visit_date) BETWEEN '07:00:00' AND '12:59:59'")->from($this->tableName())->scalar();
+        $v3 = $query->select('COUNT(id)')->where("TIME(visit_date) BETWEEN '13:00:00' AND '18:59:59'")->from($this->tableName())->scalar();
+        $v4 = $query->select('COUNT(id)')->where("TIME(visit_date) BETWEEN '19:00:00' AND '24:59:59'")->from($this->tableName())->scalar();
         return "[{$v1},{$v2},{$v3},{$v4}]";
     }
 
     public function pie_chart()
     {
-        $query = new Yii\db\Query();
+        $query = new \yii\db\Query();
         $google = $query->select('COUNT(id)')->where("referer LIKE '%google.com%'")->from($this->tableName())->scalar();
         $yahoo = $query->select('COUNT(id)')->where("referer LIKE '%yahoo.com%'")->from($this->tableName())->scalar();
         $bing = $query->select('COUNT(id)')->where("referer LIKE '%bing.com%'")->from($this->tableName())->scalar();

@@ -19,6 +19,9 @@ class Post extends \common\models\Post
     public $more;
     public $post_id;
     public $auto_save = true;
+
+    public $count;
+    public $sum;
     public function rules()
     {
         $parentRules = parent::rules();

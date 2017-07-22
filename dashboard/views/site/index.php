@@ -8,16 +8,16 @@ $this->title = Yii::t('app','Statistics and information');
 $this->registerCssFile(Yii::$app->homeUrl . 'css/jquery.mCustomScrollbar.css');
 
 $this->registerJsFile(
-    '@web/js/chart.bundle.min.js',
+    '@web/web/js/chart.bundle.min.js',
     ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 
 $this->registerJsFile(
-    '@web/js/jquery.mCustomScrollbar.concat.min.js',
+    '@web/web/js/jquery.mCustomScrollbar.concat.min.js',
     ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 
-$this->registerJsFile(Yii::$app->homeUrl . 'js/chart_config.js');
+$this->registerJsFile(Yii::$app->homeUrl . 'web/js/chart_config.js');
 ?>
 
 <div class="col-md-3">

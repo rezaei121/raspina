@@ -84,6 +84,15 @@ return array (
       '@developit/captcha' => $vendorDir . '/developit/yii2-captcha',
     ),
   ),
+    'developit/yii2-say' =>
+        array (
+            'name' => 'developit/yii2-say',
+            'version' => '1.0.0.0',
+            'alias' =>
+                array (
+                    '@developit/say' => $vendorDir . '/developit/yii2-say',
+                ),
+        ),
   'yiisoft/yii2-imagine' => 
   array (
     'name' => 'yiisoft/yii2-imagine',

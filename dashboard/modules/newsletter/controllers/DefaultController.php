@@ -12,6 +12,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\data\ActiveDataProvider;
 
+
 /**
  * NewsletterController implements the CRUD actions for Newsletter model.
  */

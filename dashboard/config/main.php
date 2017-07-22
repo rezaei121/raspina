@@ -32,6 +32,9 @@ return [
         'about' => [
             'class' => 'dashboard\modules\about\about',
         ],
+        'statistics' => [
+            'class' => 'dashboard\modules\statistics\statistics',
+        ],
     ],
     'components' => [
         'request' => [
