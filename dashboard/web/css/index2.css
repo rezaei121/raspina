@@ -366,7 +366,7 @@ html, body {
     display: table-cell;
 }
 
-.align-center {text-align: center !important;}
+.center {text-align: center !important;}
 .ltr {direction: ltr !important;}
 
 .label {
@@ -421,11 +421,6 @@ input[type="checkbox"] {
 .clear {
     clear: both
 }
-
-.center-text {
-    text-align: center;
-}
-
 .display-none {
     display: none;
 }
@@ -509,6 +504,9 @@ input[type="checkbox"] {
 
 .newsletter-log-detail {margin-top: 7px; display: none}
 .statistics-grade-detail {margin-top: 5px; font-weight: bold}
+
+.comment-text {font-size: 11px; color: #666666; border-right: 4px solid #61a2d7; padding: 10px; margin-right: 15px; margin-top: 5px;}
+
 /**
 @media ...
 */

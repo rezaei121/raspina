@@ -37,14 +37,14 @@ $postStatus = $model->postStatus();
             },
             'headerOptions' => ['class'=>'auto-fit'],
             'filterOptions' => ['class'=>'auto-fit'],
-            'contentOptions' => ['class' => 'auto-fit align-center'],
+            'contentOptions' => ['class' => 'auto-fit center'],
             'filter' => $postStatus
         ],
         [
             'attribute' => 'view',
             'headerOptions' => ['class'=>'auto-fit'],
             'filterOptions' => ['class'=>'auto-fit'],
-            'contentOptions' => ['class' => 'auto-fit align-center'],
+            'contentOptions' => ['class' => 'auto-fit center'],
         ],
         [
             'attribute' => 'created_at',
@@ -53,7 +53,7 @@ $postStatus = $model->postStatus();
             },
             'headerOptions' => ['class'=>'auto-fit'],
             'filterOptions' => ['class'=>'auto-fit'],
-            'contentOptions' => ['class' => 'auto-fit align-center ltr'],
+            'contentOptions' => ['class' => 'auto-fit center ltr'],
         ],
         [
             'class' => \dashboard\components\grid\ActionColumn::className(),

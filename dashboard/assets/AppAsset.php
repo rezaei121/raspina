@@ -15,18 +15,19 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = 'web/@webroot';
-    public $baseUrl = '@web';
+    public $basePath = '@webroot';
+    public $baseUrl = '@web/web';
+
     public $css = [
-        'web/css/bootstrap.min.css',
-        'web/css/bootstrap-rtl.min.css',
-        'web/css/reset.css',
-        'web/css/index2.css',
-        'web/css/font-awesome.min.css'
+        'css/bootstrap.min.css',
+        'css/bootstrap-rtl.min.css',
+        'css/reset.css',
+        'css/index2.css',
+        'css/font-awesome.min.css'
     ];
     public $js = [
-        'web/js/bootstrap.min.js',
-        'web/js/mycode.js'
+        'js/bootstrap.min.js',
+        'js/mycode.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

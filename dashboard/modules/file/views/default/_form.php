@@ -18,7 +18,7 @@ use kartik\file\FileInput;
         'showUpload' => false
     ]
 ])->label(false); ?>
-<div class="align-center">
+<div class="center">
     <?= Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-success']) ?>
 </div>
 <?php ActiveForm::end(); ?>

@@ -1,9 +1,9 @@
 <?php
-namespace dashboard\models;
+namespace dashboard\modules\user\models;
 
 use Yii;
 use yii\base\Model;
-use common\models\User;
+use dashboard\modules\user\models\User;
 
 /**
  * Login form

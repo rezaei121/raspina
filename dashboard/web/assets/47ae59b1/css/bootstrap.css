@@ -453,7 +453,7 @@ th {
 .glyphicon-align-left:before {
   content: "\e052";
 }
-.glyphicon-align-center:before {
+.glyphicon-center:before {
   content: "\e053";
 }
 .glyphicon-align-right:before {

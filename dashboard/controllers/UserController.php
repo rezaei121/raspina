@@ -2,11 +2,12 @@
 
 namespace dashboard\controllers;
 use Yii;
-use common\models\User;
+use dashboard\modules\user\models\User;
 use dashboard\models\LoginForm;
 
 class UserController extends \yii\web\Controller
 {
+
     public function actionIndex()
     {
         return $this->render('index');

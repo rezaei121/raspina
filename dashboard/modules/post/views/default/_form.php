@@ -104,13 +104,13 @@ use dashboard\modules\post\models\PostCategory;
     ?>
     <div id="post-date-section" class="display-none">
         <div style="width:50px; float: right;">
-            <?= $form->field($model, 'minute')->textInput(['value'=>($createdAt !== null) ? $createdAt->format('i') : '59','class'=>'form-control center-text','maxlength' => true]) ?>
+            <?= $form->field($model, 'minute')->textInput(['value'=>($createdAt !== null) ? $createdAt->format('i') : '59','class'=>'form-control center','maxlength' => true]) ?>
         </div>
         <div style="width:50px; float: right; margin-right:5px">
-            <?= $form->field($model, 'hour')->textInput(['value'=>!empty($createdAt !== null) ? $createdAt->format('H') : '23','class'=>'form-control center-text','maxlength' => true]) ?>
+            <?= $form->field($model, 'hour')->textInput(['value'=>!empty($createdAt !== null) ? $createdAt->format('H') : '23','class'=>'form-control center','maxlength' => true]) ?>
         </div>
         <div style="float: right;margin-right:5px">
-            <?= $form->field($model, 'date')->textInput(['value' =>  !empty($createdAt !== null) ? Yii::$app->date->asDate($createdAt) : Yii::$app->date->asDate('now', 'php:Y-m-d'), 'class' => 'form-control center-text', 'maxlength' => true]) ?>
+            <?= $form->field($model, 'date')->textInput(['value' =>  !empty($createdAt !== null) ? Yii::$app->date->asDate($createdAt) : Yii::$app->date->asDate('now', 'php:Y-m-d'), 'class' => 'form-control center', 'maxlength' => true]) ?>
         </div>
     </div>
 
@@ -118,7 +118,7 @@ use dashboard\modules\post\models\PostCategory;
     <div class="clear"></div>
     <?= $form->field($model, 'enable_comments')->checkbox(); ?>
     <?= $form->field($model, 'pin_post')->checkbox(); ?>
-    <div class="form-group center-text">
+    <div class="form-group center">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>

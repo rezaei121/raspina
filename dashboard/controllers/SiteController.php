@@ -1,6 +1,7 @@
 <?php
 namespace dashboard\controllers;
 
+use dashboard\modules\user\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -101,8 +102,8 @@ class SiteController extends Controller
             'pagination' => false
         ]);
 
-        $user = \common\models\User::findIdentity(Yii::$app->user->id);
-        $user->avatar = \common\models\User::getAvatar();
+        $user = User::findIdentity(Yii::$app->user->id);
+        $user->avatar = User::getAvatar();
 
         return $this->render('index',[
             'visitorsModel' => $visitors,

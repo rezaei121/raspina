@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'yii\grid\CheckboxColumn',
                 'headerOptions' => ['class'=>'fit'],
-                'contentOptions' => ['class' => 'fit align-center'],
+                'contentOptions' => ['class' => 'fit center'],
             ],
             [
                 'attribute' => 'post_title',
@@ -66,6 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return  "<span class=\"label {$classLabel}\">{$status[$model->status]}</span>";
                 },
                 'contentOptions' => ['class' => 'fit'],
+                'headerOptions' => ['class'=>'fit'],
                 'filter' => $model->getCommentStatus()
             ],
             [
@@ -75,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'headerOptions' => ['class'=>'auto-fit'],
                 'filterOptions' => ['class'=>'auto-fit'],
-                'contentOptions' => ['class' => 'auto-fit align-center ltr'],
+                'contentOptions' => ['class' => 'auto-fit center ltr'],
             ],
             [
                 'class' => \dashboard\components\grid\ActionColumn::className(),

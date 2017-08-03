@@ -40,7 +40,7 @@ $setting = Yii::$app->setting->get();
                 'attribute' => 'extension',
                 'headerOptions' => ['class'=>'fit'],
                 'filterOptions' => ['class'=>'fit'],
-                'contentOptions' => ['class' => 'fit ltr align-center'],
+                'contentOptions' => ['class' => 'fit ltr center'],
             ],
             [
                 'attribute' => 'size',
@@ -52,13 +52,13 @@ $setting = Yii::$app->setting->get();
                 },
                 'headerOptions' => ['class'=>'auto-fit'],
                 'filterOptions' => ['class'=>'auto-fit'],
-                'contentOptions' => ['class' => 'auto-fit ltr align-center'],
+                'contentOptions' => ['class' => 'auto-fit ltr center'],
             ],
             [
                 'attribute' => 'download_count',
                 'headerOptions' => ['class'=>'auto-fit'],
                 'filterOptions' => ['class'=>'auto-fit'],
-                'contentOptions' => ['class' => 'auto-fit ltr align-center'],
+                'contentOptions' => ['class' => 'auto-fit ltr center'],
 
             ],
             [

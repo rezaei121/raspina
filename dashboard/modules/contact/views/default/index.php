@@ -72,7 +72,7 @@ $status = $model->getStatusList();
                 },
                 'headerOptions' => ['class'=>'fit'],
                 'filterOptions' => ['class'=>'fit'],
-                'contentOptions' => ['class' => 'fit align-center'],
+                'contentOptions' => ['class' => 'fit center'],
                 'filter' => $status
             ],
             [

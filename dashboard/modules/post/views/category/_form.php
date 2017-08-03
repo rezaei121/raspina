@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => $model->isNewRecord ? Yii::t('app', 'Title') : ''])->label(false) ?>
 
     <?php if(!$model->isNewRecord): ?>
-        <div class="form-group center-text">
+        <div class="form-group center">
             <?= Html::submitButton(Yii::t('app', 'Update'), ['class' => 'btn btn-primary']) ?>
         </div>
     <?php endif; ?>

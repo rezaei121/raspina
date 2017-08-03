@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]
 ])->label(false) ?>
 
-    <div class="form-group align-center ">
+    <div class="form-group center ">
         <?= Html::submitButton(Yii::t('app', 'Send'), ['class' => 'btn btn-success']) ?>
     </div>
 

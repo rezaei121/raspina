@@ -31,9 +31,9 @@ $(document).ready(function(){
         }
     });
 
-    var post_id = entity_id;
     if(modules_name == 'post' && (action_name == 'create' || action_name == 'update'))
     {
+        var post_id = entity_id;
         setInterval(function(){
             var pin_post = 0;
             var enable_comments = 0;

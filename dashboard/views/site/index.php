@@ -5,7 +5,7 @@ use yii\grid\GridView;
 use common\helpers\Raspina;
 $this->title = Yii::t('app','Statistics and information');
 
-$this->registerCssFile(Yii::$app->homeUrl . 'css/jquery.mCustomScrollbar.css');
+$this->registerCssFile(Yii::$app->homeUrl . 'web/css/jquery.mCustomScrollbar.css');
 
 $this->registerJsFile(
     '@web/web/js/chart.bundle.min.js',

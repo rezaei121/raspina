@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 use \yii\web\Request;
-$baseUrl = str_replace('/frontend/web', '', (new Request)->getBaseUrl());
+$baseUrl = (new Request)->getBaseUrl();
 return [
     'id' => 'app-dashboard',
     'basePath' => dirname(__DIR__),
@@ -35,16 +35,23 @@ return [
         'statistics' => [
             'class' => 'dashboard\modules\statistics\statistics',
         ],
+        'user' => [
+            'class' => 'dashboard\modules\user\user',
+        ],
     ],
     'components' => [
+        'assetManager' => [
+            'basePath' => '@webroot/web/assets',
+            'baseUrl' => '@web/web/assets',
+        ],
         'request' => [
             'baseUrl' => $baseUrl,
             'enableCsrfValidation' => false,
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'dashboard\modules\user\models\User',
             'enableAutoLogin' => true,
-            'loginUrl' => ['user/login'],
+            'loginUrl' => ['user/default/login'],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

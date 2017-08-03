@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'headerOptions' => ['class'=>'auto-fit'],
                 'filterOptions' => ['class'=>'auto-fit'],
-                'contentOptions' => ['class' => 'auto-fit align-center ltr'],
+                'contentOptions' => ['class' => 'auto-fit center ltr'],
             ],
         ],
     ]); ?>

@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'class' => 'form-control ltr'
     ])->label(false) ?>
     <?= Html::a(Yii::t('app', 'Restore default template.'), '#',['class' => 'restore-default-template']) ?>
-    <div class="form-group center-text">
+    <div class="form-group center">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
     <?php ActiveForm::end(); ?>

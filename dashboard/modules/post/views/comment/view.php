@@ -72,7 +72,7 @@ echo $postStatus[$model->status];
     ]
 ])->label(false) ?>
 <?= Yii::t('app', 'After sending reply the comment will be automatically approved and published.') ?>
-<div class="form-group center-text">
+<div class="form-group center">
     <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 </div>
 <?php ActiveForm::end(); ?>

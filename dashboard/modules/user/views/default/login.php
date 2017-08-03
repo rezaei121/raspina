@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'password')->passwordInput(['placeholder' => Yii::t('app','Password')])->label(false) ?>
 
-            <?= $form->field($model,'captcha')->widget(Captcha::className(),['options' => ['placeholder' => Yii::t('app','Captcha'),'class' => 'form-control captcha'], 'template' => '<div class="captcha-img">{image}</div><div class="captcha-txt">{input}</div>'])->label(false) ?>
+            <?= $form->field($model,'captcha')->widget(Captcha::className(),['captchaAction' => '/site/captcha', 'options' => ['placeholder' => Yii::t('app','Captcha'),'class' => 'form-control captcha'], 'template' => '<div class="captcha-img">{image}</div><div class="captcha-txt">{input}</div>'])->label(false) ?>
 
             <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
