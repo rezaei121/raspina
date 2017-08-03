@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function($model){
                     $link = Html::a($model->post->title,['default/view', 'id' => $model->post_id]);
-                    return $link;
+                    return $link . '<br><div class="comment-preview">' .nl2br($model->text) . '</div>';
                 },
                 'headerOptions' => ['class'=>'low-display-priority'],
                 'filterOptions' => ['class'=>'low-display-priority'],

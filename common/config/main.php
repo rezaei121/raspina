@@ -7,10 +7,6 @@ return [
     'language' => $language,
     'timeZone' => 'Asia/Tehran',
     'components' => [
-        'assetManager' => [
-//            'linkAssets' => true,
-//            'forceCopy' => true,
-        ],
         'view' => [
             'class' => 'yii\web\View',
             'renderers' => [
@@ -34,7 +30,6 @@ return [
 //                ]
             ],
         ],
-        
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

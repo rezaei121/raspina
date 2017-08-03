@@ -15,9 +15,14 @@ use Yii;
  * @property integer $status
  * @property string $reply_text
  * @property string $created_at
+ * @property string $updated_at
+ * @property integer $created_by
+ * @property integer $updated_by
  * @property string $ip
  *
  * @property Post $post
+ * @property User $createdBy
+ * @property User $updatedBy
  */
 class Comment extends \yii\db\ActiveRecord
 {
@@ -36,13 +41,15 @@ class Comment extends \yii\db\ActiveRecord
     {
         return [
             [['post_id', 'name', 'email', 'text'], 'required'],
-            [['post_id', 'status'], 'integer'],
+            [['post_id', 'status', 'created_by', 'updated_by'], 'integer'],
             [['text', 'reply_text'], 'string'],
-            [['created_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 60],
             [['email'], 'string', 'max' => 255],
             [['ip'], 'string', 'max' => 20],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
         ];
     }
 
@@ -60,6 +67,9 @@ class Comment extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Status'),
             'reply_text' => Yii::t('app', 'Reply Text'),
             'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_by' => Yii::t('app', 'Updated By'),
             'ip' => Yii::t('app', 'Ip'),
         ];
     }
@@ -70,5 +80,21 @@ class Comment extends \yii\db\ActiveRecord
     public function getPost()
     {
         return $this->hasOne(Post::className(), ['id' => 'post_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 }
