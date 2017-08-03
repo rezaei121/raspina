@@ -76,6 +76,7 @@ $setting = Yii::$app->setting->get();
     'columns' => [
         [
             'attribute' => 'name',
+            'label' => Yii::t('app', 'File'),
             'format' => 'raw',
             'value' => function($model) use($setting){
                 $url = $setting['url'] . 'file/download/' . Yii::$app->hashids->encode($model->id);
@@ -117,7 +118,8 @@ $setting = Yii::$app->setting->get();
             'label' => Yii::t('app', 'Text'),
             'format' => 'raw',
             'value' => function($model){
-                return nl2br($model->reply_text) . '<br><div class="comment-text">' . nl2br($model->text) . '</div>';
+                $postLink = Html::a($model->post->title, ['/post/default/view', 'id' => $model->post_id]);
+                return nl2br($model->reply_text) . '<br><div class="comment-text">' . $postLink . '<br>' . nl2br($model->text) . '</div>';
             },
         ]
     ],

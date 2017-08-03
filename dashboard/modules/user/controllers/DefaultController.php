@@ -57,18 +57,20 @@ class DefaultController extends Controller
      */
     public function actionView($id)
     {
+        $pageSize = \Yii::$app->setting->pageSize();
+
         $postQuery = Post::find();
         $postDataProvider = new ActiveDataProvider([
             'query' => $postQuery,
             'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
-            'pagination' => ['pageSize' => 2, 'pageParam' => 'p1', 'pageSizeParam' => 'p1-size']
+            'pagination' => ['pageSize' => $pageSize, 'pageParam' => 'p1', 'pageSizeParam' => 'p1-size']
         ]);
 
         $fileQuery = File::find();
         $fileDataProvider = new ActiveDataProvider([
             'query' => $fileQuery,
             'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
-            'pagination' => ['pageSize' => 2, 'pageParam' => 'p2', 'pageSizeParam' => 'p2-size']
+            'pagination' => ['pageSize' => $pageSize, 'pageParam' => 'p2', 'pageSizeParam' => 'p2-size']
         ]);
 
         $commentQuery = Comment::find()
@@ -83,7 +85,7 @@ class DefaultController extends Controller
         $commentDataProvider = new ActiveDataProvider([
             'query' => $commentQuery,
             'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
-            'pagination' => ['pageSize' => 2, 'pageParam' => 'p3', 'pageSizeParam' => 'p3-size']
+            'pagination' => ['pageSize' => $pageSize, 'pageParam' => 'p3', 'pageSizeParam' => 'p3-size']
         ]);
 
         return $this->render('view', [
