@@ -5,6 +5,7 @@ use Yii;
 use dashboard\modules\post\models\Comment;
 use dashboard\modules\post\models\CommentSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -24,7 +25,7 @@ class CommentController extends Controller
                     [
                         'actions' => ['index','view','delete','create','group-actions'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['author'],
                     ],
                 ],
             ],
@@ -62,8 +63,13 @@ class CommentController extends Controller
     public function actionApprove($id)
     {
         $model = $this->findModel($id);
+
+        if(!Yii::$app->user->can('approveComment', ['model' => $model]))
+        {
+            throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+        }
+
         $model->status = 1;
-        var_dump($model->save());
         if($model->save())
         {
             Yii::$app->session->setFlash('success', Yii::t('app','{object} approved.',[
@@ -84,6 +90,12 @@ class CommentController extends Controller
 
         $model->scenario = 'reply';
         if ($model->load(Yii::$app->request->post())) {
+
+            if(!Yii::$app->user->can('replyComment', ['model' => $model]))
+            {
+                throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+            }
+
             $model->status = 1;
             if($model->save())
             {
@@ -104,7 +116,14 @@ class CommentController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        if(!Yii::$app->user->can('deleteComment', ['model' => $model]))
+        {
+            throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+        }
+
+        $model->delete();
         Yii::$app->session->setFlash('success', Yii::t('app','{object} deleted.',[
             'object' => Yii::t('app','Comment')
         ]));
@@ -124,17 +143,28 @@ class CommentController extends Controller
             return $this->redirect(['index']);
         }
 
-        if($action == 'approve')
+        foreach($selection as $s)
         {
-            Comment::updateAll(['status' => 1],['id'=>$selection]);
-            Yii::$app->session->setFlash('success', Yii::t('app','Comments approved.'));
+            $model = $this->findModel($s);
+            if($action == 'approve')
+            {
+                if(Yii::$app->user->can('approveComment', ['model' => $model]))
+                {
+                    $model->status = 1;
+                    $model->save();
+                }
+            }
+
+            if($action == 'delete')
+            {
+                if(Yii::$app->user->can('deleteComment', ['model' => $model]))
+                {
+                    $model->delete();
+                }
+            }
         }
 
-        if($action == 'delete')
-        {
-            Comment::deleteAll(['id'=>$selection]);
-            Yii::$app->session->setFlash('error', Yii::t('app','Comments deleted.'));
-        }
+        Yii::$app->session->setFlash('success', Yii::t('app','Applying...'));
 
         return $this->redirect(['index']);
     }

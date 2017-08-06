@@ -1,5 +1,5 @@
 <?php
-use dashboard\helpers\Html;
+use dashboard\components\helpers\Html;
 use dashboard\components\widgets\ActiveForm;
 use kartik\file\FileInput;
 

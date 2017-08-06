@@ -1,5 +1,5 @@
 <?php
-use dashboard\helpers\Html;
+use dashboard\components\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model dashboard\modules\post\models\Category */

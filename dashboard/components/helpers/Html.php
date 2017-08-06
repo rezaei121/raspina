@@ -1,5 +1,5 @@
 <?php
-namespace dashboard\helpers;
+namespace dashboard\components\helpers;
 
 use Yii;
 
@@ -72,14 +72,20 @@ class Html extends \yii\helpers\Html
     {
         static::initDefaultButton('view', 'eye', ['class' => 'btn btn-info']);
 
-        if(Yii::$app->user->can('updatePost', ['model' => $model]))
+        $getClass = explode('\\', get_class($model));
+        $className = end($getClass);
+
+        if(Yii::$app->user->can("update{$className}", ['model' => $model]))
         {
             static::initDefaultButton('update', 'pencil', ['class' => 'btn btn-primary']);
         }
 
-        static::initDefaultButton('approve', 'check', ['class' => 'btn btn-success']);
+        if(Yii::$app->user->can("approve{$className}", ['model' => $model]))
+        {
+            static::initDefaultButton('approve', 'check', ['class' => 'btn btn-success']);
+        }
 
-        if(Yii::$app->user->can('deletePost', ['post' => $model]))
+        if(Yii::$app->user->can("delete{$className}", ['model' => $model]))
         {
             static::initDefaultButton('delete', 'trash', [
                 'data-confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),

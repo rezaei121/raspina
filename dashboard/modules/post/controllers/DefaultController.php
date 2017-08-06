@@ -184,7 +184,7 @@ class DefaultController extends Controller
     {
         $model = $this->findModel($id);
 
-        if(!Yii::$app->user->can('deletePost', ['post' => $model]))
+        if(!Yii::$app->user->can('deletePost', ['model' => $model]))
         {
             throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
         }

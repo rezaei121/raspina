@@ -1,5 +1,5 @@
 <?php
-use dashboard\helpers\Html;
+use dashboard\components\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */

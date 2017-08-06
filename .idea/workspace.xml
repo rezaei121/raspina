@@ -2,35 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0505f6f6-becb-42f0-ab99-877b2c6f0e97" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dashboard/components/widgets/ActiveField.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dashboard/components/widgets/ActiveForm.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/Visitors.php" afterPath="$PROJECT_DIR$/common/models/Visitors.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/messages/fa-IR/app.php" afterPath="$PROJECT_DIR$/common/messages/fa-IR/app.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/components/grid/ActionColumn.php" afterPath="$PROJECT_DIR$/dashboard/components/grid/ActionColumn.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php" afterPath="$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/helpers/Html.php" afterPath="$PROJECT_DIR$/dashboard/helpers/Html.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/about/views/default/_form.php" afterPath="$PROJECT_DIR$/dashboard/modules/about/views/default/_form.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/contact/views/default/view.php" afterPath="$PROJECT_DIR$/dashboard/modules/contact/views/default/view.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/file/views/default/_form.php" afterPath="$PROJECT_DIR$/dashboard/modules/file/views/default/_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/link/views/default/_form.php" afterPath="$PROJECT_DIR$/dashboard/modules/link/views/default/_form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/file/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/file/views/default/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/link/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/link/views/default/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/logs.php" afterPath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/logs.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/send.php" afterPath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/send.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/template.php" afterPath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/template.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/controllers/CommentController.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/controllers/CommentController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/models/Category.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/models/Category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/models/PostCategory.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/models/PostCategory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/category/_form.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/category/_form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/category/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/category/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/category/update.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/category/update.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/comment/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/comment/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/comment/view.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/comment/view.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/default/_form.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/default/_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/default/_search.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/default/_search.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/default/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/default/view.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/default/view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/statistics/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/statistics/views/default/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/user/views/default/create.php" afterPath="$PROJECT_DIR$/dashboard/modules/user/views/default/create.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/user/views/default/login.php" afterPath="$PROJECT_DIR$/dashboard/modules/user/views/default/login.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/user/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/user/views/default/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/user/views/default/update-password.php" afterPath="$PROJECT_DIR$/dashboard/modules/user/views/default/update-password.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/user/views/default/update.php" afterPath="$PROJECT_DIR$/dashboard/modules/user/views/default/update.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/views/layouts/main.php" afterPath="$PROJECT_DIR$/dashboard/views/layouts/main.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/views/user/requestPasswordResetToken.php" afterPath="$PROJECT_DIR$/dashboard/views/user/requestPasswordResetToken.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/views/user/resetPassword.php" afterPath="$PROJECT_DIR$/dashboard/views/user/resetPassword.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/yiisoft/yii2/widgets/ActiveField.php" afterPath="$PROJECT_DIR$/vendor/yiisoft/yii2/widgets/ActiveField.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/user/views/default/view.php" afterPath="$PROJECT_DIR$/dashboard/modules/user/views/default/view.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/dashboard/helpers/Html.php" afterPath="$PROJECT_DIR$/dashboard/components/helpers/Html.php" />
     </list>
     <ignored path="raspina.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,82 +78,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/default/_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_form.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dashboard/modules/about/views/default/_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-              <folding>
-                <element signature="e#6#33#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashboard/modules/link/views/default/_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashboard/modules/user/views/default/login.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="16" column="64" lean-forward="false" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActionColumn.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashboard/components/grid/ActionColumn.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
-              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-              <folding>
-                <element signature="e#45#88#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashboard/modules/file/views/default/_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="43" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActiveField.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashboard/components/widgets/ActiveField.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding>
-                <element signature="e#47#55#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index2.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashboard/web/css/index2.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -164,24 +88,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActiveField.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/widgets/ActiveField.php">
+      <file leaf-file-name="AuthorRule.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="287" column="68" lean-forward="false" selection-start-line="287" selection-start-column="68" selection-end-line="287" selection-end-column="68" />
+            <state relative-caret-position="303">
+              <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
               <folding>
-                <element signature="e#176#184#0#PHP" expanded="true" />
+                <element signature="e#44#86#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseHtml.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/helpers/BaseHtml.php">
+      <file leaf-file-name="CommentController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/CommentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="1151" column="111" lean-forward="false" selection-start-line="1151" selection-start-column="111" selection-end-line="1151" selection-end-column="111" />
+            <state relative-caret-position="358">
+              <caret line="183" column="32" lean-forward="false" selection-start-line="183" selection-start-column="32" selection-end-line="183" selection-end-column="32" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/comment/view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="310">
+              <caret line="76" column="35" lean-forward="true" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="120" column="32" lean-forward="false" selection-start-line="120" selection-start-column="12" selection-end-line="120" selection-end-column="32" />
+              <folding>
+                <element signature="e#53#61#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -198,8 +144,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nlogin</find>
-      <find>updated</find>
       <find>reply</find>
       <find>dataProvider</find>
       <find>pageSizeParam</find>
@@ -214,7 +158,6 @@
       <find>getAuthor</find>
       <find>actionButtons</find>
       <find>header</find>
-      <find>.header</find>
       <find>$this-&gt;options</find>
       <find>addAriaAttributes</find>
       <find>textInput</find>
@@ -222,12 +165,15 @@
       <find>-&gt;inputOptions</find>
       <find>inputOptions</find>
       <find>{input}</find>
-      <find>Html::ac</find>
       <find>-&gt;label(false)</find>
       <find>ActiveField</find>
       <find>placeholder</find>
       <find>Yii::$app-&gt;user-&gt;can('updatePost'</find>
       <find>yii\widgets\ActiveForm</find>
+      <find>Html::ac</find>
+      <find>dashboard\helpers\Html</find>
+      <find>deleteComment</find>
+      <find>.header</find>
     </findStrings>
     <replaceStrings>
       <replace>password_repeat</replace>
@@ -235,12 +181,13 @@
       <replace>actionButtons($model)</replace>
       <replace />
       <replace>dashboard\components\widgets\ActiveForm</replace>
+      <replace>dashboard\components\helpers\Html</replace>
     </replaceStrings>
     <dirStrings>
       <dir>E:\php project\raspina\common\config</dir>
       <dir>E:\php project\raspina</dir>
-      <dir>E:\php project\raspina\dashboard</dir>
       <dir>E:\php project\raspina\dashboard\modules</dir>
+      <dir>E:\php project\raspina\dashboard</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -249,9 +196,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/console/migrations/m170723_130950_init_rbac.php" />
-        <option value="$PROJECT_DIR$/dashboard/controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/vendor/yiisoft/yii2/web/AssetBundle.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/post/models/Post.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/user/views/default/_form.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/contact/views/default/index.php" />
@@ -273,7 +217,6 @@
         <option value="$PROJECT_DIR$/dashboard/modules/post/views/comment/index.php" />
         <option value="$PROJECT_DIR$/dashboard/web/css/index2.css" />
         <option value="$PROJECT_DIR$/dashboard/modules/user/views/default/view.php" />
-        <option value="$PROJECT_DIR$/common/messages/fa-IR/app.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/user/controllers/DefaultController.php" />
         <option value="$PROJECT_DIR$/common/models/Comment.php" />
         <option value="$PROJECT_DIR$/common/models/User.php" />
@@ -285,7 +228,6 @@
         <option value="$PROJECT_DIR$/common/models/Visitors.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/post/models/PostCategory.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/post/models/Category.php" />
-        <option value="$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/post/views/default/view.php" />
         <option value="$PROJECT_DIR$/dashboard/helpers/Html.php" />
         <option value="$PROJECT_DIR$/dashboard/views/layouts/main.php" />
@@ -297,9 +239,14 @@
         <option value="$PROJECT_DIR$/dashboard/modules/post/views/default/_form.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/link/views/default/_form.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/user/views/default/login.php" />
-        <option value="$PROJECT_DIR$/dashboard/components/grid/ActionColumn.php" />
-        <option value="$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/about/views/default/_form.php" />
+        <option value="$PROJECT_DIR$/dashboard/components/grid/ActionColumn.php" />
+        <option value="$PROJECT_DIR$/dashboard/components/helpers/Html.php" />
+        <option value="$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php" />
+        <option value="$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php" />
+        <option value="$PROJECT_DIR$/dashboard/modules/post/views/comment/view.php" />
+        <option value="$PROJECT_DIR$/dashboard/modules/post/controllers/CommentController.php" />
+        <option value="$PROJECT_DIR$/common/messages/fa-IR/app.php" />
       </list>
     </option>
   </component>
@@ -352,6 +299,76 @@
             </path>
             <path>
               <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="grid" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="helpers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="rbac" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="post" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="post" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="post" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="post" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="comment" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
             </path>
           </expand>
@@ -374,11 +391,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\php project\raspina\dashboard\components" />
       <recent name="E:\php project\raspina\dashboard\modules\user\views\layouts" />
       <recent name="E:\php project\raspina\dashboard\modules\user\views\default" />
       <recent name="E:\php project\raspina\dashboard\modules\user\views" />
       <recent name="E:\php project\raspina\dashboard\modules\user\models" />
-      <recent name="E:\php project\raspina\dashboard" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\php project\raspina\dashboard\components\widgets" />
@@ -567,18 +584,19 @@
       <workItem from="1501925781206" duration="1761000" />
       <workItem from="1501958493790" duration="5000" />
       <workItem from="1502000251614" duration="2523000" />
-      <workItem from="1502004201219" duration="11065000" />
+      <workItem from="1502004201219" duration="15957000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="596294000" />
+    <option name="totallyTimeSpent" value="601186000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1374" height="735" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31430745" sideWeight="0.4940171" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19330288" sideWeight="0.4940171" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -619,27 +637,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/newsletter/models/NewsletterSearch.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/file/views/default/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="274" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/user/models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/modules/user/controllers/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
@@ -665,13 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="64" column="20" lean-forward="false" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/messages/fa-IR/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="27" column="46" lean-forward="false" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -866,14 +856,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="183" column="5" lean-forward="true" selection-start-line="183" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/views/layouts/main.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
@@ -886,14 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="81" column="34" lean-forward="true" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/helpers/Html.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="131" column="1" lean-forward="true" selection-start-line="131" selection-start-column="1" selection-end-line="131" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -913,14 +887,6 @@
           <folding>
             <element signature="e#176#184#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/web/css/index2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="39" column="19" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -958,49 +924,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/widgets/ActiveField.php">
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/default/_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="287" column="68" lean-forward="false" selection-start-line="287" selection-start-column="68" selection-end-line="287" selection-end-column="68" />
-          <folding>
-            <element signature="e#176#184#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/link/views/default/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="34">
+          <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="43" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/user/views/default/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="64" lean-forward="false" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-          <folding>
-            <element signature="e#44#83#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/components/grid/ActionColumn.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding>
-            <element signature="e#45#88#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1012,21 +940,119 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/default/_form.php">
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/widgets/ActiveField.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="43" />
+        <state relative-caret-position="167">
+          <caret line="287" column="68" lean-forward="false" selection-start-line="287" selection-start-column="68" selection-end-line="287" selection-end-column="68" />
+          <folding>
+            <element signature="e#176#184#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/user/views/default/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="64" lean-forward="false" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/link/views/default/_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/web/css/index2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="39" column="19" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/components/grid/ActionColumn.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="79" column="82" lean-forward="true" selection-start-line="79" selection-start-column="62" selection-end-line="79" selection-end-column="82" />
+          <folding>
+            <element signature="e#45#88#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/components/helpers/Html.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="86" column="0" lean-forward="true" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/default/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding>
+            <element signature="e#6#28#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/modules/about/views/default/_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+        <state relative-caret-position="255">
+          <caret line="15" column="46" lean-forward="true" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
           <folding>
-            <element signature="e#6#33#0#PHP" expanded="true" />
+            <element signature="e#6#44#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="120" column="32" lean-forward="false" selection-start-line="120" selection-start-column="12" selection-end-line="120" selection-end-column="32" />
+          <folding>
+            <element signature="e#53#61#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/comment/view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="76" column="35" lean-forward="true" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+          <folding>
+            <element signature="e#44#86#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/messages/fa-IR/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="236" column="22" lean-forward="true" selection-start-line="236" selection-start-column="22" selection-end-line="236" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/CommentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="183" column="32" lean-forward="false" selection-start-line="183" selection-start-column="32" selection-end-line="183" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>

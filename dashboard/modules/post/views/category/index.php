@@ -1,6 +1,6 @@
 <?php
 use yii\grid\GridView;
-use dashboard\helpers\Html;
+use dashboard\components\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $model dashboard\modules\post\models\Category */

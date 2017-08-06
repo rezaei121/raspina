@@ -74,12 +74,15 @@ class ActionColumn extends \yii\grid\ActionColumn
                 ], $additionalOptions, $this->buttonOptions);
                 $icon = Html::tag('span', '', ['class' => "fa fa-$iconName"]);
 
-                if($name == 'update' && !Yii::$app->user->can('updatePost', ['model' => $model]))
+
+                $getClass = explode('\\', get_class($model));
+                $className = end($getClass);
+                if($name == 'update' && !Yii::$app->user->can("update{$className}", ['model' => $model]))
                 {
                     return false;
                 }
 
-                if($name == 'delete' && !Yii::$app->user->can('deletePost', ['model' => $model]))
+                if($name == 'delete' && !Yii::$app->user->can("delete{$className}", ['model' => $model]))
                 {
                     return false;
                 }

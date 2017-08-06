@@ -1,5 +1,5 @@
 <?php
-use dashboard\helpers\Html;
+use dashboard\components\helpers\Html;
 use dosamigos\tinymce\TinyMce;
 use dashboard\components\widgets\ActiveForm;
 use yii\widgets\DetailView;
@@ -51,29 +51,33 @@ echo $postStatus[$model->status];
     <?= $model->ip ?>
 <?= Html::endPanel() ?>
 
-<?= Html::beginPanel(Yii::t('app', 'Reply')) ?>
-<?php $form = ActiveForm::begin(); ?>
+<?php if(Yii::$app->user->can('replyComment', ['model' => $model])): ?>
 
-<?= $form->field($model, 'reply_text')->widget(TinyMce::className(), [
-    'options' => ['rows' => 15],
-    'language' => 'fa',
-    'clientOptions' => [
-        'directionality' => "rtl",
-        'entity_encoding' => "utf-8",
-        'relative_urls' => false,
-        'menubar' => false,
-        'automatic_uploads' => true,
-        'images_upload_url' => 'postAcceptor.php',
-        'images_reuse_filename' => true,
-        'plugins' => [
-            "advlist autolink lists link charmap visualblocks code media table contextmenu image media codesample code"
-        ],
-        'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image upload table link | code"
-    ]
-]) ?>
-<?= Yii::t('app', 'After sending reply the comment will be automatically approved and published.') ?>
-<div class="form-group center">
-    <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-</div>
-<?php ActiveForm::end(); ?>
-<?= Html::endPanel() ?>
+    <?= Html::beginPanel(Yii::t('app', 'Reply')) ?>
+    <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'reply_text')->widget(TinyMce::className(), [
+        'options' => ['rows' => 15],
+        'language' => 'fa',
+        'clientOptions' => [
+            'directionality' => "rtl",
+            'entity_encoding' => "utf-8",
+            'relative_urls' => false,
+            'menubar' => false,
+            'automatic_uploads' => true,
+            'images_upload_url' => 'postAcceptor.php',
+            'images_reuse_filename' => true,
+            'plugins' => [
+                "advlist autolink lists link charmap visualblocks code media table contextmenu image media codesample code"
+            ],
+            'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image upload table link | code"
+        ]
+    ]) ?>
+    <?= Yii::t('app', 'After sending reply the comment will be automatically approved and published.') ?>
+    <div class="form-group center">
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
+    <?php ActiveForm::end(); ?>
+    <?= Html::endPanel() ?>
+
+<?php endif; ?>
