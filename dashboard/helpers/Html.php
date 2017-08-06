@@ -57,10 +57,10 @@ class Html extends \yii\helpers\Html
      * @param array $template
      * @return mixed
      */
-    public static function actionButtons($template = ['update', 'delete'])
+    public static function actionButtons($model ,$template = ['update', 'delete'])
     {
         static::$template = $template;
-        static::initDefaultButtons();
+        static::initDefaultButtons($model);
 
         return '<div class="pull-left action-buttons-panel">' . static::$buttons . '</div><div class="clear"></div>';
     }
@@ -68,16 +68,25 @@ class Html extends \yii\helpers\Html
     /**
      * Initializes the default button rendering callbacks.
      */
-    protected static function initDefaultButtons()
+    protected static function initDefaultButtons($model)
     {
         static::initDefaultButton('view', 'eye', ['class' => 'btn btn-info']);
-        static::initDefaultButton('update', 'pencil', ['class' => 'btn btn-primary']);
+
+        if(Yii::$app->user->can('updatePost', ['model' => $model]))
+        {
+            static::initDefaultButton('update', 'pencil', ['class' => 'btn btn-primary']);
+        }
+
         static::initDefaultButton('approve', 'check', ['class' => 'btn btn-success']);
-        static::initDefaultButton('delete', 'trash', [
-            'data-confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-            'data-method' => 'post',
-            'class' => 'btn btn-danger'
-        ]);
+
+        if(Yii::$app->user->can('deletePost', ['post' => $model]))
+        {
+            static::initDefaultButton('delete', 'trash', [
+                'data-confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                'data-method' => 'post',
+                'class' => 'btn btn-danger'
+            ]);
+        }
     }
 
     /**

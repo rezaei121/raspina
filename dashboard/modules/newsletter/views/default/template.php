@@ -1,6 +1,6 @@
 <?php
 use dashboard\helpers\Html;
-use yii\widgets\ActiveForm;
+use dashboard\components\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model dashboard\modules\newsletter\models\Newsletter */
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'maxlength' => true,
         'rows' => '20',
         'class' => 'form-control ltr'
-    ])->label(false) ?>
+    ]) ?>
     <?= Html::a(Yii::t('app', 'Restore default template.'), '#',['class' => 'restore-default-template']) ?>
     <div class="form-group center">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

@@ -1,13 +1,13 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use dashboard\components\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model dashboard\modules\post\models\Category */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form dashboard\components\widgets\ActiveForm */
 ?>
     <?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => $model->isNewRecord ? Yii::t('app', 'Title') : ''])->label(false) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => $model->isNewRecord ? Yii::t('app', 'Title') : '']) ?>
 
     <?php if(!$model->isNewRecord): ?>
         <div class="form-group center">

@@ -1,7 +1,7 @@
 <?php
 use dashboard\helpers\Html;
 use kartik\select2\Select2;
-use yii\widgets\ActiveForm;
+use dashboard\components\widgets\ActiveForm;
 use dosamigos\tinymce\TinyMce;
 use yii\grid\GridView;
 use yii\helpers\Url;
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $form = ActiveForm::begin(); ?>
 
-<?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Title')])->label(false) ?>
+<?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
 <?= $form->field($model, 'text')->widget(TinyMce::className(), [
     'options' => ['rows' => 20],
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image upload table link | code"
     ]
-])->label(false) ?>
+]) ?>
 
     <div class="form-group center ">
         <?= Html::submitButton(Yii::t('app', 'Send'), ['class' => 'btn btn-success']) ?>
@@ -48,7 +48,7 @@ echo Select2::widget([
     'value' => $model->getAllMails(),
     'class' => 'form-control',
     'data' => $model->getAllMails(),
-    'options' => ['multiple' => true, 'placeholder' => Yii::t('app', 'Tags')],
+    'options' => ['multiple' => true],
     'pluginOptions' => [
         'maximumInputLength' => 100
     ],

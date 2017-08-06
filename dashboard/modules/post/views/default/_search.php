@@ -1,11 +1,11 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use dashboard\components\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model dashboard\models\PostSearch */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form dashboard\components\widgets\ActiveForm */
 ?>
 
 <div class="post-search">

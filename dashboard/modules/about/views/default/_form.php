@@ -1,14 +1,14 @@
 <?php
 use dashboard\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+use dashboard\components\widgets\ActiveForm;
 use kartik\file\FileInput;
 use dosamigos\tinymce\TinyMce;
 use developit\jcrop\Jcrop;
 
 /* @var $this yii\web\View */
 /* @var $model dashboard\modules\about\models\About */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form dashboard\components\widgets\ActiveForm */
 ?>
 <?= Html::beginPanel($this->title) ?>
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>

@@ -5,6 +5,7 @@ use Yii;
 use yii\web\Controller;
 use dashboard\modules\post\models\PostSearch;
 use dashboard\modules\post\models\Post;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -25,8 +26,8 @@ class DefaultController extends Controller
                     [
                         'actions' => ['index','create','update','delete','view'],
                         'allow' => true,
-                        'roles' => ['@'],
-                    ],
+                        'roles' => ['author'],
+                    ]
                 ],
             ],
             'verbs' => [
@@ -116,6 +117,12 @@ class DefaultController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        if(!Yii::$app->user->can('updatePost', ['model' => $model]))
+        {
+            throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+        }
+
         $request = Yii::$app->request->post();
         if ($model->load($request) && $model->validate())
         {
@@ -175,7 +182,14 @@ class DefaultController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        if(!Yii::$app->user->can('deletePost', ['post' => $model]))
+        {
+            throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+        }
+
+        $model->delete();
         Yii::$app->session->setFlash('success', Yii::t('app','{object} deleted.',[
             'object' => Yii::t('app','Post')
         ]));

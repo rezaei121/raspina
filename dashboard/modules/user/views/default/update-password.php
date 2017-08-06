@@ -1,7 +1,7 @@
 <?php
 
 use dashboard\helpers\Html;
-use yii\widgets\ActiveForm;
+use dashboard\components\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model dashboard\modules\user\models\User */
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php $form = ActiveForm::begin(); ?>
 
-<?= $form->field($model, 'password')->passwordInput(['placeholder' => Yii::t('app', 'Password')])->label(false) ?>
-<?= $form->field($model, 'password_repeat')->passwordInput(['placeholder' => Yii::t('app', 'Repeat Password')])->label(false) ?>
+<?= $form->field($model, 'password')->passwordInput() ?>
+<?= $form->field($model, 'password_repeat')->passwordInput() ?>
 
 <div class="form-group center">
     <?= Html::submitButton(Yii::t('app', 'Update'), ['class' => 'btn btn-primary']) ?>

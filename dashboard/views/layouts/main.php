@@ -139,8 +139,9 @@ $entity_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
                 <?php endif; ?>
             </a>
         </div>
+        <?php endif; ?>
     </div>
-    <?php endif; ?>
+
 
     <?php if (($controller_id == 'site' || $modules_id == 'post') && $action_id == 'index'): ?>
         <a href="<?= Url::base() . '/post/default/create'; ?>">

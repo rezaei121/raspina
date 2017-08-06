@@ -1,6 +1,6 @@
 <?php
 use dashboard\helpers\Html;
-use yii\widgets\ActiveForm;
+use dashboard\components\widgets\ActiveForm;
 use kartik\select2\Select2;
 use dosamigos\tinymce\TinyMce;
 use dashboard\modules\post\models\Category;
@@ -13,14 +13,14 @@ use dashboard\modules\post\models\PostCategory;
 <?= Html::beginPanel($this->title) ?>
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'auto_save')->checkbox(); ?>
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Title')])->label(false) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
     <?= Select2::widget([
         'name' => 'post_categories',
         'id' => 'post-post_categories',
         'value' => PostCategory::getSelectedCategories($model->id),
         'class' => 'form-control',
         'data' => Category::getAll(),
-        'options' => ['multiple' => true, 'placeholder' => Yii::t('app', 'Categories')],
+        'options' => ['multiple' => true],
         'pluginOptions' => [
             'tags' => true,
             'maximumInputLength' => 255
@@ -42,7 +42,7 @@ use dashboard\modules\post\models\PostCategory;
             ],
             'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image upload table link | code"
         ]
-    ])->label(false) ?>
+    ]) ?>
 
     <div class="post-more-section">
         <hr>
@@ -63,7 +63,7 @@ use dashboard\modules\post\models\PostCategory;
                 ],
                 'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image  table link | codesample | code"
             ]
-        ])->label(false) ?>    <?php
+        ]) ?>    <?php
         $tags = $model->convertToAssociativeArray($model->tags);
         echo Select2::widget([
             'name' => 'tags',
@@ -71,7 +71,7 @@ use dashboard\modules\post\models\PostCategory;
             'value' => $tags,
             'class' => 'form-control',
             'data' => $tags,
-            'options' => ['multiple' => true, 'placeholder' => Yii::t('app', 'Tags')],
+            'options' => ['multiple' => true],
             'pluginOptions' => [
                 'tags' => true,
                 'maximumInputLength' => 100
@@ -88,7 +88,7 @@ use dashboard\modules\post\models\PostCategory;
             'value' => $keywords,
             'class' => 'form-control',
             'data' => $keywords,
-            'options' => ['multiple' => true, 'placeholder' => Yii::t('app', 'Keywords')],
+            'options' => ['multiple' => true],
             'pluginOptions' => [
                 'tags' => true,
                 'tokenSeparators' => [','],
@@ -96,8 +96,8 @@ use dashboard\modules\post\models\PostCategory;
             ],
         ]);
     ?>
-    <?= $form->field($model, 'meta_description')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Meta Description')])->label(false) ?>
-    <?= $form->field($model, 'status')->dropDownList($model->postStatus(), ['placeholder' => Yii::t('app', 'Status')])->label(false) ?>
+    <?= $form->field($model, 'meta_description')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'status')->dropDownList($model->postStatus()) ?>
 
     <?php
         $createdAt = !empty($model->created_at) ? new \DateTime($model->created_at) : null;
@@ -114,7 +114,7 @@ use dashboard\modules\post\models\PostCategory;
         </div>
     </div>
 
-    <?= $form->field($model, 'post_id')->hiddenInput()->label(false); ?>
+    <?= $form->field($model, 'post_id')->hiddenInput(); ?>
     <div class="clear"></div>
     <?= $form->field($model, 'enable_comments')->checkbox(); ?>
     <?= $form->field($model, 'pin_post')->checkbox(); ?>

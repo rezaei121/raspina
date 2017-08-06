@@ -286,7 +286,6 @@ class ActiveField extends Component
         }
 
         $this->parts['{label}'] = Html::activeLabel($this->model, $this->attribute, $options);
-
         return $this;
     }
 

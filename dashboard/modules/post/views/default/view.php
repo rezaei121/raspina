@@ -13,7 +13,7 @@ $postStatus = $model->postStatus();
 
 <?= Html::beginPanel(Yii::t('app','Author'), 'col-md-2 col-xs-12 col-sm-4',['panel', 'panel-default'], ['panel-heading', 'panel-status'], ['panel-body', 'panel-body-detail']) ?>
     <?php
-    $authorDetail = $model->getAuthor()->one();
+    $authorDetail = $model->getCreatedBy()->one();
     echo "{$authorDetail->last_name} {$authorDetail->surname}"
     ?>
 <?= Html::endPanel() ?>
@@ -42,7 +42,7 @@ $postStatus = $model->postStatus();
 
 <?= Html::beginPanel($this->title) ?>
     <div class="post-view">
-        <?= Html::actionButtons() ?>
+        <?= Html::actionButtons($model) ?>
 
         <?= $model->short_text ?>
         <?= $model->more_text ?>

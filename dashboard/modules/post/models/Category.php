@@ -52,4 +52,9 @@ class Category extends \yii\db\ActiveRecord
     {
         return $this->hasMany(PostCategory::className(), ['category_id' => 'id']);
     }
+
+    public static function getAll()
+    {
+        return \yii\helpers\ArrayHelper::map(self::find()->all(),'id','title');
+    }
 }

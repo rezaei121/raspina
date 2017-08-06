@@ -12,11 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-12">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-            <?= $form->field($model, 'username')->textInput(['placeholder' => Yii::t('app','Username')])->label(false) ?>
+            <?= $form->field($model, 'username')->textInput() ?>
 
-            <?= $form->field($model, 'password')->passwordInput(['placeholder' => Yii::t('app','Password')])->label(false) ?>
+            <?= $form->field($model, 'password')->passwordInput() ?>
 
-            <?= $form->field($model,'captcha')->widget(Captcha::className(),['captchaAction' => '/site/captcha', 'options' => ['placeholder' => Yii::t('app','Captcha'),'class' => 'form-control captcha'], 'template' => '<div class="captcha-img">{image}</div><div class="captcha-txt">{input}</div>'])->label(false) ?>
+            <?= $form->field($model,'captcha')->widget(Captcha::className(),['captchaAction' => '/site/captcha', 'options' => ['class' => 'form-control captcha'], 'template' => '<div class="captcha-img">{image}</div><div class="captcha-txt">{input}</div>']) ?>
 
             <?= $form->field($model, 'rememberMe')->checkbox() ?>
 

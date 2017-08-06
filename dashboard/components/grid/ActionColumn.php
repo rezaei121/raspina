@@ -2,6 +2,7 @@
 
 namespace dashboard\components\grid;
 
+use dashboard\modules\post\models\Category;
 use dashboard\modules\post\models\Post;
 use Yii;
 use yii\helpers\Html;
@@ -73,11 +74,15 @@ class ActionColumn extends \yii\grid\ActionColumn
                 ], $additionalOptions, $this->buttonOptions);
                 $icon = Html::tag('span', '', ['class' => "fa fa-$iconName"]);
 
-                if(Yii::$app->user->can('updatePost', ['post' => $model]))
+                if($name == 'update' && !Yii::$app->user->can('updatePost', ['model' => $model]))
                 {
-
+                    return false;
                 }
 
+                if($name == 'delete' && !Yii::$app->user->can('deletePost', ['model' => $model]))
+                {
+                    return false;
+                }
                 return Html::a($icon, $url, $options);
             };
         }

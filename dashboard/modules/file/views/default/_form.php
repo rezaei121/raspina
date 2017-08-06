@@ -1,15 +1,15 @@
 <?php
 use dashboard\helpers\Html;
-use yii\widgets\ActiveForm;
+use dashboard\components\widgets\ActiveForm;
 use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model dashboard\modules\file\models\File */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form dashboard\components\widgets\ActiveForm */
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 <?= $form->field($model, 'myfile[]')->widget(FileInput::classname(), [
-    'options' => ['accept' => '', 'multiple' => true, 'placeholder' => Yii::t('app', 'File')],
+    'options' => ['accept' => '', 'multiple' => true],
     'pluginOptions' => [
         'initialCaption' => '',
         'showPreview' => false,
@@ -17,7 +17,7 @@ use kartik\file\FileInput;
         'showRemove' => true,
         'showUpload' => false
     ]
-])->label(false); ?>
+]); ?>
 <div class="center">
     <?= Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-success']) ?>
 </div>

@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-12">
             <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
 
-                <?= $form->field($model, 'password')->passwordInput(['placeholder' => Yii::t('app','Password')])->label(false) ?>
+                <?= $form->field($model, 'password')->passwordInput(['placeholder' => Yii::t('app','Password')]) ?>
                 <?= Html::submitButton(Yii::t('app','Save'), ['class' => 'btn btn-login']) ?>
                 <hr>
                 <?= Html::a(Yii::t('app','Login Page'), ['user/login']) ?>

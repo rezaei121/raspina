@@ -1,7 +1,7 @@
 <?php
 use dashboard\helpers\Html;
 use dosamigos\tinymce\TinyMce;
-use yii\widgets\ActiveForm;
+use dashboard\components\widgets\ActiveForm;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -42,7 +42,7 @@ echo $postStatus[$model->status];
         $buttons[] = 'approve';
     }
     $buttons[] = 'delete';
-    echo Html::actionButtons($buttons);
+    echo Html::actionButtons($model, $buttons);
     ?>
     <?= Yii::t('app', 'Sent in') . ' ' . Html::a($model->post->title,['default/view', 'id' => $model->post_id]) ?>
     <br><br>
@@ -70,7 +70,7 @@ echo $postStatus[$model->status];
         ],
         'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image upload table link | code"
     ]
-])->label(false) ?>
+]) ?>
 <?= Yii::t('app', 'After sending reply the comment will be automatically approved and published.') ?>
 <div class="form-group center">
     <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

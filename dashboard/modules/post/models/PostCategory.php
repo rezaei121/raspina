@@ -64,4 +64,14 @@ class PostCategory extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
+
+    public static function getSelectedCategories($postId)
+    {
+        $selectedCategories = [];
+        $categories = self::findAll(['post_id' => $postId]);
+        $selectedCategories = \yii\helpers\ArrayHelper::getColumn($categories,function($element){
+            return $element['category_id'];
+        });
+        return $selectedCategories;
+    }
 }

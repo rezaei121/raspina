@@ -40,6 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="clear"></div>
 
 <?= Html::beginPanel(Yii::t('app', 'Message')) ?>
-<?= Html::actionButtons(['delete']) ?>
+<?= Html::actionButtons($model, ['delete']) ?>
 <?= nl2br($model->message) ?>
 <?= Html::endPanel() ?>
