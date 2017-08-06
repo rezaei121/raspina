@@ -187,7 +187,13 @@ class DefaultController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->status = 0;
+        $model->save();
+
+        Yii::$app->session->setFlash('success', Yii::t('app','{object} disabled.',[
+            'object' => Yii::t('app','User')
+        ]));
 
         return $this->redirect(['index']);
     }

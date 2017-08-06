@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "{{%post}}".
  *
- * @property integer $id
+ * @property string $id
  * @property string $title
  * @property string $short_text
  * @property string $more_text
@@ -17,13 +17,15 @@ use Yii;
  * @property integer $status
  * @property string $created_at
  * @property string $updated_at
- * @property integer $author_id
+ * @property string $created_by
+ * @property string $updated_by
  * @property integer $pin_post
  * @property integer $enable_comments
- * @property integer $view
+ * @property string $view
  *
  * @property Comment[] $comments
- * @property User $author
+ * @property User $createdBy
+ * @property User $updatedBy
  * @property PostCategory[] $postCategories
  */
 class Post extends \yii\db\ActiveRecord
@@ -44,10 +46,11 @@ class Post extends \yii\db\ActiveRecord
         return [
             [['title', 'short_text'], 'required'],
             [['short_text', 'more_text', 'tags', 'keywords'], 'string'],
-            [['status', 'author_id', 'pin_post', 'enable_comments', 'view'], 'integer'],
+            [['status', 'created_by', 'updated_by', 'pin_post', 'enable_comments', 'view'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'meta_description'], 'string', 'max' => 255],
-            [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
         ];
     }
 
@@ -67,10 +70,11 @@ class Post extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'author_id' => Yii::t('app', 'Author ID'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_by' => Yii::t('app', 'Updated By'),
             'pin_post' => Yii::t('app', 'Pin Post'),
             'enable_comments' => Yii::t('app', 'Enable Comments'),
-            'view' => Yii::t('app', 'View')
+            'view' => Yii::t('app', 'View'),
         ];
     }
 
@@ -85,9 +89,17 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAuthor()
+    public function getCreatedBy()
     {
-        return $this->hasOne(User::className(), ['id' => 'author_id']);
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 
     /**

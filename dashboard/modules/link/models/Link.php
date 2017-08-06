@@ -1,11 +1,13 @@
 <?php
+
 namespace dashboard\modules\link\models;
+
 use Yii;
 
 /**
- * This is the model class for table "link".
+ * This is the model class for table "{{%link}}".
  *
- * @property integer $id
+ * @property string $id
  * @property string $title
  * @property string $url
  */
@@ -26,9 +28,7 @@ class Link extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'url'], 'required'],
-            [['title'], 'string', 'max' => 255],
-            [['url'], 'string', 'max' => 255],
-            [['url'], 'url']
+            [['title', 'url'], 'string', 'max' => 255],
         ];
     }
 
@@ -42,13 +42,5 @@ class Link extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'url' => Yii::t('app', 'Url'),
         ];
-    }
-
-    /**
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public static function getAll()
-    {
-        return self::find()->orderBy("id DESC")->all();
     }
 }

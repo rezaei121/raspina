@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "{{%contact}}".
  *
- * @property integer $id
+ * @property string $id
  * @property string $name
  * @property string $email
  * @property string $site

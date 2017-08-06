@@ -2,6 +2,7 @@
 
 namespace dashboard\components\grid;
 
+use dashboard\modules\post\models\Post;
 use Yii;
 use yii\helpers\Html;
 
@@ -27,7 +28,6 @@ use yii\helpers\Html;
  */
 class ActionColumn extends \yii\grid\ActionColumn
 {
-
     /**
      * Initializes the default button rendering callbacks.
      */
@@ -72,6 +72,12 @@ class ActionColumn extends \yii\grid\ActionColumn
                     'data-pjax' => '0',
                 ], $additionalOptions, $this->buttonOptions);
                 $icon = Html::tag('span', '', ['class' => "fa fa-$iconName"]);
+
+                if(Yii::$app->user->can('updatePost', ['post' => $model]))
+                {
+
+                }
+
                 return Html::a($icon, $url, $options);
             };
         }

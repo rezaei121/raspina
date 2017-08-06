@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "{{%comment}}".
  *
- * @property integer $id
- * @property integer $post_id
+ * @property string $id
+ * @property string $post_id
  * @property string $name
  * @property string $email
  * @property string $text
@@ -16,13 +16,13 @@ use Yii;
  * @property string $reply_text
  * @property string $created_at
  * @property string $updated_at
- * @property integer $created_by
- * @property integer $updated_by
+ * @property string $created_by
+ * @property string $updated_by
  * @property string $ip
  *
- * @property Post $post
  * @property User $createdBy
  * @property User $updatedBy
+ * @property Post $post
  */
 class Comment extends \yii\db\ActiveRecord
 {
@@ -47,9 +47,9 @@ class Comment extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 60],
             [['email'], 'string', 'max' => 255],
             [['ip'], 'string', 'max' => 20],
-            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
         ];
     }
 
@@ -77,14 +77,6 @@ class Comment extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPost()
-    {
-        return $this->hasOne(Post::className(), ['id' => 'post_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getCreatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
@@ -96,5 +88,13 @@ class Comment extends \yii\db\ActiveRecord
     public function getUpdatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPost()
+    {
+        return $this->hasOne(Post::className(), ['id' => 'post_id']);
     }
 }

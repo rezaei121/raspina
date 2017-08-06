@@ -24,6 +24,8 @@ return [
     '{object} deleted.' => '{object} حذف شد.',
     '{object} approved.' => '{object} تایید شد.',
     '{object} saved.' => '{object} ذخیره شد.',
+    '{object} enabled.' => '{object} فعال شد.',
+    '{object} disabled.' => '{object} غیر فعال شد.',
     'File uploaded.' => 'فایل بارگذاری شد.',
     'Reply saved.' => 'پاسخ ذخیره شد.',
     'Comments deleted.' => 'نظرات حذف شدند.',

@@ -5,14 +5,14 @@ namespace dashboard\modules\post\models;
 use Yii;
 
 /**
- * This is the model class for table "post_category".
+ * This is the model class for table "{{%post_category}}".
  *
  * @property string $id
  * @property string $post_id
  * @property string $category_id
  *
- * @property Category $category
  * @property Post $post
+ * @property Category $category
  */
 class PostCategory extends \yii\db\ActiveRecord
 {
@@ -31,7 +31,9 @@ class PostCategory extends \yii\db\ActiveRecord
     {
         return [
             [['post_id', 'category_id'], 'required'],
-            [['post_id', 'category_id'], 'integer']
+            [['post_id', 'category_id'], 'integer'],
+            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
 
@@ -50,26 +52,16 @@ class PostCategory extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCategory()
-    {
-        return $this->hasOne(Category::className(), ['id' => 'category_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getPost()
     {
         return $this->hasOne(Post::className(), ['id' => 'post_id']);
     }
 
-    public static function getSelectedCategories($postId)
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
     {
-        $selectedCategories = [];
-        $categories = self::findAll(['post_id' => $postId]);
-        $selectedCategories = \yii\helpers\ArrayHelper::getColumn($categories,function($element){
-            return $element['category_id'];
-        });
-        return $selectedCategories;
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
 }

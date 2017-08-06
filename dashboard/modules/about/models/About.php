@@ -5,14 +5,23 @@ namespace dashboard\modules\about\models;
 use Yii;
 
 /**
- * This is the model class for table "about".
+ * This is the model class for table "{{%about}}".
  *
  * @property string $id
- * @property string $image
+ * @property string $user_id
  * @property string $email
- * @property string $text
+ * @property string $name
+ * @property string $short_text
+ * @property string $more_text
+ * @property string $facebook
+ * @property string $twitter
+ * @property string $googleplus
+ * @property string $instagram
+ * @property string $linkedin
+ *
+ * @property User $user
  */
-class About extends \common\models\BaseModel
+class About extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -25,18 +34,19 @@ class About extends \common\models\BaseModel
     /**
      * @inheritdoc
      */
-    public $avatar;
     public function rules()
     {
         return [
-            [['short_text','more_text'], 'string'],
-            [['email'], 'string', 'max' => 255],
+            [['user_id'], 'required'],
+            [['user_id'], 'integer'],
+            [['short_text', 'more_text'], 'string'],
+            [['email', 'facebook', 'twitter', 'googleplus', 'instagram', 'linkedin'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 55],
-            [['facebook','twitter','googleplus','instagram','linkedin'], 'string', 'max' => 255],
-            [['facebook','twitter','googleplus','instagram','linkedin'], 'url'],
-            [['email'],'email'],
+            [['user_id'], 'unique'],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
+
     /**
      * @inheritdoc
      */
@@ -45,11 +55,15 @@ class About extends \common\models\BaseModel
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User ID'),
-            'avatar' => Yii::t('app', 'Profile Image'),
             'email' => Yii::t('app', 'Email'),
+            'name' => Yii::t('app', 'Name'),
             'short_text' => Yii::t('app', 'Short Text'),
             'more_text' => Yii::t('app', 'More Text'),
-            'name' => Yii::t('app', 'Name'),
+            'facebook' => Yii::t('app', 'Facebook'),
+            'twitter' => Yii::t('app', 'Twitter'),
+            'googleplus' => Yii::t('app', 'Googleplus'),
+            'instagram' => Yii::t('app', 'Instagram'),
+            'linkedin' => Yii::t('app', 'Linkedin'),
         ];
     }
 

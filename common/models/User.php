@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "{{%user}}".
  *
- * @property integer $id
+ * @property string $id
  * @property string $username
  * @property string $last_name
  * @property string $surname
@@ -20,7 +20,14 @@ use Yii;
  * @property string $updated_at
  *
  * @property About $about
+ * @property AuthAssignment[] $authAssignments
+ * @property AuthItem[] $itemNames
+ * @property Comment[] $comments
+ * @property Comment[] $comments0
+ * @property File[] $files
+ * @property NewsletterLog[] $newsletterLogs
  * @property Post[] $posts
+ * @property Post[] $posts0
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -80,8 +87,64 @@ class User extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getAuthAssignments()
+    {
+        return $this->hasMany(AuthAssignment::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItemNames()
+    {
+        return $this->hasMany(AuthItem::className(), ['name' => 'item_name'])->viaTable('{{%auth_assignment}}', ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['created_by' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComments0()
+    {
+        return $this->hasMany(Comment::className(), ['updated_by' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFiles()
+    {
+        return $this->hasMany(File::className(), ['uploaded_by' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNewsletterLogs()
+    {
+        return $this->hasMany(NewsletterLog::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getPosts()
     {
-        return $this->hasMany(Post::className(), ['author_id' => 'id']);
+        return $this->hasMany(Post::className(), ['created_by' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosts0()
+    {
+        return $this->hasMany(Post::className(), ['updated_by' => 'id']);
     }
 }

@@ -1,10 +1,11 @@
 <?php
+
 namespace dashboard\modules\post\models;
 
 use Yii;
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "{{%category}}".
  *
  * @property string $id
  * @property string $title
@@ -28,12 +29,8 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['title'], 'trim'],
-            ['title', 'filter','filter' => function($value){
-                return preg_replace('/\s+/',' ',str_replace(['/','\\'],' ',$value));
-            }],
+            [['title'], 'string', 'max' => 255],
             [['title'], 'unique'],
-            [['title'], 'string', 'max' => 255]
         ];
     }
 
@@ -43,8 +40,8 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app','ID'),
-            'title' => Yii::t('app','Title'),
+            'id' => Yii::t('app', 'ID'),
+            'title' => Yii::t('app', 'Title'),
         ];
     }
 
@@ -54,10 +51,5 @@ class Category extends \yii\db\ActiveRecord
     public function getPostCategories()
     {
         return $this->hasMany(PostCategory::className(), ['category_id' => 'id']);
-    }
-
-    public static function getAll()
-    {
-        return \yii\helpers\ArrayHelper::map(self::find()->all(),'id','title');
     }
 }
