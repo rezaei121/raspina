@@ -51,7 +51,10 @@ $alexaDetail = $model->getAlexaRank();
             'label' => Yii::t('app','Post count'),
             'format' => 'raw',
             'value' => function($model) use($postCount) {
-                return  $model->count . "<div class='statistics-grade-detail'>" . Yii::t('app', '{amount}% of all posts', ['amount' => number_format(($model->count / $postCount) * 100, 2)]) . '<div>';
+                if($postCount != 0)
+                {
+                    return  $model->count . "<div class='statistics-grade-detail'>" . Yii::t('app', '{amount}% of all posts', ['amount' => number_format(($model->count / $postCount) * 100, 2)]) . '<div>';
+                }
             },
         ],
         [
