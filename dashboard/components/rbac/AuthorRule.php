@@ -1,6 +1,7 @@
 <?php
 namespace dashboard\components\rbac;
 
+use dashboard\modules\post\models\Category;
 use dashboard\modules\post\models\Comment;
 use dashboard\modules\post\models\Post;
 use yii\rbac\Rule;
@@ -35,6 +36,28 @@ class AuthorRule extends Rule
     {
         $this->_findModel($params);
         if(!$params['model'] instanceof Post)
+        {
+            return true;
+        }
+
+        return $this->_checkOwnerEntity();
+    }
+
+    public function updateCategory($params)
+    {
+        $this->_findModel($params);
+        if(!$params['model'] instanceof Category)
+        {
+            return true;
+        }
+
+        return $this->_checkOwnerEntity();
+    }
+
+    public function deleteCategory($params)
+    {
+        $this->_findModel($params);
+        if(!$params['model'] instanceof Category)
         {
             return true;
         }

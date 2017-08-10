@@ -3,34 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0505f6f6-becb-42f0-ab99-877b2c6f0e97" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/messages/fa-IR/app.php" afterPath="$PROJECT_DIR$/common/messages/fa-IR/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/components/grid/ActionColumn.php" afterPath="$PROJECT_DIR$/dashboard/components/grid/ActionColumn.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php" afterPath="$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/about/views/default/_form.php" afterPath="$PROJECT_DIR$/dashboard/modules/about/views/default/_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/contact/views/default/view.php" afterPath="$PROJECT_DIR$/dashboard/modules/contact/views/default/view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/file/views/default/_form.php" afterPath="$PROJECT_DIR$/dashboard/modules/file/views/default/_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/file/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/file/views/default/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/link/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/link/views/default/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/logs.php" afterPath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/logs.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/send.php" afterPath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/send.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/template.php" afterPath="$PROJECT_DIR$/dashboard/modules/newsletter/views/default/template.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/controllers/CommentController.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/controllers/CommentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/category/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/category/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/category/update.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/category/update.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/comment/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/comment/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/comment/view.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/comment/view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/default/_form.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/default/_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/default/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/views/default/view.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/views/default/view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/statistics/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/statistics/views/default/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/user/views/default/create.php" afterPath="$PROJECT_DIR$/dashboard/modules/user/views/default/create.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/user/views/default/index.php" afterPath="$PROJECT_DIR$/dashboard/modules/user/views/default/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/user/views/default/update-password.php" afterPath="$PROJECT_DIR$/dashboard/modules/user/views/default/update-password.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/user/views/default/update.php" afterPath="$PROJECT_DIR$/dashboard/modules/user/views/default/update.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/user/views/default/view.php" afterPath="$PROJECT_DIR$/dashboard/modules/user/views/default/view.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/dashboard/helpers/Html.php" afterPath="$PROJECT_DIR$/dashboard/components/helpers/Html.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/controllers/CategoryController.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/controllers/CategoryController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/modules/post/models/Category.php" afterPath="$PROJECT_DIR$/dashboard/modules/post/models/Category.php" />
     </list>
     <ignored path="raspina.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,8 +56,8 @@
       <file leaf-file-name="index2.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashboard/web/css/index2.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="39" column="19" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+            <state relative-caret-position="0">
+              <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -91,21 +66,11 @@
       <file leaf-file-name="AuthorRule.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+            <state relative-caret-position="939">
+              <caret line="106" column="5" lean-forward="true" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
               <folding>
-                <element signature="e#44#86#0#PHP" expanded="true" />
+                <element signature="e#44#87#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommentController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/CommentController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="183" column="32" lean-forward="false" selection-start-line="183" selection-start-column="32" selection-end-line="183" selection-end-column="32" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -113,8 +78,8 @@
       <file leaf-file-name="view.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/comment/view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="76" column="35" lean-forward="true" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
+            <state relative-caret-position="1241">
+              <caret line="76" column="35" lean-forward="false" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -123,11 +88,31 @@
       <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="120" column="32" lean-forward="false" selection-start-line="120" selection-start-column="12" selection-end-line="120" selection-end-column="32" />
+            <state relative-caret-position="255">
+              <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="123" selection-end-column="9" />
               <folding>
                 <element signature="e#53#61#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/CategoryController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="113" column="12" lean-forward="true" selection-start-line="113" selection-start-column="12" selection-end-line="113" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/category/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="28" column="41" lean-forward="true" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -144,7 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>reply</find>
       <find>dataProvider</find>
       <find>pageSizeParam</find>
       <find>pagination</find>
@@ -174,6 +158,7 @@
       <find>dashboard\helpers\Html</find>
       <find>deleteComment</find>
       <find>.header</find>
+      <find>user_id</find>
     </findStrings>
     <replaceStrings>
       <replace>password_repeat</replace>
@@ -196,7 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dashboard/modules/post/models/Post.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/user/views/default/_form.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/contact/views/default/index.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/user/views/default/index.php" />
@@ -227,7 +211,6 @@
         <option value="$PROJECT_DIR$/dashboard/modules/user/models/AuthItem.php" />
         <option value="$PROJECT_DIR$/common/models/Visitors.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/post/models/PostCategory.php" />
-        <option value="$PROJECT_DIR$/dashboard/modules/post/models/Category.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/post/views/default/view.php" />
         <option value="$PROJECT_DIR$/dashboard/helpers/Html.php" />
         <option value="$PROJECT_DIR$/dashboard/views/layouts/main.php" />
@@ -243,10 +226,12 @@
         <option value="$PROJECT_DIR$/dashboard/components/grid/ActionColumn.php" />
         <option value="$PROJECT_DIR$/dashboard/components/helpers/Html.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php" />
-        <option value="$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/post/views/comment/view.php" />
         <option value="$PROJECT_DIR$/dashboard/modules/post/controllers/CommentController.php" />
         <option value="$PROJECT_DIR$/common/messages/fa-IR/app.php" />
+        <option value="$PROJECT_DIR$/dashboard/modules/post/models/Category.php" />
+        <option value="$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php" />
+        <option value="$PROJECT_DIR$/dashboard/modules/post/controllers/CategoryController.php" />
       </list>
     </option>
   </component>
@@ -269,8 +254,9 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
+    <option name="y" value="4" />
     <option name="width" value="1374" />
-    <option name="height" value="735" />
+    <option name="height" value="731" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -288,8 +274,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -356,6 +340,14 @@
               <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="post" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="post" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -365,7 +357,7 @@
               <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="post" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="comment" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="category" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="raspina" type="b2602c69:ProjectViewProjectNode" />
@@ -375,6 +367,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -584,23 +578,23 @@
       <workItem from="1501925781206" duration="1761000" />
       <workItem from="1501958493790" duration="5000" />
       <workItem from="1502000251614" duration="2523000" />
-      <workItem from="1502004201219" duration="15957000" />
+      <workItem from="1502004201219" duration="16978000" />
+      <workItem from="1502363579073" duration="3058000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="601186000" />
+    <option name="totallyTimeSpent" value="605265000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1374" height="735" extended-state="0" />
+    <frame x="-8" y="4" width="1374" height="731" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19330288" sideWeight="0.4940171" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23972602" sideWeight="0.4940171" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44386873" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24961948" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -612,6 +606,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44386873" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -637,20 +632,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/user/controllers/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="190" column="26" lean-forward="false" selection-start-line="190" selection-start-column="26" selection-end-line="190" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/user/views/default/view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="90" column="20" lean-forward="false" selection-start-line="90" selection-start-column="20" selection-end-line="90" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/comment/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -691,7 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -699,7 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -715,7 +694,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -723,7 +701,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-713">
           <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -731,7 +708,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="57" column="53" lean-forward="true" selection-start-line="57" selection-start-column="53" selection-end-line="57" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -739,7 +715,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-186">
           <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -747,9 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
-          <folding>
-            <marker date="1502019441000" expanded="true" signature="909:918" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -757,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-676">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -765,7 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -773,7 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
           <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -781,7 +750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="60" lean-forward="true" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -789,7 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-170">
           <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -808,19 +775,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/models/Comment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-220">
-          <caret line="7" column="23" lean-forward="true" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/models/Visitors.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
           <caret line="106" column="38" lean-forward="true" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -840,19 +798,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/models/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="58" column="5" lean-forward="false" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/default/view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="44" column="25" lean-forward="false" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -860,7 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
           <caret line="141" column="23" lean-forward="false" selection-start-line="141" selection-start-column="23" selection-end-line="141" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,9 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
           <caret line="53" column="25" lean-forward="true" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
-          <folding>
-            <element signature="e#176#184#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -894,7 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="62" lean-forward="true" selection-start-line="7" selection-start-column="62" selection-end-line="7" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -910,7 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
           <caret line="1151" column="111" lean-forward="false" selection-start-line="1151" selection-start-column="111" selection-end-line="1151" selection-end-column="111" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -918,9 +861,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#47#55#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -928,7 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -936,7 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="43" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -944,9 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
           <caret line="287" column="68" lean-forward="false" selection-start-line="287" selection-start-column="68" selection-end-line="287" selection-end-column="68" />
-          <folding>
-            <element signature="e#176#184#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -954,7 +889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="16" column="64" lean-forward="false" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -962,14 +896,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/web/css/index2.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="39" column="19" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+        <state relative-caret-position="0">
+          <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -996,9 +929,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding>
-            <element signature="e#6#28#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1006,37 +936,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="46" lean-forward="true" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-          <folding>
-            <element signature="e#6#44#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="120" column="32" lean-forward="false" selection-start-line="120" selection-start-column="12" selection-end-line="120" selection-end-column="32" />
-          <folding>
-            <element signature="e#53#61#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/comment/view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="76" column="35" lean-forward="true" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
+        <state relative-caret-position="1241">
+          <caret line="76" column="35" lean-forward="false" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
-          <folding>
-            <element signature="e#44#86#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1044,14 +951,67 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
           <caret line="236" column="22" lean-forward="true" selection-start-line="236" selection-start-column="22" selection-end-line="236" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/CommentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="183" column="32" lean-forward="false" selection-start-line="183" selection-start-column="32" selection-end-line="183" selection-end-column="32" />
+        <state relative-caret-position="2669">
+          <caret line="164" column="9" lean-forward="true" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/models/Comment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="37" lean-forward="true" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/models/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="38" column="10" lean-forward="true" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <folding>
+            <element signature="e#49#88#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="123" selection-end-column="9" />
+          <folding>
+            <element signature="e#53#61#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/views/category/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="28" column="41" lean-forward="true" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/components/rbac/AuthorRule.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="939">
+          <caret line="106" column="5" lean-forward="true" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
+          <folding>
+            <element signature="e#44#87#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/modules/post/controllers/CategoryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="113" column="12" lean-forward="true" selection-start-line="113" selection-start-column="12" selection-end-line="113" selection-end-column="12" />
           <folding />
         </state>
       </provider>

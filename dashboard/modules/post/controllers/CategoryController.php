@@ -5,6 +5,7 @@ use Yii;
 use dashboard\modules\post\models\Category;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -19,12 +20,12 @@ class CategoryController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','delete','create','update'],
+                'only' => ['index','delete','update'],
                 'rules' => [
                     [
-                        'actions' => ['index','delete','create','update'],
+                        'actions' => ['index','delete','update'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['author'],
                     ],
                 ],
             ],
@@ -58,7 +59,6 @@ class CategoryController extends Controller
             ]));
             return $this->redirect(['index', 'id' => $model->id]);
         }
-
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'model' => $model,
@@ -74,6 +74,11 @@ class CategoryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        if(!Yii::$app->user->can('updateCategory', ['model' => $model]))
+        {
+            throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app','{object} updated.',[
@@ -95,7 +100,15 @@ class CategoryController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        if(!Yii::$app->user->can('deleteCategory', ['model' => $model]))
+        {
+            throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+        }
+
+        $model->delete();
+
         Yii::$app->session->setFlash('success', Yii::t('app','{object} deleted.',[
             'object' => Yii::t('app','Category')
         ]));
