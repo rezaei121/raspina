@@ -59,7 +59,10 @@ $alexaDetail = $model->getAlexaRank();
             'label' => Yii::t('app','Post views'),
             'format' => 'raw',
             'value' => function($model) use($postViews) {
-                return  $model->sum . "<div class='statistics-grade-detail'>" . Yii::t('app', '{amount}% of all views', ['amount' => number_format(($model->sum / $postViews) * 100, 2)]) . '<div>';
+                if($postViews != 0)
+                {
+                    return  $model->sum . "<div class='statistics-grade-detail'>" . Yii::t('app', '{amount}% of all views', ['amount' => number_format(($model->sum / $postViews) * 100, 2)]) . '<div>';
+                }
             },
         ],
     ],
