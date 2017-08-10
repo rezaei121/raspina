@@ -1,6 +1,7 @@
 <?php
 namespace dashboard\modules\file\models;
 
+use dashboard\modules\user\models\User;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -38,7 +39,7 @@ class FileSearch extends File
      */
     public function search($params)
     {
-        $query = File::find();
+        $query = File::find()->alias('file')->select(['file.*', 'user_id' => 'user.id', 'user.last_name','user.surname'])->leftJoin(['user' => User::tableName()], "uploaded_by = user.id");
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]]

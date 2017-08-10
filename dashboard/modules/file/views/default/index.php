@@ -1,6 +1,7 @@
 <?php
 use dashboard\components\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel dashboard\modules\file\models\FileSearch */
@@ -33,7 +34,13 @@ $setting = Yii::$app->setting->get();
                 'format' => 'raw',
                 'value' => function($model) use($setting){
                     $url = $setting['url'] . 'file/download/' . Yii::$app->hashids->encode($model->id);
-                    return '<a href="'.$url.'" target="_blank"><input style="background-color:#EFEFEF; cursor: pointer" type="text" class="form-control readonly" value="'.$model->name.'"></a><br><input type="text" class="upload-box-link form-control ltr" value="'.$url.'">';
+                    $owner_url = Url::to(['/user/default/view', 'id' => $model->user_id]);
+                    return '
+                    <a href="'.$owner_url.'" target="_blank"><input style="background-color:#EFEFEF; cursor: pointer; width:49%; float:right; margin-left:2%;" type="text" class="form-control readonly" value="'.$model->last_name.' '.$model->surname.'"></a>
+                    <a href="'.$url.'" target="_blank"><input style="background-color:#EFEFEF; cursor: pointer; width:49%; float:right" type="text" class="form-control readonly" value="'.$model->name.'"></a>
+                    <div class="clear"></div>
+                    <br>
+                    <input type="text" class="upload-box-link form-control ltr" value="'.$url.'">';
                 },
             ],
             [

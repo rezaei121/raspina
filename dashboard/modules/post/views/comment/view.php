@@ -10,7 +10,7 @@ use yii\widgets\DetailView;
 $this->title = Yii::t('app', 'View Comment');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comments'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $this->tilte;
 ?>
 
 <?= Html::beginPanel(Yii::t('app','Status'), 'col-md-3 col-sm-6 col-xs-12', null, ['panel-heading', 'panel-status'], ['panel-body', 'panel-body-detail']) ?>

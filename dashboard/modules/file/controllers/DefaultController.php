@@ -55,7 +55,7 @@ class DefaultController extends Controller
             if(!empty($uploadFiles))
             {
                 $connection = new Query();
-                $connection->createCommand()->batchInsert($model->tableName(),['name','extension','size','user_id','real_name','content_type'],$uploadFiles)->execute();
+                $connection->createCommand()->batchInsert($model->tableName(),['name','extension','size','uploaded_by','real_name','content_type'],$uploadFiles)->execute();
                 Yii::$app->session->setFlash('success', Yii::t('app','File uploaded.'));
             }
         }

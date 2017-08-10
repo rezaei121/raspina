@@ -1,6 +1,7 @@
 <?php
 namespace dashboard\components\rbac;
 
+use dashboard\modules\file\models\File;
 use dashboard\modules\post\models\Category;
 use dashboard\modules\post\models\Comment;
 use dashboard\modules\post\models\Post;
@@ -74,6 +75,17 @@ class AuthorRule extends Rule
         }
 
         return $params['model']->post->created_by == $this->_user;
+    }
+
+    public function deletefile($params)
+    {
+        $this->_findModel($params);
+        if(!$params['model'] instanceof File)
+        {
+            return true;
+        }
+
+        return $params['model']->uploaded_by == $this->_user;
     }
 
     public function approveComment($params)
