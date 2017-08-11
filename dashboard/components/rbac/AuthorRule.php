@@ -1,6 +1,7 @@
 <?php
 namespace dashboard\components\rbac;
 
+use Yii;
 use dashboard\modules\file\models\File;
 use dashboard\modules\post\models\Category;
 use dashboard\modules\post\models\Comment;
@@ -19,10 +20,15 @@ class AuthorRule extends Rule
         $methodName = $item->name;
         $this->_user = $user;
 
+        if(!isset(Yii::$app->authManager->getRolesByUser($user)['author']))
+        {
+            return false;
+        }
+
         return $this->{$methodName}($params);
     }
 
-    public function updatePost($params)
+    public function updateOwnPost($params)
     {
         $this->_findModel($params);
         if(!$params['model'] instanceof Post)
@@ -33,7 +39,7 @@ class AuthorRule extends Rule
         return $this->_checkOwnerEntity();
     }
 
-    public function deletePost($params)
+    public function deleteOwnPost($params)
     {
         $this->_findModel($params);
         if(!$params['model'] instanceof Post)
@@ -44,7 +50,7 @@ class AuthorRule extends Rule
         return $this->_checkOwnerEntity();
     }
 
-    public function updateCategory($params)
+    public function updateOwnCategory($params)
     {
         $this->_findModel($params);
         if(!$params['model'] instanceof Category)
@@ -55,7 +61,7 @@ class AuthorRule extends Rule
         return $this->_checkOwnerEntity();
     }
 
-    public function deleteCategory($params)
+    public function deleteOwnCategory($params)
     {
         $this->_findModel($params);
         if(!$params['model'] instanceof Category)
@@ -66,7 +72,7 @@ class AuthorRule extends Rule
         return $this->_checkOwnerEntity();
     }
 
-    public function deleteComment($params)
+    public function deleteOwnComment($params)
     {
         $this->_findModel($params);
         if(!$params['model'] instanceof Comment)
@@ -77,7 +83,7 @@ class AuthorRule extends Rule
         return $params['model']->post->created_by == $this->_user;
     }
 
-    public function deletefile($params)
+    public function deleteOwnfile($params)
     {
         $this->_findModel($params);
         if(!$params['model'] instanceof File)
@@ -88,7 +94,7 @@ class AuthorRule extends Rule
         return $params['model']->uploaded_by == $this->_user;
     }
 
-    public function approveComment($params)
+    public function approveOwnComment($params)
     {
         $this->_findModel($params);
         if(!$params['model'] instanceof Comment)
@@ -99,7 +105,7 @@ class AuthorRule extends Rule
         return $params['model']->post->created_by == $this->_user;
     }
 
-    public function replyComment($params)
+    public function replyOwnComment($params)
     {
         $this->_findModel($params);
         if(!$params['model'] instanceof Comment)

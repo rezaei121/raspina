@@ -25,7 +25,7 @@ class CommentController extends Controller
                     [
                         'actions' => ['index','view','delete','create','group-actions'],
                         'allow' => true,
-                        'roles' => ['author'],
+                        'roles' => ['author','moderator', 'admin'],
                     ],
                 ],
             ],

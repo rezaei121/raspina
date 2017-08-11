@@ -75,17 +75,17 @@ class Html extends \yii\helpers\Html
         $getClass = explode('\\', get_class($model));
         $className = end($getClass);
 
-        if(Yii::$app->user->can("update{$className}", ['model' => $model]))
+        if(Yii::$app->user->can("update{$className}", ['model' => $model]) || Yii::$app->user->can("updateOwn{$className}", ['model' => $model]))
         {
             static::initDefaultButton('update', 'pencil', ['class' => 'btn btn-primary']);
         }
 
-        if(Yii::$app->user->can("approve{$className}", ['model' => $model]))
+        if(Yii::$app->user->can("approve{$className}", ['model' => $model]) || Yii::$app->user->can("approveOwn{$className}", ['model' => $model]))
         {
             static::initDefaultButton('approve', 'check', ['class' => 'btn btn-success']);
         }
 
-        if(Yii::$app->user->can("delete{$className}", ['model' => $model]))
+        if(Yii::$app->user->can("delete{$className}", ['model' => $model]) || Yii::$app->user->can("deleteOwn{$className}", ['model' => $model]))
         {
             static::initDefaultButton('delete', 'trash', [
                 'data-confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),

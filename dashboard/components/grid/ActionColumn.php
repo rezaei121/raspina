@@ -2,8 +2,6 @@
 
 namespace dashboard\components\grid;
 
-use dashboard\modules\post\models\Category;
-use dashboard\modules\post\models\Post;
 use Yii;
 use yii\helpers\Html;
 
@@ -77,12 +75,12 @@ class ActionColumn extends \yii\grid\ActionColumn
 
                 $getClass = explode('\\', get_class($model));
                 $className = end($getClass);
-                if($name == 'update' && !Yii::$app->user->can("update{$className}", ['model' => $model]))
+                if($name == 'update' && (!Yii::$app->user->can("update{$className}", ['model' => $model]) && !Yii::$app->user->can("updateOwn{$className}", ['model' => $model])))
                 {
                     return false;
                 }
 
-                if($name == 'delete' && !Yii::$app->user->can("delete{$className}", ['model' => $model]))
+                if($name == 'delete' && (!Yii::$app->user->can("delete{$className}", ['model' => $model]) && !Yii::$app->user->can("deleteOwn{$className}", ['model' => $model])))
                 {
                     return false;
                 }

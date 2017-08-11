@@ -24,12 +24,12 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','create','update','delete','view'],
+                'only' => ['index','send','logs','template','delete', 'get-default-template'],
                 'rules' => [
                     [
-                        'actions' => ['index','create','update','delete','view'],
+                        'actions' => ['index','send','logs','template','delete', 'get-default-template'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['moderator', 'admin'],
                     ],
                 ],
             ],

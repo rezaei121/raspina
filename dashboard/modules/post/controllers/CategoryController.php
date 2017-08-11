@@ -25,7 +25,7 @@ class CategoryController extends Controller
                     [
                         'actions' => ['index','delete','update'],
                         'allow' => true,
-                        'roles' => ['author'],
+                        'roles' => ['author', 'moderator', 'admin'],
                     ],
                 ],
             ],
