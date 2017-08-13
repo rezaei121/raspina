@@ -70,7 +70,7 @@ return [
             'class' => 'common\components\browser',
         ],
         'setting' => [
-            'class' => 'common\components\setting',
+            'class' => 'common\models\Setting',
         ],
         'render' => [
             'class' => 'common\components\render',

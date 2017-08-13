@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "{{%setting}}".
@@ -67,5 +68,36 @@ class Setting extends \yii\db\ActiveRecord
             'date_format' => Yii::t('app', 'Date Format'),
             'sult' => Yii::t('app', 'Sult'),
         ];
+    }
+
+    public function pageSize()
+    {
+        return $this->getValue('page_size');
+    }
+
+    public function getUrl()
+    {
+        return $this->getValue('url');
+    }
+
+    public function getSult()
+    {
+        return $this->getValue('sult');
+    }
+
+    public function getValue($columnName)
+    {
+        $query = new Query;
+        return $query->select($columnName)->from('{{%setting}}')->limit(1)->scalar();
+    }
+
+    public function get()
+    {
+        $query = new Query;
+        $setting = $query->select('*')->from('{{%setting}}')->limit(1)->one();
+        $setting['templateDir'] = '..' . DIRECTORY_SEPARATOR . Yii::getAlias('@template') . DIRECTORY_SEPARATOR . $setting['template'] . DIRECTORY_SEPARATOR;
+        $setting['templateUrl'] = $setting['url'] . Yii::getAlias('@templateUrl') . '/' .$setting['template'] . '/';
+        $setting['layout'] = $setting['templateDir'] . DIRECTORY_SEPARATOR . 'main.php';
+        return $setting;
     }
 }
