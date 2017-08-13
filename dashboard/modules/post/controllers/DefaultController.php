@@ -126,7 +126,6 @@ class DefaultController extends Controller
         $request = Yii::$app->request->post();
         if ($model->load($request) && $model->validate())
         {
-
             if($model->save())
             {
                 Yii::$app->session->setFlash('success', Yii::t('app','{object} updated.',[

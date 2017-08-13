@@ -10,6 +10,7 @@ use dashboard\modules\user\models\LoginForm;
 use Yii;
 use dashboard\modules\user\models\User;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -25,10 +26,21 @@ class DefaultController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'create', 'update', 'delete', 'view'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'update', 'delete', 'view'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['post'],
                 ],
             ],
         ];
@@ -78,8 +90,8 @@ class DefaultController extends Controller
             ->alias('comment')
             ->innerJoin(['post' => Post::tableName()], 'comment.post_id = post.id')
             ->where(['or',
-            ['created_by' => $id],
-            ['updated_by' => $id],
+            ['comment.created_by' => $id],
+            ['comment.updated_by' => $id],
         ]);
 
         $commentDataProvider = new ActiveDataProvider([

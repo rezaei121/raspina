@@ -1,17 +1,19 @@
 <?php
-namespace dashboard\controllers;
+
+namespace dashboard\modules\setting\controllers;
 
 use Yii;
-use dashboard\models\Setting;
+use dashboard\modules\setting\models\Setting;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SettingController implements the CRUD actions for Setting model.
+ * DefaultController implements the CRUD actions for Setting model.
  */
-class SettingController extends Controller
+class DefaultController extends Controller
 {
     public function behaviors()
     {
@@ -23,7 +25,7 @@ class SettingController extends Controller
                     [
                         'actions' => ['update'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['admin'],
                     ],
                 ],
             ],
@@ -45,18 +47,12 @@ class SettingController extends Controller
     public function actionUpdate()
     {
         $model = new Setting;
-        $model->getTemplatesName();
-
         $model = $model->find()->one();
 
         $request = Yii::$app->request->post();
         if ($model->load(Yii::$app->request->post()))
         {
-            if(isset($request['keyword']))
-            {
-                $keywords = explode(',',$model->keyword);
-                $model->keyword = \dashboard\modules\post\models\Post::setSelect2Value($request['keyword'],$keywords);
-            }
+            $model->keyword = (isset($request['keyword']) && !empty($request['keyword'])) ? implode(',', $request['keyword']) : null;
 
             $url_len = mb_strlen($model->url) - 1;
             if($model->url[$url_len] != '/')
@@ -64,17 +60,16 @@ class SettingController extends Controller
                 $model->url .= '/';
             }
 
+            $model->direction = $model->getLanguageDir($model->language);
+
             if($model->save())
             {
-                Yii::$app->session->setFlash('success', Yii::t('app','Changes Successfully Applied'));
-            }
-            else
-            {
-                Yii::$app->session->setFlash('error', Yii::t('app','Operation Failed'));
+                Yii::$app->session->setFlash('success', Yii::t('app','{object} updated.',[
+                    'object' => Yii::t('app','Settings')
+                ]));
             }
         }
 
-        $model->keyword = explode(',',$model->keyword);
         return $this->render('update', [
             'model' => $model,
         ]);

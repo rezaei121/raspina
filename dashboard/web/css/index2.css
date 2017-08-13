@@ -508,6 +508,11 @@ input[type="checkbox"] {
 .comment-text {font-size: 11px; color: #666666; border-right: 4px solid #61a2d7; padding: 10px; margin-right: 15px; margin-top: 5px;}
 .comment-preview {font-size: 11px; margin-right: 15px; margin-top: 5px;}
 
+.template {}
+.template-snapshot {}
+.template-snapshot img{max-width: 100%}
+.template-detail {text-align: left; direction: ltr}
+
 /**
 @media ...
 */

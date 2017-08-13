@@ -38,6 +38,12 @@ return [
         'user' => [
             'class' => 'dashboard\modules\user\user',
         ],
+        'template' => [
+            'class' => 'dashboard\modules\template\template',
+        ],
+        'setting' => [
+            'class' => 'dashboard\modules\setting\setting',
+        ],
     ],
     'components' => [
         'assetManager' => [

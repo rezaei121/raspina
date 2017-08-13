@@ -1,22 +1,26 @@
 <?php
-namespace dashboard\models;
+
+namespace common\models;
 
 use Yii;
 
 /**
  * This is the model class for table "{{%setting}}".
  *
- * @property integer $id
+ * @property string $id
  * @property string $url
  * @property string $template
  * @property string $title
  * @property string $description
  * @property string $keyword
  * @property integer $page_size
+ * @property string $language
+ * @property string $direction
+ * @property string $time_zone
  * @property string $date_format
  * @property string $sult
  */
-class Setting extends \common\models\BaseModel
+class Setting extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -35,10 +39,12 @@ class Setting extends \common\models\BaseModel
             [['url', 'template', 'title'], 'required'],
             [['keyword'], 'string'],
             [['page_size'], 'integer'],
-            [['url'], 'string', 'max' => 255],
-            [['template', 'title', 'description', 'date_format'], 'string', 'max' => 255],
+            [['url', 'template', 'title', 'description'], 'string', 'max' => 255],
+            [['language'], 'string', 'max' => 12],
+            [['direction'], 'string', 'max' => 3],
+            [['time_zone'], 'string', 'max' => 25],
+            [['date_format'], 'string', 'max' => 55],
             [['sult'], 'string', 'max' => 17],
-            [['activation_newsletter'], 'boolean']
         ];
     }
 
@@ -55,24 +61,11 @@ class Setting extends \common\models\BaseModel
             'description' => Yii::t('app', 'Description'),
             'keyword' => Yii::t('app', 'Keyword'),
             'page_size' => Yii::t('app', 'Page Size'),
+            'language' => Yii::t('app', 'Language'),
+            'direction' => Yii::t('app', 'Direction'),
+            'time_zone' => Yii::t('app', 'Time Zone'),
             'date_format' => Yii::t('app', 'Date Format'),
             'sult' => Yii::t('app', 'Sult'),
-            'activation_newsletter' => Yii::t('app', 'Activation Newsletter')
         ];
-    }
-
-    public function getTemplatesName()
-    {
-        $dir = Yii::getAlias('@frontend/views/template/');
-        $scandir = scandir($dir);
-        $templatesName = [];
-        foreach ((array) $scandir as $s)
-        {
-            if($s != '.' && $s != '..')
-            {
-                $templatesName[$s] = $s;
-            }
-        }
-        return $templatesName;
     }
 }

@@ -102,10 +102,18 @@ $entity_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
                         </li>
                     <?php endif; ?>
 
-                    <?php if (Yii::$app->user->can('setting')): ?>
-                        <li><a href="<?= Url::base(); ?>/setting">
+                    <?php if (Yii::$app->user->can('Template')): ?>
+                        <li><a href="<?= Url::base(); ?>/template">
+                                <div><span class="fa fa-file-code-o"></span></div>
+                                <div class="menu-title"><?= Yii::t('app', 'Template') ?></div>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
+                    <?php if (Yii::$app->user->can('settings')): ?>
+                        <li><a href="<?= Url::base(); ?>/setting/default/update">
                                 <div><span class="fa fa-cog"></span></div>
-                                <div class="menu-title"><?= Yii::t('app', 'Setting') ?></div>
+                                <div class="menu-title"><?= Yii::t('app', 'Settings') ?></div>
                             </a>
                         </li>
                     <?php endif; ?>

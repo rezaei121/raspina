@@ -29,6 +29,13 @@ return [
 //                    ),
 //                ]
             ],
+            'theme' => [
+                'basePath' => '@frontend/views/templates/default',
+                'baseUrl' => '@frontend/views/templates/default',
+                'pathMap' => [
+                    '@frontend/templates' => '@frontend/views/templates',
+                ],
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -73,6 +80,7 @@ return [
         '@user_avatar' => '@common/files/avatar',
         '@file_upload' => '@common/files/upload',
         '@template' => 'template',
-        '@templateUrl' => 'frontend/views/template'
+        '@templateUrl' => 'frontend/views/templates',
+        'templatePath' => '@frontend/views/templates',
     ]
 ];
