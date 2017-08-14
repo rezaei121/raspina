@@ -12,7 +12,7 @@ return [
     'id' => 'app-dashboard',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'dashboard\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'dashboard\components\bootstrap\Setting'],
     'modules' => [
         'post' => [
             'class' => 'dashboard\modules\post\post',

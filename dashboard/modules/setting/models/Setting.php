@@ -4,7 +4,6 @@ namespace dashboard\modules\setting\models;
 
 use Yii;
 
-
 class Setting extends \common\models\Setting
 {
     public function dateTimeFormats()
@@ -19,18 +18,18 @@ class Setting extends \common\models\Setting
     public function languageList()
     {
         return [
-            'fa_IR' => Yii::t('app', 'Persian'),
-            'en_US' => Yii::t('app', 'English'),
-            'ru_RU' => Yii::t('app', 'Russian'),
+            'fa-IR' => Yii::t('app', 'Persian'),
+            'en-US' => Yii::t('app', 'English'),
+            'ru-RU' => Yii::t('app', 'Russian'),
         ];
     }
 
     public function getLanguageDir($language)
     {
         $directions = [
-            'fa_IR' => 'rtl',
-            'en_US' => 'ltr',
-            'ru_RU' => 'ltr',
+            'fa-IR' => 'rtl',
+            'en-US' => 'ltr',
+            'ru-RU' => 'ltr',
         ];
 
         return $directions[$language];

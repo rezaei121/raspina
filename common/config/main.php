@@ -1,12 +1,29 @@
 <?php
-$language = 'fa-IR';
-$calendar = 'persian';
-
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'language' => $language,
+    'language' => 'fa-IR',
     'timeZone' => 'Asia/Tehran',
     'components' => [
+        'assetManager' => [
+            'class' => 'yii\web\AssetManager',
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js' => [
+                        'jquery.min.js'
+                    ]
+                ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => [
+                        'css/bootstrap.min.css',
+                    ]
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js' => [
+                        'js/bootstrap.min.js',
+                    ]
+                ]
+            ],
+        ],
         'view' => [
             'class' => 'yii\web\View',
             'renderers' => [
@@ -58,8 +75,8 @@ return [
             //'alphabet' => 'abcdefghigk'
         ],
         'date' => [
-            'class' => 'yii\i18n\Formatter',
-            'locale' => 'en-US@calendar=persian',
+            'class' => 'common\components\date\Formatter',
+            'locale' => 'fa-IR',
             'defaultTimeZone' => 'Asia/Tehran',
             'calendar' => \IntlDateFormatter::TRADITIONAL,
             'dateFormat' => 'php:Y-m-d',
