@@ -84,6 +84,23 @@ class DefaultController extends Controller
         ]);
     }
 
+    public function actionProfile()
+    {
+        $model = $this->findModel(Yii::$app->user->id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate())
+        {
+            $model->save();
+            Yii::$app->session->setFlash('success', Yii::t('app','{object} updated.',[
+                'object' => Yii::t('app','Profile')
+            ]));
+        }
+
+        return $this->render('profile', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Displays a single User model.
      * @param integer $id

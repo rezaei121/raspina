@@ -209,7 +209,7 @@ return [
 //    'Cannot Create, Update Or Delete Contens' => 'در نسخه demo امکان افزودن، ویرایش یا حذف محتویات وجود ندارد',
 //    'Type And Enter' => 'عنوان مورد نظر خود را نوشته و سپس Enter بزنید.',
     'More' => 'بیشتر',
-//    'Send In Future Date Not Valid' => 'تاریخ ارسال باید بزرگتر از تاریخ جاری باشد',
+    'Profile' => 'مشخصات',
     'My profile' => 'مشخصات من',
     'Author' => 'نویسنده',
     'Avatar' => 'نمایه',
