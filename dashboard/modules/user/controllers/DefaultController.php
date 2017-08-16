@@ -11,6 +11,7 @@ use Yii;
 use dashboard\modules\user\models\User;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -46,6 +47,19 @@ class DefaultController extends Controller
         ];
     }
 
+
+    public function actions()
+    {
+        return [
+            'myavatar' => [
+                'class' => 'developit\jcrop\actions\Upload',
+                'url' => Url::home() . '../common/files/avatar/',
+                'path' => Yii::getAlias('@user_avatar'),
+                'name' => Yii::$app->hashids->encode(Yii::$app->user->id),
+            ]
+        ];
+    }
+
     /**
      * Lists all User models.
      * @return mixed
@@ -59,6 +73,14 @@ class DefaultController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]]
+        ]);
+    }
+
+    public function actionAvatar()
+    {
+        $model = new User;
+        return $this->render('avatar', [
+            'model' => $model
         ]);
     }
 

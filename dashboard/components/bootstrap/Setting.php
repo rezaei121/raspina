@@ -26,6 +26,5 @@ class Setting implements BootstrapInterface
         {
             $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/ltr.css', ['depends' => [\dashboard\assets\AppAsset::className()]]);
         }
-            //        var_dump(-.); exit();
     }
 }

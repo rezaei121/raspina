@@ -55,10 +55,42 @@ html, body {
     overflow: hidden;
 }
 
+.raspina-profile {margin-top: 5px; width: 200px; padding:10px 10px 10px 10px; color: #000000}
+
 .user-profile {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    cursor: pointer;
+}
+
+.user-profile-big {
+     width: 120px;
+     height: 120px;
+     border-radius: 50%;
+    cursor: pointer;
+ }
+
+.user-profile-h {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.user-profile-name {
+    padding: 10px 0px 0px 0px;
+}
+
+.user-detail-h {
+    float: right;
+    width: 195px;
+}
+
+.user-profile-a {
+    display: block;
+    width: 93%;
+    margin: 0 auto;
+    margin-top: 8px;
+    /*float: none;*/
 }
 
 .header-split {
@@ -493,6 +525,7 @@ input[type="checkbox"] {
 
 .action-buttons-panel {margin-bottom: 7px;}
 .raspina-menu {margin-top: 5px; width: 225px; padding:18px 5px 0px 5px;}
+
 .raspina-menu li{float: left; width: 70px; margin: 0px 0px 15px 0px; text-align: center;}
 .raspina-menu li>a:hover{background-color: inherit; color: inherit;}
 .raspina-menu .fa:hover, .raspina-menu li:hover{color: #666666}

@@ -130,4 +130,19 @@ $(document).ready(function(){
             $('#newsletter-template').val(data);
         });
     });
+
+    function survey(selector, callback) {
+        var input = $(selector);
+        var oldvalue = input.val();
+        setInterval(function(){
+            if (input.val()!=oldvalue){
+                oldvalue = input.val();
+                callback();
+            }
+        }, 100);
+    }
+    survey('#user-avatar', function(){
+        $('.user-profile, .user-profile-big').attr('src', $('#user-avatar').val());
+    });
+
 });

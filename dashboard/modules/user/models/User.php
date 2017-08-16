@@ -192,21 +192,6 @@ class User extends \common\models\User implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-    public static function getAvatar()
-    {
-        $baseUrl = Yii::$app->setting->getValue('url') . 'common/files/avatar/';
-        $avatarPath = Yii::getAlias('@user_avatar') . DIRECTORY_SEPARATOR . Yii::$app->hashids->encode(Yii::$app->user->id) . '.jpg';
-
-        if(file_exists($avatarPath))
-        {
-            return $baseUrl . Yii::$app->hashids->encode(Yii::$app->user->id) . '.jpg';
-        }
-        else
-        {
-            return $baseUrl . 'default.jpg';
-        }
-    }
-
     public function getStatus()
     {
         return [

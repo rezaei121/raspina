@@ -9,7 +9,7 @@
 RewriteRule (.*)requirements.php requirements.php [L]
 RewriteRule (.*)install/(.*) install/$2 [L]
 RewriteRule (.*)common/files/avatar/(.*) common/files/avatar/$2 [L]
-RewriteRule (.*)frontend/views/templates/(.*) frontend/views/templates/$2 [L]
+#RewriteRule (.*)frontend/views/templates/(.*) frontend/views/templates/$2 [L]
 
 RewriteRule (.*)assets/(.*) frontend/web/assets/$2 [L]
 RewriteRule (.*)assets/(.*) backend/web/assets/$2 [L]

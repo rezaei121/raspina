@@ -147,4 +147,19 @@ class User extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Post::className(), ['updated_by' => 'id']);
     }
+
+    public static function getAvatar($userId)
+    {
+        $baseUrl = Yii::$app->setting->getValue('url') . 'common/files/avatar/';
+        $avatarPath = Yii::getAlias('@user_avatar') . DIRECTORY_SEPARATOR . Yii::$app->hashids->encode($userId) . '.jpg';
+
+        if(file_exists($avatarPath))
+        {
+            return $baseUrl . Yii::$app->hashids->encode(Yii::$app->user->id) . '.jpg?' . microtime();
+        }
+        else
+        {
+            return $baseUrl . 'default.jpg';
+        }
+    }
 }
