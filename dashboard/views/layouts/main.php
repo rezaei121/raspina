@@ -48,7 +48,7 @@ $entity_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
                         <div class="user-profile-name"><?= Yii::$app->user->identity->last_name ?> <?= Yii::$app->user->identity->surname ?></div>
                         <div class="user-profile-name"><?= Yii::$app->user->identity->email ?></div>
                         <div><?= Html::a(Yii::t('app', 'My profile'), ['/user/default/profile'], ['class' => 'btn-sm btn-info user-profile-a']) ?></div>
-                        <div style="margin-bottom: 8px;"><?= Html::a(Yii::t('app', 'Sign out'), ['/user/default/signout'], ['class' => 'btn-sm btn-warning user-profile-a']) ?></div>
+                        <div style="margin-bottom: 8px;"><?= Html::a(Yii::t('app', 'Logout'), ['/user/default/logout'], ['class' => 'btn-sm btn-warning user-profile-a']) ?></div>
                     </div>
                 </ul>
             </div>

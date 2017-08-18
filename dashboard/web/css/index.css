@@ -298,10 +298,10 @@ html, body {
     margin-left: 13px;
 }
 
-.btn-login:hover, .btn-login:focus, .btn-login:active, .btn-login.active, .open > .dropdown-toggle.btn-login {
-    background-color: #F6B352;
-    color: #ffffff;
-}
+/*.btn-login:hover, .btn-login:focus, .btn-login:active, .btn-login.active, .open > .dropdown-toggle.btn-login {*/
+    /*background-color: #F6B352;*/
+    /*color: #ffffff;*/
+/*}*/
 
 .input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle), .input-group-btn:last-child>.btn-group:not(:last-child)>.btn {
     border-bottom-right-radius: 2px;
@@ -545,6 +545,16 @@ input[type="checkbox"] {
 .template-snapshot {}
 .template-snapshot img{max-width: 100%}
 .template-detail {text-align: left; direction: ltr}
+
+.login-body {background-color: #5292c6; color:#FFFFFF}
+.login-title {text-align: center; font-size: 24px; margin-bottom: 50px;}
+.login-title span{ font-size: 12px; padding-top: 20px;}
+.captcha-img {text-align: center}
+.login-body input {border: none !important;}
+.login-form .help-block {margin-top: 8px; color: #f0ac3f}
+.login-form .btn-login{width: 100%}
+.login-forget {margin-top: 25px;}
+.login-forget a{color: #FFFFFF}
 
 /**
 @media ...

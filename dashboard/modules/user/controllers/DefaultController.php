@@ -29,12 +29,22 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'create', 'update', 'delete', 'view'],
+                'only' => ['index', 'create', 'update', 'delete', 'view', 'avatar', 'profile', 'login', 'logout'],
                 'rules' => [
                     [
                         'actions' => ['index', 'create', 'update', 'delete', 'view'],
                         'allow' => true,
                         'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' => ['avatar', 'profile', 'login', 'logout'],
+                        'allow' => true,
+                        'roles' => ['author', 'moderator', 'admin'],
+                    ],
+                    [
+                        'actions' => ['login', 'request-password-reset'],
+                        'allow' => true,
+                        'roles' => ['?'],
                     ],
                 ],
             ],
@@ -273,6 +283,30 @@ class DefaultController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    /**
+     * Requests password reset.
+     *
+     * @return mixed
+     */
+    public function actionRequestPasswordReset()
+    {
+        $this->layout = 'login';
+        $model = new \dashboard\models\PasswordResetRequestForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                Yii::$app->session->setFlash('success', Yii::t('app','Check your email'));
+
+                return $this->goHome();
+            } else {
+                Yii::$app->session->setFlash('error', Yii::t('app','Unable To Reset Password'));
+            }
+        }
+
+        return $this->render('requestPasswordResetToken', [
+            'model' => $model,
+        ]);
     }
 
     /**
