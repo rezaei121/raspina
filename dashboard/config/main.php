@@ -29,9 +29,6 @@ return [
         'contact' => [
             'class' => 'dashboard\modules\contact\contact',
         ],
-        'about' => [
-            'class' => 'dashboard\modules\about\about',
-        ],
         'statistics' => [
             'class' => 'dashboard\modules\statistics\statistics',
         ],

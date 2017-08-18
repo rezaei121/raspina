@@ -223,6 +223,7 @@ return [
     'Posts detail group by categories' => 'جزئیات مطالب بر اساس دسته ها',
     'Username' => 'نام کاربری',
     'Last Name' => 'نام',
+    'About Text' => 'متن درباره',
     'Surname' => 'نام خانوادگی',
     'Users' => 'کاربران',
     'User' => 'کاربر',

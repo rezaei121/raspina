@@ -11,6 +11,7 @@ use Yii;
  * @property string $username
  * @property string $last_name
  * @property string $surname
+ * @property string $about_text
  * @property string $auth_key
  * @property string $password_hash
  * @property string $password_reset_token
@@ -19,9 +20,9 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  *
- * @property About $about
  * @property AuthAssignment[] $authAssignments
  * @property AuthItem[] $itemNames
+ * @property Category[] $categories
  * @property Comment[] $comments
  * @property Comment[] $comments0
  * @property File[] $files
@@ -46,6 +47,7 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['username', 'auth_key', 'password_hash', 'email'], 'required'],
+            [['about_text'], 'string'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['username', 'last_name', 'surname', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
@@ -66,6 +68,7 @@ class User extends \yii\db\ActiveRecord
             'username' => Yii::t('app', 'Username'),
             'last_name' => Yii::t('app', 'Last Name'),
             'surname' => Yii::t('app', 'Surname'),
+            'about_text' => Yii::t('app', 'About Text'),
             'auth_key' => Yii::t('app', 'Auth Key'),
             'password_hash' => Yii::t('app', 'Password Hash'),
             'password_reset_token' => Yii::t('app', 'Password Reset Token'),

@@ -25,6 +25,7 @@ class User extends \common\models\User implements IdentityInterface
         $parentRules[] = [['last_name','surname'], 'string', 'max' => 255, 'min' => 3];
         $parentRules[] = [['email'], 'email'];
         $parentRules[] = [['username','email'], 'string', 'max' => 255];
+        $parentRules[] = [['about_text'], 'string'];
         $parentRules[] = [['password', 'old_password','new_password','password_repeat'], 'string', 'max' => 255];
 
         $parentRules[] = [['username'], 'string', 'min' => 5];

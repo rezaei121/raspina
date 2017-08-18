@@ -8,7 +8,8 @@ use yii\helpers\Url;
 /* @var $model dashboard\modules\user\models\User */
 
 $this->title = Yii::t('app', 'Avatar');
-$this->params['breadcrumbs'][] = Yii::t('app', 'My profile');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Users');
+$this->params['breadcrumbs'][] = "$model->last_name $model->surname - {$model->username}";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

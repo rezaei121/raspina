@@ -88,7 +88,7 @@ class DefaultController extends Controller
 
     public function actionAvatar()
     {
-        $model = new User;
+        $model = $this->findModel(Yii::$app->user->id);
         return $this->render('avatar', [
             'model' => $model
         ]);
