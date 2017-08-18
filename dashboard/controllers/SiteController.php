@@ -57,12 +57,12 @@ class SiteController extends Controller
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-            'captcha' => [
-                'class' => 'developit\captcha\CaptchaAction',
-                'type' => 'numbers',
-                'minLength' => 4,
-                'maxLength' => 4,
-            ],
+//            'captcha' => [
+//                'class' => 'developit\captcha\CaptchaAction',
+//                'type' => 'numbers',
+//                'minLength' => 4,
+//                'maxLength' => 4,
+//            ],
             'login-captcha' => [
                 'class' => 'developit\captcha\CaptchaAction',
                 'type' => 'numbers',
