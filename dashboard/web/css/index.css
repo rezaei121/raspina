@@ -187,6 +187,8 @@ html, body {
     white-space: nowrap;
 }
 
+.panel-body {line-height: 18px;}
+
 .panel-heading {
     text-align: right;
     border: none;

@@ -39,8 +39,9 @@ $status = $model->getStatusList();
             [
                 'attribute' => 'name',
                 'format' => 'raw',
-                'value' => function($model) {
-                    return  Html::a($model->name, ['view', 'id' => $model->id]);
+                'value' => function($model){
+                    $link = Html::a($model->name,['default/view', 'id' => $model->id]);
+                    return $link . '<br><div class="comment-preview">' .nl2br($model->message) . '</div>';
                 },
             ],
             [
