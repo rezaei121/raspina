@@ -170,8 +170,8 @@ return [
 //    'Operation Failed' => 'عملیات ناموفق! لطفا دوباره امتحان کنید',
 //    'Operation Successfully' => 'با موفقیت انجام شد.',
 //    'Item Not Selected' => 'ابتدا لطفا یک یا چند مورد را انتخاب کنید.',
-//    'Old Password' => 'کلمه عبور فعلی',
-//    'New Password' => 'کلمه عبور جدید',
+    'Old Password' => 'کلمه عبور فعلی',
+    'New Password' => 'کلمه عبور جدید',
 //    'Repeat Password' => 'تکرار کلمه عبور',
 //    'Change Password' => 'بروزرسانی کلمه عبور',
 //    'Paswword No Mach' => 'کلمه عبور جدید با تکرار کلمه عبور برابر نیست',
@@ -244,4 +244,6 @@ return [
     'Language' => 'زبان',
     'Direction' => 'چینش صفحات',
     'Time Zone' => 'منطقه زمانی',
+    'Update password.' => 'بروزرسانی کلمه عبور.',
+    'Incorrect old password.' => 'کلمه عبور فعلی معتبر نیست.',
 ];

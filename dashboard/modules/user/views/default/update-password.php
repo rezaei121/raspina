@@ -7,15 +7,16 @@ use dashboard\components\widgets\ActiveForm;
 /* @var $model dashboard\modules\user\models\User */
 
 $this->title = Yii::t('app', 'Update Password');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => "$model->last_name $model->surname - {$model->username}", 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = Yii::t('app', 'Users');
+$this->params['breadcrumbs'][] = "$model->last_name $model->surname - {$model->username}";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?= Html::beginPanel($this->title) ?>
 
 <?php $form = ActiveForm::begin(); ?>
 
-<?= $form->field($model, 'password')->passwordInput() ?>
+<?= $form->field($model, 'old_password')->passwordInput() ?>
+<?= $form->field($model, 'new_password')->passwordInput() ?>
 <?= $form->field($model, 'password_repeat')->passwordInput() ?>
 
 <div class="form-group center">

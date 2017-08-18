@@ -25,7 +25,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','login','logout','changePassword','requestPasswordReset'],
+                'only' => ['index'],
                 'rules' => [
                     [
                         'actions' => ['login','requestPasswordReset'],
@@ -33,7 +33,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['index','logout','login','changePassword','error'],
+                        'actions' => ['index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -103,7 +103,7 @@ class SiteController extends Controller
         ]);
 
         $user = User::findIdentity(Yii::$app->user->id);
-        $user->avatar = User::getAvatar();
+        $user->avatar = User::getAvatar(Yii::$app->user->id);
 
         return $this->render('index',[
             'visitorsModel' => $visitors,

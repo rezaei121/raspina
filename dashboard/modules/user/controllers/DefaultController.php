@@ -208,26 +208,24 @@ class DefaultController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdatePassword($id)
+    public function actionUpdatePassword()
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel(Yii::$app->user->id);
         $model->scenario = 'update-password';
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
-            $model->setPassword($model->password);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->setPassword($model->new_password);
             $model->generateAuthKey();
             $model->save();
 
             Yii::$app->session->setFlash('success', Yii::t('app','{object} updated.',[
                 'object' => Yii::t('app','Password')
             ]));
-            return $this->redirect(['view', 'id' => $model->id]);
-
-        } else {
-            return $this->render('update-password', [
-                'model' => $model,
-            ]);
         }
+
+        return $this->render('update-password', [
+            'model' => $model,
+        ]);
     }
 
     /**

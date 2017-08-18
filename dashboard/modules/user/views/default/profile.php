@@ -7,7 +7,8 @@ use yii\widgets\ActiveForm;
 /* @var $model dashboard\modules\user\models\User */
 
 $this->title = Yii::t('app', 'My profile');
-$this->params['breadcrumbs'][] = Yii::t('app', 'User');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Users');
+$this->params['breadcrumbs'][] = "$model->last_name $model->surname - {$model->username}";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?= Html::beginPanel($this->title) ?>
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'class' => 'form-control ltr']) ?>
+        <?= Html::a(Yii::t('app', 'Update password.'), ['update-password']) ?>
             <div class="form-group center">
                 <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
             </div>

@@ -15,6 +15,7 @@ $modules_id = Yii::$app->controller->module->id;
 $controller_id = Yii::$app->controller->id;
 $action_id = Yii::$app->controller->action->id;
 $entity_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
+
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
