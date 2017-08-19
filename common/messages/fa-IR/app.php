@@ -247,4 +247,5 @@ return [
     'Update password.' => 'بروزرسانی کلمه عبور.',
     'Incorrect old password.' => 'کلمه عبور فعلی معتبر نیست.',
     'Logout' => 'خروج',
+    'Download a full blog backup.' => 'دریافت نسخه پشتیبان',
 ];

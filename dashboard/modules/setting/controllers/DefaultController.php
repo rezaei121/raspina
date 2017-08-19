@@ -2,6 +2,7 @@
 
 namespace dashboard\modules\setting\controllers;
 
+use dashboard\components\helpers\MysqlBackup;
 use Yii;
 use dashboard\modules\setting\models\Setting;
 use yii\data\ActiveDataProvider;
@@ -20,10 +21,10 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['update'],
+                'only' => ['update', 'backup'],
                 'rules' => [
                     [
-                        'actions' => ['update'],
+                        'actions' => ['update', 'backup'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
@@ -73,6 +74,36 @@ class DefaultController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionBackup()
+    {
+        $sql = new MysqlBackup();
+        $tables = $sql->getTables();
+        Yii::info('数据库备份失败', 'backups');
+        if (!$sql->StartBackup()) {
+            //render error
+            Yii::info('数据库备份失败', 'backup');
+            die;
+        }
+        foreach ($tables as $tableName) {
+            $sql->getColumns($tableName);
+        }
+        foreach ($tables as $tableName) {
+            $sql->getData($tableName);
+        }
+        $sqlFile = $sql->EndBackup();
+
+        $file_path = $sqlFile;
+        header('Content-Description: File Transfer');
+        header("Content-Type: application/sql");
+        header('Content-Disposition: inline; filename=backup_'. date("Y-m-d H-i-s"). '.sql');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file_path));
+        readfile($file_path);
+        unlink($file_path);
     }
 
     /**

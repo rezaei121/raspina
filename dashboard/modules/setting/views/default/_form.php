@@ -43,6 +43,8 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'date_format')->dropDownList($model->dateTimeFormats(), ['class'=>'form-control ltr'])?>
 
+    <?= Html::a(Yii::t('app', 'Download a full blog backup.'), ['backup']) ?>
+
     <div class="form-group center">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
