@@ -54,7 +54,15 @@ $postStatus = $model->postStatus();
             echo $categories? $categories : Yii::t('app', '(no set)');
             ?>
             <br>
-            <span class="bold"><?= Yii::t('app', 'Tags') ?>:</span> <?= $model->tags? $model->tags : Yii::t('app', '(no set)'); ?>
+            <span class="bold"><?= Yii::t('app', 'Tags') ?>:</span>
+            <?php
+            $tags = [];
+            foreach ($model->getPostTags() as $t)
+            {
+                $tags[] = $t;
+            }
+            echo implode(', ', $tags);
+            ?>
             <br>
             <span class="bold"><?= Yii::t('app', 'Keywords') ?>:</span> <?= $model->keywords? $model->keywords : Yii::t('app', '(no set)'); ?>
             <br>

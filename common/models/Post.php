@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "{{%post}}".
@@ -11,7 +12,6 @@ use Yii;
  * @property string $title
  * @property string $short_text
  * @property string $more_text
- * @property string $tags
  * @property string $keywords
  * @property string $meta_description
  * @property integer $status
@@ -27,6 +27,7 @@ use Yii;
  * @property User $createdBy
  * @property User $updatedBy
  * @property PostCategory[] $postCategories
+ * @property PostTag[] $postTags
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -45,7 +46,7 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'short_text'], 'required'],
-            [['short_text', 'more_text', 'tags', 'keywords'], 'string'],
+            [['short_text', 'more_text', 'keywords'], 'string'],
             [['status', 'created_by', 'updated_by', 'pin_post', 'enable_comments', 'view'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'meta_description'], 'string', 'max' => 255],
@@ -64,7 +65,6 @@ class Post extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'short_text' => Yii::t('app', 'Short Text'),
             'more_text' => Yii::t('app', 'More Text'),
-            'tags' => Yii::t('app', 'Tags'),
             'keywords' => Yii::t('app', 'Keywords'),
             'meta_description' => Yii::t('app', 'Meta Description'),
             'status' => Yii::t('app', 'Status'),
@@ -108,5 +108,19 @@ class Post extends \yii\db\ActiveRecord
     public function getPostCategories()
     {
         return $this->hasMany(PostCategory::className(), ['post_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPostTags()
+    {
+        $result = $this->hasMany(PostTag::className(), ['post_id' => 'id'])
+            ->select('t.*')
+            ->alias('pt')
+            ->innerJoin(['t' => Tag::tableName()], 'pt.tag_id = t.id')
+            ->all();
+
+        return \yii\helpers\ArrayHelper::map($result,'id','title');
     }
 }

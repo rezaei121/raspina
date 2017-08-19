@@ -63,23 +63,25 @@ use dashboard\modules\post\models\PostCategory;
                 ],
                 'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image  table link | codesample | code"
             ]
-        ]) ?>    <?php
-        $tags = $model->convertToAssociativeArray($model->tags);
-        echo Select2::widget([
-            'name' => 'tags',
-            'id' => 'post_tags',
-            'value' => $tags,
-            'class' => 'form-control',
-            'data' => $tags,
-            'options' => ['multiple' => true],
-            'pluginOptions' => [
-                'tags' => true,
-                'maximumInputLength' => 100
-            ],
-        ]);
-        ?>
+        ]) ?>
     </div>
 
+    <?php
+    $tags = $model->getSelectedTags();
+    $allTags = \common\models\Tag::getAll();
+    echo Select2::widget([
+        'name' => 'tags',
+        'id' => 'post_tags',
+        'value' => $tags,
+        'class' => 'form-control',
+        'data' => $allTags,
+        'options' => ['multiple' => true],
+        'pluginOptions' => [
+            'tags' => true,
+            'maximumInputLength' => 100
+        ],
+    ]);
+    ?>
     <?php
         $keywords = $model->convertToAssociativeArray($model->keywords);
         echo Select2::widget([

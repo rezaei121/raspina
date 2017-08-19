@@ -72,7 +72,6 @@ class DefaultController extends Controller
     protected function fillModel($model)
     {
         $request = Yii::$app->request->post();
-        $model->tags = (isset($request['tags']) && !empty($request['tags'])) ? implode(',', $request['tags']) : null;
         $model->keywords = (isset($request['keywords']) && !empty($request['keywords'])) ? implode(',', $request['keywords']) : null;
 
         return $model;
@@ -85,11 +84,24 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Post;
+        $request = Yii::$app->request->post();
+        if(isset($request['Post']['post_id']) && !empty($request['Post']['post_id']))
+        {
+            $model = $this->findModel($request['Post']['post_id']);
+            if(!Yii::$app->user->can('updatePost', ['model' => $model]))
+            {
+                throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+            }
+        }
+        else
+        {
+            $model = new Post;
+        }
+
         $model->enable_comments = 1;
         $model->status = 1;
 
-        $request = Yii::$app->request->post();
+
 
         if ($model->load($request) && $model->validate())
         {
@@ -126,6 +138,7 @@ class DefaultController extends Controller
         $request = Yii::$app->request->post();
         if ($model->load($request) && $model->validate())
         {
+            $model = $this->fillModel($model);
             if($model->save())
             {
                 Yii::$app->session->setFlash('success', Yii::t('app','{object} updated.',[
