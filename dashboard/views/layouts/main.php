@@ -42,7 +42,7 @@ $entity_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
         <div class="header-split" style="margin-top: 8px;">
             <div class="dropdown">
                 <img class="user-profile dropdown-toggle" data-toggle="dropdown" src="<?= User::getAvatar(Yii::$app->user->id); ?>">
-                <ul class="dropdown-menu pull-left raspina-profile ">
+                <ul class="dropdown-menu dropdown-menu-right raspina-profile ">
                     <div class="user-profile-h" style="">
                         <a href="<?= Url::base(); ?>/user/default/avatar"><img class="user-profile-big" src="<?= User::getAvatar(Yii::$app->user->id); ?>"></a>
                         <div class="user-profile-name"><?= Yii::$app->user->identity->last_name ?> <?= Yii::$app->user->identity->surname ?></div>
@@ -57,7 +57,7 @@ $entity_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
         <div class="header-split">
             <div class="dropdown">
                 <span class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></span>
-                <ul class="dropdown-menu pull-left raspina-menu">
+                <ul class="dropdown-menu dropdown-menu-right raspina-menu">
 
                     <?php if (Yii::$app->user->can('post')): ?>
                         <li><a href="<?= Url::base(); ?>/post/default">

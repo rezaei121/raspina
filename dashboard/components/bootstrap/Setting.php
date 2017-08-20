@@ -21,10 +21,19 @@ class Setting implements BootstrapInterface
         Yii::$app->date->locale = $settingModel->language;
         Yii::$app->date->defaultTimeZone = $settingModel->time_zone;
         Yii::$app->date->datetimeFormat = $settingModel->date_format;
+        Yii::$app->params['direction'] = $settingModel->direction;
+        Yii::$app->params['lang'] = (explode('-',$settingModel->language))[0];
 
-        if($settingModel->direction == 'ltr')
+        if($settingModel->direction == 'rtl')
         {
-            $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/ltr.css', ['depends' => [\dashboard\assets\AppAsset::className()]]);
+//            $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/ltr.css', ['depends' => [\dashboard\assets\AppAsset::className()]]);
+            $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/bootstrap-rtl.min.css', ['depends' => [\dashboard\assets\AppAsset::className()]]);
+        }
+
+        if($settingModel->direction == 'rtl')
+        {
+//            $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/ltr.css', ['depends' => [\dashboard\assets\AppAsset::className()]]);
+//            $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/bootstrap-rtl.min.css', ['depends' => [\dashboard\assets\AppAsset::className()]]);
         }
     }
 }

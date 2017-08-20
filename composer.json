@@ -21,7 +21,11 @@
         "developit/yii2-captcha": "~1.0",
         "developit/yii2-jcrop": "*",
         "meysampg/intldate": "*",
-        "light/hashids" : "*"
+        "light/hashids" : "*",
+        "2amigos/yii2-tinymce-widget" : "~1.1",
+        "kartik-v/yii2-widget-select2": "@dev",
+        "kartik-v/yii2-widget-fileinput": "@dev"
+
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

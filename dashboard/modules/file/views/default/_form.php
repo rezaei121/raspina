@@ -10,6 +10,7 @@ use kartik\file\FileInput;
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 <?= $form->field($model, 'myfile[]')->widget(FileInput::classname(), [
     'options' => ['accept' => '', 'multiple' => true],
+    'language' =>  Yii::$app->params['lang'],
     'pluginOptions' => [
         'initialCaption' => '',
         'showPreview' => false,
@@ -17,7 +18,7 @@ use kartik\file\FileInput;
         'showRemove' => true,
         'showUpload' => false
     ]
-]); ?>
+])?>
 <div class="center">
     <?= Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-success']) ?>
 </div>

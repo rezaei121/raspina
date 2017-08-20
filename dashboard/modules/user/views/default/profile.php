@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'options' => ['rows' => 20],
             'language' => 'fa',
             'clientOptions' => [
-                'directionality' => "rtl",
+                'directionality' => Yii::$app->params['direction'],
                 'entity_encoding' => "utf-8",
                 'relative_urls' => false,
                 'menubar' => false,

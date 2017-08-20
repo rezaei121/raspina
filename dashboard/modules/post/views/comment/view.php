@@ -60,7 +60,7 @@ echo $postStatus[$model->status];
         'options' => ['rows' => 15],
         'language' => 'fa',
         'clientOptions' => [
-            'directionality' => "rtl",
+            'directionality' => Yii::$app->params['direction'],
             'entity_encoding' => "utf-8",
             'relative_urls' => false,
             'menubar' => false,

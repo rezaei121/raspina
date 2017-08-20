@@ -21,15 +21,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= $form->field($model, 'text')->widget(TinyMce::className(), [
     'options' => ['rows' => 20],
-    'language' => 'fa',
+    'language' =>  Yii::$app->params['lang'],
     'clientOptions' => [
-        'directionality' => "rtl",
+        'content_css' => '/raspina/dashboard/web/css/tinymce.css',
+        'directionality' => Yii::$app->params['direction'],
         'entity_encoding' => "utf-8",
         'relative_urls' => false,
         'menubar' => false,
-        'automatic_uploads' => true,
-        'images_upload_url' => 'postAcceptor.php',
-        'images_reuse_filename' => true,
         'plugins' => [
             "advlist autolink lists link charmap visualblocks code media table contextmenu image media codesample code"
         ],

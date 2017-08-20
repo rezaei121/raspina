@@ -46,7 +46,11 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Newsletter');
         'filterModel' => $searchModel,
         'layout' => "{items}\n{pager}",
         'columns' => [
-            ['class' => 'yii\grid\CheckboxColumn'],
+            [
+                'class' => 'yii\grid\CheckboxColumn',
+                'headerOptions' => ['class'=>'fit'],
+                'contentOptions' => ['class' => 'fit center'],
+            ],
             [
                 'attribute' => 'email',
                 'value' => 'email',

@@ -1,6 +1,9 @@
 <?php
 use dashboard\components\helpers\Html;
 
+$this->registerCssFile(Yii::$app->homeUrl . 'web/css/prism.css');
+$this->registerJsFile( '@web/web/js/prism.js');
+
 /* @var $this yii\web\View */
 /* @var $model dashboard\modules\post\models\Post */
 

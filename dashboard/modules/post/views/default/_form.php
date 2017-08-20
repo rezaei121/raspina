@@ -1,8 +1,8 @@
 <?php
 use dashboard\components\helpers\Html;
 use dashboard\components\widgets\ActiveForm;
-use kartik\select2\Select2;
 use dosamigos\tinymce\TinyMce;
+use kartik\select2\Select2;
 use dashboard\modules\post\models\Category;
 use dashboard\modules\post\models\PostCategory;
 
@@ -20,23 +20,22 @@ use dashboard\modules\post\models\PostCategory;
         'value' => PostCategory::getSelectedCategories($model->id),
         'class' => 'form-control',
         'data' => Category::getAll(),
-        'options' => ['multiple' => true],
+        'options' => ['multiple' => true, 'dir' => Yii::$app->params['direction'], 'placeholder' => Yii::t('app', 'Category')],
         'pluginOptions' => [
             'tags' => true,
-            'maximumInputLength' => 255
+            'maximumInputLength' => 255,
+            'directionality' => Yii::$app->params['direction'],
         ],
-    ]); ?>
+    ]) ?>
     <?= $form->field($model, 'short_text')->widget(TinyMce::className(), [
         'options' => ['rows' => 20],
-        'language' => 'fa',
+        'language' =>  Yii::$app->params['lang'],
         'clientOptions' => [
-            'directionality' => "rtl",
+            'content_css' => '/raspina/dashboard/web/css/tinymce.css',
+            'directionality' => Yii::$app->params['direction'],
             'entity_encoding' => "utf-8",
             'relative_urls' => false,
             'menubar' => false,
-            'automatic_uploads' => true,
-            'images_upload_url' => 'postAcceptor.php',
-            'images_reuse_filename' => true,
             'plugins' => [
                 "advlist autolink lists link charmap visualblocks code media table contextmenu image media codesample code"
             ],
@@ -51,10 +50,10 @@ use dashboard\modules\post\models\PostCategory;
 
     <div id="more-text-section" class="visibility-hidden" style="500px;">
         <?= $form->field($model, 'more_text')->widget(TinyMce::className(), [
-            'options' => ['rows' => 20],
-            'language' => 'fa',
+            'options' => ['rows' => 20, 'dir' => Yii::$app->params['direction']],
+            'language' => Yii::$app->params['lang'],
             'clientOptions' => [
-                'directionality' => "rtl",
+                'directionality' => Yii::$app->params['direction'],
                 'relative_urls' => false,
                 'entity_encoding' => "utf-8",
                 'menubar' => false,
@@ -75,7 +74,7 @@ use dashboard\modules\post\models\PostCategory;
         'value' => $tags,
         'class' => 'form-control',
         'data' => $allTags,
-        'options' => ['multiple' => true],
+        'options' => ['multiple' => true, 'dir' => Yii::$app->params['direction'], 'placeholder' => Yii::t('app', 'Tags')],
         'pluginOptions' => [
             'tags' => true,
             'maximumInputLength' => 100
@@ -90,7 +89,7 @@ use dashboard\modules\post\models\PostCategory;
             'value' => $keywords,
             'class' => 'form-control',
             'data' => $keywords,
-            'options' => ['multiple' => true],
+            'options' => ['multiple' => true, 'dir' => Yii::$app->params['direction'], 'placeholder' => Yii::t('app', 'Keywords')],
             'pluginOptions' => [
                 'tags' => true,
                 'tokenSeparators' => [','],
@@ -105,19 +104,19 @@ use dashboard\modules\post\models\PostCategory;
         $createdAt = !empty($model->created_at) ? new \DateTime($model->created_at) : null;
     ?>
     <div id="post-date-section" class="display-none">
-        <div style="width:50px; float: right;">
+        <div style="width:80px;">
             <?= $form->field($model, 'minute')->textInput(['value'=>($createdAt !== null) ? $createdAt->format('i') : '59','class'=>'form-control center','maxlength' => true]) ?>
         </div>
-        <div style="width:50px; float: right; margin-right:5px">
+        <div style="width:80px;">
             <?= $form->field($model, 'hour')->textInput(['value'=>!empty($createdAt !== null) ? $createdAt->format('H') : '23','class'=>'form-control center','maxlength' => true]) ?>
         </div>
-        <div style="float: right;margin-right:5px">
+        <div>
             <?= $form->field($model, 'date')->textInput(['value' =>  !empty($createdAt !== null) ? Yii::$app->date->asDate($createdAt) : Yii::$app->date->asDate('now', 'php:Y-m-d'), 'class' => 'form-control center', 'maxlength' => true]) ?>
         </div>
-    </div>
 
-    <?= $form->field($model, 'post_id')->hiddenInput(); ?>
+    </div>
     <div class="clear"></div>
+    <?= $form->field($model, 'post_id')->hiddenInput(); ?>
     <?= $form->field($model, 'enable_comments')->checkbox(); ?>
     <?= $form->field($model, 'pin_post')->checkbox(); ?>
     <div class="form-group center">
