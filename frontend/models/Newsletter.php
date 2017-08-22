@@ -4,35 +4,18 @@ namespace frontend\models;
 
 use Yii;
 
-/**
- * This is the model class for table "newsletter".
- *
- * @property string $id
- * @property string $email
- */
-class Newsletter extends \yii\db\ActiveRecord
-{
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%newsletter}}';
-    }
 
+class Newsletter extends \common\models\Newsletter
+{
     /**
      * @inheritdoc
      */
     public $captcha;
     public function rules()
     {
-        return [
-            [['email'], 'required'],
-            [['email'], 'string', 'max' => 255],
-            [['email'], 'email'],
-            [['email'], 'unique','on' => 'join'],
-            ['captcha', 'captcha','on' => 'unsubscribe']
-        ];
+        $parentRules = parent::rules();
+        $parentRules[] = ['captcha', 'captcha', 'on' => 'unsubscribe'];
+        return $parentRules;
     }
 
     /**
@@ -40,14 +23,8 @@ class Newsletter extends \yii\db\ActiveRecord
      */
     public function attributeLabels()
     {
-        return [
-            'email' => Yii::t('app', 'Email'),
-        ];
-    }
-
-    public function getMail($email)
-    {
-        $mail = Newsletter::find()->where(['email' => $email])->one();
-        return $mail;
+        $parentAttributeLabels = parent::attributeLabels();
+        $parentAttributeLabels['captcha'] = Yii::t('app', 'Captcha');
+        return $parentAttributeLabels;
     }
 }

@@ -17,7 +17,6 @@ class ContactController extends BaseController
     public function actionIndex()
     {
         $contact = new \frontend\models\Contact;
-        $contact->create_time = time();
         $contact->ip = $_SERVER['REMOTE_ADDR'];
 
         $request = Yii::$app->request->post();

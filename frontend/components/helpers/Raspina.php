@@ -1,5 +1,5 @@
 <?php
-namespace frontend\helpers;
+namespace frontend\components\helpers;
 use Yii;
 class Raspina
 {
@@ -120,6 +120,6 @@ class Raspina
 
     public static function lang()
     {
-        return Yii::$app->view->params['lang'];
+        return Yii::$app->language;
     }
 }

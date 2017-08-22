@@ -1,40 +1,12 @@
 <?php
 namespace frontend\models;
-use common\models\User;
+use frontend\models\Comment;
+use common\models\PostCategory;
 use Yii;
 
-/**
- * This is the model class for table "{{%post}}".
- *
- * @property integer $id
- * @property string $title
- * @property string $short_text
- * @property string $more_text
- * @property string $tags
- * @property string $keywords
- * @property string $meta_description
- * @property integer $status
- * @property integer $create_time
- * @property integer $update_time
- * @property integer $author_id
- * @property integer $pin_post
- * @property integer $comment_active
- * @property integer $view
- * @property integer $send_newsletter
- *
- * @property Comment[] $comments
- * @property PostCategory[] $postCategories
- */
-class Post extends \yii\db\ActiveRecord
-{
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%post}}';
-    }
 
+class Post extends \common\models\Post
+{
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -76,7 +48,7 @@ class Post extends \yii\db\ActiveRecord
 
         $model = new \yii\db\Query();
         $model->select(["p.*","u.last_name","u.surname","COUNT(c.id) AS comment_count","IF(p.more_text IS NOT NULL,'1','0') AS `more`"])->
-        from("{$posTable} As p")->leftJoin("{$userTable} AS u","p.author_id = u.id")->
+        from("{$posTable} As p")->leftJoin("{$userTable} AS u","p.created_by = u.id")->
         leftJoin("{$commentTable} AS c","p.id = c.post_id  AND c.status = 1")->
         where(['p.id' => $this->id, 'p.title' => $this->title, 'p.status' => 1]);
 

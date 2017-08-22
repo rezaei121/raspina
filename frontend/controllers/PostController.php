@@ -1,6 +1,5 @@
 <?php
 namespace frontend\controllers;
-use common\components\CaptchaAction;
 use Yii;
 use frontend\models\Post;
 use yii\web\NotFoundHttpException;
@@ -55,10 +54,9 @@ class PostController extends BaseController
         // insert comment
         $commentModel->ip = $_SERVER['REMOTE_ADDR'];
         $commentModel->post_id = $id;
-        $commentModel->create_time = time();
 
         $request = Yii::$app->request->post();
-        if($commentModel->load($request) && $model['comment_active'] && $commentModel->save())
+        if($commentModel->load($request) && $model['enable_comments'] && $commentModel->save())
         {
             Yii::$app->getSession()->setFlash('success', Yii::t('app','Comment Successfully Sent'));
         }

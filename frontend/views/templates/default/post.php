@@ -2,7 +2,7 @@
 use yii\widgets\ActiveForm ;
 use yii\helpers\Html;
 use developit\captcha\Captcha ;
-use frontend\helpers\Raspina;
+use frontend\components\helpers\Raspina;
 
 Raspina::title($model['title']);
 ?>
@@ -25,7 +25,7 @@ Raspina::title($model['title']);
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-calendar"></span>
-                <?=  Yii::$app->date->pdate($model['create_time'], DATE_FROMAT); ?>
+                <?=  Yii::$app->date->asDatetime($model['created_by']); ?>
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-comment-o"></span>
@@ -41,8 +41,8 @@ Raspina::title($model['title']);
                 <?= $model['short_text']?>
                 <br>
                 <?= $model['more_text'] ?>
-                <?php if($model['update_time']): ?>
-                <span style="font-style: italic">این مطلب آخرین بار در تاریخ  <?=  Yii::$app->date->pdate($model['update_time'], DATE_FROMAT) ?>  ویرایش شده است.</span>
+                <?php if($model['updated_by']): ?>
+                <span style="font-style: italic">این مطلب آخرین بار در تاریخ  <?=  Yii::$app->date->asDatetime($model['updated_by']) ?>  ویرایش شده است.</span>
                 <?php endif ?>
                 <?php if($model['tags']): ?>
                 <hr class="more-hr">
@@ -81,7 +81,7 @@ Raspina::title($model['title']);
             <div class="post-text">
                 <!-- -->
                     <?php foreach($comments as $c): ?>
-                        <div class="comment-title"><span><?= $c['name'] ?></span> در تاریخ <span><?= Date::widget(['value' => $c['create_time']]) ?></span> نوشته: </div>
+                        <div class="comment-title"><span><?= $c['name'] ?></span> در تاریخ <span><?= Date::widget(['value' => $c['created_by']]) ?></span> نوشته: </div>
                         <div class="comment-text"><?= nl2br($c['text']) ?></div>
                         <?php if($c['reply_text']): ?>
                             <div class="comment-reply"><span>پاسخ مدیر: </span><br> <?= nl2br($c['reply_text']) ?></div>
@@ -95,7 +95,7 @@ Raspina::title($model['title']);
 </div>
 <?php endif ?>
 
-<?php if($model['comment_active']): ?>
+<?php if($model['enable_comments']): ?>
 <div class="post-border shadow">
     <div class="panel panel-default post-panel">
         <div class="panel-body">

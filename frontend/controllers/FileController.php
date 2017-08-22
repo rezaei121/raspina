@@ -1,7 +1,7 @@
 <?php
 namespace frontend\controllers;
 use Yii;
-use \frontend\models\File;
+use \common\models\File;
 use yii\web\Controller;
 
 /**

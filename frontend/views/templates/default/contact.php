@@ -2,7 +2,7 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use developit\captcha\Captcha;
-use frontend\helpers\Raspina;
+use frontend\components\helpers\Raspina;
 
 Raspina::title(Yii::t('app','Contact Me'));
 ?>

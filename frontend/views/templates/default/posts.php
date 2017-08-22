@@ -1,5 +1,5 @@
 <?php
-use frontend\helpers\Raspina;
+use frontend\components\helpers\Raspina;
 
 $request = Yii::$app->request->get();
 if(isset($request['category']))

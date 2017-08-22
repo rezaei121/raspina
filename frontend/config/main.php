@@ -11,7 +11,7 @@ $baseUrl = str_replace('/frontend/web', '', (new Request)->getBaseUrl());
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'frontend\components\bootstrap\Setting'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
@@ -42,6 +42,7 @@ return [
                 'file/download/<id:\w+>' => 'file/download',
                 'site/index/tag/<tag>/<page:\d+>/<per-page:\d+>' => 'site/index',
                 'site/index/tag/<tag>' => 'site/index',
+                'user/about/<username:\w+>' => 'user/about',
                 'site/404.html' => 'site/404',
                 [
                     'pattern' => 'post/view/<id:\d+>/<title>',

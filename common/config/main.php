@@ -96,7 +96,7 @@ return [
     'aliases' => [
         '@user_avatar' => '@common/files/avatar',
         '@file_upload' => '@common/files/upload',
-        '@template' => 'template',
+        '@template' => 'templates',
         '@templateUrl' => 'frontend/views/templates',
         'templatePath' => '@frontend/views/templates',
     ]

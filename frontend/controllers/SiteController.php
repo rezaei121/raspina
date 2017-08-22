@@ -69,7 +69,7 @@ class SiteController extends BaseController
         $query = new Yii\db\Query();
         $posts = $query->select(["p.id","p.title","p.short_text","p.created_at","u.username"])->
         from("{$posTable} As p")->
-        leftJoin("{$userTable} AS u","p.author_id = u.id")->
+        leftJoin("{$userTable} AS u","p.created_by = u.id")->
         groupBy("p.id")->
         orderBy('p.pin_post DESC,p.id DESC')->
         where("p.status=1")->limit($this->setting['page_size'])->all();
@@ -90,14 +90,14 @@ class SiteController extends BaseController
         $posTable = \frontend\models\Post::tableName();
         $userTable = \common\models\User::tableName();
         $commentTable = \frontend\models\Comment::tableName();
-        $postCategoryTable = \frontend\models\PostCategory::tableName();
+        $postCategoryTable = \common\models\PostCategory::tableName();
         // update posts status
         $query->createCommand()->update($posTable,['status' => 1],"status = 2 AND created_at <='" . (new \DateTime())->format('Y-m-d H:i:s'). "'")->execute();
 
         // select posts
         $query->select(["p.pin_post","p.id","p.title","p.short_text","p.created_at","p.view","u.last_name","u.surname","COUNT(DISTINCT c.id) AS comment_count","IF(p.more_text != '','1','0') AS `more`","GROUP_CONCAT(DISTINCT pc.category_id) AS category_ids"])->
         from("{$posTable} As p")->
-        leftJoin("{$userTable} AS u","p.author_id = u.id")->
+        leftJoin("{$userTable} AS u","p.created_by = u.id")->
         leftJoin("{$commentTable} AS c","p.id = c.post_id AND c.status = 1")->
         leftJoin("{$postCategoryTable} AS pc","p.id = pc.post_id")->
         groupBy("p.id")->
@@ -111,7 +111,7 @@ class SiteController extends BaseController
             $query->andWhere(['pc.category_id' => $request['category']]);
 
             $catQuery = new \yii\db\Query();
-            $categoryTable = \frontend\models\Category::tableName();
+            $categoryTable = \common\models\Category::tableName();
             $catResult = $catQuery->select("id")->from("{$categoryTable}")->where(['id' => $request['category'],'title' => $request['title']])->one();
             if(empty($catResult))
             {

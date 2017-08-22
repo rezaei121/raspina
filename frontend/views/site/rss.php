@@ -9,7 +9,7 @@
         <item>
             <title><?= $p['title'] ?></title>
             <link><?= $this->params['url'] ?>post/view/<?= $p['id'] ?>/<?= $p['title'] ?>.html</link>
-            <pubDate><?= date('l, F d, Y', $p['create_time']) ?></pubDate>
+            <pubDate><?= $p['created_at'] ?></pubDate>
         </item>
         <?php endforeach; ?>
     </channel>

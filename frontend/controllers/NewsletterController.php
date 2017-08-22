@@ -37,15 +37,10 @@ class NewsletterController extends BaseController
     public function actionJoin()
     {
         $model = new Newsletter();
-        $model->scenario = 'join';
         $request = Yii::$app->request->post();
-        if($model->load($request) && $model->validate())
+        if($model->load($request) && $model->save())
         {
-            if($model->save())
-            {
-                Yii::$app->getSession()->setFlash('success', Yii::t('app','Success Join Newsletter'));
-            }
-
+            Yii::$app->getSession()->setFlash('success', Yii::t('app','Success join newsletter'));
         }
         else
         {

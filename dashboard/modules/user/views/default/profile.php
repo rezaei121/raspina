@@ -20,8 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'class' => 'form-control ltr']) ?>
         <?= $form->field($model, 'about_text')->widget(TinyMce::className(), [
             'options' => ['rows' => 20],
-            'language' => 'fa',
+            'language' => Yii::$app->params['lang'],
             'clientOptions' => [
+                'content_css' => '/raspina/dashboard/web/css/tinymce.css',
                 'directionality' => Yii::$app->params['direction'],
                 'entity_encoding' => "utf-8",
                 'relative_urls' => false,

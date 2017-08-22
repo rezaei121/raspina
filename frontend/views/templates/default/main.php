@@ -1,7 +1,7 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use frontend\helpers\Raspina;
+use frontend\components\helpers\Raspina;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 AppAsset::register($this);
@@ -48,7 +48,7 @@ $this->beginPage();
 	<div class="h-menu-box">
 			<ul class="h-menu">
 				<li><a href="<?= Raspina::url() ?>">خانه</a></li>
-				<li><a href="<?= Raspina::url() ?>about/index">درباره</a></li>
+				<li><a href="<?= Raspina::url() ?>user/about">درباره</a></li>
 				<li><a href="<?= Raspina::url() ?>contact/index">تماس با من</a></li>
 				<li><a href="<?= Raspina::url() ?>site/rss" target="_blank">RSS</a></li>
 				<li><a href="<?= Raspina::url() ?>backend/web/user/login">ورود</a></li>
@@ -66,40 +66,6 @@ $this->beginPage();
 		</div>
 		<div class="col-sm-3">
 			<!-- -->
-			<?php if(Raspina::authorName()): ?>
-	<div class="panel panel-default about-panel">
-		<div class="panel-body">
-			<?php if(Raspina::isAvatar()): ?>
-		<img class="about-image" src="<?= Raspina::avatarImage() ?>">
-			<?php endif ?>
-		<div class="about-name"><?= Raspina::authorName() ?></div>
-		<div class="about-text"><?= Raspina::aboutText() ?></div>
-
-			<div class="about-rs">
-				<?php if(Raspina::facebook()): ?>
-				<a href="<?= Raspina::facebook() ?>" target="_blank"><span class="fa fa-facebook"></span></a>
-				<?php endif ?>
-
-				<?php if(Raspina::twitter()): ?>
-				<a href="<?= Raspina::twitter() ?>" target="_blank"><span class="fa fa-twitter"></span></a>
-				<?php endif ?>
-
-				<?php if(Raspina::googleplus()): ?>
-				<a href="<?= Raspina::googleplus() ?>" target="_blank"><span class="fa fa-google-plus "></span></a>
-				<?php endif ?>
-
-				<?php if(Raspina::instagram()): ?>
-				<a href="<?= Raspina::instagram() ?>" target="_blank"><span class="fa fa-instagram"></span></a>
-				<?php endif ?>
-
-				<?php if(Raspina::linkedin()): ?>
-				<a href="<?= Raspina::linkedin() ?>" target="_blank"><span class="fa fa-linkedin "></span></a>
-				<?php endif ?>
-
-			</div>
-		</div>
-	</div>
-			<?php endif ?>
 			<div class="post-border shadow">
 				<div class="panel panel-default post-panel menu-panel">
 					<div class="panel-body">
