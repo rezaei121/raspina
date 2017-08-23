@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 use Yii;
 use frontend\models\Post;
+use yii\behaviors\SluggableBehavior;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -13,6 +14,11 @@ class PostController extends BaseController
     public function behaviors()
     {
         return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'title',
+                'slugAttribute' => 'slug',
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

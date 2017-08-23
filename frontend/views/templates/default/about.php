@@ -1,5 +1,4 @@
 ﻿<?php
-//var_dump($model); exit();
 use common\models\User;
 use frontend\components\helpers\Raspina;
 Raspina::title(Yii::t('app','About'));
@@ -18,8 +17,6 @@ Raspina::title(Yii::t('app','About'));
                     <div class="clear"></div>
                     <hr>
                 <?php endforeach; ?>
-<!--                --><?//= $about['more_text'] ?>
-                <!-- -->
             </div>
         </div>
     </div>

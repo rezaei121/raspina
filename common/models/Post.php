@@ -75,6 +75,7 @@ class Post extends \yii\db\ActiveRecord
             'pin_post' => Yii::t('app', 'Pin Post'),
             'enable_comments' => Yii::t('app', 'Enable Comments'),
             'view' => Yii::t('app', 'View'),
+            'slug' => Yii::t('app', 'Slug'),
         ];
     }
 

@@ -6,11 +6,11 @@ use common\models\Tag;
 use frontend\models\Category;
 use meysampg\intldate\IntlDateTrait;
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 class Post extends \common\models\Post
 {
     use IntlDateTrait;
-
     /**
      * @inheritdoc
      */

@@ -47,7 +47,7 @@ class Post extends \common\models\Post
         $commentTable = \frontend\models\Comment::tableName();
 
         $model = new \yii\db\Query();
-        $model->select(["p.*","u.last_name","u.surname","COUNT(c.id) AS comment_count","IF(p.more_text IS NOT NULL,'1','0') AS `more`"])->
+        $model->select(["p.*","u.last_name","u.username", "u.surname","COUNT(c.id) AS comment_count","IF(p.more_text IS NOT NULL,'1','0') AS `more`"])->
         from("{$posTable} As p")->leftJoin("{$userTable} AS u","p.created_by = u.id")->
         leftJoin("{$commentTable} AS c","p.id = c.post_id  AND c.status = 1")->
         where(['p.id' => $this->id, 'p.title' => $this->title, 'p.status' => 1]);

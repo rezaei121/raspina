@@ -21,7 +21,7 @@ Raspina::title($model['title']);
             <?php endif ?>
             <span class="post-detail">
 				<span class="fa fa-user"></span>
-                <?= $model['last_name'] ?> <?= $model['surname'] ?>
+                <?= Html::a("{$model['last_name']} {$model['surname']}", ['/user/about', 'username' => $model['username']]) ?>
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-calendar"></span>
