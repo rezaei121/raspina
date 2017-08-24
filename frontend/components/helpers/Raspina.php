@@ -5,11 +5,22 @@ class Raspina
 {
     public static function title($title = null)
     {
+        $title = Yii::t('app', $title);
         if($title !== null)
         {
             Yii::$app->view->title .= ' - ' . $title;
         }
         return Yii::$app->view->title;
+    }
+
+    public static function t($message, $params = [])
+    {
+        return Yii::t('app', $message, $params);
+    }
+
+    public static function date($date)
+    {
+        return Yii::$app->date->asDatetime($date);
     }
 
     public static function description()

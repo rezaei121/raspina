@@ -52,9 +52,9 @@ class PostController extends BaseController
         $postModel->plusView();
         $model = $postModel->get();
 
-        $model['tags'] = !empty($model['tags'])? explode(',',$model['tags']) : null;
-        $this->view->params['keywords'] = $model['keywords'];
-        $this->view->params['description'] = $model['meta_description'];
+//        $model->tags = !empty($model->tags)? explode(',',$model->tags) : null;
+        $this->view->params['keywords'] = $model->keywords;
+        $this->view->params['description'] = $model->meta_description;
 
         $commentModel = new \frontend\models\Comment;
         // insert comment
@@ -68,10 +68,9 @@ class PostController extends BaseController
         }
 
         return $this->render('post', [
-            'model' => $model,
+            'post' => $model,
             'commentModel' => $commentModel,
             'comments' => $postModel->getComments()->all(),
-            'postRelated' => $postModel->getRelated()->all(),
             'postCategories' => $postModel->getPostCategories()->all()
         ]);
     }

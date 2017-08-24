@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use developit\captcha\Captcha;
 use frontend\components\helpers\Raspina;
 
-Raspina::title(Yii::t('app','Contact Me'));
+Raspina::title('Contact Me');
 ?>
 <div class="post-border shadow">
     <div class="panel panel-default post-panel">
         <div class="panel-body">
-            <div class="post-title"><?= Yii::t('app','Contact Me') ?></div>
+            <div class="post-title"><?= Raspina::t('Contact Me') ?></div>
             <div class="post-text">
                 <!-- -->
                 <?php $form = ActiveForm::begin() ?>
-                <?= $form->field($contact,'name')->textInput(['maxlength' => true,'class' => 'input margin-17','placeholder' => 'نام']) ?>
-                <?= $form->field($contact,'email')->textInput(['maxlength' => true,'class' => 'input margin-17','placeholder' => 'ایمیل','dir' => 'ltr']) ?>
-                <?= $form->field($contact,'message')->textArea(['rows' => '6' ,'class' => 'input margin-17','placeholder' => 'متن...']) ?>
-                <?= $form->field($contact,'captcha')->widget(Captcha::className(),['template' => '<div class="captcha-img">{image}</div><div class="captcha-txt">{input}</div>']) ?>
+                <?= $form->field($model,'name')->textInput(['maxlength' => true,'class' => 'input margin-17','placeholder' => Raspina::t('Name')]) ?>
+                <?= $form->field($model,'email')->textInput(['maxlength' => true,'class' => 'input margin-17','placeholder' => Raspina::t('Email'),'dir' => 'ltr']) ?>
+                <?= $form->field($model,'message')->textArea(['rows' => '6' ,'class' => 'input margin-17','placeholder' => Raspina::t('Message')]) ?>
+                <?= $form->field($model,'captcha')->widget(Captcha::className(),['options' => ['placeholder' => Raspina::t('Captcha')]]) ?>
                 <?= Html::submitButton('ارسال پیام',['class' => 'submit']) ?>
                 <?php ActiveForm::end() ?>
                 <!-- -->

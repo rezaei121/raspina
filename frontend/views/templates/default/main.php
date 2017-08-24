@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use frontend\components\helpers\Raspina;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
+
 AppAsset::register($this);
 $this->beginPage();
 ?>
@@ -47,11 +48,11 @@ $this->beginPage();
 
 	<div class="h-menu-box">
 			<ul class="h-menu">
-				<li><a href="<?= Raspina::url() ?>">خانه</a></li>
-				<li><a href="<?= Raspina::url() ?>user/about">درباره</a></li>
-				<li><a href="<?= Raspina::url() ?>contact/index">تماس با من</a></li>
-				<li><a href="<?= Raspina::url() ?>site/rss" target="_blank">RSS</a></li>
-				<li><a href="<?= Raspina::url() ?>backend/web/user/login">ورود</a></li>
+				<li><a href="<?= Raspina::url() ?>"><?= Raspina::t('Home') ?></a></li>
+				<li><a href="<?= Raspina::url() ?>user/about"><?= Raspina::t('About') ?></a></li>
+				<li><a href="<?= Raspina::url() ?>contact/index"><?= Raspina::t('Contact Me') ?></a></li>
+				<li><a href="<?= Raspina::url() ?>site/rss" target="_blank"><?= Raspina::t('RSS') ?></a></li>
+				<li><a href="<?= Raspina::url() ?>backend/web/user/login"><?= Raspina::t('Login') ?></a></li>
 			</ul>
 			<div class="clear"></div>
 	</div>
@@ -71,12 +72,12 @@ $this->beginPage();
 					<div class="panel-body">
 						<div class="menu-title">
 							<span class="fa fa-search menu-title-icon" aria-hidden="true"></span>
-							<span class="menu-title-text">جستجو</span>
+							<span class="menu-title-text"><?= Raspina::t('Search') ?></span>
 						</div>
 						<div class="menu-title-line"></div>
 						<?php $form = ActiveForm::begin(['action'=> ['site/index'],'method'=> 'GET']) ?>
-							<?= $form->field(Raspina::siteModel(),'search')->textInput(['maxlength'=> true,'class'=> 'input margin-17','placeholder'=> 'متن جستجو...']) ?>
-							<?= Html::submitButton('بگرد!',['class'=> 'submit']) ?>
+							<?= $form->field(Raspina::siteModel(),'search')->textInput(['maxlength'=> true,'class'=> 'input margin-17','placeholder'=> Raspina::t('Text')]) ?>
+							<?= Html::submitButton(Raspina::t('Go'),['class'=> 'submit']) ?>
 						<?php ActiveForm::end() ?>
 					</div>
 				</div>
@@ -87,12 +88,12 @@ $this->beginPage();
 					<div class="panel-body">
 						<div class="menu-title">
 							<span class="fa fa-envelope-o menu-title-icon" aria-hidden="true"></span>
-							<span class="menu-title-text">خبرنامه</span>
+							<span class="menu-title-text"><?= Raspina::t('Newsletter'); ?></span>
 						</div>
 						<div class="menu-title-line"></div>
 						<?php $form = ActiveForm::begin(['action'=> ['newsletter/join']]) ?>
-							<?= $form->field(Raspina::newsletterModel(),'email')->textInput(['maxlength'=> true,'class'=> 'input margin-17','placeholder'=> 'Emale Adress...','dir'=> 'ltr']) ?>
-							<?= Html::submitButton('عضویت',['class'=> 'submit']) ?>
+							<?= $form->field(Raspina::newsletterModel(),'email')->textInput(['maxlength'=> true,'class'=> 'input margin-17','placeholder'=> 'Email','dir'=> 'ltr']) ?>
+							<?= Html::submitButton(Raspina::t('Join'),['class'=> 'submit']) ?>
 						<?php ActiveForm::end() ?>
 					</div>
 				</div>
@@ -104,7 +105,7 @@ $this->beginPage();
 			<div class="panel-body">
 				<div class="menu-title">
 					<span class="fa fa-folder-open menu-title-icon"></span>
-					<span class="menu-title-text">دسته بندی ها</span>
+					<span class="menu-title-text"><?= Raspina::t('Categories') ?></span>
 				</div>
 				<div class="menu-title-line"></div>
 				<?php foreach((array)Raspina::categories() as $id => $category): ?>
@@ -123,7 +124,7 @@ $this->beginPage();
 						<div class="panel-body">
 							<div class="menu-title">
 								<span class="fa fa-link menu-title-icon"></span>
-								<span class="menu-title-text">پیوند ها</span>
+								<span class="menu-title-text"><?= Raspina::t('Links') ?></span>
 							</div>
 							<div class="menu-title-line"></div>
 							<?php foreach ((array)Raspina::links() as $link): ?>
@@ -141,9 +142,9 @@ $this->beginPage();
 	</div>
 </div>
 <div class="footer" style="text-align: center">
-	<span>کلیه حقوق این وب سایت متعلق به مالک آن می باشد و کپی برداری از محتوای سایت تنها با ذکر منبع مجاز است</span>
+	<span><?= Raspina::t('All rights reserved by the owner of this site and the copying of the site content is permitted only by mentioning the source and the link.') ?></span>
 	<br>
-	<span><a href="http://www.developit.ir" target="_blank">قدرت گرفته از رَسپینا</a></span>
+	<span><a href="http://www.developit.ir" target="_blank"><?= Raspina::t('Powered by raspina cms') ?></a></span>
 </div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="<?= Raspina::templateUrl() ?>js/jquery-2.2.3.min.js"></script>

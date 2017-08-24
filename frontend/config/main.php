@@ -42,8 +42,12 @@ return [
                 'file/download/<id:\w+>' => 'file/download',
                 'site/index/tag/<tag>/<page:\d+>/<per-page:\d+>' => 'site/index',
                 'site/index/tag/<tag>' => 'site/index',
-                'user/about/<username:\w+>' => 'user/about',
                 'site/404.html' => 'site/404',
+                [
+                    'pattern' => 'user/about/<username:\w+>',
+                    'route' => 'user/about',
+                    'suffix' => '.html',
+                ],
                 [
                     'pattern' => 'post/view/<id:\d+>/<title>',
                     'route' => 'post/view',

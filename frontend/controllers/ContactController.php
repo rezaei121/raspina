@@ -26,7 +26,7 @@ class ContactController extends BaseController
         }
 
         return $this->render('contact',[
-            'contact' => $contact
+            'model' => $contact
         ]);
     }
 

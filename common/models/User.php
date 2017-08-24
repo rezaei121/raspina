@@ -161,6 +161,21 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
     }
 
+    public function avatar()
+    {
+        return self::getAvatar($this->id);
+    }
+
+    public function name()
+    {
+        return "{$this->last_name} {$this->surname}";
+    }
+
+    public function about()
+    {
+        return $this->about_text;
+    }
+
     /**
      * @inheritdoc
      */

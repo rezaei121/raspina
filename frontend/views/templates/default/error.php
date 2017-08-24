@@ -6,8 +6,9 @@
 /* @var $exception Exception */
 
 use yii\helpers\Html;
+use frontend\components\helpers\Raspina;
 
-$this->title = $name;
+Raspina::title($name);
 ?>
 <div class="post-border shadow">
     <div class="panel panel-default post-panel">

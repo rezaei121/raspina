@@ -4,12 +4,17 @@ use yii\helpers\Html;
 use developit\captcha\Captcha ;
 use frontend\components\helpers\Raspina;
 
-Raspina::title($model['title']);
+/* @var $post frontend\models\Post */
+
+Raspina::title($post->title);
+//var_dump($post); exit();
 ?>
 <div class="post-border shadow">
     <div class="panel panel-default post-panel">
         <div class="panel-body">
-            <div class="post-title"><?= Html::a($model['title'],[0 => 'post/view','id' => $model['id'],'title' => $model['title']]) ?></div>
+            <div class="post-title">
+                <a href="<?= $post->url() ?>"><?= $post->title ?></a>
+            </div>
             <!-- -->
             <?php if($postCategories): ?>
                 <span class="post-detail">
@@ -21,48 +26,52 @@ Raspina::title($model['title']);
             <?php endif ?>
             <span class="post-detail">
 				<span class="fa fa-user"></span>
-                <?= Html::a("{$model['last_name']} {$model['surname']}", ['/user/about', 'username' => $model['username']]) ?>
+                <a href="<?= $post->authorUrl(); ?>"><?= $post->author(); ?></a>
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-calendar"></span>
-                <?=  Yii::$app->date->asDatetime($model['created_by']); ?>
+                <?= Raspina::date($post->created_at) ?>
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-comment-o"></span>
-                <?= $model['comment_count'] ?>
+                <?= $post->comment_count ?>
 			</span>
 			<span class="post-detail">
 				<span class="fa fa-eye "></span>
-                <?= $model['view'] ?>
+                <?= $post->view ?>
 			</span>
             <div class="clear"></div>
             <!-- -->
             <div class="post-text">
-                <?= $model['short_text']?>
+                <?= $post->short_text?>
                 <br>
-                <?= $model['more_text'] ?>
-                <?php if($model['updated_by']): ?>
-                <span style="font-style: italic">این مطلب آخرین بار در تاریخ  <?=  Yii::$app->date->asDatetime($model['updated_by']) ?>  ویرایش شده است.</span>
+                <?= $post->more_text ?>
+                <?php if($updaterAuthor = $post->updaterAuthor()): ?>
+                <span style="font-style: italic"><?= Raspina::t('This post was last updated on {date} by {user}.', [
+                        'date' => Raspina::date($post->updated_at),
+                        'user' => $updaterAuthor
+                    ]) ?></span>
                 <?php endif ?>
-                <?php if($model['tags']): ?>
-                <hr class="more-hr">
-                <div class="post-tags"><span class="fa fa-tags"></span>
-                    <?php foreach ($model['tags'] as $tag): ?>
-                        <a href="<?= $this->params['url'] ?>site/index/tag/<?= $tag ?>"><?= $tag ?></a><delimiter>،</delimiter>
-                    <?php endforeach ?>
-                </div>
-                <?php endif ?>
+<!--                --><?php //if($post['tags']): ?>
+<!--                <hr class="more-hr">-->
+<!--                <div class="post-tags"><span class="fa fa-tags"></span>-->
+<!--                    --><?php //foreach ($post['tags'] as $tag): ?>
+<!--                        <a href="--><?//= $this->params['url'] ?><!--site/index/tag/--><?//= $tag ?><!--">--><?//= $tag ?><!--</a><delimiter>،</delimiter>-->
+<!--                    --><?php //endforeach ?>
+<!--                </div>-->
+<!--                --><?php //endif ?>
             </div>
         </div>
     </div>
 </div>
-<?php if($postRelated): ?>
+<?php if($postRelated = $post->related()): ?>
     <div class="post-border shadow">
         <div class="panel panel-default post-panel">
             <div class="panel-body">
-                <div class="post-title">مرتبط ها</div>
+                <div class="post-title"><?= Raspina::t('Related'); ?></div>
                 <div class="post-text">
                     <!-- -->
+                    <?php var_dump($postRelated); exit(); ?>
                     <?php foreach ($postRelated as $related): ?>
                         <?= Html::a($related['title'],[0 => 'post/view','id' => $related['id'],'title' => $related['title']]) ?><br>
                     <?php endforeach ?>
@@ -81,7 +90,7 @@ Raspina::title($model['title']);
             <div class="post-text">
                 <!-- -->
                     <?php foreach($comments as $c): ?>
-                        <div class="comment-title"><span><?= $c['name'] ?></span> در تاریخ <span><?= Date::widget(['value' => $c['created_by']]) ?></span> نوشته: </div>
+                        <div class="comment-title"><span><?= $c['name'] ?></span> در تاریخ <span><?= Raspina::date($c['created_by']) ?></span> نوشته: </div>
                         <div class="comment-text"><?= nl2br($c['text']) ?></div>
                         <?php if($c['reply_text']): ?>
                             <div class="comment-reply"><span>پاسخ مدیر: </span><br> <?= nl2br($c['reply_text']) ?></div>
@@ -95,7 +104,7 @@ Raspina::title($model['title']);
 </div>
 <?php endif ?>
 
-<?php if($model['enable_comments']): ?>
+<?php if($post['enable_comments']): ?>
 <div class="post-border shadow">
     <div class="panel panel-default post-panel">
         <div class="panel-body">

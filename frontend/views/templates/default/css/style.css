@@ -123,9 +123,9 @@ delimiter:last-child {display: none}
 .comment-reply span{font-weight: bold}
 .comment-reply {padding: 7px; background: #e2e3e4; border-radius: 2px;}
 .captcha {}
-.captcha-img{ margin: 0px auto; text-align: center; cursor: pointer}
-.captcha-img img{cursor: pointer; border: 1px solid #d3d5d7; border-radius: 2px;}
-.captcha-txt input{border: 1px solid #d3d5d7; padding: 10px; border-radius: 2px; width: 100%; font-family: Sahel, sans-serif; font-size: 12px; color: #666666; box-shadow: none; text-align: center; height: auto}
+
+.developit-captcha img {margin: 0px auto; display: block; text-align: center; cursor: pointer}
+.developit-captcha input{border: 1px solid #d3d5d7; padding: 10px; border-radius: 2px; width: 100%; font-family: Sahel, sans-serif; font-size: 12px; color: #666666; box-shadow: none; text-align: center; height: auto}
 .post-text img {max-width: 90%; height: auto}
 
 .alert .close {display: none}
