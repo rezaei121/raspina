@@ -58,18 +58,32 @@ pre {text-align: left; direction: ltr; padding: 10px; font-family: Sahel, sans-s
 strong {font-weight: bold}
 .footer { width: 100%; height: 70px; background-color: #555555; font-size: 11px; color: #fefefe; line-height: 23px; padding: 10px 0px 20px 0px; border-top:5px solid #3c8dbc;}
 
-.header {background-color:#ffffff; width:100%; height: 85px; border-bottom:5px solid #3c8dbc;}
+.header {
+	background-color:#555555;
+	width:100%;
+	height: 350px;
+	text-align: center;
+	color: #FFFFFF;
+	background-image: url("../image/background.jpg");
+	background-position: center;
+	position: relative;
+}
+
+code, pre {text-align: left !important; direction: ltr !important;}
+
 .header .col-sm-2 {}
 .top-icon {font-size:54px; color: #3c8dbc; padding:12px 25px 0px 0px; float:right}
-.h-title {font-size:18px;color: #3c8dbc; padding:18px 10px 0px 0px; float:right}
-.h-description {font-size:13px;color: #333333; padding:8px 0px 0px 0px; float:right}
+.h-title {font-size:24px;padding-top: 100px;}
+.h-description {font-size:16px; padding-top: 35px}
 .h-menu {}
 .h-menu li{float:right; height: 45px}
 .h-menu a{padding:10px 15px 15px 15px; line-height: 44px}
-.h-menu-box {background-color: #555555; width:100%;}
-.h-menu-box a{color:#FFFFFF; font-size:12px; font-weight:normal;font-style:normal; text-decoration:none}
-.h-menu-box ul{float:right}
-.h-menu-box li:hover{background-color: #666666; cursor:pointer;transition:all .2s;}
+.h-menu-box {width:100%; text-align: center; display: inline;}
+.h-menu-box a{color:#FFFFFF; font-size:14px; font-weight:normal;font-style:normal; text-decoration:none}
+.h-menu-box a:hover{color:#EEEEEE;}
+.h-menu-box ul{width: 100%; text-align: center; margin-top: 50px; position: absolute; bottom: 25px; z-index: 1;}
+.h-menu-box li{display: inline; margin: 0px 20px 0px 20px;}
+/*.h-menu-box li:hover{background-color: #666666; cursor:pointer;transition:all .2s;}*/
 .clear {clear:both}
 .about-panel {background-color: #3c8dbc; border:none; border-radius:2px; text-align:center; color:#FFFFFF;}
 .about-image {border-radius:50%;border:4px solid #2b6688; max-width: 180px;}

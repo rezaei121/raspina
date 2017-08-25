@@ -117,7 +117,7 @@ return [
     'Date Format' => 'فرمت تاریخ و زمان',
     'Keyword' => 'کلمات کلیدی',
     'Description' => 'توضیحات',
-    'Login' => 'ورود به ناحیه کاربری',
+    'Login' => 'ورود',
     'Update Setting' => 'بروزرسانی تنظیمات',
     'Forgot password?' => 'کلمه عبور خود را فراموش کرده اید؟',
     'Check Your Email' => 'لطفا ایمیل خود را بررسی کنید',

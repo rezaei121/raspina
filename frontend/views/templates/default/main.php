@@ -23,6 +23,7 @@ $this->beginPage();
 	<link rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/reset.css">
 	<link type="text/css" rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/style.css">
+	<link rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/prism.css">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING=> Respond.js doesn't work if you view the page via file=>// -->
 	<!--[if lt IE 9]>
@@ -35,32 +36,24 @@ $this->beginPage();
 <!-- header -->
 <div class="">
 	<div class="header">
-		<div class="col-sm-12">
-				<span class="fa fa-globe top-icon"></span>
-				<span class="h-title">
-					<?= Raspina::subject() ?><br>
-					<span class="h-description"><?= Raspina::siteDescription() ?></span>
-				</span>
+        <div class="h-title"><?= Raspina::subject() ?></div>
+        <div class="h-description"><?= Raspina::siteDescription() ?></div>
 
-		</div>
-
+        <div class="h-menu-box">
+            <ul>
+                <li><a href="<?= Raspina::url() ?>"><?= Raspina::t('Home') ?></a></li>
+                <li><a href="<?= Raspina::url() ?>user/about"><?= Raspina::t('About') ?></a></li>
+                <li><a href="<?= Raspina::url() ?>contact/index"><?= Raspina::t('Contact Me') ?></a></li>
+                <li><a href="<?= Raspina::url() ?>site/rss" target="_blank"><?= Raspina::t('RSS') ?></a></li>
+                <li><a href="<?= Raspina::url() ?>backend/web/user/login"><?= Raspina::t('Login') ?></a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
 	</div>
-
-	<div class="h-menu-box">
-			<ul class="h-menu">
-				<li><a href="<?= Raspina::url() ?>"><?= Raspina::t('Home') ?></a></li>
-				<li><a href="<?= Raspina::url() ?>user/about"><?= Raspina::t('About') ?></a></li>
-				<li><a href="<?= Raspina::url() ?>contact/index"><?= Raspina::t('Contact Me') ?></a></li>
-				<li><a href="<?= Raspina::url() ?>site/rss" target="_blank"><?= Raspina::t('RSS') ?></a></li>
-				<li><a href="<?= Raspina::url() ?>backend/web/user/login"><?= Raspina::t('Login') ?></a></li>
-			</ul>
-			<div class="clear"></div>
-	</div>
-
 </div>
 <!-- /header -->
 <div class="container" id="wrap">
-	<div class="row" style="margin-top: 60px;">
+	<div class="row" style="margin-top: 35px;">
 		<div class="col-sm-9" style=" line-height=> 0px;">
 			<?= Alert::widget() ?>
 			<?= $content ?>
@@ -149,6 +142,7 @@ $this->beginPage();
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="<?= Raspina::templateUrl() ?>js/jquery-2.2.3.min.js"></script>
 	<script src="<?= Raspina::templateUrl() ?>js/mycode.js"></script>
+	<script src="<?= Raspina::templateUrl() ?>js/prism.js"></script>
 <?php $this->endBody() ?>
 </body>
 </html>

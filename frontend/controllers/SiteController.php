@@ -77,9 +77,7 @@ class SiteController extends BaseController
     public function actionIndex()
     {
         $query = new \yii\db\Query();
-        $postModel = new Post;
         $posTable = \frontend\models\Post::tableName();
-        $userTable = \common\models\User::tableName();
         $commentTable = \frontend\models\Comment::tableName();
         $postCategoryTable = \common\models\PostCategory::tableName();
         // update posts status
