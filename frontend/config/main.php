@@ -40,9 +40,17 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'file/download/<id:\w+>' => 'file/download',
-                'site/index/tag/<tag>/<page:\d+>/<per-page:\d+>' => 'site/index',
-                'site/index/tag/<tag>' => 'site/index',
                 'site/404.html' => 'site/404',
+                 [
+                    'pattern' => 'site/index/tag/<tag>/<page:\d+>/<per-page:\d+>',
+                    'route' => 'site/index',
+                    'suffix' => '.html',
+                ],
+                [
+                    'pattern' => 'site/index/tag/<tag>',
+                    'route' => 'site/index',
+                    'suffix' => '.html',
+                ],
                 [
                     'pattern' => 'user/about/<username:\w+>',
                     'route' => 'user/about',

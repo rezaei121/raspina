@@ -11,6 +11,7 @@ use yii\helpers\Url;
 class Post extends \common\models\Post
 {
     public $comment_count;
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -24,7 +25,7 @@ class Post extends \common\models\Post
      */
     public function getPostCategories()
     {
-        return $this->hasMany(PostCategory::className(), ['post_id' => 'id'])->joinWith('category')->asArray();
+        return $this->hasMany(PostCategory::className(), ['post_id' => 'id'])->joinWith('category');
     }
 
     /**
@@ -33,8 +34,7 @@ class Post extends \common\models\Post
      */
     public function plusView()
     {
-        if(!\common\models\Visitors::isBot())
-        {
+        if (!\common\models\Visitors::isBot()) {
             $this->view++;
             $this->save(false);
         }
@@ -46,34 +46,31 @@ class Post extends \common\models\Post
      */
     public function get()
     {
-        $posTable = Post::tableName();
-        $userTable = \common\models\User::tableName();
         $commentTable = \frontend\models\Comment::tableName();
 
-//        $model = new \yii\db\Query();
-//        $model->select(["p.*","u.last_name","u.username", "u.surname","COUNT(c.id) AS comment_count","IF(p.more_text IS NOT NULL,'1','0') AS `more`"])->
-//        from("{$posTable} As p")->leftJoin("{$userTable} AS u","p.created_by = u.id")->
-//        leftJoin("{$commentTable} AS c","p.id = c.post_id  AND c.status = 1")->
-//        where(['p.id' => $this->id, 'p.title' => $this->title, 'p.status' => 1]);
-
-
-
-
-//        $model = Post::find()
-//            ->alias('p')
-//            ->select(["p.*","u.last_name","u.username", "u.surname","COUNT(c.id) AS comment_count","IF(p.more_text IS NOT NULL,'1','0') AS `more`"])
-//            ->leftJoin("{$userTable} AS u", "p.created_by = u.id")
-//            ->leftJoin("{$commentTable} AS c","p.id = c.post_id  AND c.status = 1")
-//            ->where(['p.id' => $this->id, 'p.title' => $this->title, 'p.status' => 1]);
-
-                $model = Post::find()
+        $model = Post::find()
             ->alias('p')
-                    ->select(['p.*', 'COUNT(c.id) comment_count'])
+            ->select(['p.*', 'COUNT(c.id) comment_count'])
             ->innerJoinWith('createdBy u1')
             ->joinWith('updatedBy u2')
             ->leftJoin(['c' => $commentTable], "p.id = c.post_id  AND c.status = 1 AND c.post_id = {$this->id}")
             ->where(['p.id' => $this->id]);
         return $model->one();
+    }
+
+    public function tags()
+    {
+        return parent::getPostTags();
+    }
+
+    public function comments()
+    {
+        return $this->getComments()->all();
+    }
+
+    public function categories()
+    {
+        return $this->getPostCategories()->all();
     }
 
     /**
@@ -86,15 +83,17 @@ class Post extends \common\models\Post
         $likes = [];
         foreach ($title as $t)
         {
-            $likes[] = "(title LIKE '%{$t}%')";
+            $likes[] = "(p.title LIKE '%{$t}%')";
         }
-        $likes[] = "(tags LIKE '%{$t}%')";
-        $likes[] = "(keywords LIKE '%{$t}%')";
+        $likes[] = "(t.title LIKE '%{$t}%')";
+        $likes[] = "(p.keywords LIKE '%{$t}%')";
 
         $sql = "
             SELECT p.*,
                    (" . implode(' + ', $likes) . ") as hits
             FROM rs_post AS p
+            LEFT JOIN rs_post_tag pt on pt.post_id = p.id
+            LEFT JOIN rs_tag t on pt.tag_id = t.id
             WHERE p.id != {$this->id} AND p.status = 1
             HAVING hits > 0
             ORDER BY hits DESC

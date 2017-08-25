@@ -70,7 +70,6 @@ class PostController extends BaseController
         return $this->render('post', [
             'post' => $model,
             'commentModel' => $commentModel,
-            'comments' => $postModel->getComments()->all(),
             'postCategories' => $postModel->getPostCategories()->all()
         ]);
     }

@@ -18,6 +18,11 @@ Thumbs.db
 
 # composer vendor dir
 /vendor
+
+# assets dir
+/frontend/web/assets
+/dashboard/web/assets
+
 # cubrid install dir
 /cubrid
 

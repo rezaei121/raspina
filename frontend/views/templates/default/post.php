@@ -52,14 +52,14 @@ Raspina::title($post->title);
                         'user' => $updaterAuthor
                     ]) ?></span>
                 <?php endif ?>
-<!--                --><?php //if($post['tags']): ?>
-<!--                <hr class="more-hr">-->
-<!--                <div class="post-tags"><span class="fa fa-tags"></span>-->
-<!--                    --><?php //foreach ($post['tags'] as $tag): ?>
-<!--                        <a href="--><?//= $this->params['url'] ?><!--site/index/tag/--><?//= $tag ?><!--">--><?//= $tag ?><!--</a><delimiter>،</delimiter>-->
-<!--                    --><?php //endforeach ?>
-<!--                </div>-->
-<!--                --><?php //endif ?>
+                <?php if($tags = $post->tags()): ?>
+                <hr class="more-hr">
+                <div class="post-tags"><span class="fa fa-tags"></span>
+                    <?php foreach ($tags as $tag): ?>
+                        <?= Html::a($tag, ['/site/index', 'tag' => $tag]) ?>,
+                    <?php endforeach ?>
+                </div>
+                <?php endif ?>
             </div>
         </div>
     </div>
@@ -71,7 +71,6 @@ Raspina::title($post->title);
                 <div class="post-title"><?= Raspina::t('Related'); ?></div>
                 <div class="post-text">
                     <!-- -->
-                    <?php var_dump($postRelated); exit(); ?>
                     <?php foreach ($postRelated as $related): ?>
                         <?= Html::a($related['title'],[0 => 'post/view','id' => $related['id'],'title' => $related['title']]) ?><br>
                     <?php endforeach ?>
@@ -82,11 +81,11 @@ Raspina::title($post->title);
     </div>
 <?php endif ?>
 
-<?php if($comments): ?>
+<?php if($comments = $post->comments()): ?>
 <div class="post-border shadow">
     <div class="panel panel-default post-panel">
         <div class="panel-body">
-            <div class="post-title">نظرات</div>
+            <div class="post-title"><?= Raspina::t('Comments') ?></div>
             <div class="post-text">
                 <!-- -->
                     <?php foreach($comments as $c): ?>

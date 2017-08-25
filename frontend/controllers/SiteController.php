@@ -1,5 +1,7 @@
 <?php
 namespace frontend\controllers;
+use common\models\PostTag;
+use common\models\Tag;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
@@ -121,7 +123,11 @@ class SiteController extends BaseController
 
         if(isset($request['tag']))
         {
-            $query->andWhere(['like','p.tags', $request['tag']]);
+            $postTagTableName = PostTag::tableName();
+            $tagTableName = Tag::tableName();
+            $query->leftJoin(['pt' => $postTagTableName], 'pt.post_id = p.id');
+            $query->leftJoin(['t' => $tagTableName], 'pt.tag_id = t.id');
+            $query->andWhere(['t.title' => $request['tag']]);
         }
 
         if(!empty($request['Site']['search']))

@@ -1,6 +1,8 @@
 <?php
 namespace frontend\components\helpers;
 use Yii;
+use yii\helpers\Html;
+
 class Raspina
 {
     public static function title($title = null)
@@ -16,6 +18,11 @@ class Raspina
     public static function t($message, $params = [])
     {
         return Yii::t('app', $message, $params);
+    }
+
+    public static function a($text, $url)
+    {
+        return Html::a($text, $url);
     }
 
     public static function date($date)
