@@ -64,7 +64,7 @@ class PostController extends BaseController
         $request = Yii::$app->request->post();
         if($commentModel->load($request) && $model['enable_comments'] && $commentModel->save())
         {
-            Yii::$app->getSession()->setFlash('success', Yii::t('app','Comment Successfully Sent'));
+            Yii::$app->getSession()->setFlash('success', Yii::t('app','Comment successfully sent'));
         }
 
         return $this->render('post', [

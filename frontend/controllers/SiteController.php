@@ -26,18 +26,6 @@ class SiteController extends BaseController
         ];
     }
 
-//    public function beforeAction($action)
-//    {
-//        if ($action->id == 'error')
-//        {
-//            if (Yii::$app->user->isGuest)
-//            {
-//                return Yii::$app->getResponse()->redirect(Url::to(\Yii::$app->getUser()->loginUrl))->send();
-//            }
-//        }
-//        return parent::beforeAction($action);
-//    }
-
     /**
      * @inheritdoc
      */

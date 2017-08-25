@@ -66,11 +66,11 @@ class NewsletterController extends BaseController
             if($findModel !== null)
             {
                 $findModel->delete();
-                Yii::$app->session->setFlash('success', Yii::t('app','Success Unsubscribe Newsletter'));
+                Yii::$app->session->setFlash('success', Yii::t('app','Success unsubscribe newsletter'));
             }
             else
             {
-                Yii::$app->session->setFlash('error', Yii::t('app','Newsletter Email Not Found'));
+                Yii::$app->session->setFlash('error', Yii::t('app','Newsletter email not found'));
             }
         }
 

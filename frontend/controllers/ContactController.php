@@ -22,7 +22,7 @@ class ContactController extends BaseController
         $request = Yii::$app->request->post();
         if($contact->load($request) && $contact->save())
         {
-            Yii::$app->getSession()->setFlash('success', Yii::t('app','Contact Successfully Sent'));
+            Yii::$app->getSession()->setFlash('success', Yii::t('app','Contact successfully sent'));
         }
 
         return $this->render('contact',[
