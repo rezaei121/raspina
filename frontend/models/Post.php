@@ -11,13 +11,17 @@ use yii\helpers\Url;
 class Post extends \common\models\Post
 {
     public $comment_count;
-
+    public $category_ids;
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getComments()
     {
-        return $this->hasMany(Comment::className(), ['post_id' => 'id'])->where(['status' => 1])->orderBy(['id' => SORT_DESC]);
+        return $this->hasMany(Comment::className(), ['post_id' => 'id'])
+            ->alias('c')
+            ->where(['c.status' => 1])
+            ->joinWith('createdBy')
+            ->orderBy(['c.id' => SORT_DESC]);
     }
 
     /**

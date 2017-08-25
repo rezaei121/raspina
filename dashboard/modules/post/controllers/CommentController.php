@@ -97,6 +97,15 @@ class CommentController extends Controller
             }
 
             $model->status = 1;
+            if($model->createdBy == null)
+            {
+                $model->created_by = Yii::$app->user->id;
+            }
+            else
+            {
+                $model->updated_by = Yii::$app->user->id;
+                $model->updated_at = (new \DateTime())->format('Y-m-d H:i:s');
+            }
             if($model->save())
             {
                 Yii::$app->session->setFlash('success', Yii::t('app','Reply saved.'));
@@ -135,7 +144,6 @@ class CommentController extends Controller
         $GETrequest = Yii::$app->request->get();
         $selection = isset($GETrequest['id'])? (array)$GETrequest['id'] : (array)Yii::$app->request->post('selection');
         $action = isset($GETrequest['action'])? $GETrequest['action'] : Yii::$app->request->post('action');
-
 
         if(empty($selection))
         {

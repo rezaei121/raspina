@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 use common\models\PostTag;
 use common\models\Tag;
+use frontend\models\Post;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
@@ -88,7 +89,7 @@ class SiteController extends BaseController
     public function actionIndex()
     {
         $query = new \yii\db\Query();
-
+        $postModel = new Post;
         $posTable = \frontend\models\Post::tableName();
         $userTable = \common\models\User::tableName();
         $commentTable = \frontend\models\Comment::tableName();
@@ -97,20 +98,22 @@ class SiteController extends BaseController
         $query->createCommand()->update($posTable,['status' => 1],"status = 2 AND created_at <='" . (new \DateTime())->format('Y-m-d H:i:s'). "'")->execute();
 
         // select posts
-        $query->select(["p.pin_post","p.id","p.title","p.short_text","p.created_at","p.view","u.username", "u.last_name","u.surname","COUNT(DISTINCT c.id) AS comment_count","IF(p.more_text != '','1','0') AS `more`","GROUP_CONCAT(DISTINCT pc.category_id) AS category_ids"])->
-        from("{$posTable} As p")->
-        leftJoin("{$userTable} AS u","p.created_by = u.id")->
-        leftJoin("{$commentTable} AS c","p.id = c.post_id AND c.status = 1")->
-        leftJoin("{$postCategoryTable} AS pc","p.id = pc.post_id")->
-        groupBy("p.id")->
-        orderBy('p.pin_post DESC,p.id DESC')->
-        where("p.status=1");
+        $postModel = Post::find()
+            ->alias('p')
+            ->select(["p.*","COUNT(DISTINCT c.id) AS comment_count","IF(p.more_text != '','1','0') AS `more`","GROUP_CONCAT(DISTINCT pc.category_id) AS category_ids"])
+            ->joinWith('createdBy u1')
+            ->joinWith('updatedBy u2')
+            ->leftJoin(['c' => $commentTable],"p.id = c.post_id AND c.status = 1")
+            ->leftJoin(['pc' => $postCategoryTable],"p.id = pc.post_id")
+            ->groupBy("p.id")
+            ->orderBy('p.pin_post DESC,p.id DESC')
+            ->where("p.status=1");
 
         $request = Yii::$app->request->get();
 
         if(isset($request['category']))
         {
-            $query->andWhere(['pc.category_id' => $request['category']]);
+            $postModel->andWhere(['pc.category_id' => $request['category']]);
 
             $catQuery = new \yii\db\Query();
             $categoryTable = \common\models\Category::tableName();
@@ -125,20 +128,20 @@ class SiteController extends BaseController
         {
             $postTagTableName = PostTag::tableName();
             $tagTableName = Tag::tableName();
-            $query->leftJoin(['pt' => $postTagTableName], 'pt.post_id = p.id');
-            $query->leftJoin(['t' => $tagTableName], 'pt.tag_id = t.id');
-            $query->andWhere(['t.title' => $request['tag']]);
+            $postModel->leftJoin(['pt' => $postTagTableName], 'pt.post_id = p.id');
+            $postModel->leftJoin(['t' => $tagTableName], 'pt.tag_id = t.id');
+            $postModel->andWhere(['t.title' => $request['tag']]);
         }
 
         if(!empty($request['Site']['search']))
         {
-            $query->andWhere(['like','p.title', $request['Site']['search']]);
-            $query->orWhere(['like','p.short_text', $request['Site']['search']]);
-            $query->orWhere(['like','p.more_text', $request['Site']['search']]);
+            $postModel->andWhere(['like','p.title', $request['Site']['search']]);
+            $postModel->orWhere(['like','p.short_text', $request['Site']['search']]);
+            $postModel->orWhere(['like','p.more_text', $request['Site']['search']]);
         }
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query' => $postModel,
             'pagination' => [
                 'pageSize' => $this->setting['page_size']
             ]
