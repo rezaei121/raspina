@@ -140,4 +140,9 @@ class Raspina
     {
         return Yii::$app->language;
     }
+
+    public static function direction()
+    {
+        return Yii::$app->params['direction'];
+    }
 }

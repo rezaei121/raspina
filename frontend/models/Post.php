@@ -89,8 +89,8 @@ class Post extends \common\models\Post
         {
             $likes[] = "(p.title LIKE '%{$t}%')";
         }
-        $likes[] = "(t.title LIKE '%{$t}%')";
-        $likes[] = "(p.keywords LIKE '%{$t}%')";
+        $likes[] = "(IFNULL(t.title LIKE '%{$t}%',0))";
+        $likes[] = "(IFNULL(p.keywords LIKE '%{$t}%',0))";
 
         $sql = "
             SELECT p.*,

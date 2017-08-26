@@ -10,9 +10,13 @@ Raspina::title('About');
                 <!-- -->
                 <br>
                 <?php foreach ($model as $user): ?>
-                <img style="float: right; margin-left: 10px;" src="<?= $user->avatar(); ?>" width="200">
-                <h4 style="font-weight: bold; font-size: 14px; margin-bottom: 6px;"><?= $user->name() ?></h4>
-                <p><?= $user->about() ?></p>
+                <div class="col-md-4 user-about-img">
+                    <img style="" src="<?= $user->avatar(); ?>">
+                </div>
+                <div class="col-md-8 user-about-text">
+                    <h4 style="font-weight: bold; font-size: 14px; margin-bottom: 6px;"><?= $user->name() ?></h4>
+                    <p><?= $user->about() ?></p>
+                </div>
                     <div class="clear"></div>
                     <hr>
                 <?php endforeach; ?>

@@ -44,7 +44,7 @@ a:hover{
 	text-decoration:none;
 }
 
-html,body {direction:rtl; text-align:right; font-family: Sahel, sans-serif; font-size:17px; transition:all .3s;  text-decoration:none; background-color: #f1f1f1;height: 100%;}
+html,body {direction:ltr; text-align:left; font-family: Sahel, sans-serif; font-size:17px; transition:all .3s;  text-decoration:none; background-color: #f1f1f1;height: 100%;}
 #wrap {
 	min-height: 100%;
 	height: auto;
@@ -58,6 +58,8 @@ pre {text-align: left; direction: ltr; padding: 10px; font-family: Sahel, sans-s
 strong {font-weight: bold}
 .footer { width: 100%; height: 70px; background-color: #555555; font-size: 11px; color: #fefefe; line-height: 23px; padding: 10px 0px 20px 0px; border-top:5px solid #3c8dbc;}
 
+.user-about-text {}
+.user-about-img {text-align: center;}
 .header {
 	background-color:#555555;
 	width:100%;
@@ -97,9 +99,9 @@ code, pre {text-align: left !important; direction: ltr !important;}
 .post-panel {background-color: #FFFFFF; border:none; border-radius:0px; color:#333333; border-bottom:1px solid #d3d5d7; margin-bottom:2px;}
 .post-border {border-bottom:1px solid #d3d5d7; background:#FFFFFF; margin-bottom:25px;}
 .post-title {font-size:16px; margin: 10px 0px 10px 0px;}
-.post-detail {font-size:11px; color:#9ba1a8; border: 1px solid #e4e6e8; background-color: #f6f6f6; padding:7px 7px 7px 7px;border-radius:2px; float:right; margin-left:15px;margin-top:0px;}
-.post-detail .fa{float: right; margin-top: 0px;}
-.post-detail span{margin-left:5px;}
+.post-detail {font-size:11px; color:#9ba1a8; border: 1px solid #e4e6e8; background-color: #f6f6f6; padding:7px 7px 7px 7px;border-radius:2px; float:left; margin-right:15px;margin-top:0px;}
+.post-detail .fa{float: left; margin-top: 0px;}
+.post-detail span{margin-right:5px;}
 .post-text{font-size:12px; line-height:22px; text-align:justify; margin-top: 8px;}
 
 .shadow {-webkit-box-shadow: 0 0 5px 0 #e2e3e4; -moz-box-shadow: 0 0 5px 0 #e2e3e4;box-shadow: 0 0 5px 0 #e2e3e4;}
@@ -116,8 +118,8 @@ delimiter:last-child {display: none}
 
 .menu-title {font-size: 12px; border-bottom: 2px solid #d3d5d7; padding-bottom: 7px;}
 .menu-title-icon {background: #3c8dbc; padding: 5px 5px 5px 5px; color: #ffffff; border-radius: 2px; width: 28px; text-align: center}
-.menu-title-line {border-bottom:2px solid #3c8dbc; width: 28px; margin-top: -2px; float: right}
-.menu-title-text { padding-right: 5px;}
+.menu-title-line {border-bottom:2px solid #3c8dbc; width: 28px; margin-top: -2px; float: left}
+.menu-title-text { padding-left: 5px;}
 .menu-panel {font-size: 12px;}
 .cat-item { border-bottom: 1px solid #ecedee; padding: 10px 0px 10px 0px;}
 .cat-item:last-child {border-bottom: none; padding-bottom: 0px;}

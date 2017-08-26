@@ -23,6 +23,14 @@ $this->beginPage();
 	<link rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/reset.css">
 	<link type="text/css" rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/style.css">
+
+    <?php
+    // add rtl style
+    if(Raspina::direction() == 'rtl'):
+    ?>
+        <link rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/style-rtl.css">
+    <?php endif; ?>
+
 	<link rel="stylesheet" href="<?= Raspina::templateUrl() ?>css/prism.css">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING=> Respond.js doesn't work if you view the page via file=>// -->
@@ -45,7 +53,7 @@ $this->beginPage();
                 <li><a href="<?= Raspina::url() ?>user/about"><?= Raspina::t('About') ?></a></li>
                 <li><a href="<?= Raspina::url() ?>contact/index"><?= Raspina::t('Contact Me') ?></a></li>
                 <li><a href="<?= Raspina::url() ?>site/rss" target="_blank"><?= Raspina::t('RSS') ?></a></li>
-                <li><a href="<?= Raspina::url() ?>backend/web/user/login"><?= Raspina::t('Login') ?></a></li>
+                <li><a href="<?= Raspina::url() ?>dashboard"><?= Raspina::t('Login') ?></a></li>
             </ul>
             <div class="clear"></div>
         </div>
