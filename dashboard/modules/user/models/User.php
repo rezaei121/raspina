@@ -31,7 +31,7 @@ class User extends \common\models\User implements IdentityInterface
         $parentRules[] = [['username', 'last_name', 'surname', 'password', 'password_repeat', 'email'], 'required', 'on' => 'create'];
         $parentRules[] = [['username', 'last_name', 'surname', 'password', 'password_repeat', 'email'], 'trim', 'on' => 'create'];
         $parentRules[] = ['password_repeat', 'compare', 'compareAttribute' => 'password', 'on' => ['create']];
-        $parentRules[] = ['password_repeat', 'compare', 'compareAttribute' => 'new_password', 'on' => ['create', 'update-password']];
+        $parentRules[] = ['password_repeat', 'compare', 'compareAttribute' => 'new_password', 'on' => ['update-password']];
 
         $parentRules[] = [['username', 'last_name', 'surname', 'email'], 'required', 'on' => 'update'];
         $parentRules[] = [['username', 'last_name', 'surname', 'email'], 'trim', 'on' => 'update'];

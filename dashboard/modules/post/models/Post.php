@@ -3,7 +3,6 @@
 namespace dashboard\modules\post\models;
 use common\models\PostTag;
 use common\models\Tag;
-use frontend\models\Category;
 use meysampg\intldate\IntlDateTrait;
 use Yii;
 use yii\behaviors\SluggableBehavior;

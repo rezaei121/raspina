@@ -14,26 +14,26 @@ class Setting implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-        $settingModel = \dashboard\modules\setting\models\Setting::find()->one();
-
-        Yii::$app->language = $settingModel->language;
-        Yii::$app->timeZone = $settingModel->time_zone;
-        Yii::$app->date->locale = $settingModel->language;
-        Yii::$app->date->defaultTimeZone = $settingModel->time_zone;
-        Yii::$app->date->datetimeFormat = $settingModel->date_format;
-        Yii::$app->params['direction'] = $settingModel->direction;
-        Yii::$app->params['lang'] = (explode('-',$settingModel->language))[0];
-
-        if($settingModel->direction == 'rtl')
+        try
         {
-//            $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/ltr.css', ['depends' => [\dashboard\assets\AppAsset::className()]]);
-            $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/bootstrap-rtl.min.css', ['depends' => [\dashboard\assets\AppAsset::className()]]);
+            $settingModel = \dashboard\modules\setting\models\Setting::find()->one();
+
+            Yii::$app->language = $settingModel->language;
+            Yii::$app->timeZone = $settingModel->time_zone;
+            Yii::$app->date->locale = $settingModel->language;
+            Yii::$app->date->defaultTimeZone = $settingModel->time_zone;
+            Yii::$app->date->datetimeFormat = $settingModel->date_format;
+            Yii::$app->params['direction'] = $settingModel->direction;
+            Yii::$app->params['lang'] = (explode('-',$settingModel->language))[0];
+
+            if($settingModel->direction == 'rtl')
+            {
+                $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/bootstrap-rtl.min.css', ['depends' => ['yii\bootstrap\BootstrapAsset']]);
+            }
         }
-
-        if($settingModel->direction == 'rtl')
+        catch (\Exception $e)
         {
-//            $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/ltr.css', ['depends' => [\dashboard\assets\AppAsset::className()]]);
-//            $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/bootstrap-rtl.min.css', ['depends' => [\dashboard\assets\AppAsset::className()]]);
+
         }
     }
 }

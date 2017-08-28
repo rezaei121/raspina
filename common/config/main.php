@@ -1,7 +1,7 @@
 <?php
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'language' => 'fa-IR',
+    'language' => 'en-US',
     'timeZone' => 'Asia/Tehran',
     'components' => [
         'assetManager' => [

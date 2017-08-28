@@ -25,12 +25,12 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index'],
+                'only' => ['index', 'login','requestPasswordReset'],
                 'rules' => [
                     [
                         'actions' => ['login','requestPasswordReset'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => ['?', '@'],
                     ],
                     [
                         'actions' => ['index'],
