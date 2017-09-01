@@ -5,7 +5,7 @@ use dashboard\components\helpers\Html;
 /* @var $model dashboard\modules\post\models\Post */
 
 $this->title = Yii::t('app', 'Posts');
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['index']];
 
 $postStatus = $model->postStatus();
 ?>

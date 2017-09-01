@@ -25,6 +25,8 @@ class Setting implements BootstrapInterface
             Yii::$app->date->datetimeFormat = $settingModel->date_format;
             Yii::$app->params['direction'] = $settingModel->direction;
             Yii::$app->params['lang'] = (explode('-',$settingModel->language))[0];
+            Yii::$app->hashids->salt = $settingModel->sult;
+            Yii::$app->hashids->init();
 
             if($settingModel->direction == 'rtl')
             {

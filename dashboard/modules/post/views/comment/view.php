@@ -70,7 +70,7 @@ echo $postStatus[$model->status];
             'plugins' => [
                 "advlist autolink lists link charmap visualblocks code media table contextmenu image media codesample code"
             ],
-            'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image upload table link | code"
+            'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image  table link | codesample | code"
         ]
     ]) ?>
     <?= Yii::t('app', 'After sending reply the comment will be automatically approved and published.') ?>

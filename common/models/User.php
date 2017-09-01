@@ -2,6 +2,9 @@
 
 namespace common\models;
 
+use dashboard\modules\newsletter\models\NewsletterLog;
+use dashboard\modules\user\models\AuthAssignment;
+use dashboard\modules\user\models\AuthItem;
 use Yii;
 use yii\web\IdentityInterface;
 

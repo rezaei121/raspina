@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'options' => ['rows' => 20],
     'language' =>  Yii::$app->params['lang'],
     'clientOptions' => [
-        'content_css' => '/raspina/dashboard/web/css/tinymce.css',
+        'content_css' => \yii\helpers\Url::to(['/web/css/tinymce.css']),
         'directionality' => Yii::$app->params['direction'],
         'entity_encoding' => "utf-8",
         'relative_urls' => false,
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'plugins' => [
             "advlist autolink lists link charmap visualblocks code media table contextmenu image media codesample code"
         ],
-        'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image upload table link | code"
+        'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image  table link | codesample | code"
     ]
 ]) ?>
 

@@ -31,7 +31,7 @@ use dashboard\modules\post\models\PostCategory;
         'options' => ['rows' => 20],
         'language' =>  Yii::$app->params['lang'],
         'clientOptions' => [
-            'content_css' => '/raspina/dashboard/web/css/tinymce.css',
+            'content_css' => \yii\helpers\Url::to(['/web/css/tinymce.css']),
             'directionality' => Yii::$app->params['direction'],
             'entity_encoding' => "utf-8",
             'relative_urls' => false,
@@ -39,7 +39,7 @@ use dashboard\modules\post\models\PostCategory;
             'plugins' => [
                 "advlist autolink lists link charmap visualblocks code media table contextmenu image media codesample code"
             ],
-            'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image upload table link | code"
+            'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image  table link | codesample | code"
         ]
     ]) ?>
 
@@ -54,6 +54,7 @@ use dashboard\modules\post\models\PostCategory;
             'language' => Yii::$app->params['lang'],
             'clientOptions' => [
                 'directionality' => Yii::$app->params['direction'],
+                'content_css' => \yii\helpers\Url::to(['/web/css/tinymce.css']),
                 'relative_urls' => false,
                 'entity_encoding' => "utf-8",
                 'menubar' => false,

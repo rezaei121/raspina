@@ -39,6 +39,10 @@ $entity_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
     <body>
     <?php $this->beginBody() ?>
     <div class="header">
+        <div class="header-split" style="float: left; margin-top: 18px;">
+        <div class="raspina-logo"><?= Html::a('RS', ['/']) ?></div>
+        </div>
+
         <div class="header-split" style="margin-top: 8px;">
             <div class="dropdown">
                 <img class="user-profile dropdown-toggle" data-toggle="dropdown" src="<?= User::getAvatar(Yii::$app->user->id); ?>">
@@ -164,7 +168,7 @@ $entity_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
     </div>
 
 
-    <?php if (($controller_id == 'site' || $modules_id == 'post') && $action_id == 'index'): ?>
+    <?php $pos = "{$modules_id}/{$controller_id}/{$action_id}"; if ($pos == 'app-dashboard/site/index' || $pos == 'post/default/index'): ?>
         <a href="<?= Url::base() . '/post/default/create'; ?>">
             <div class="pen">
                 <img class="pen-icon" src="<?= Yii::$app->setting->getValue('url') ?>/dashboard/web/img/pen.svg">

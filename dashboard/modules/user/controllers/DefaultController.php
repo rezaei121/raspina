@@ -10,6 +10,7 @@ use dashboard\modules\user\models\LoginForm;
 use Yii;
 use dashboard\modules\user\models\User;
 use yii\data\ActiveDataProvider;
+use yii\db\ActiveQuery;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -77,7 +78,7 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => User::find(),
+            'query' => User::find()->joinWith('authAssignments auth')->where(['!=', 'auth.item_name', 'admin']),
         ]);
 
         return $this->render('index', [
@@ -200,7 +201,9 @@ class DefaultController extends Controller
     {
         $model = $this->findModel($id);
         $model->scenario = 'update';
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model->role = $model->getAuthAssignments()->one()->item_name;
+
+        if ($model->getAuthAssignments()->one()->item_name != 'admin' && $model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app','{object} updated.',[
                 'object' => Yii::t('app','User')
             ]));
@@ -247,13 +250,15 @@ class DefaultController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        $model->status = 0;
-        $model->save();
 
-        Yii::$app->session->setFlash('success', Yii::t('app','{object} disabled.',[
-            'object' => Yii::t('app','User')
-        ]));
-
+        if($model->getAuthAssignments()->one()->item_name != 'admin')
+        {
+            $model->status = 0;
+            $model->save();
+            Yii::$app->session->setFlash('success', Yii::t('app','{object} disabled.',[
+                'object' => Yii::t('app','User')
+            ]));
+        }
         return $this->redirect(['index']);
     }
 
