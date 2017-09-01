@@ -106,7 +106,7 @@ Raspina::title($post->title);
 </div>
 <?php endif ?>
 
-<?php if($post['enable_comments']): ?>
+<?php if($post->enable_comments): ?>
 <div class="post-border shadow">
     <div class="panel panel-default post-panel">
         <div class="panel-body">

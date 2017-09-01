@@ -38,21 +38,9 @@ use frontend\components\helpers\Raspina;
             <!-- -->
             <div class="post-text">
                 <?= $model->short_text?>
-                <br>
-                <?= $model->more_text ?>
-                <?php if($updaterAuthor = $model->updaterAuthor()): ?>
-                    <span style="font-style: italic"><?= Raspina::t('This post was last updated on {date} by {user}.', [
-                            'date' => Raspina::date($model->updated_at),
-                            'user' => $updaterAuthor
-                        ]) ?></span>
-                <?php endif ?>
-                <?php if($tags = $model->tags()): ?>
+                <?php if($model->more_text): ?>
                     <hr class="more-hr">
-                    <div class="post-tags"><span class="fa fa-tags"></span>
-                        <?php foreach ($tags as $tag): ?>
-                            <?= Html::a($tag, ['/site/index', 'tag' => $tag]) ?>,
-                        <?php endforeach ?>
-                    </div>
+                    <?= Html::a(Yii::t('app', 'More'),['post/view','id' => $model->id ,'title' => $model->title],['class' => 'button more']) ?>
                 <?php endif ?>
             </div>
         </div>
