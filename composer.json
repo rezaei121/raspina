@@ -18,7 +18,7 @@
         "yiisoft/yii2": ">=2.0.6",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "developit/yii2-captcha": "~1.0",
+        "developit/yii2-captcha": "*",
         "developit/yii2-jcrop": "*",
         "meysampg/intldate": "*",
         "light/hashids" : "*",

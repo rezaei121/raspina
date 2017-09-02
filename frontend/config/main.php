@@ -42,13 +42,13 @@ return [
                 'file/download/<id:\w+>' => 'file/download',
                 'site/404.html' => 'site/404',
                  [
-                    'pattern' => 'site/index/tag/<tag>/<page:\d+>/<per-page:\d+>',
-                    'route' => 'site/index',
+                    'pattern' => '<alias:\w+>/tag/<tag>/<page:\d+>/<per-page:\d+>',
+                    'route' => 'site/<alias>',
                     'suffix' => '.html',
                 ],
                 [
-                    'pattern' => 'site/index/tag/<tag>',
-                    'route' => 'site/index',
+                    'pattern' => '<alias:\w+>/tag/<tag>',
+                    'route' => 'site/<alias>',
                     'suffix' => '.html',
                 ],
                 [
@@ -62,16 +62,17 @@ return [
                     'suffix' => '.html',
                 ],
                 [
-                    'pattern' => 'site/index/category/<category:\d+>/<title>/<page:\d+>/<per-page:\d+>',
-                    'route' => 'site/index',
-                    'suffix' => '.html'
+                    'pattern' => '<alias:\w+>/<category:\d+>/<title>/<page:\d+>/<per-page:\d+>',
+                    'route' => 'site/<alias>',
                 ],
                 [
-                    'pattern' => 'site/index/category/<category:\d+>/<title>',
-                    'route' => 'site/index',
+                    'pattern' => '<alias:\w+>/<category:\d+>/<title>',
+                    'route' => 'site/<alias>',
                     'suffix' => '.html'
                 ],
-                'site/index/<page:\d+>/<per-page:\d+>' => 'site/index',
+                '<alias:\w+>/<page:\d+>/<per-page:\d+>' => 'site/<alias>',
+                '<alias:\w+>/<page:\d+>' => 'site/<alias>',
+                '<alias:\w+>' => 'site/<alias>',
             ]
         ]
     ],

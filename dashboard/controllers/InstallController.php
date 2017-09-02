@@ -52,8 +52,8 @@ class InstallController extends Controller
                 'height' => '34',
                 'backColor' => 0x5292c6,
                 'foreColor' => 0xFFFFFF,
-                'minLength' => 4,
-                'maxLength' => 4,
+                'minLength' => 5,
+                'maxLength' => 5,
             ],
         ];
     }

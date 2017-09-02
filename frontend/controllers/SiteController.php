@@ -39,8 +39,8 @@ class SiteController extends BaseController
             'captcha' => [
                 'class' => 'developit\captcha\CaptchaAction',
                 'type' => 'numbers',
-                'minLength' => 4,
-                'maxLength' => 4,
+                'minLength' => 5,
+                'maxLength' => 5,
             ],
         ];
     }
