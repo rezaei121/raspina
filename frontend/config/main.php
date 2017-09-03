@@ -62,6 +62,10 @@ return [
                     'suffix' => '.html',
                 ],
                 [
+                    'pattern' => 'contact',
+                    'route' => 'contact/index',
+                ],
+                [
                     'pattern' => '<alias:\w+>/<category:\d+>/<title>/<page:\d+>/<per-page:\d+>',
                     'route' => 'site/<alias>',
                 ],

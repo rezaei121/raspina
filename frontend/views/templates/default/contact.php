@@ -15,6 +15,7 @@ Raspina::title('Contact Me');
                 <?php $form = ActiveForm::begin() ?>
                 <?= $form->field($model,'name')->textInput(['maxlength' => true,'class' => 'input margin-17','placeholder' => Raspina::t('Name')]) ?>
                 <?= $form->field($model,'email')->textInput(['maxlength' => true,'class' => 'input margin-17','placeholder' => Raspina::t('Email'),'dir' => 'ltr']) ?>
+                <?= $form->field($model,'site')->textInput(['maxlength' => true,'class' => 'input margin-17','placeholder' => Raspina::t('Site'),'dir' => 'ltr']) ?>
                 <?= $form->field($model,'message')->textArea(['rows' => '6' ,'class' => 'input margin-17','placeholder' => Raspina::t('Message')]) ?>
                 <?= $form->field($model,'captcha')->widget(Captcha::className(),['options' => ['placeholder' => Raspina::t('Captcha')]]) ?>
                 <?= Html::submitButton('ارسال پیام',['class' => 'submit']) ?>

@@ -2,8 +2,7 @@
 /* @var $this yii\web\View */
 use yii\helpers\Url;
 use yii\grid\GridView;
-use common\helpers\Raspina;
-$this->title = Yii::t('app','Statistics and information');
+$this->title = Yii::t('app','Dashboard');
 
 $this->registerCssFile(Yii::$app->homeUrl . 'web/css/jquery.mCustomScrollbar.css');
 
@@ -115,7 +114,7 @@ $this->registerJsFile(Yii::$app->homeUrl . 'web/js/chart_config.js');
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="padding: 3px 7px 3px 7px; line-height: 0px;">
                                         <span class="fa fa-bars"></span></button>
-                                    <ul class="dropdown-menu pull-left">
+                                    <ul class="dropdown-menu pull-right">
                                         <li><a href="#os"><span class="fa fa-desktop"></span> <?= $v['os'] ?></a></li>
                                         <li><a href="#browser"><span class="fa fa-tablet"></span> <?= $browserDetail['browser'] . ' ' . $browserDetail['version']; ?></a></li>
                                         <li><a href="<?= $v['location'] ?>" target="_blank"><span class="fa fa-map-marker"></span> <?= $locationTitle ?></a></li>

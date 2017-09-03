@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $searchModel dashboard\modules\newsletter\models\Newsletter */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Newsletters users');
+$this->title = Yii::t('app', 'Newsletters users') . ". (" . Yii::t('app', '{count} member', ['count' => $userCount]) . ")";
 $this->params['breadcrumbs'][] = Yii::t('app', 'Newsletter');
 ?>
 

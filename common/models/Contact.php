@@ -38,6 +38,7 @@ class Contact extends \yii\db\ActiveRecord
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 75],
             [['email', 'site'], 'string', 'max' => 255],
+            [['email'], 'email'],
             [['ip'], 'string', 'max' => 20],
         ];
     }

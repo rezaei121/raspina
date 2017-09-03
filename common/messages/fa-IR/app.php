@@ -1,6 +1,7 @@
 <?php
 return [
     'Raspina' => 'رَسپینا',
+    'Dashboard' => 'داشبورد',
     'Create Post' => 'افزودن مطلب',
     'Top posts' => 'مطالب برتر',
     'Title' => 'عنوان',
@@ -63,6 +64,7 @@ return [
     'Create Category' => 'افزودن دسته بندی',
     'Update Category' => 'بروزرسانی دسته بندی',
     'Newsletter' => 'خبرنامه',
+    '{count} member' => '{count} عضو',
     'Join' => 'پیوستن',
     'Send' => 'ارسال',
     'Sent newsletters' => 'خبرنامه های ارسال شده',

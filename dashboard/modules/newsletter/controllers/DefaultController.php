@@ -53,6 +53,7 @@ class DefaultController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
+            'userCount' => NewsletterSearch::find()->count(),
             'dataProvider' => $dataProvider,
         ]);
     }

@@ -90,8 +90,6 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-//        var_dump(date_default_timezone_get());
-//        exit();
         # remove the clause ONLY_FULL_GROUP_BY
         $query = Yii::$app->getDb();
         $query->createCommand("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));")->query();

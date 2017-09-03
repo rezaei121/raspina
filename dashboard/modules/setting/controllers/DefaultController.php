@@ -80,10 +80,8 @@ class DefaultController extends Controller
     {
         $sql = new MysqlBackup();
         $tables = $sql->getTables();
-        Yii::info('数据库备份失败', 'backups');
         if (!$sql->StartBackup()) {
             //render error
-            Yii::info('数据库备份失败', 'backup');
             die;
         }
         foreach ($tables as $tableName) {
