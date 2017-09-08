@@ -1,27 +1,17 @@
-Introduction
-============
-Raspina CMS is a persian(rtl) content management system based on yii2 php framework.
+### Raspina CMS
+a content management system powered by Yii2.
+see https://github.com/rezaei121/raspina/wiki
+### Powered by Yii2
+The Fast, Secure and Professional PHP Framework. Yii is a high-performance PHP framework best for developing Web 2.0 applications.
 
-Installation
-============
-1. Download last release archive file from https://github.com/rezaei121/raspina/releases
-2. Unpack the downloaded file to a Web-accessible folder.
-3. Set the write permissions 0777 on folders(apply to all files and subdirectories)
-	- frontend/assets
-	- frontend/runtime
-	- backend/assets
-	- backend/runtime
-	- common/config
-	- common/files
-4. Run install/index.php
+### Open source
+Raspina is an free and open source project that is licensed under GPL-3.0.
 
-Demo
-============
-http://www.developit.ir/raspina/ <br />
-http://www.developit.ir/raspina/backend/web/site/login <br />
-Username: demo <br />
-Password: 123456
+### Multi language
+Allows you easily use english, russian and persian languages. You can add your own language.
 
-License
-=======
+### Transparent, Reliable and Extensible
+you can easily extend the functionality of your website.
+
+### License
 Raspina CMS is an open source project by Ehsan Rezaei(http://www.developit.ir) that is licensed under GPL-3.0.
