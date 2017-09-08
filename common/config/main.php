@@ -1,5 +1,6 @@
 <?php
 return [
+    'name' => 'Raspina',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'language' => 'en-US',
     'timeZone' => 'Asia/Tehran',

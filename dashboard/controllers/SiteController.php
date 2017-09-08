@@ -66,8 +66,8 @@ class SiteController extends Controller
             'login-captcha' => [
                 'class' => 'developit\captcha\CaptchaAction',
                 'type' => 'numbers',
-                'width' => '120',
-                'height' => '34',
+//                'width' => '120',
+//                'height' => '34',
                 'backColor' => 0x5292c6,
                 'foreColor' => 0xFFFFFF,
                 'minLength' => 5,

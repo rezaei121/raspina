@@ -2,6 +2,7 @@
 
 namespace dashboard\modules\newsletter\models;
 
+use dashboard\modules\user\models\User;
 use Yii;
 
 /**

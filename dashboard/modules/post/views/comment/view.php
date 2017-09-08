@@ -57,16 +57,14 @@ echo $postStatus[$model->status];
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'reply_text')->widget(TinyMce::className(), [
-        'options' => ['rows' => 15],
-        'language' => 'fa',
+        'options' => ['rows' => 20],
+        'language' =>  Yii::$app->params['lang'],
         'clientOptions' => [
+            'content_css' => \yii\helpers\Url::to(['/web/css/tinymce.css']),
             'directionality' => Yii::$app->params['direction'],
             'entity_encoding' => "utf-8",
             'relative_urls' => false,
             'menubar' => false,
-            'automatic_uploads' => true,
-            'images_upload_url' => 'postAcceptor.php',
-            'images_reuse_filename' => true,
             'plugins' => [
                 "advlist autolink lists link charmap visualblocks code media table contextmenu image media codesample code"
             ],

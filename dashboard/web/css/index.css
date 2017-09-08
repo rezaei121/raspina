@@ -601,7 +601,7 @@ span[class*="mce"], div[class*="mce"], p[class*="mce"] {
 .login-forget a{color: #FFFFFF}
 
 .mce-branding-powered-by {display: none !important;}
-
+.captcha-img {cursor: pointer}
 caption, th, td {
      text-align: inherit !important;
     font-weight: normal;

@@ -67,6 +67,7 @@ class PostController extends BaseController
             Yii::$app->getSession()->setFlash('success', Yii::t('app','Comment successfully sent'));
         }
 
+        $commentModel = new \frontend\models\Comment;
         return $this->render('post', [
             'post' => $model,
             'commentModel' => $commentModel,

@@ -185,4 +185,6 @@ return [
     'All rights reserved by the owner of this site and the copying of the site content is permitted only by mentioning the source and the link.' => 'کلیه حقوق این وب سایت متعلق به مالک آن می باشد و کپی برداری از محتوای سایت تنها با ذکر منبع و درج لینک مجاز است',
     'This post was last updated on {date} by {user}.' => 'این مطلب آخرین بار در تاریخ {date} توسط {user} بروزرسانی شده است.',
     'Related' => 'مرتبط ها',
+    'New Password Was Saved' => 'کلمه عبور جدید ذخیره شد',
+    'Unsubscribe Newsletter' => 'لغو عضویت خبرنامه',
 ];

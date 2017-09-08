@@ -145,7 +145,7 @@ $this->beginPage();
 <div class="footer" style="text-align: center">
 	<span><?= Raspina::t('All rights reserved by the owner of this site and the copying of the site content is permitted only by mentioning the source and the link.') ?></span>
 	<br>
-	<span><a href="http://www.developit.ir" target="_blank"><?= Raspina::t('Powered by raspina cms') ?></a></span>
+	<span><a href="http://www.developit.ir/github/raspina.html" target="_blank"><?= Raspina::t('Powered by raspina cms') ?></a></span>
 </div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="<?= Raspina::templateUrl() ?>js/jquery-2.2.3.min.js"></script>

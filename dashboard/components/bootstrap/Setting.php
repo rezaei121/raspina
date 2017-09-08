@@ -23,6 +23,7 @@ class Setting implements BootstrapInterface
             Yii::$app->date->locale = $settingModel->language;
             Yii::$app->date->defaultTimeZone = $settingModel->time_zone;
             Yii::$app->date->datetimeFormat = $settingModel->date_format;
+            Yii::$app->params['url'] = $settingModel->url;
             Yii::$app->params['direction'] = $settingModel->direction;
             Yii::$app->params['lang'] = (explode('-',$settingModel->language))[0];
             Yii::$app->hashids->salt = $settingModel->sult;

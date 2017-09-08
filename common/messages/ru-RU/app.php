@@ -185,4 +185,6 @@ return [
     'All rights reserved by the owner of this site and the copying of the site content is permitted only by mentioning the source and the link.' => 'Все права защищены владельцем этого сайта и копированием содержимого сайта разрешается только путем ссылки на источник и ссылку.',
     'This post was last updated on {date} by {user}.' => 'Последнее сообщение {date} {user}.',
     'Related' => 'Связанный',
+    'New Password Was Saved' => 'Новый пароль сохранен',
+    'Unsubscribe Newsletter' => 'Отказаться от рассылки',
 ];

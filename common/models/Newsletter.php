@@ -31,7 +31,7 @@ class Newsletter extends \yii\db\ActiveRecord
             [['registered_at'], 'safe'],
             [['email'], 'email'],
             [['email'], 'string', 'max' => 255],
-            [['email'], 'unique'],
+            [['email'], 'unique', 'except' => 'unsubscribe'],
         ];
     }
 

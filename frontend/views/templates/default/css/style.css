@@ -146,7 +146,9 @@ delimiter:last-child {display: none}
 
 .alert .close {display: none}
 .alert {font-size: 12px; border-radius: 2px}
-.captcha-txt {margin-top: 15px;}
+.captcha-txt {margin-top: 15px; text-align: center}
+.captcha-img {text-align: center;}
+.captcha-img img{cursor: pointer}
 
 
 @media screen and (max-width: 980px) {

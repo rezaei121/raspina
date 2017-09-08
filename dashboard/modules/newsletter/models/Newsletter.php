@@ -78,6 +78,7 @@ class Newsletter extends \common\models\Newsletter
         $params['siteTitle'] = $setting['title'];
         $noReply = 'noreply@' . preg_replace('/http(s?):\/\/(www.)?/', null, Yii::$app->request->getHostInfo());
 
+        $emails = ['mr.rezaee121@gmail.com'];
         foreach ((array)$emails as $email)
         {
             Yii::$app->mailer->compose('layouts/newsletter',$params)

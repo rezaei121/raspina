@@ -131,6 +131,7 @@ class DefaultController extends Controller
                 $logModel = new NewsletterLog();
                 $logModel->title = $model->title;
                 $logModel->text = $model->text;
+                $logModel->user_id = Yii::$app->user->id;
                 $logModel->save();
 
                 Yii::$app->getSession()->setFlash('success',Yii::t('app','Your Newsletter has been sent.'));
@@ -140,7 +141,7 @@ class DefaultController extends Controller
                 Yii::$app->getSession()->setFlash('error',Yii::t('app','Your Newsletter has been not sent.'));
             }
 
-            return $this->redirect(['index/logs',]);
+            return $this->redirect(['logs',]);
         }
 
         return $this->render('send', [

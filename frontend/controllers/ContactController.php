@@ -25,6 +25,7 @@ class ContactController extends BaseController
             Yii::$app->getSession()->setFlash('success', Yii::t('app','Contact successfully sent'));
         }
 
+        $contact = new \frontend\models\Contact;
         return $this->render('contact',[
             'model' => $contact
         ]);
