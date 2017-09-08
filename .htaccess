@@ -1,0 +1,27 @@
+#Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+#RewriteCond %{HTTP_HOST} !^www\.
+#RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+#
+#RewriteCond %{REQUEST_URI} !^public
+RewriteRule (.*)requirements.php requirements.php [L]
+RewriteRule (.*)common/files/avatar/(.*) common/files/avatar/$2 [L]
+#RewriteRule (.*)frontend/views/templates/(.*) frontend/views/templates/$2 [L]
+
+RewriteRule (.*)assets/(.*) frontend/web/assets/$2 [L]
+RewriteRule (.*)assets/(.*) dashboard/web/assets/$2 [L]
+RewriteRule (.*)assets/(.*) dashboard/index.php/$2 [L]
+RewriteRule [^.]*$ frontend/web/$1 [L]
+
+</IfModule>
+#
+# Deny accessing below extensions
+#<Files ~ "(.json|.lock|.git)">
+#Order allow,deny
+#Deny from all
+#</Files>
+
+# Deny accessing dot files
+#RewriteRule (^\.|/\.) - [F]
