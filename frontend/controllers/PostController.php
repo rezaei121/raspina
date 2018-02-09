@@ -83,7 +83,7 @@ class PostController extends BaseController
      */
     protected function findModel($id,$title)
     {
-        if (($model = Post::findOne(['id' => $id, 'title' => $title])) !== null) {
+        if (($model = Post::findOne(['id' => $id, 'title' => $title, 'status' => 1])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
