@@ -40,7 +40,7 @@ use frontend\components\helpers\Raspina;
                 <?= $model->short_text?>
                 <?php if($model->more_text): ?>
                     <hr class="more-hr">
-                    <?= Html::a(Yii::t('app', 'More'),['post/view','id' => $model->id ,'title' => $model->title],['class' => 'button more']) ?>
+                    <?= Html::a(Yii::t('app', 'More'),['post/view','id' => $model->id ,'title' => $model->slug],['class' => 'button more']) ?>
                 <?php endif ?>
             </div>
         </div>
