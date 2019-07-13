@@ -76,6 +76,7 @@ class DefaultController extends \app\components\Controller
     public function actionCreate()
     {
         $request = Yii::$app->request->post();
+
         $model = new Post;
         $model->enable_comments = 1;
         $model->status = 1;
