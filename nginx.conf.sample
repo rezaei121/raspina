@@ -1,0 +1,59 @@
+#################################################################
+# nginx.conf sample                                             #
+# 																#
+# 1) creating symlink for backend								#
+#		cd /path/to/project/frontend/web						#
+#		ln -s ../../backend/web backend							#
+#																#
+# 2) added new server to  /etc/nginx/nginx.conf and change it.	#
+#																#
+#################################################################
+
+	server {
+		set $project_root <project root>;
+		set $fcgi_server 127.0.0.1:9000;
+		
+		charset utf-8;
+		client_max_body_size 128M;
+		listen 80;
+		
+		server_name <server name>;
+		root $project_root/frontend/web;
+		index index.php;
+
+		location / {
+			try_files $uri $uri/ /index.php?$args;
+		}
+
+		location /backend {
+			index /backend/web/index.php;
+			try_files $uri $uri/ /backend/web/index.php?$args;
+			
+			location ~ ^/backend/.*\.php$ {
+				rewrite ^/backend/(.*)$ /backend/web/$1;
+			}
+		}
+		
+		location ^~ /backend/web {
+	        root $project_root;
+			location ~ /\.(ht|svn|git) {
+				deny all;
+		    }
+			location ~ \.php$ {
+				#try_files $uri =404;
+				fastcgi_split_path_info ^(.+\.php)(/.+)$;
+				fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+				fastcgi_index index.php;
+				fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+				include fastcgi_params;
+			}
+		}
+		
+		location ~ \.php$ {
+			fastcgi_split_path_info ^(.+\.php)(/.+)$;
+			fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+			fastcgi_index index.php;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			include fastcgi_params;
+		}
+	}
