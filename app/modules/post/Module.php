@@ -5,7 +5,7 @@ namespace app\modules\post;
 /**
  * posts module definition class
  */
-class post extends \app\components\Module
+class Module extends \app\components\Module
 {
     /**
      * @inheritdoc

@@ -74,10 +74,7 @@ class DefaultController extends \app\components\Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        if(RASPINA_ENV != 'demo')
-        {
-            unlink(Yii::getAlias('@file_upload') . '/' . $model->real_name . '.' . $model->extension);
-        }
+        unlink(Yii::getAlias('@file_upload') . '/' . $model->real_name . '.' . $model->extension);
         $model->delete();
         Yii::$app->session->setFlash('success', Yii::t('app','{object} deleted.',[
             'object' => Yii::t('app','File')
