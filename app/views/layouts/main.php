@@ -104,7 +104,7 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
 
                     <?php if (Yii::$app->user->can('statistics')): ?>
                         <li class="menu-item-child">
-                            <a href="<?= Url::base(); ?>/statistics"><span class="fa fa-line-chart"></span> <div><?= Yii::t('app', 'Statistics') ?></div></a>
+                            <a href="<?= $statisticsUrl; ?>"><span class="fa fa-line-chart"></span> <div><?= Yii::t('app', 'Statistics') ?></div></a>
                         </li>
                     <?php endif; ?>
 
@@ -244,7 +244,7 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
                 <span class="fa fa-paper-plane"></span>
                 <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Newsletter') ?></div>
             </a>
-            <a href="#">
+            <a href="<?= $linkUrl; ?>">
                 <span class="fa fa-link"></span>
                 <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Links') ?></div>
             </a>

@@ -5,7 +5,7 @@ namespace app\modules\template;
 /**
  * template module definition class
  */
-class template extends \app\components\Module
+class Module extends \app\components\Module
 {
     /**
      * @inheritdoc

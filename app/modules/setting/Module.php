@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\statistics;
+namespace app\modules\setting;
 
 /**
- * statistics module definition class
+ * setting module definition class
  */
-class statistics extends \app\components\Module
+class Module extends \app\components\Module
 {
     /**
      * @inheritdoc
