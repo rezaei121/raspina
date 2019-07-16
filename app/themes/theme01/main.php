@@ -123,7 +123,7 @@ $this->beginPage();
 								<span class="menu-title-text"><?= Raspina::t('Links') ?></span>
 							</div>
 							<div class="menu-title-line"></div>
-							<?php foreach ((Link::findAll(1)) as $link): ?>
+							<?php foreach ((Link::find()->all()) as $link): ?>
 								<div class="cat-item">
 									<a href="<?= $link['url'] ?>" target="_blank"><?= $link['title'] ?></a>
 								</div>

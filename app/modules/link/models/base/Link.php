@@ -29,7 +29,6 @@ class Link extends \app\components\Model
         return [
             [['title', 'url'], 'required'],
             [['title', 'url'], 'string', 'max' => 255],
-            [['lang'], 'string', 'max' => 10],
         ];
     }
 
