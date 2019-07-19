@@ -28,7 +28,7 @@ class DefaultController extends \app\components\Controller
      */
     public function actionAbout($username = null)
     {
-        return $this->render('@theme/about', [
+        return $this->render('@theme/about.twig', [
             'model' => ($username !== null)? [$this->findByUsernameModel($username)] : User::find()->where(['status' => User::STATUS_ACTIVE])->all(),
         ]);
     }

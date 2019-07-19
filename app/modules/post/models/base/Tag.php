@@ -3,13 +3,13 @@
 namespace app\modules\post\models\base;
 
 use Yii;
-use yii\base\Theme;
 
 /**
  * This is the model class for table "{{%tag}}".
  *
  * @property string $id
  * @property string $title
+ * @property string $slug
  *
  * @property PostTag[] $postTags
  */
@@ -30,7 +30,7 @@ class Tag extends \app\components\Model
     {
         return [
             [['title'], 'required'],
-            [['title'], 'string', 'max' => 255],
+            [['title', 'slug'], 'string', 'max' => 255],
             [['title'], 'unique'],
             [['title'], 'trim'],
         ];
@@ -44,6 +44,7 @@ class Tag extends \app\components\Model
         return [
             'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
+            'slug' => Yii::t('app', 'Slug'),
         ];
     }
 

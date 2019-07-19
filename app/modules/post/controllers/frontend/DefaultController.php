@@ -43,7 +43,7 @@ class DefaultController extends \app\components\Controller
     public function actionView($id,$title)
     {
         $postModel = $this->findModel($id,$title);
-//        $postModel->plusView();
+        $postModel->plusView();
 
 //        $model->tags = !empty($model->tags)? explode(',',$model->tags) : null;
         $this->view->params['keywords'] = $postModel->keywords;

@@ -53,7 +53,7 @@ class DefaultController extends Controller
         {
             $postModel->leftJoin(['pt' => PostTag::tableName()], 'pt.post_id = p.id');
             $postModel->leftJoin(['t' => Tag::tableName()], 'pt.tag_id = t.id');
-            $postModel->andWhere(['t.title' => $request['tag']]);
+            $postModel->andWhere(['t.slug' => $request['tag']]);
         }
 
         if(!empty($request['Post']['search']))

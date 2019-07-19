@@ -267,10 +267,8 @@ class Post extends \app\modules\post\models\base\Post
      */
     public function plusView()
     {
-        if (!\common\models\Visitors::isBot()) {
-            $this->view++;
-            $this->save(false);
-        }
+        $this->view++;
+        $this->save(false);
     }
 
     /**

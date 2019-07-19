@@ -2,6 +2,7 @@
 
 namespace app\modules\post\models;
 
+use app\components\behaviors\SluggableBehavior;
 use Yii;
 use yii\base\Theme;
 
@@ -15,6 +16,15 @@ use yii\base\Theme;
  */
 class Tag extends \app\modules\post\models\base\Tag
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'title',
+            ],
+        ];
+    }
     public static function getAll()
     {
         $result = Tag::find()->all();

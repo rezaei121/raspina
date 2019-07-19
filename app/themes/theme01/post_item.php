@@ -39,7 +39,7 @@ use app\components\helpers\Raspina;
                 <?= $model->short_text?>
                 <?php if($model->more_text): ?>
                     <hr class="more-hr">
-                    <?= Html::a(Yii::t('app', 'More'),['/post/default/view','id' => $model->id ,'title' => $model->title],['class' => 'button more']) ?>
+                    <a href="<?= $model->url() ?>" class="button more"><?= Yii::t('app', 'More') ?></a>
                 <?php endif ?>
             </div>
         </div>

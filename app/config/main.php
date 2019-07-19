@@ -23,14 +23,21 @@ return [
         ],
         'view' => [
             'class' => 'yii\web\View',
-            'renderers' => [],
-//            'theme' => [
-//                'basePath' => '@app/themes/default',
-//                'baseUrl' => '@web/themes/default',
-//                'pathMap' => [
-//                    '@app/views' => '@app/themes/default',
-//                ],
-//            ],
+            'renderers' => [
+                'twig' => [
+                    'class' => 'yii\twig\ViewRenderer',
+                    'cachePath' => '@runtime/Twig/cache',
+                    // Array of twig options:
+                    'options' => [
+                        'auto_reload' => true,
+                    ],
+                    'globals' => [
+                        'html' => ['class' => '\yii\helpers\Html'],
+                        'raspina' => ['class' => '\app\components\helpers\Raspina'],
+                    ],
+                    'uses' => ['yii\bootstrap'],
+                ],
+            ]
         ],
         'i18n' => [
             'translations' => [
@@ -132,6 +139,11 @@ return [
                 ],
                 [
                     'pattern' => 'home/default/index/<category:\d+>/<title>',
+                    'route' => 'home/default/index',
+                    'suffix' => '.html',
+                ],
+                [
+                    'pattern' => 'home/default/index/<tag>',
                     'route' => 'home/default/index',
                     'suffix' => '.html',
                 ],

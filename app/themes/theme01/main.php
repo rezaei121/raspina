@@ -1,7 +1,6 @@
 <?php
 use app\components\helpers\Raspina;
 use app\components\widgets\ActiveForm;
-use app\modules\newsletter\models\Newsletter;
 use app\modules\post\models\Category;
 use app\themes\theme01\Asset;
 use app\modules\post\models\Post;
@@ -77,22 +76,6 @@ $this->beginPage();
 						<?php $form = ActiveForm::begin(['action'=> ['/home/default'],'method'=> 'GET']) ?>
 							<?= $form->field(new Post,'search')->textInput(['maxlength'=> true,'class'=> 'input margin-17','placeholder'=> Raspina::t('Text')]) ?>
 							<?= Html::submitButton(Raspina::t('Go'),['class'=> 'submit']) ?>
-						<?php ActiveForm::end() ?>
-					</div>
-				</div>
-			</div>
-
-			<div class="post-border shadow">
-				<div class="panel panel-default post-panel menu-panel">
-					<div class="panel-body">
-						<div class="menu-title">
-							<span class="fa fa-envelope-o menu-title-icon" aria-hidden="true"></span>
-							<span class="menu-title-text"><?= Raspina::t('Newsletter'); ?></span>
-						</div>
-						<div class="menu-title-line"></div>
-						<?php $form = ActiveForm::begin(['action'=> ['newsletter/join']]) ?>
-							<?= $form->field(new Newsletter,'email')->textInput(['maxlength'=> true,'class'=> 'input margin-17','placeholder'=> 'Email','dir'=> 'ltr']) ?>
-							<?= Html::submitButton(Raspina::t('Join'),['class'=> 'submit']) ?>
 						<?php ActiveForm::end() ?>
 					</div>
 				</div>

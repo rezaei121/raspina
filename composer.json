@@ -25,7 +25,8 @@
         "2amigos/yii2-tinymce-widget" : "~1.1",
         "kartik-v/yii2-widget-select2": "@dev",
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "bizley/migration": "~3.0.0"
+        "bizley/migration": "~3.0.0",
+        "yiisoft/yii2-twig": "^2.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

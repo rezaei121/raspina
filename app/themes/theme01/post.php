@@ -52,8 +52,8 @@ $post->url();
                 <?php if($tags = $post->tags()): ?>
                 <hr class="more-hr">
                 <div class="post-tags"><span class="fa fa-tags"></span>
-                    <?php foreach ($tags as $tag): ?>
-                        <?= Html::a($tag, ['/site/index', 'tag' => $tag]) ?>,
+                    <?php foreach ($tags as $tag => $slug): ?>
+                        <?= Html::a($tag, ['/home/default/index', 'tag' => $slug]) ?>,
                     <?php endforeach ?>
                 </div>
                 <?php endif ?>

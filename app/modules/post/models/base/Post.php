@@ -120,8 +120,8 @@ class Post extends \app\components\Model
             ->select('t.*')
             ->alias('pt')
             ->innerJoin(['t' => Tag::tableName()], 'pt.tag_id = t.id')
+            ->asArray()
             ->all();
-
-        return \yii\helpers\ArrayHelper::map($result,'id','title');
+        return \yii\helpers\ArrayHelper::map($result,'title','slug');
     }
 }
