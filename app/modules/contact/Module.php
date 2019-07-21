@@ -5,7 +5,7 @@ namespace app\modules\contact;
 /**
  * contact module definition class
  */
-class contact extends \app\components\Module
+class module extends \app\components\Module
 {
     /**
      * @inheritdoc

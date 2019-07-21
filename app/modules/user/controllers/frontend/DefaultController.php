@@ -3,19 +3,7 @@
 namespace app\modules\user\controllers\frontend;
 
 use app\modules\user\models\User;
-use app\modules\file\models\File;
-use app\modules\post\models\Comment;
-use app\modules\post\models\Post;
-use app\modules\user\models\AuthAssignment;
-use app\modules\user\models\LoginForm;
-use Yii;
-use yii\base\InvalidParamException;
-use yii\data\ActiveDataProvider;
-use yii\filters\AccessControl;
-use yii\helpers\Url;
-use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * DefaultController implements the CRUD actions for User model.

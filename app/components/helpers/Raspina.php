@@ -20,6 +20,11 @@ class Raspina
         return Yii::t('app', $message, $params);
     }
 
+    public static function dump($var)
+    {
+        var_dump($var);
+    }
+
     public static function a($text, $url)
     {
         return Html::a($text, $url);

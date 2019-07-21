@@ -32,7 +32,7 @@ class DefaultController extends Controller
         }
 
         $contact = new Contact;
-        return $this->render('@theme/contact',[
+        return $this->render('@theme/contact.twig',[
             'model' => $contact
         ]);
     }
