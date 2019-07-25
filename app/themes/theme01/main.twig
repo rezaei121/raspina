@@ -70,13 +70,13 @@
 					<div class="panel-body">
 						<div class="menu-title">
 							<span class="fa fa-search menu-title-icon" aria-hidden="true"></span>
-							<span class="menu-title-text"><?= Raspina::t('Search') ?></span>
+							<span class="menu-title-text">{{ raspina.t('Search') }}</span>
 						</div>
 						<div class="menu-title-line"></div>
-						<?php $form = ActiveForm::begin(['action'=> ['/home/default'],'method'=> 'GET']) ?>
-							<?= $form->field(new Post,'search')->textInput(['maxlength'=> true,'class'=> 'input margin-17','placeholder'=> Raspina::t('Text')]) ?>
-							<?= Html::submitButton(Raspina::t('Go'),['class'=> 'submit']) ?>
-						<?php ActiveForm::end() ?>
+						{% set form = activeForm.begin({'action': 'home/default', 'method': 'GET'}) %}
+							{{ html.textInput('search', '', {'class': 'input margin-17', 'placeholder': raspina.t('Text')}) | raw }}
+							{{ html.submitButton(raspina.t('Go'), {'class': 'submit margin-17'}) | raw }}
+						{% set end = activeForm.end() %}
 					</div>
 				</div>
 			</div>
