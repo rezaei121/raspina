@@ -1,18 +1,6 @@
-{#<?php#}
-{#use app\components\helpers\Raspina;#}
-{#use app\components\widgets\ActiveForm;#}
-{#use app\modules\post\models\Category;#}
-{#use app\modules\post\models\Post;#}
-{#use app\components\helpers\Html;#}
-{#use app\modules\link\models\Link;#}
-{#use app\components\widgets\Alert;#}
-
-{#Asset::register($this);#}
-{#$this->beginPage();#}
-{#?>#}
 {{ use('/app/components/widgets/Alert') }}
 {{ register_asset_bundle('app/themes/theme01/Asset') }}
-{{   void(this.beginPage()) }}
+{{ void(this.beginPage()) }}
 <html lang="{{ raspina.lang }}">
 <head>
 	<meta charset="{{ raspina.charset }}">
@@ -63,7 +51,7 @@
 			{{ alert_widget() | raw}}
 			{{ content | raw}}
 		</div>
-		<div class="col-sm-3"> 
+		<div class="col-sm-3">
 			<!-- -->
 			<div class="post-border shadow">
 				<div class="panel panel-default post-panel menu-panel">
@@ -81,48 +69,48 @@
 				</div>
 			</div>
 
-	<div class="post-border shadow">
-		<div class="panel panel-default post-panel menu-panel">
-			<div class="panel-body">
-				<div class="menu-title">
-					<span class="fa fa-folder-open menu-title-icon"></span>
-					<span class="menu-title-text"><?= Raspina::t('Categories') ?></span>
-				</div>
-				<div class="menu-title-line"></div>
-				<?php foreach(Category::getAll() as $id => $category): ?>
-					<div class="cat-item">
-						<?= Html::a($category,[0=> '/home/default/index','category'=> $id,'title'=>$category]); ?>
-					</div>
-				<?php endforeach; ?>
-			</div>
-		</div>
-	</div>
-
-				<div class="post-border shadow">
-					<div class="panel panel-default post-panel menu-panel">
-						<div class="panel-body">
-							<div class="menu-title">
-								<span class="fa fa-link menu-title-icon"></span>
-								<span class="menu-title-text"><?= Raspina::t('Links') ?></span>
-							</div>
-							<div class="menu-title-line"></div>
-							<?php foreach ((Link::find()->all()) as $link): ?>
-								<div class="cat-item">
-									<a href="<?= $link['url'] ?>" target="_blank"><?= $link['title'] ?></a>
-								</div>
-							<?php endforeach ?>
+			<div class="post-border shadow">
+				<div class="panel panel-default post-panel menu-panel">
+					<div class="panel-body">
+						<div class="menu-title">
+							<span class="fa fa-folder-open menu-title-icon"></span>
+							<span class="menu-title-text">{{ raspina.t('Categories') }}</span>
 						</div>
+						<div class="menu-title-line"></div>
+						{% for category in raspina.categories %}
+							<div class="cat-item">
+								<a href="{{ category.url }}">{{ category.title }}</a>
+							</div>
+						{% endfor %}
 					</div>
 				</div>
+			</div>
+
+			<div class="post-border shadow">
+				<div class="panel panel-default post-panel menu-panel">
+					<div class="panel-body">
+						<div class="menu-title">
+							<span class="fa fa-link menu-title-icon"></span>
+							<span class="menu-title-text">{{ raspina.t('Links') }}</span>
+						</div>
+						<div class="menu-title-line"></div>
+						{% for link in raspina.links %}
+							<div class="cat-item">
+								<a href="{{ link.url }}" target="_blank">{{ link.title }}</a>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
 
 			<!-- -->
 		</div>
 	</div>
 </div>
 <div class="footer" style="text-align: center">
-	<span><?= Raspina::t('All rights reserved by the owner of this site and the copying of the site content is permitted only by mentioning the source and the link.') ?></span>
+	<span>{{ raspina.t('All rights reserved by the owner of this site and the copying of the site content is permitted only by mentioning the source and the link.') }}</span>
 	<br>
-	<span><a href="http://www.developit.ir/github/raspina.html" target="_blank"><?= Raspina::t('Powered by raspina cms') ?></a></span>
+	<span><a href="http://www.developit.ir/github/raspina.html" target="_blank">{{ raspina.t('Powered by raspina cms') }}</a></span>
 </div>
 {{ void(this.endBody()) }}
 </body>

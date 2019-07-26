@@ -1,7 +1,10 @@
 <?php
 namespace app\components\helpers;
+use app\modules\link\models\Link;
+use app\modules\post\models\Category;
 use Yii;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 class Raspina
 {
@@ -101,49 +104,27 @@ class Raspina
         return Yii::$app->view->params['about']['short_text'];
     }
 
-    public static function facebook()
-    {
-        return Yii::$app->view->params['about']['facebook'];
-    }
-
-    public static function twitter()
-    {
-        return Yii::$app->view->params['about']['twitter'];
-    }
-
-    public static function googleplus()
-    {
-        return Yii::$app->view->params['about']['googleplus'];
-    }
-
-    public static function instagram()
-    {
-        return Yii::$app->view->params['about']['instagram'];
-    }
-
-    public static function linkedin()
-    {
-        return Yii::$app->view->params['about']['linkedin'];
-    }
-    
     public static function siteModel()
     {
         return Yii::$app->params['index'];
     }
 
-    public static function newsletterModel()
+    public static function categories($withUrl = true)
     {
-        return Yii::$app->view->params['newsletter'];
-    }
-
-    public static function categories()
-    {
-        return Yii::$app->view->params['categories'];
+        $result = Category::getAll();
+        if($withUrl)
+        {
+            foreach ($result as $key => $value)
+            {
+                $result[$key]['url'] = Url::to(['/home/default/index', 'category' => $result[$key]['id'],'title' => $result[$key]['slug']]);
+            }
+        }
+        return $result;
     }
 
     public static function links()
     {
-        return Yii::$app->view->params['links'];
+        return Link::getAll();
     }
 
     public static function param($id)
