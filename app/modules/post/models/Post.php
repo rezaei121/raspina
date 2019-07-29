@@ -4,11 +4,16 @@ use app\components\behaviors\SluggableBehavior;
 use app\modules\post\models\base\PostTag;
 use meysampg\intldate\IntlDateTrait;
 use Yii;
+use yii\db\ActiveQuery;
 use yii\helpers\Url;
 
 class Post extends \app\modules\post\models\base\Post
 {
     use IntlDateTrait;
+
+    const DRAFT_STATUS = 0;
+    const PUBLISH_STATUS = 1;
+
     /**
      * @inheritdoc
      */
@@ -234,23 +239,9 @@ class Post extends \app\modules\post\models\base\Post
     public function postStatus()
     {
         return [
-            '0' => Yii::t('app','Draft'),
-            '1' => Yii::t('app','Publish'),
-            '2' => Yii::t('app','Send in future'),
+            $this::DRAFT_STATUS => Yii::t('app','Draft'),
+            $this::PUBLISH_STATUS => Yii::t('app','Publish'),
         ];
-    }
-
-    //
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getComments()
-    {
-        return $this->hasMany(Comment::className(), ['post_id' => 'id'])
-            ->alias('c')
-            ->where(['c.status' => 1])
-            ->joinWith('createdBy')
-            ->orderBy(['c.id' => SORT_DESC]);
     }
 
     /**
@@ -363,4 +354,59 @@ class Post extends \app\modules\post\models\base\Post
         return Url::to(['/user/about', 'username' => $this->updatedBy->username]);
     }
 
+    public static function getAll($request = null)
+    {
+        $postsModel = Post::find()
+            ->alias('post')
+            ->select(['post.id', 'post.title', 'post.slug', 'post.short_text', 'post.created_at', 'post.updated_at', 'post.created_by', 'post.updated_by', 'post.pin_post', 'post.view', 'post.more_text'])
+            ->joinWith(['createdBy' => function (ActiveQuery $query) {
+                $query->alias('created_by');
+                $query->select(['created_by.last_name', 'created_by.surname']);
+            }])
+            ->joinWith(['updatedBy' => function (ActiveQuery $query) {
+                $query->alias('updated_by');
+                $query->select(['updated_by.last_name', 'updated_by.surname']);
+            }])
+            ->joinWith(['comments' => function (ActiveQuery $query) {
+                $query->alias('comment');
+                $query->onCondition(['comment.status' => self::PUBLISH_STATUS]);
+            }])
+            ->joinWith(['postCategories' => function (ActiveQuery $query) {
+                $query->alias('post_categories');
+                $query->select(['post_categories.category_id', 'post_categories.post_id']);
+                $query->joinWith(['category' => function (ActiveQuery $query) {
+                    $query->alias('category');
+                    $query->select(['category.id', 'category.title', 'category.slug']);
+                }]);
+            }])
+            ->orderBy(['post.pin_post' => SORT_DESC, 'post.id' => SORT_DESC])
+            ->where(['post.status' => self::PUBLISH_STATUS]);
+
+        if(isset($request['category']))
+        {
+            $postsModel->andWhere(['post_categories.category_id' => $request['category']]);
+        }
+
+        if(isset($request['tag']))
+        {
+            $postsModel->joinWith(['postTags' => function (ActiveQuery $query) use($request){
+                $query->alias('post_tags');
+                $query->select(['post_tags.tag_id', 'post_tags.post_id']);
+                $query->joinWith(['tag' => function (ActiveQuery $query) use($request){
+                    $query->alias('tag');
+                    $query->select(['tag.id', 'tag.title', 'tag.slug']);
+                    $query->onCondition(['tag.slug' => $request['tag']]);
+                }]);
+            }]);
+        }
+
+        if(isset($request['Post']['search']) && !empty($request['Post']['search']))
+        {
+            $postsModel->andWhere(['like','post.title', $request['Post']['search']]);
+            $postsModel->orWhere(['like','post.short_text', $request['Post']['search']]);
+            $postsModel->orWhere(['like','post.more_text', $request['Post']['search']]);
+        }
+
+        return $postsModel;
+    }
 }

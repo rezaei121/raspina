@@ -18,6 +18,15 @@ class Raspina
         return Yii::$app->view->title;
     }
 
+    public static function request($method = 'get', $name = null)
+    {
+        if($method == 'get')
+        {
+            return Yii::$app->request->get($name);
+        }
+        return Yii::$app->request->post($name);
+    }
+
     public static function t($message, $params = [])
     {
         return Yii::t('app', $message, $params);

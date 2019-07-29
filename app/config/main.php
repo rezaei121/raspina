@@ -36,7 +36,7 @@ return [
                         'html' => ['class' => '\yii\helpers\Html'],
                         'raspina' => ['class' => '\app\components\helpers\Raspina'],
                         'captcha' => ['class' => '\developit\captcha\Captcha'],
-                        'activeForm' => ['class' => '\yii\widgets\ActiveForm'],
+                        'activeForm' => ['class' => '\yii\widgets\ActiveForm']
                     ],
                     'uses' => ['yii\bootstrap'],
                 ],

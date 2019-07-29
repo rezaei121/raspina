@@ -1,0 +1,10 @@
+{% if raspina.request('get', 'category') %}
+    {{ void(raspina.title(raspina.request('get', 'title'))) }}
+{% endif %}
+
+{{ use('yii/widgets/ListView') }}
+{{ list_view_widget({
+    'dataProvider': dataProvider,
+    'itemView': 'post_item.twig'
+    })
+}}

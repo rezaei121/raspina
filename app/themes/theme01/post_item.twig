@@ -1,22 +1,30 @@
-<?php
-use yii\helpers\Html;
-use app\components\helpers\Raspina;
-?>
 <div class="post-border shadow">
     <div class="panel panel-default post-panel">
         <div class="panel-body">
             <div class="post-title">
-                <a href="<?= $model->url() ?>"><?= $model->title ?></a>
+                <a href="{{ model.url }}">{{ model.title }}</a>
             </div>
             <!-- -->
-            <?php if($postCategories = $model->categories()): ?>
+
+            {% set postCategories = model['postCategories'] %}
+            {% if postCategories %}
                 <span class="post-detail">
 					<span class="fa fa-list"></span>
-                    <?php foreach ($postCategories as $pc): ?>
-                        <?= Html::a($pc['category']['title'],[0 => 'index','category' => $pc['category']['id'],'title' => $pc['category']['slug']]) ?>،
-                    <?php endforeach ?>
+ 						{% for postCategoryItem in postCategories %}
+                            <div class="cat-item">
+								{{ postCategoryItem.category.title }}
+							</div>
+                        {% endfor %}
 				</span>
-            <?php endif ?>
+            {% endif %}
+{#            <?php if($postCategories = $model->categories()): ?>#}
+{#                <span class="post-detail">#}
+{#					<span class="fa fa-list"></span>#}
+{#                    <?php foreach ($postCategories as $pc): ?>#}
+{#                        <?= Html::a($pc['category']['title'],[0 => 'index','category' => $pc['category']['id'],'title' => $pc['category']['slug']]) ?>،#}
+{#                    <?php endforeach ?>#}
+{#				</span>#}
+{#            <?php endif ?>#}
             <span class="post-detail">
 				<span class="fa fa-user"></span>
                 <a href="<?= $model->authorUrl(); ?>"><?= $model->author(); ?></a>
