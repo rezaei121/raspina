@@ -62,8 +62,8 @@ class DefaultController extends \app\components\Controller
             $commentModel = new Comment();
         }
 
-        return $this->render('@theme/post', [
-            'post' => $postModel,
+        return $this->render('@theme/post.twig', [
+            'model' => $postModel,
             'commentModel' => $commentModel,
         ]);
     }

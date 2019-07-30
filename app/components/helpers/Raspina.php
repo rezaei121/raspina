@@ -131,6 +131,21 @@ class Raspina
         return $result;
     }
 
+    public static function postCategories($model)
+    {
+        $categories = [];
+        foreach ((array)$model['postCategories'] as $postCategory)
+        {
+            $categories[] = [
+                'id' => $postCategory->category['id'],
+                'title' => $postCategory->category['title'],
+                'slug' => $postCategory->category['slug'],
+                'url' => Url::to(['/home/default/index', 'category' => $postCategory->category['id'],'title' => $postCategory->category['slug']])
+            ];
+        }
+        return $categories;
+    }
+
     public static function links()
     {
         return Link::getAll();

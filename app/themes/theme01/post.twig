@@ -1,0 +1,112 @@
+{% set title = raspina.title(model.title) %}
+<div class="post-border shadow">
+    <div class="panel panel-default post-panel">
+        <div class="panel-body">
+            <div class="post-title">
+                <a href="{{ model.url }}">{{ model.title }}</a>
+            </div>
+            <!-- -->
+            {% set postCategories = raspina.postCategories(model) %}
+            {% if postCategories %}
+                <span class="post-detail ">
+                    {{ raspina.t('Categories') }}:
+ 						{% for category in postCategories %}
+                            <a href="{{ category.url }}">{{ category.title }}</a> <span class="post-detail-cat">, </span>
+                        {% endfor %}
+				</span>
+            {% endif %}
+            <span class="post-detail">
+                {{ raspina.t('Author') }}:
+                <a href="{{ model.url }}">{{ model.author }}</a>
+			</span>
+            <span class="post-detail">
+                {{ raspina.t('Created At') }}:
+                {{ raspina.date(model.created_at) }}
+			</span>
+            <span class="post-detail">
+                {{ model.comment_count }}
+                {{ raspina.t('Comment') }}
+			</span>
+            <span class="post-detail">
+                <span>{{ model.view }}</span>
+                {{ raspina.t('View') }}
+			</span>
+            <div class="clear"></div>
+            <!-- -->
+            <div class="post-text">
+                {{ model.short_text | raw }}
+                {{ model.more_text | raw }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{#<?php if($postRelated = $post->related()): ?>#}
+{#    <div class="post-border shadow">#}
+{#        <div class="panel panel-default post-panel">#}
+{#            <div class="panel-body">#}
+{#                <div class="post-title"><?= Raspina::t('Related'); ?></div>#}
+{#                <div class="post-text">#}
+{#                    <!-- -->#}
+{#                    <?php foreach ($postRelated as $related): ?>#}
+{#                        <?= Html::a($related['title'],[0 => '/post/default/view','id' => $related['id'],'title' => $related['slug']]) ?><br>#}
+{#                    <?php endforeach ?>#}
+{#                    <!-- -->#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#<?php endif ?>#}
+
+{% set comments = model.comments %}
+{%  if comments %}
+<div class="post-border shadow">
+    <div class="panel panel-default post-panel">
+        <div class="panel-body">
+            <div class="post-title">{{ raspina.t('Comments') }}</div>
+            <div class="post-text">
+                <!-- -->
+                {% for comment in comments %}
+                        <div class="comment-title">{{ raspina.t('{name} at {date} says:', {
+                                'name': comment.name,
+                                'date': raspina.date(comment.created_at)
+                            }) }}</div>
+                        <div class="comment-text">{{ comment.text  | raw }}</div>
+                        {%  if comment.reply_text %}
+                            <div class="comment-reply"><span>{{ raspina.t('reply {user}:', {'user': comment.createdBy.last_name}) }}</span><br> {{ comment.reply_text | raw }}</div>
+                        {% endif %}
+                        <hr class="more-hr">
+                {% endfor %}
+                <!-- -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if model.enable_comments %}
+<div class="post-border shadow">
+    <div class="panel panel-default post-panel">
+        <div class="panel-body">
+            <div class="post-title">{{ raspina.t('Leave a comments') }}</div>
+            <div class="post-text">
+<!-- -->
+                {% set form = activeForm.begin() %}
+                {{ form.field(commentModel, 'name').textInput({'maxlength': true, 'class': 'input margin-17', 'placeholder': raspina.t('Name')}) | raw }}
+                {{ form.field(commentModel, 'email').textInput({'maxlength': true, 'class': 'input margin-17', 'placeholder': raspina.t('Email')}) | raw }}
+                {{ form.field(commentModel, 'text').textArea({'rows': 6, 'maxlength': true, 'class': 'input margin-17', 'placeholder': raspina.t('Comment')}) | raw }}
+                {{ form.field(commentModel, 'captcha').widget(captcha.className(), {
+                    'captchaAction': '../site/captcha',
+                    'options': {'class': 'input text-center', 'placeholder': raspina.t('Captcha')},
+                    'template': '<div class="captcha-img">{image}</div><div class="captcha-txt">{input}</div>'
+                }) | raw }}
+                    {{ html.submitButton(raspina.t('Send'), {'class': 'submit'}) | raw }}
+                {% set end = activeForm.end() %}
+<!-- -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+

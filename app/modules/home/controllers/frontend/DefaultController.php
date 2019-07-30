@@ -1,19 +1,10 @@
 <?php
 namespace app\modules\home\controllers\frontend;
 
-use app\modules\post\models\Category;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use app\modules\post\models\Post;
-use app\modules\post\models\Comment;
-use app\modules\post\models\PostCategory;
-use app\modules\post\models\PostTag;
-use app\modules\post\models\Tag;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
 /**
  * Default controller for the `posts` module

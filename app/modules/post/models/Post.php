@@ -17,9 +17,6 @@ class Post extends \app\modules\post\models\base\Post
     /**
      * @inheritdoc
      */
-    public $hour;
-    public $minute;
-    public $date;
     public $comment_count;
     public $more;
     public $tags;
@@ -58,33 +55,6 @@ class Post extends \app\modules\post\models\base\Post
         $parentRules[] = [['date'], 'dateValidate', 'skipOnEmpty' => true];
 
         return $parentRules;
-    }
-
-    public function dateValidate()
-    {
-//        //
-//        $this->setOriginTimeZone('America/Los_Angeles');
-        if($this->status == 2)
-        {
-            $currentTime = new \DateTime;
-
-            if (Yii::$app->language == 'fa-IR')
-            {
-                $date = explode('-', $this->date);
-                $newCreatedAt = new \DateTime($this->fromPersian([$date[0], $date[1], $date[2], $this->hour, $this->minute, 0], 'fa')->toGregorian()->setFinalTimeZone(Yii::$app->timeZone)->asDateTime());
-            } else
-            {
-                $newCreatedAt = new \DateTime("{$this->date} {$this->hour}:{$this->minute}");
-            }
-
-//            if ($currentTime >= $newCreatedAt)
-//            {
-//                $this->addError('date', Yii::t('app', 'Send In Future Date Not Valid'));
-//            } else
-            {
-                $this->created_at = $newCreatedAt->format('Y-m-d H:i:s');
-            }
-        }
     }
 
     public function load($data, $formName = null)
@@ -358,7 +328,7 @@ class Post extends \app\modules\post\models\base\Post
     {
         $postsModel = Post::find()
             ->alias('post')
-            ->select(['post.id', 'post.title', 'post.slug', 'post.short_text', 'post.created_at', 'post.updated_at', 'post.created_by', 'post.updated_by', 'post.pin_post', 'post.view', 'post.more_text'])
+            ->select(['post.id', 'post.title', 'post.slug', 'post.short_text', 'post.created_at', 'post.updated_at', 'post.created_by', 'post.updated_by', 'post.pin_post', 'post.view', 'post.more_text', 'comment_count' => 'COUNT(post_comment.id)'])
             ->joinWith(['createdBy' => function (ActiveQuery $query) {
                 $query->alias('created_by');
                 $query->select(['created_by.last_name', 'created_by.surname']);
@@ -368,8 +338,8 @@ class Post extends \app\modules\post\models\base\Post
                 $query->select(['updated_by.last_name', 'updated_by.surname']);
             }])
             ->joinWith(['comments' => function (ActiveQuery $query) {
-                $query->alias('comment');
-                $query->onCondition(['comment.status' => self::PUBLISH_STATUS]);
+                $query->alias('post_comment');
+                $query->onCondition(['post_comment.status' => self::PUBLISH_STATUS]);
             }])
             ->joinWith(['postCategories' => function (ActiveQuery $query) {
                 $query->alias('post_categories');
@@ -379,6 +349,7 @@ class Post extends \app\modules\post\models\base\Post
                     $query->select(['category.id', 'category.title', 'category.slug']);
                 }]);
             }])
+            ->groupBy('post.id')
             ->orderBy(['post.pin_post' => SORT_DESC, 'post.id' => SORT_DESC])
             ->where(['post.status' => self::PUBLISH_STATUS]);
 
