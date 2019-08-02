@@ -48,13 +48,6 @@ class Post extends \app\modules\post\models\base\Post
             return preg_replace('/\s+/',' ',str_replace(['/','\\'],' ',$value));
         }];
         $parentRules[] = [['pin_post', 'enable_comments'], 'boolean'];
-
-        $parentRules[] = [['hour'], 'integer', 'min' => 0, 'max' => 23];
-        $parentRules[] = [['minute'], 'integer', 'min' => 0, 'max' => 59];
-
-        $parentRules[] = [['date'], 'date', 'format' => 'php:Y-m-d'];
-        $parentRules[] = [['date'], 'dateValidate', 'skipOnEmpty' => true];
-
         return $parentRules;
     }
 
@@ -329,11 +322,11 @@ class Post extends \app\modules\post\models\base\Post
             ->select(['post.id', 'post.title', 'post.slug', 'post.short_text', 'post.created_at', 'post.updated_at', 'post.created_by', 'post.updated_by', 'post.pin_post', 'post.view', 'post.more_text', 'comment_count' => 'COUNT(post_comment.id)'])
             ->joinWith(['createdBy' => function (ActiveQuery $query) {
                 $query->alias('created_by');
-                $query->select(['created_by.last_name', 'created_by.surname']);
+                $query->select(['created_by.id', 'created_by.last_name', 'created_by.surname']);
             }])
             ->joinWith(['updatedBy' => function (ActiveQuery $query) {
                 $query->alias('updated_by');
-                $query->select(['updated_by.last_name', 'updated_by.surname']);
+                $query->select(['updated_by.id', 'updated_by.last_name', 'updated_by.surname']);
             }])
             ->joinWith(['comments' => function (ActiveQuery $query) {
                 $query->alias('post_comment');

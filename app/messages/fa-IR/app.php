@@ -191,5 +191,6 @@ return [
     'Unsubscribe Newsletter' => 'لغو عضویت خبرنامه',
     'Latest Auto Save: (date)' => 'آخرین ذخیره خودکار: (date)',
     'New Post' => 'مطلب جدید',
-    'Suggest' => 'پیشنهاد'
+    'Suggest' => 'پیشنهاد',
+    'Error' => 'خطا'
 ];

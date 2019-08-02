@@ -1,8 +1,8 @@
 <?php
 namespace app\controllers;
 
+use app\components\Controller;
 use Yii;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\helpers\Url;
 
@@ -33,9 +33,9 @@ class SiteController extends Controller
     public function actions()
     {
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
+//            'error' => [
+//                'class' => 'yii\web\ErrorAction',
+//            ],
 //            'captcha' => [
 //                'class' => 'developit\captcha\CaptchaAction',
 //                'type' => 'numbers',
@@ -53,6 +53,16 @@ class SiteController extends Controller
                 'maxLength' => 5,
             ],
         ];
+    }
+
+    public function actionError()
+    {
+        $this->module->layoutPath = '@theme';
+        $this->layout = 'main.twig';
+        $exception = Yii::$app->errorHandler->exception;
+        if ($exception !== null) {
+            return $this->render('@theme/error.twig', ['exception' => $exception]);
+        }
     }
 
     public function beforeAction($action)

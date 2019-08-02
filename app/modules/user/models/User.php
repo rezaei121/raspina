@@ -2,7 +2,6 @@
 namespace app\modules\user\models;
 
 use Yii;
-use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
 
 class User extends \app\modules\user\models\base\User implements IdentityInterface
