@@ -41,24 +41,24 @@
     </div>
 </div>
 
-
-
-{#<?php if($postRelated = $post->related()): ?>#}
-{#    <div class="post-border shadow">#}
-{#        <div class="panel panel-default post-panel">#}
-{#            <div class="panel-body">#}
-{#                <div class="post-title"><?= Raspina::t('Related'); ?></div>#}
-{#                <div class="post-text">#}
-{#                    <!-- -->#}
-{#                    <?php foreach ($postRelated as $related): ?>#}
-{#                        <?= Html::a($related['title'],[0 => '/post/default/view','id' => $related['id'],'title' => $related['slug']]) ?><br>#}
-{#                    <?php endforeach ?>#}
-{#                    <!-- -->#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#<?php endif ?>#}
+{% set suggest = model.suggest %}
+{%  if suggest %}
+    <div class="post-border shadow">
+        <div class="panel panel-default post-panel">
+            <div class="panel-body">
+                <div class="post-title">{{ raspina.t('Suggest') }}</div>
+                <br>
+                <div class="post-text">
+                    <!-- -->
+                    {% for postSuggest in suggest %}
+                        <a href="{{ postSuggest.url }}">{{ postSuggest.title }}</a>
+                    {% endfor %}
+                    <!-- -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 {% set comments = model.comments %}
 {%  if comments %}
@@ -66,6 +66,7 @@
     <div class="panel panel-default post-panel">
         <div class="panel-body">
             <div class="post-title">{{ raspina.t('Comments') }}</div>
+            <br>
             <div class="post-text">
                 <!-- -->
                 {% for comment in comments %}

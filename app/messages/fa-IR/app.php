@@ -190,5 +190,6 @@ return [
     'New Password Was Saved' => 'کلمه عبور جدید ذخیره شد',
     'Unsubscribe Newsletter' => 'لغو عضویت خبرنامه',
     'Latest Auto Save: (date)' => 'آخرین ذخیره خودکار: (date)',
-    'New Post' => 'مطلب جدید'
+    'New Post' => 'مطلب جدید',
+    'Suggest' => 'پیشنهاد'
 ];

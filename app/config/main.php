@@ -11,7 +11,7 @@ return [
     'language' => 'en-US',
     'timeZone' => 'Asia/Tehran',
     'controllerNamespace' => 'app\controllers',
-    'bootstrap' => ['log', 'app\components\bootstrap\ModuleLoader', 'app\components\bootstrap\Setting'],
+    'bootstrap' => ['log', 'debug', 'app\components\bootstrap\ModuleLoader', 'app\components\bootstrap\Setting'],
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',

@@ -5,6 +5,7 @@ use app\modules\post\models\base\PostTag;
 use meysampg\intldate\IntlDateTrait;
 use Yii;
 use yii\db\ActiveQuery;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 class Post extends \app\modules\post\models\base\Post
@@ -269,29 +270,26 @@ class Post extends \app\modules\post\models\base\Post
      * get related post
      * @return array|\yii\db\ActiveRecord[]
      */
-    public function related()
+    public function suggest()
     {
-        $title = explode(' ',$this->title);
-        $likes = [];
-        foreach ($title as $t)
-        {
-            $likes[] = "(p.title LIKE '%{$t}%')";
-        }
-        $likes[] = "(IFNULL(t.title LIKE '%{$t}%',0))";
-        $likes[] = "(IFNULL(p.keywords LIKE '%{$t}%',0))";
+        $postCategories = ArrayHelper::getColumn($this->postCategories, function($element){
+            return $element['category_id'];
+        });
 
-        $sql = "
-            SELECT p.*,
-                   (" . implode(' + ', $likes) . ") as hits
-            FROM rs_post AS p
-            LEFT JOIN rs_post_tag pt on pt.post_id = p.id
-            LEFT JOIN rs_tag t on pt.tag_id = t.id
-            WHERE p.id != {$this->id} AND p.status = 1
-            HAVING hits > 0
-            ORDER BY hits DESC
-            LIMIT 5
-        ";
-        return $this->findBySql($sql)->all();
+        return Post::find()
+            ->alias('p')
+            ->select(['p.id', 'p.title', 'p.slug'])
+            ->joinWith(['postCategories' => function (ActiveQuery $query) {
+                $query->alias('pc');
+            }], false)
+            ->where(['and',
+                ['p.status' => Post::PUBLISH_STATUS],
+                ['pc.category_id' => $postCategories],
+                ['!=', 'p.id', $this->id]
+            ])
+            ->orderBy(['view' => SORT_DESC])
+            ->limit(5)
+            ->all();
     }
 
     public function url()
