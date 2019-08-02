@@ -23,9 +23,9 @@ use Yii;
  *
  * @property User $createdBy
  * @property User $updatedBy
- * @property Post $post
+ * @property BasePost $post
  */
-class Comment extends \app\components\Model
+class BaseComment extends \app\components\Model
 {
     /**
      * @inheritdoc
@@ -50,7 +50,7 @@ class Comment extends \app\components\Model
             [['ip'], 'string', 'max' => 20],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
-            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
+            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => BasePost::className(), 'targetAttribute' => ['post_id' => 'id']],
         ];
     }
 
@@ -96,6 +96,6 @@ class Comment extends \app\components\Model
      */
     public function getPost()
     {
-        return $this->hasOne(Post::className(), ['id' => 'post_id']);
+        return $this->hasOne(BasePost::className(), ['id' => 'post_id']);
     }
 }

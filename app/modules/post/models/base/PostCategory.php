@@ -11,8 +11,8 @@ use Yii;
  * @property string $post_id
  * @property string $category_id
  *
- * @property Post $post
- * @property Category $category
+ * @property BasePost $post
+ * @property BaseCategory $category
  */
 class PostCategory extends \app\components\Model
 {
@@ -32,8 +32,8 @@ class PostCategory extends \app\components\Model
         return [
             [['post_id', 'category_id'], 'required'],
             [['post_id', 'category_id'], 'integer'],
-            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => BasePost::className(), 'targetAttribute' => ['post_id' => 'id']],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => BaseCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
 
@@ -54,7 +54,7 @@ class PostCategory extends \app\components\Model
      */
     public function getPost()
     {
-        return $this->hasOne(Post::className(), ['id' => 'post_id']);
+        return $this->hasOne(BasePost::className(), ['id' => 'post_id']);
     }
 
     /**
@@ -62,6 +62,6 @@ class PostCategory extends \app\components\Model
      */
     public function getCategory()
     {
-        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+        return $this->hasOne(BaseCategory::className(), ['id' => 'category_id']);
     }
 }

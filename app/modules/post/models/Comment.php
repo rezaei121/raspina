@@ -3,38 +3,41 @@ namespace app\modules\post\models;
 
 use Yii;
 
-class Comment extends \app\modules\post\models\base\Comment
+class Comment extends \app\modules\post\models\base\BaseComment
 {
+    const NOT_APPROVED = 0;
+    const APPROVED = 1;
+
     public $post_title;
     public $captcha;
 
     public function rules()
     {
-        $parentRules = parent::rules();
-        $parentRules[] = ['reply_text', 'required','on' => 'reply'];
-        $parentRules[] = ['captcha', 'captcha', 'on' => 'post-view'];
-        return $parentRules;
+        $rules = parent::rules();
+        $rules[] = ['reply_text', 'required','on' => 'reply'];
+        $rules[] = ['captcha', 'captcha', 'on' => 'post-view'];
+        return $rules;
     }
 
     public function attributeLabels()
     {
-        $parentAttributeLabels = parent::attributeLabels();
-        $parentAttributeLabels['post_title'] = Yii::t('app', 'In Post');
-        $parentAttributeLabels['name'] = Yii::t('app', 'Sender');
-        return $parentAttributeLabels;
+        $attributeLabels = parent::attributeLabels();
+        $attributeLabels['post_title'] = Yii::t('app', 'In Post');
+        $attributeLabels['name'] = Yii::t('app', 'Sender');
+        return $attributeLabels;
     }
 
     public function getCommentStatus()
     {
         return [
-            0 => Yii::t('app','Not Approved'),
-            1 => Yii::t('app','Approved')
+            $this::NOT_APPROVED => Yii::t('app','Not Approved'),
+            $this::APPROVED => Yii::t('app','Approved')
         ];
     }
 
     public static function getNotApprovedCount()
     {
-        return self::find()->where(['status' => 0])->count();
+        return self::find()->where(['status' => self::NOT_APPROVED])->count();
     }
 
     /**

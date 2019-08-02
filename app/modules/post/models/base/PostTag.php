@@ -11,7 +11,7 @@ use Yii;
  * @property string $post_id
  * @property string $tag_id
  *
- * @property Post $post
+ * @property BasePost $post
  * @property Tag $tag
  */
 class PostTag extends \app\components\Model
@@ -33,7 +33,7 @@ class PostTag extends \app\components\Model
         return [
             [['post_id', 'tag_id'], 'required'],
             [['post_id', 'tag_id'], 'integer'],
-            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
+            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => BasePost::className(), 'targetAttribute' => ['post_id' => 'id']],
             [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tag::className(), 'targetAttribute' => ['tag_id' => 'id']],
         ];
     }
@@ -55,7 +55,7 @@ class PostTag extends \app\components\Model
      */
     public function getPost()
     {
-        return $this->hasOne(Post::className(), ['id' => 'post_id']);
+        return $this->hasOne(BasePost::className(), ['id' => 'post_id']);
     }
 
     /**

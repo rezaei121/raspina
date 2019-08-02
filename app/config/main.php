@@ -15,6 +15,9 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
+            'enableSchemaCache' => true,
+            'schemaCache' => 'cache',
+            'schemaCacheDuration' => 86400, // 24H it is in seconds
             'dsn' => DBMS . ':host=' . DB_HOST . ';dbname=' . DB_NAME,
             'username' => DB_USER_NAME,
             'password' => DB_PASSWORD,

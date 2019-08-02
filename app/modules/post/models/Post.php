@@ -2,16 +2,14 @@
 namespace app\modules\post\models;
 use app\components\behaviors\SluggableBehavior;
 use app\modules\post\models\base\PostTag;
-use meysampg\intldate\IntlDateTrait;
+use app\modules\post\models\base\Tag;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
-class Post extends \app\modules\post\models\base\Post
+class Post extends \app\modules\post\models\base\BasePost
 {
-    use IntlDateTrait;
-
     const DRAFT_STATUS = 0;
     const PUBLISH_STATUS = 1;
 
@@ -370,5 +368,19 @@ class Post extends \app\modules\post\models\base\Post
         }
 
         return $postsModel;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPostTags()
+    {
+        $result = $this->hasMany(PostTag::className(), ['post_id' => 'id'])
+            ->select('t.*')
+            ->alias('pt')
+            ->innerJoin(['t' => Tag::tableName()], 'pt.tag_id = t.id')
+            ->asArray()
+            ->all();
+        return \yii\helpers\ArrayHelper::map($result,'title','slug');
     }
 }

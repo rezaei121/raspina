@@ -23,13 +23,13 @@ use Yii;
  * @property integer $enable_comments
  * @property string $view
  *
- * @property Comment[] $comments
+ * @property BaseComment[] $comments
  * @property User $createdBy
  * @property User $updatedBy
  * @property PostCategory[] $postCategories
  * @property PostTag[] $postTags
  */
-class Post extends \app\components\Model
+class BasePost extends \app\components\Model
 {
     /**
      * @inheritdoc
@@ -84,7 +84,7 @@ class Post extends \app\components\Model
      */
     public function getComments()
     {
-        return $this->hasMany(Comment::className(), ['post_id' => 'id']);
+        return $this->hasMany(BaseComment::className(), ['post_id' => 'id']);
     }
 
     /**
@@ -109,19 +109,5 @@ class Post extends \app\components\Model
     public function getPostCategories()
     {
         return $this->hasMany(PostCategory::className(), ['post_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPostTags()
-    {
-        $result = $this->hasMany(PostTag::className(), ['post_id' => 'id'])
-            ->select('t.*')
-            ->alias('pt')
-            ->innerJoin(['t' => Tag::tableName()], 'pt.tag_id = t.id')
-            ->asArray()
-            ->all();
-        return \yii\helpers\ArrayHelper::map($result,'title','slug');
     }
 }

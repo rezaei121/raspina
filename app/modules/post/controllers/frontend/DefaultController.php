@@ -70,7 +70,8 @@ class DefaultController extends \app\components\Controller
 
     public function actionRss()
     {
-        $this->layout = 'blank';
+        $this->module->layoutPath = '';
+        $this->layout = '@app/views/layouts/blank';
 
         $posts = Post::find()
             ->select(["p.id","p.title","p.short_text","p.created_at","u.username"])
@@ -83,7 +84,7 @@ class DefaultController extends \app\components\Controller
             ->limit(Yii::$app->params['pageSize'])
             ->all();
 
-        return $this->render('@theme/rss.php', [
+        return $this->render('@theme/rss.twig', [
             'posts' => $posts
         ]);
     }
