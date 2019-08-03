@@ -259,7 +259,7 @@ class Post extends \app\modules\post\models\base\BasePost
 
     /**
      * get related post
-     * @return array|\yii\db\ActiveRecord[]
+     * @return array|\app\components\Model[]
      */
     public function suggest()
     {

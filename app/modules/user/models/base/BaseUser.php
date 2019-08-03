@@ -34,7 +34,7 @@ use yii\web\IdentityInterface;
  * @property Post[] $post
  * @property Post[] $posts0
  */
-class BaseUser extends \yii\db\ActiveRecord implements IdentityInterface
+class BaseUser extends \app\components\Model implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
