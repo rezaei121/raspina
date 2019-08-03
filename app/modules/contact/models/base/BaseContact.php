@@ -16,7 +16,7 @@ use Yii;
  * @property string $created_at
  * @property string $ip
  */
-class Contact extends \app\components\Model
+class BaseContact extends \app\components\Model
 {
     /**
      * @inheritdoc

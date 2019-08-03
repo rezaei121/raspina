@@ -21,7 +21,7 @@ use yii\db\Query;
  * @property string $date_format
  * @property string $sult
  */
-class Setting extends \app\components\Model
+class BaseSetting extends \app\components\Model
 {
     /**
      * @inheritdoc

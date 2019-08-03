@@ -4,7 +4,7 @@ namespace app\modules\user\models;
 use Yii;
 use yii\web\IdentityInterface;
 
-class User extends \app\modules\user\models\base\User implements IdentityInterface
+class User extends \app\modules\user\models\base\BaseUser implements IdentityInterface
 {
     public $password;
     public $old_password;
@@ -14,39 +14,39 @@ class User extends \app\modules\user\models\base\User implements IdentityInterfa
     public $role;
     public function rules()
     {
-        $parentRules = [];
-        $parentRules[] = ['status', 'default', 'value' => self::STATUS_ACTIVE];
-        $parentRules[] = ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]];
-        $parentRules[] = [['old_password','new_password','password_repeat'], 'required','on' => 'changepassword'];
-        $parentRules[] = [['last_name','surname'], 'string', 'max' => 255, 'min' => 3];
-        $parentRules[] = [['email'], 'email'];
-        $parentRules[] = [['username','email'], 'string', 'max' => 255];
-        $parentRules[] = [['about_text'], 'string'];
-        $parentRules[] = [['password', 'old_password','new_password','password_repeat'], 'string', 'max' => 255];
+        $rules = [];
+        $rules[] = ['status', 'default', 'value' => self::STATUS_ACTIVE];
+        $rules[] = ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]];
+        $rules[] = [['old_password','new_password','password_repeat'], 'required','on' => 'changepassword'];
+        $rules[] = [['last_name','surname'], 'string', 'max' => 255, 'min' => 3];
+        $rules[] = [['email'], 'email'];
+        $rules[] = [['username','email'], 'string', 'max' => 255];
+        $rules[] = [['about_text'], 'string'];
+        $rules[] = [['password', 'old_password','new_password','password_repeat'], 'string', 'max' => 255];
 
-        $parentRules[] = [['username'], 'string', 'min' => 5];
-        $parentRules[] = [['role'], 'checkValidRole', 'on' => ['create', 'update']];
-        $parentRules[] = [['password', 'old_password','new_password','password_repeat'], 'string', 'min' => 7];
-        $parentRules[] = [['username', 'last_name', 'surname', 'password', 'password_repeat', 'email'], 'required', 'on' => 'create'];
-        $parentRules[] = [['username', 'last_name', 'surname', 'password', 'password_repeat', 'email'], 'trim', 'on' => 'create'];
-        $parentRules[] = ['password_repeat', 'compare', 'compareAttribute' => 'password', 'on' => ['create']];
-        $parentRules[] = ['password_repeat', 'compare', 'compareAttribute' => 'new_password', 'on' => ['update-password']];
+        $rules[] = [['username'], 'string', 'min' => 5];
+        $rules[] = [['role'], 'checkValidRole', 'on' => ['create', 'update']];
+        $rules[] = [['password', 'old_password','new_password','password_repeat'], 'string', 'min' => 7];
+        $rules[] = [['username', 'last_name', 'surname', 'password', 'password_repeat', 'email'], 'required', 'on' => 'create'];
+        $rules[] = [['username', 'last_name', 'surname', 'password', 'password_repeat', 'email'], 'trim', 'on' => 'create'];
+        $rules[] = ['password_repeat', 'compare', 'compareAttribute' => 'password', 'on' => ['create']];
+        $rules[] = ['password_repeat', 'compare', 'compareAttribute' => 'new_password', 'on' => ['update-password']];
 
-        $parentRules[] = [['username', 'last_name', 'surname', 'email'], 'required', 'on' => 'update'];
-        $parentRules[] = [['username', 'last_name', 'surname', 'email'], 'trim', 'on' => 'update'];
+        $rules[] = [['username', 'last_name', 'surname', 'email'], 'required', 'on' => 'update'];
+        $rules[] = [['username', 'last_name', 'surname', 'email'], 'trim', 'on' => 'update'];
 
-        $parentRules[] = [['old_password', 'new_password', 'password_repeat'], 'required', 'on' => 'update-password'];
-        $parentRules[] = [['old_password', 'new_password', 'password_repeat'], 'trim', 'on' => 'update-password'];
+        $rules[] = [['old_password', 'new_password', 'password_repeat'], 'required', 'on' => 'update-password'];
+        $rules[] = [['old_password', 'new_password', 'password_repeat'], 'trim', 'on' => 'update-password'];
 
-        $parentRules[] = [['status'], 'integer'];
-        $parentRules[] = [['username', 'last_name', 'surname', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255];
-        $parentRules[] = [['auth_key'], 'string', 'max' => 32];
-        $parentRules[] = [['username'], 'unique'];
-        $parentRules[] = [['email'], 'unique'];
-        $parentRules[] = [['password_reset_token'], 'unique'];
-        $parentRules[] = [['old_password'], 'validateOldPassword'];
+        $rules[] = [['status'], 'integer'];
+        $rules[] = [['username', 'last_name', 'surname', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255];
+        $rules[] = [['auth_key'], 'string', 'max' => 32];
+        $rules[] = [['username'], 'unique'];
+        $rules[] = [['email'], 'unique'];
+        $rules[] = [['password_reset_token'], 'unique'];
+        $rules[] = [['old_password'], 'validateOldPassword'];
 
-        return $parentRules;
+        return $rules;
     }
 
     /**
@@ -54,12 +54,12 @@ class User extends \app\modules\user\models\base\User implements IdentityInterfa
      */
     public function attributeLabels()
     {
-        $parentAttributeLabels = parent::attributeLabels();
-        $parentAttributeLabels['password'] = Yii::t('app', 'Password');
-        $parentAttributeLabels['password_repeat'] = Yii::t('app', 'Repeat Password');
-        $parentAttributeLabels['old_password'] = Yii::t('app', 'Old Password');
-        $parentAttributeLabels['new_password'] = Yii::t('app', 'New Password');
-        return $parentAttributeLabels;
+        $attributeLabels = parent::attributeLabels();
+        $attributeLabels['password'] = Yii::t('app', 'Password');
+        $attributeLabels['password_repeat'] = Yii::t('app', 'Repeat Password');
+        $attributeLabels['old_password'] = Yii::t('app', 'Old Password');
+        $attributeLabels['new_password'] = Yii::t('app', 'New Password');
+        return $attributeLabels;
     }
 
     public function getStatus()

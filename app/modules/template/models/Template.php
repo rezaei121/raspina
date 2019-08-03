@@ -3,7 +3,7 @@ namespace app\modules\template\models;
 
 use Yii;
 
-class Template extends \yii\db\ActiveRecord
+class Template extends \app\components\Model
 {
     public function getAllTemplates()
     {

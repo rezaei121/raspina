@@ -11,7 +11,7 @@ use Yii;
  * @property string $title
  * @property string $url
  */
-class Link extends \app\components\Model
+class BaseLink extends \app\components\Model
 {
     /**
      * @inheritdoc

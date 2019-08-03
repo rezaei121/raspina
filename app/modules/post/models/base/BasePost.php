@@ -26,8 +26,8 @@ use Yii;
  * @property BaseComment[] $comments
  * @property User $createdBy
  * @property User $updatedBy
- * @property PostCategory[] $postCategories
- * @property PostTag[] $postTags
+ * @property BasePostCategory[] $postCategories
+ * @property BasePostTag[] $postTags
  */
 class BasePost extends \app\components\Model
 {
@@ -108,6 +108,6 @@ class BasePost extends \app\components\Model
      */
     public function getPostCategories()
     {
-        return $this->hasMany(PostCategory::className(), ['post_id' => 'id']);
+        return $this->hasMany(BasePostCategory::className(), ['post_id' => 'id']);
     }
 }

@@ -7,7 +7,7 @@ use app\modules\post\models\PostCategory;
 use Yii;
 use yii\data\ActiveDataProvider;
 
-class Statistics extends \yii\db\ActiveRecord
+class Statistics extends \app\components\Model
 {
     public function getPostCount()
     {

@@ -11,9 +11,9 @@ use Yii;
  * @property string $title
  * @property string $slug
  *
- * @property PostTag[] $postTags
+ * @property BasePostTag[] $postTags
  */
-class Tag extends \app\components\Model
+class BaseTag extends \app\components\Model
 {
     /**
      * @inheritdoc
@@ -53,6 +53,6 @@ class Tag extends \app\components\Model
      */
     public function getPostTags()
     {
-        return $this->hasMany(PostTag::className(), ['tag_id' => 'id']);
+        return $this->hasMany(BasePostTag::className(), ['tag_id' => 'id']);
     }
 }

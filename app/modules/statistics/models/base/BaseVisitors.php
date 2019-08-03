@@ -17,7 +17,7 @@ use Yii;
  * @property string $referer
  * @property string $user_agent
  */
-class Visitors extends \app\components\Model
+class BaseVisitors extends \app\components\Model
 {
     /**
      * @inheritdoc

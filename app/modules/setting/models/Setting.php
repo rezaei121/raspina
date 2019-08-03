@@ -21,7 +21,7 @@ use Yii;
  * @property string $date_format
  * @property string $sult
  */
-class Setting extends \app\modules\setting\models\base\Setting
+class Setting extends \app\modules\setting\models\base\BaseSetting
 {
     public function pageSize()
     {

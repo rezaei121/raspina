@@ -1,8 +1,8 @@
 <?php
 namespace app\modules\post\models;
 use app\components\behaviors\SluggableBehavior;
-use app\modules\post\models\base\PostTag;
-use app\modules\post\models\base\Tag;
+use app\modules\post\models\base\BasePostTag;
+use app\modules\post\models\base\BaseTag;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
@@ -124,14 +124,14 @@ class Post extends \app\modules\post\models\base\BasePost
                 $tagId = null;
                 if($t != '')
                 {
-                    $exists = Tag::findOne(['title' => $t]);
+                    $exists = BaseTag::findOne(['title' => $t]);
                     if($exists !== null)
                     {
                         $tagId = $exists->id;
                     }
                     else
                     {
-                        $tagModel = new Tag;
+                        $tagModel = new BaseTag;
                         $tagModel->title = $t;
                         $tagModel->save();
                         $tagId = $tagModel->id;
@@ -147,8 +147,8 @@ class Post extends \app\modules\post\models\base\BasePost
 
             if(!empty($data))
             {
-                PostTag::deleteAll(['post_id' => $this->id]);
-                Yii::$app->db->createCommand()->batchInsert(PostTag::tableName(), ['post_id', 'tag_id'], $data)->execute();
+                BasePostTag::deleteAll(['post_id' => $this->id]);
+                Yii::$app->db->createCommand()->batchInsert(BasePostTag::tableName(), ['post_id', 'tag_id'], $data)->execute();
             }
         }
     }
@@ -171,10 +171,10 @@ class Post extends \app\modules\post\models\base\BasePost
 
     public function getSelectedTags()
     {
-        $result = $this->hasMany(PostTag::className(), ['post_id' => 'id'])
+        $result = $this->hasMany(BasePostTag::className(), ['post_id' => 'id'])
             ->select('t.*')
             ->alias('pt')
-            ->innerJoin(['t' => Tag::tableName()], 'pt.tag_id = t.id')
+            ->innerJoin(['t' => BaseTag::tableName()], 'pt.tag_id = t.id')
             ->all();
 
         return \yii\helpers\ArrayHelper::map($result,'title','title');
@@ -375,10 +375,10 @@ class Post extends \app\modules\post\models\base\BasePost
      */
     public function getPostTags()
     {
-        $result = $this->hasMany(PostTag::className(), ['post_id' => 'id'])
+        $result = $this->hasMany(BasePostTag::className(), ['post_id' => 'id'])
             ->select('t.*')
             ->alias('pt')
-            ->innerJoin(['t' => Tag::tableName()], 'pt.tag_id = t.id')
+            ->innerJoin(['t' => BaseTag::tableName()], 'pt.tag_id = t.id')
             ->asArray()
             ->all();
         return \yii\helpers\ArrayHelper::map($result,'title','slug');

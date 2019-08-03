@@ -5,23 +5,24 @@ namespace app\modules\post\models\base;
 use Yii;
 
 /**
- * This is the model class for table "{{%post_category}}".
+ * This is the model class for table "{{%post_tag}}".
  *
- * @property string $id
+ * @property integer $id
  * @property string $post_id
- * @property string $category_id
+ * @property string $tag_id
  *
  * @property BasePost $post
- * @property BaseCategory $category
+ * @property BaseTag $tag
  */
-class PostCategory extends \app\components\Model
+class BasePostTag extends \app\components\Model
 {
     /**
      * @inheritdoc
      */
+    public $title;
     public static function tableName()
     {
-        return '{{%post_category}}';
+        return '{{%post_tag}}';
     }
 
     /**
@@ -30,10 +31,10 @@ class PostCategory extends \app\components\Model
     public function rules()
     {
         return [
-            [['post_id', 'category_id'], 'required'],
-            [['post_id', 'category_id'], 'integer'],
+            [['post_id', 'tag_id'], 'required'],
+            [['post_id', 'tag_id'], 'integer'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => BasePost::className(), 'targetAttribute' => ['post_id' => 'id']],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => BaseCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => BaseTag::className(), 'targetAttribute' => ['tag_id' => 'id']],
         ];
     }
 
@@ -45,7 +46,7 @@ class PostCategory extends \app\components\Model
         return [
             'id' => Yii::t('app', 'ID'),
             'post_id' => Yii::t('app', 'Post ID'),
-            'category_id' => Yii::t('app', 'Category ID'),
+            'tag_id' => Yii::t('app', 'Tag ID'),
         ];
     }
 
@@ -60,8 +61,8 @@ class PostCategory extends \app\components\Model
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCategory()
+    public function getTag()
     {
-        return $this->hasOne(BaseCategory::className(), ['id' => 'category_id']);
+        return $this->hasOne(BaseTag::className(), ['id' => 'tag_id']);
     }
 }

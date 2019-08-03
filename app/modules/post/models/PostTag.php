@@ -14,7 +14,7 @@ use Yii;
  * @property Post $post
  * @property Tag $tag
  */
-class PostTag extends \app\modules\post\models\base\PostTag
+class PostTag extends \app\modules\post\models\base\BasePostTag
 {
 
 }

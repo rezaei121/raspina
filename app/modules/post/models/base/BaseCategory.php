@@ -13,7 +13,7 @@ use Yii;
  * @property string $created_by
  *
  * @property User $createdBy
- * @property PostCategory[] $postCategories
+ * @property BasePostCategory[] $postCategories
  */
 class BaseCategory extends \app\components\Model
 {
@@ -64,6 +64,6 @@ class BaseCategory extends \app\components\Model
      */
     public function getPostCategories()
     {
-        return $this->hasMany(PostCategory::className(), ['category_id' => 'id']);
+        return $this->hasMany(BasePostCategory::className(), ['category_id' => 'id']);
     }
 }

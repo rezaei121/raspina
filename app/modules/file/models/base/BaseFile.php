@@ -20,7 +20,7 @@ use Yii;
  *
  * @property User $uploadedBy
  */
-class File extends \yii\db\ActiveRecord
+class BaseFile extends \app\components\Model
 {
     /**
      * @inheritdoc

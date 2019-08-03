@@ -7,7 +7,7 @@ use Yii;
 use yii\db\Query;
 
 
-class File extends \app\modules\file\models\base\File
+class File extends \app\modules\file\models\base\BaseFile
 {
     public $myfile;
 
@@ -23,9 +23,9 @@ class File extends \app\modules\file\models\base\File
      */
     public function rules()
     {
-        $parentRules = parent::rules();
-        $parentRules[] = [['myfile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'gif, png, jpg, pdf, doc, docx, xls, xlsx, ppt, pptx, txt, zip, rar, flv, avi, wmv, mp4, mpg, 3gp, mkv, mp3, ogg', 'maxFiles' => 4, 'maxSize' => ((int)ini_get('upload_max_filesize')) * pow(1024,2)];
-        return $parentRules;
+        $rules = parent::rules();
+        $rules[] = [['myfile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'gif, png, jpg, pdf, doc, docx, xls, xlsx, ppt, pptx, txt, zip, rar, flv, avi, wmv, mp4, mpg, 3gp, mkv, mp3, ogg', 'maxFiles' => 4, 'maxSize' => ((int)ini_get('upload_max_filesize')) * pow(1024,2)];
+        return $rules;
     }
 
     /**
