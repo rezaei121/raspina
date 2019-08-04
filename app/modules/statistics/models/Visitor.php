@@ -4,100 +4,52 @@ namespace app\modules\statistics\models;
 
 use Yii;
 
-/**
- * This is the model class for table "{{%visitors}}".
- *
- * @property string $id
- * @property string $ip
- * @property string $visit_date
- * @property integer $group_date
- * @property string $location
- * @property string $browser
- * @property string $os
- * @property string $referer
- * @property string $user_agent
- */
-class Visitors extends \app\modules\statistics\models\base\BaseVisitors
+class Visitor extends \app\modules\statistics\models\base\BaseVisitor
 {
-    /**
-     * @inheritdoc
-     */
-
-    public static function isBot()
+    public function isValid()
     {
-        $botArrayName = [
-            'googlebot' => 'Googlebot',
-            'msnbot' => 'MSNBot',
-            'MSNBot-Media' => 'MSNBot-Media',
-            'bingbot' => 'Bingbot',
-            'BingPreview' => 'BingPreview',
-            'AdIdxBot' => 'AdIdxBot',
-            'slurp' => 'Inktomi',
-            'yahoo' => 'Yahoo',
-            'askjeeves' => 'AskJeeves',
-            'fastcrawler' => 'FastCrawler',
-            'infoseek' => 'InfoSeek',
-            'lycos' => 'Lycos',
-            'yandex' => 'YandexBot',
-            'geohasher' => 'GeoHasher',
-            'gigablast' => 'Gigabot',
-            'baidu' => 'Baiduspider',
-            'spinn3r' => 'Spinn3r'
-        ];
-
-        if(isset($_SERVER['HTTP_USER_AGENT']))
-        {
-            foreach ($botArrayName as $bot)
-            {
-                $re = "/{$bot}/i";
-                if(preg_match($re,$_SERVER['HTTP_USER_AGENT']))
-                {
-                    return $re;
-                }
-            }
-        }
-        return false;
+        return true;
     }
 
-    public function add()
+    public static function add($data)
     {
-        $request = Yii::$app->request->post();
-        if(!$this::isBot())
-        {
-            $visitor = new Visitors();
-            $visitor->group_date = (new \DateTime())->format('Ymd');
-            $visitor->ip = $_SERVER['REMOTE_ADDR'];
-            $visitor->location = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
-            $visitor->browser = Yii::$app->browser->getBrowser() . ' ' . Yii::$app->browser->getVersion();
-            $visitor->os = Yii::$app->browser->getPlatform();
-            $visitor->referer = isset($request['ref']) ? $request['ref'] : null;
-            $visitor->save();
-        }
+        $visitor = new Visitor();
+        $visitor->group_date = (new \DateTime())->format('Ymd');
+        $visitor->ip = $_SERVER['REMOTE_ADDR'];
+        $visitor->location = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
+        $visitor->browser = $data['browser'];
+        $visitor->browser_version = $data['browser_version'];
+        $visitor->device = $data['device'];
+        $visitor->device_model = $data['device_model'];
+        $visitor->os = $data['os'];
+        $visitor->os_version = $data['os_version'];
+        $visitor->referer = isset($data['referrer']) ? $data['referrer'] : null;
+        $visitor->save();
     }
 
     public function delete()
     {
         $currentDate = new \DateTime();
-        Visitors::deleteAll(['<', 'visit_date', $currentDate->modify('-30 day')->format('Y-m-d H:i:s')]);
+        Visitor::deleteAll(['<', 'visit_date', $currentDate->modify('-30 day')->format('Y-m-d H:i:s')]);
     }
 
     public function visit_period()
     {
-        $v1 = Visitors::find()->where("TIME(visit_date) BETWEEN '00:00:00' AND '06:59:59'")->count();
-        $v2 = Visitors::find()->where("TIME(visit_date) BETWEEN '07:00:00' AND '12:59:59'")->count();
-        $v3 = Visitors::find()->where("TIME(visit_date) BETWEEN '13:00:00' AND '18:59:59'")->count();
-        $v4 = Visitors::find()->where("TIME(visit_date) BETWEEN '19:00:00' AND '24:59:59'")->count();
+        $v1 = Visitor::find()->where("TIME(visit_date) BETWEEN '00:00:00' AND '06:59:59'")->count();
+        $v2 = Visitor::find()->where("TIME(visit_date) BETWEEN '07:00:00' AND '12:59:59'")->count();
+        $v3 = Visitor::find()->where("TIME(visit_date) BETWEEN '13:00:00' AND '18:59:59'")->count();
+        $v4 = Visitor::find()->where("TIME(visit_date) BETWEEN '19:00:00' AND '24:59:59'")->count();
         return "[{$v1},{$v2},{$v3},{$v4}]";
     }
 
     public function pie_chart()
     {
-        $google = Visitors::find()->where(['like', 'referer', 'google.com'])->count();
-        $yahoo = Visitors::find()->where(['like', 'referer', 'yahoo.com'])->count();
-        $bing = Visitors::find()->where(['like', 'referer', 'bing.com'])->count();
-        $baidu = Visitors::find()->where(['like', 'referer', 'baidu.com'])->count();
-        $aol = Visitors::find()->where(['like', 'referer', 'aol.com'])->count();
-        $asc = Visitors::find()->where(['like', 'referer', 'ask.com'])->count();
+        $google = Visitor::find()->where(['like', 'referer', 'google.com'])->count();
+        $yahoo = Visitor::find()->where(['like', 'referer', 'yahoo.com'])->count();
+        $bing = Visitor::find()->where(['like', 'referer', 'bing.com'])->count();
+        $baidu = Visitor::find()->where(['like', 'referer', 'baidu.com'])->count();
+        $aol = Visitor::find()->where(['like', 'referer', 'aol.com'])->count();
+        $asc = Visitor::find()->where(['like', 'referer', 'ask.com'])->count();
         return "[{$google},{$yahoo},{$bing},{$baidu},{$aol},{$asc}]";
     }
 
@@ -106,7 +58,6 @@ class Visitors extends \app\modules\statistics\models\base\BaseVisitors
         $currentDate = new \DateTime();
         $visitor = new Yii\db\Query();
         $result = $visitor->select('visit_date,group_date,COUNT(id) as `visit`,COUNT(DISTINCT ip) AS `visitor`')->from($this->tableName())->where(['>=', 'visit_date', $currentDate->modify('-30 day')->format('Y-m-d H:i:s')])->groupBy('group_date')->all();
-
         $labels = $visit_data = $visitor_data = [];
         $max_visit = 0;
         foreach ((array)$result as $r)

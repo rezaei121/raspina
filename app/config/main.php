@@ -25,7 +25,7 @@ return [
             'tablePrefix' => TBL_PREFIX,
         ],
         'view' => [
-            'class' => 'yii\web\View',
+            'class' => 'app\components\web\View',
             'renderers' => [
                 'twig' => [
                     'class' => 'yii\twig\ViewRenderer',

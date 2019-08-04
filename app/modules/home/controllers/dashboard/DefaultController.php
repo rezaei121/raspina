@@ -1,7 +1,7 @@
 <?php
 namespace app\modules\home\controllers\dashboard;
 
-use app\modules\statistics\models\Visitors;
+use app\modules\statistics\models\Visitor;
 use app\components\Controller;
 use yii\filters\AccessControl;
 
@@ -29,7 +29,7 @@ class DefaultController extends Controller
 
     public function actionIndex()
     {
-        $visitors = new Visitors;
+        $visitors = new Visitor;
         $lastVisitors = $visitors->find()
             ->orderBy(['id' => SORT_DESC])
             ->limit(100)

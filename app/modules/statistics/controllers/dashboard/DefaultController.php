@@ -3,7 +3,7 @@
 namespace app\modules\statistics\controllers\dashboard;
 
 use app\modules\statistics\models\Statistics;
-use app\modules\statistics\models\Visitors;
+use app\modules\statistics\models\Visitor;
 use yii\filters\AccessControl;
 
 /**
@@ -13,16 +13,15 @@ class DefaultController extends \app\components\Controller
 {
     public function behaviors()
     {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['index'],
-                'rules' => [
-                    [
-                        'actions' => ['index','update','delete'],
-                        'allow' => true,
-                        'roles' => ['author', 'moderator', 'admin'],
-                    ],
+        $behaviors = parent::behaviors();
+        $behaviors['access'] = [
+            'class' => AccessControl::className(),
+            'only' => ['index'],
+            'rules' => [
+                [
+                    'actions' => ['index','update','delete'],
+                    'allow' => true,
+                    'roles' => ['author', 'moderator', 'admin'],
                 ],
             ],
         ];
@@ -35,7 +34,7 @@ class DefaultController extends \app\components\Controller
     public function actionIndex()
     {
         $model = new Statistics;
-        $visitors = new Visitors();
+        $visitors = new Visitor();
 
         return $this->render('index', [
             'model' => $model,

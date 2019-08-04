@@ -272,7 +272,7 @@ class DefaultController extends \app\components\Controller
         $model = new LoginForm();
         $model->scenario = 'user-login';
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            $visitor = new\app\modules\statistics\models\Visitors;
+            $visitor = new\app\modules\statistics\models\Visitor;
             $visitor->delete();
 
             return $this->goHome();
