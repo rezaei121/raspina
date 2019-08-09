@@ -1,16 +1,19 @@
 $(document).ready(function(){
+
+    $('.share-link-copy').click(function(){
+
+        // reset
+        $('.share-link-copy').html('Copy');
+
+        var copyText = $(this).parent().find('input');
+        copyText.select();
+        document.execCommand("copy");
+
+        $(this).html('Copied!');
+    });
+
     if(controller_name == 'default' && action_name == 'index')
     {
-        $("#content-1").mCustomScrollbar({
-            autoHideScrollbar:false,
-            theme:"dark",
-            snapAmount:40,
-            scrollButtons:{enable:true},
-            keyboard:{scrollAmount:40},
-            mouseWheel:{deltaFactor:40},
-            scrollInertia:400
-        });
-
         $("#content-2").mCustomScrollbar({
             autoHideScrollbar:false,
             theme:"dark",

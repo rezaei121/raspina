@@ -122,18 +122,4 @@ class Visitor extends \app\modules\statistics\models\base\BaseVisitor
 
         return $title;
     }
-
-    /**
-     * @param $browserDetail
-     * @return array
-     */
-    public function getBrowserDetail($browserDetail)
-    {
-        $browser = explode(' ', $browserDetail);
-        $browserVesion = (isset($browser[1]) && (int)$browser[1] > 0) ? (int)$browser[1] : null;
-        return [
-            'browser' => $browser[0],
-            'version' => $browserVesion,
-        ];
-    }
 }

@@ -63,47 +63,6 @@ $this->registerJsFile(Yii::$app->homeUrl . 'app/web/js/chart_config.js');
     </div>
 </div>
 <div class="clear"></div>
-<div class="col-md-12">
-    <div class="panel panel-default">
-        <div class="panel-heading"><?= Yii::t('app','Last Page Visited') ?></div>
-        <div class="panel-body">
-            <!-- -->
-            <div class="last-visitors-lock">
-                <span class="fa fa-lock icon"></span>
-                <br>
-                <span class="message"><?= Yii::t('app', 'Click To Unlock'); ?></span>
-            </div>
-            <div id="content-1" class="last-visitors">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th><?= Yii::t('app','Visit') ?></th>
-                        <th><?= Yii::t('app','Date') ?></th>
-                        <th class="last-visitors-default-col"><?= Yii::t('app','Location') ?></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $url = Yii::$app->setting->getValue('url');
-                    $i = 1;
-                    ?>
-                    <?php foreach ((array)$lastPageVisit as $v): ?>
-                        <tr>
-                            <td class="fit"><span class="label label-blue" style="padding: 2px 20px 0px 20px"><?= count($v); ?></span></td>
-                            <td class="fit ltr"><?= Yii::$app->date->asDateTime($v[0]['visit_date']); ?></td>
-                            <?php
-                            $locationTitle = $visitorsModel->getTitle($url, $v[0]['location']);
-                            ?>
-                            <td class="last-visitors-default-col"><a href="<?= $v[0]['location']; ?>" target="_blank" style="text-align: left; direction: rtl"><?= $locationTitle ?></a></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <!-- -->
-        </div>
-    </div>
-</div>
 
 <div class="col-md-12">
     <div class="panel panel-default">
@@ -141,12 +100,10 @@ $this->registerJsFile(Yii::$app->homeUrl . 'app/web/js/chart_config.js');
                             <td class="fit ltr"><?= Yii::$app->date->asDateTime($v['visit_date']); ?></td>
                             <td class="last-visitors-default-col fit"><?= $v['os']; ?></td>
                             <?php
-                            $browserDetail = $visitorsModel->getBrowserDetail($v['browser']);
-
                             $locationTitle = $visitorsModel->getTitle($url, $v['location']);
                             $refererTitle = $visitorsModel->getTitle($url, $v['referer']);
                             ?>
-                            <td class="last-visitors-default-col fit"><?= $browserDetail['browser'] . ' ' . $browserDetail['version']; ?></td>
+                            <td class="last-visitors-default-col fit"><?= $v['browser'] ?></td>
                             <td class="last-visitors-default-col"><a href="<?= $v['location']; ?>" target="_blank" style="text-align: left; direction: rtl"><?= $locationTitle ?></a></td>
                             <td style="direction: ltr" class="last-visitors-default-col fit">
                                 <?php if($v['referer'] != null): ?>
@@ -159,7 +116,7 @@ $this->registerJsFile(Yii::$app->homeUrl . 'app/web/js/chart_config.js');
                                         <span class="fa fa-bars"></span></button>
                                     <ul class="dropdown-menu pull-right">
                                         <li><a href="#os"><span class="fa fa-desktop"></span> <?= $v['os'] ?></a></li>
-                                        <li><a href="#browser"><span class="fa fa-tablet"></span> <?= $browserDetail['browser'] . ' ' . $browserDetail['version']; ?></a></li>
+                                        <li><a href="#browser"><span class="fa fa-tablet"></span> <?= $v['browser'] ?></a></li>
                                         <li><a href="<?= $v['location'] ?>" target="_blank"><span class="fa fa-map-marker"></span> <?= $locationTitle ?></a></li>
                                         <?php if($v['referer'] != null): ?>
                                             <li><a href="<?= $v['referer'] ?>" target="_blank" style="direction: ltr"><?= $refererTitle ?> <span class="fa fa-link"></span></a></li>

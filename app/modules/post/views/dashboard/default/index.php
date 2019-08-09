@@ -11,7 +11,6 @@ $postStatus = $model->postStatus();
 ?>
 
 <?= Html::beginPanel($this->title) ?>
-
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
@@ -22,7 +21,14 @@ $postStatus = $model->postStatus();
             'format' => 'raw',
             'value' => function($model)
             {
-                return Html::a($model->title, ['view','id'=>$model->id]);
+                $value = Html::a($model->title, ['view','id' => $model->id]);
+                $shareLink = Yii::$app->params['url'] . 'post/default/share-link/' . Yii::$app->hashids->encode($model->id);
+                $value .= '
+<div class="input-group input-group-share-link">
+   <span class="input-group-addon share-link-copy" id="basic-addon1">Copy</span>
+  <input type="text" class="form-control share-link" value="'.$shareLink.'" aria-describedby="basic-addon2">
+</div>';
+                return $value;
             }
         ],
         [

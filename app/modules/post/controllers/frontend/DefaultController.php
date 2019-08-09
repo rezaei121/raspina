@@ -40,6 +40,24 @@ class DefaultController extends \app\components\Controller
      * @param string $id
      * @return mixed
      */
+    public function actionShareLink($id)
+    {
+        $id = Yii::$app->hashids->decode($id);
+        if(isset($id[0]))
+        {
+            $postModel = Post::findOne($id[0]);
+            if($postModel !== null)
+            {
+                $this->redirect(['view', 'id' => $id[0], 'title' => $postModel->slug]);
+            }
+        }
+    }
+
+    /**
+     * Displays a single Post model.
+     * @param string $id
+     * @return mixed
+     */
     public function actionView($id,$title)
     {
         $postModel = $this->findModel($id,$title);

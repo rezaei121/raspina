@@ -144,6 +144,10 @@ return [
                     'suffix' => '.html',
                 ],
                 [
+                    'pattern' => 'post/default/share-link/<id>',
+                    'route' => 'post/default/share-link',
+                ],
+                [
                     'pattern' => 'home/default/index/<category:\d+>/<title>',
                     'route' => 'home/default/index',
                     'suffix' => '.html',

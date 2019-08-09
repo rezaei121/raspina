@@ -464,12 +464,20 @@ html, body {
 }
 
 .form-control {
-    border-radius: 1px;
+    border-radius: 1px !important;
     border-color: #cccccc;
     box-shadow: none;
     outline: none;
     font-size: 12px;
     color: #333333;
+}
+
+.input-group-addon:first-child {
+    border-right: 1px solid #CCCCCC;
+}
+
+.input-group-addon {
+    font-size: 11px;
 }
 
 input, select {
@@ -996,6 +1004,21 @@ caption, th, td {
     margin-top: -5px
 }
 
+.share-link, .share-link-copy {
+    cursor: pointer;
+    direction: ltr;
+}
+
+.input-group-share-link {
+    margin-top: 10px;
+}
+
+.share-link input {
+
+    padding: 7px;
+    text-align: left;
+    direction: ltr;
+}
 /**
 @media ...
 */

@@ -7,8 +7,7 @@ use app\modules\post\models\PostCategory;
 use app\modules\post\models\Tag;
 use dosamigos\tinymce\TinyMce;
 use kartik\select2\Select2;
-use yii\helpers\Url;
-//print_r($model); exit();
+
 ?>
 <?= Html::beginPanel($this->title . Html::submitButton(Yii::t('app', 'Get Auto Saved Text'), ['class' => 'btn btn-primary auto-saved-btn'])) ?>
     <?php $form = ActiveForm::begin(); ?>
@@ -19,7 +18,7 @@ use yii\helpers\Url;
         'id' => 'post-post_categories',
         'value' => PostCategory::getSelectedCategories($model->id),
         'class' => 'form-control',
-        'data' => Category::getAll(),
+        'data' => \yii\helpers\ArrayHelper::map(Category::getAll(),'id','title'),
         'options' => ['multiple' => true, 'dir' => Yii::$app->params['direction'], 'placeholder' => Yii::t('app', 'Category')],
         'pluginOptions' => [
             'tags' => true,
