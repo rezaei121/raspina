@@ -57,7 +57,13 @@ class Visitor extends \app\modules\statistics\models\base\BaseVisitor
     {
         $currentDate = new \DateTime();
         $visitor = new Yii\db\Query();
-        $result = $visitor->select('visit_date,group_date,COUNT(id) as `visit`,COUNT(DISTINCT ip) AS `visitor`')->from($this->tableName())->where(['>=', 'visit_date', $currentDate->modify('-30 day')->format('Y-m-d H:i:s')])->groupBy('group_date')->all();
+        $result = $visitor
+            ->select('visit_date,group_date,COUNT(id) as `visit`,COUNT(DISTINCT ip) AS `visitor`')
+            ->from($this->tableName())
+            ->where(['>=', 'visit_date', $currentDate->modify('-30 day')->format('Y-m-d H:i:s')])
+            ->groupBy('group_date')
+            ->all();
+
         $labels = $visit_data = $visitor_data = [];
         $max_visit = 0;
         foreach ((array)$result as $r)
@@ -111,15 +117,24 @@ class Visitor extends \app\modules\statistics\models\base\BaseVisitor
      */
     public function getTitle($url, $linkAddress)
     {
-        $title = str_replace($url, null, $linkAddress);
-        $title = preg_replace(['/^post\/view\/\d+\//', '/.html$/', '/site\/index.*%5B/', '/about\/index$/', '/contact\/index$/', '/^\/|\/$/'], null, $title);
-        if($title == '')
+        $re = '/\/\d+\/(.*).html/m';
+        preg_match($re, $linkAddress, $matches);
+        if(!empty($matches))
         {
-            $title = 'site/index';
+            $title = str_replace('-', ' ', urldecode($matches[1]));
         }
-        $title = urldecode($title);
-        $title = (mb_strlen($title) > 20) ? mb_substr($title, 0, 19, 'utf-8') . '...' : $title;
+        else
+        {
+            $title = str_replace($url, null, $linkAddress);
+            $title = preg_replace(['/^post\/view\/\d+\//', '/.html$/', '/site\/index.*%5B/', '/about\/index$/', '/contact\/index$/', '/^\/|\/$/'], null, $title);
+            if($title == '')
+            {
+                $title = 'site/index';
+            }
+            $title = urldecode($title);
+            $title = (mb_strlen($title) > 20) ? mb_substr($title, 0, 19, 'utf-8') . '...' : $title;
 
+        }
         return $title;
     }
 }
