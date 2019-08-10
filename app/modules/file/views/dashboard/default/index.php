@@ -35,14 +35,18 @@ $setting = Yii::$app->setting->get();
                 'attribute' => 'name',
                 'format' => 'raw',
                 'value' => function($model) use($setting){
-                    $url = $setting['url'] . 'file/download/' . Yii::$app->hashids->encode($model->id);
+                    $url = $setting['url'] . 'file/default/download/' . Yii::$app->hashids->encode($model->id);
                     $owner_url = Url::to(['/user/default/view', 'id' => $model->user_id]);
                     return '
                     <a href="'.$owner_url.'" target="_blank"><input style="background-color:#EFEFEF; cursor: pointer; width:49%; float:right; margin-left:2%;" type="text" class="form-control readonly" value="'.$model->last_name.' '.$model->surname.'"></a>
                     <a href="'.$url.'" target="_blank"><input style="background-color:#EFEFEF; cursor: pointer; width:49%; float:right" type="text" class="form-control readonly" value="'.$model->name.'"></a>
                     <div class="clear"></div>
                     <br>
-                    <input type="text" class="upload-box-link form-control ltr" value="'.$url.'">';
+                    <div class="input-group input-group-s-link">
+                       <span class="input-group-addon s-link-copy" id="basic-addon1">Copy</span>
+                      <input type="text" class="form-control s-link" value="'.$url.'" aria-describedby="basic-addon2">
+                    </div>
+                    ';
                 },
             ],
             [

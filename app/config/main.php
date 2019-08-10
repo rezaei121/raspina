@@ -162,6 +162,10 @@ return [
                     'route' => 'user/default/about',
                     'suffix' => '.html',
                 ],
+                [
+                    'pattern' => 'file/default/download/<id>',
+                    'route' => 'file/default/download',
+                ],
                 // front end
             ]
         ],

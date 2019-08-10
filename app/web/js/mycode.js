@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
-    $('.share-link-copy').click(function(){
+    $('.s-link-copy').click(function(){
 
         // reset
-        $('.share-link-copy').html('Copy');
+        $('.s-link-copy').html('Copy');
 
         var copyText = $(this).parent().find('input');
         copyText.select();

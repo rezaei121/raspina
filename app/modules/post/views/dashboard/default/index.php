@@ -21,12 +21,12 @@ $postStatus = $model->postStatus();
             'format' => 'raw',
             'value' => function($model)
             {
-                $value = Html::a($model->title, ['view','id' => $model->id]);
                 $shareLink = Yii::$app->params['url'] . 'post/default/share-link/' . Yii::$app->hashids->encode($model->id);
+                $value = Html::a($model->title, ['view','id' => $model->id]);
                 $value .= '
-<div class="input-group input-group-share-link">
-   <span class="input-group-addon share-link-copy" id="basic-addon1">Copy</span>
-  <input type="text" class="form-control share-link" value="'.$shareLink.'" aria-describedby="basic-addon2">
+<div class="input-group input-group-s-link">
+   <span class="input-group-addon s-link-copy" id="basic-addon1">Copy</span>
+  <input type="text" class="form-control s-link" value="'.$shareLink.'" aria-describedby="basic-addon2">
 </div>';
                 return $value;
             }

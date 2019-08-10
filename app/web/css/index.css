@@ -1004,16 +1004,16 @@ caption, th, td {
     margin-top: -5px
 }
 
-.share-link, .share-link-copy {
+.s-link, .s-link-copy {
     cursor: pointer;
     direction: ltr;
 }
 
-.input-group-share-link {
+.input-group-s-link {
     margin-top: 10px;
 }
 
-.share-link input {
+.s-link input {
 
     padding: 7px;
     text-align: left;

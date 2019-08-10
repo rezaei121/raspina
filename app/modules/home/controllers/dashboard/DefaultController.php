@@ -30,15 +30,9 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $visitors = new Visitor;
-        $lastVisitors = $visitors->find()
-            ->orderBy(['id' => SORT_DESC])
-            ->limit(100)
-            ->asArray()
-            ->all();
-
         return $this->render('index',[
             'visitorsModel' => $visitors,
-            'visitors' => $lastVisitors,
+            'visitors' => $visitors->lastVisitors(),
             'chart' => $visitors->chart(),
         ]);
     }

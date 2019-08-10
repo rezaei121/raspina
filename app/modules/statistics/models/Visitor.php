@@ -53,6 +53,15 @@ class Visitor extends \app\modules\statistics\models\base\BaseVisitor
         return "[{$google},{$yahoo},{$bing},{$baidu},{$aol},{$asc}]";
     }
 
+    public function lastVisitors()
+    {
+        return Visitor::find()
+            ->orderBy(['id' => SORT_DESC])
+            ->limit(100)
+            ->asArray()
+            ->all();
+    }
+
     public function chart()
     {
         $currentDate = new \DateTime();
