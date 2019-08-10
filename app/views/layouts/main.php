@@ -20,7 +20,6 @@ $postUrl = "{$baseUrl}/post";
 $newPostUrl = "{$baseUrl}/post/default/create";
 $categoryUrl = "{$baseUrl}/post/category";
 $fileUrl = "{$baseUrl}/file";
-$newsletterUrl = "{$baseUrl}/newsletter";
 $linkUrl = "{$baseUrl}/link";
 $statisticsUrl = "{$baseUrl}/statistics";
 $userUrl = "{$baseUrl}/user";
@@ -87,12 +86,6 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
                     <?php if (Yii::$app->user->can('file')): ?>
                         <li class="menu-item-child">
                             <a href="<?= $fileUrl; ?>"><span class="fa fa-upload"></span> <div><?= Yii::t('app', 'Files') ?></div></a>
-                        </li>
-                    <?php endif; ?>
-
-                    <?php if (Yii::$app->user->can('newsletter')): ?>
-                        <li class="menu-item-child">
-                            <a href="<?= $newsletterUrl; ?>"><span class="fa fa-paper-plane"></span> <div><?= Yii::t('app', 'Newsletter') ?></div></a>
                         </li>
                     <?php endif; ?>
 
@@ -240,10 +233,6 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
                 <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Posts') ?></div>
             </a>
             <div class="clear"></div>
-            <a href="<?= $newsletterUrl; ?>">
-                <span class="fa fa-paper-plane"></span>
-                <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Newsletter') ?></div>
-            </a>
             <a href="<?= $linkUrl; ?>">
                 <span class="fa fa-link"></span>
                 <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Links') ?></div>
@@ -252,11 +241,11 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
                 <span class="fa fa-line-chart"></span>
                 <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Statistics') ?></div>
             </a>
-            <div class="clear"></div>
             <a href="<?= $userUrl; ?>">
                 <span class="fa fa-user"></span>
                 <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Users') ?></div>
             </a>
+            <div class="clear"></div>
             <a href="<?= $templateUrl; ?>">
                 <span class="fa fa-file-code-o"></span>
                 <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Template') ?></div>
