@@ -1,7 +1,9 @@
 <?php
-namespace app\modules\contact\controllers\backend;
+namespace app\modules\contact\controllers\dashboard;
 
 use app\components\Controller;
+use app\modules\contact\models\Contact;
+use app\modules\contact\models\ContactSearch;
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -108,7 +110,9 @@ class DefaultController extends Controller
         if($action == 'delete')
         {
             Contact::deleteAll(['id'=>$selection]);
-            Yii::$app->session->setFlash('success', Yii::t('app','Delete Successfully Applied'));
+            Yii::$app->session->setFlash('success', Yii::t('app','{object} deleted.',[
+                'object' => Yii::t('app','Message')
+            ]));
         }
 
         return $this->redirect(['index']);

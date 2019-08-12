@@ -14,7 +14,7 @@ $entity_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
 // et urls...
 $baseUrl = Url::home() . 'dashboard';
-$contacUrl = "{$baseUrl}/contact";
+$contacUrl = "{$baseUrl}/contact/default/index";
 $commentUrl = "{$baseUrl}/post/comment";
 $postUrl = "{$baseUrl}/post";
 $newPostUrl = "{$baseUrl}/post/default/create";

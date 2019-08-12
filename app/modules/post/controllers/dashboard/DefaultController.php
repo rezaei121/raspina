@@ -17,6 +17,7 @@ class DefaultController extends \app\components\Controller
 
     public function behaviors()
     {
+        $behaviors = parent::behaviors();
         return [
             'access' => [
                 'class' => AccessControl::className(),

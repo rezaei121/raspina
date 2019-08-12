@@ -14,7 +14,6 @@ class Module extends \yii\base\Module
     {
         $this->appName = \Yii::$app->request->get('app', $this->defaultApp);
         $this->controllerNamespace = 'app\modules\\'.$this->id.'\controllers\\' . \Yii::$app->request->get('app', $this->defaultApp);
-
         if($this->appName == $this->defaultApp)
         {
             $this->layoutPath = Yii::$app->params['templateLayout'];
