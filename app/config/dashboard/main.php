@@ -1,13 +1,12 @@
 <?php
-require 'db_config.php';
-
+require __DIR__. '/../db_config.php';
 use \yii\web\Request;
 $baseUrl = str_replace(['/app', '\\'], null, (new Request)->getBaseUrl());
 return [
     'name' => 'Raspina',
     'id' => 'app',
-    'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'basePath' => dirname(__DIR__),
+    'vendorPath' => dirname(dirname(__DIR__)) . '/../vendor',
+    'basePath' => dirname(__DIR__) . "/..",
     'language' => 'en-US',
     'timeZone' => 'Asia/Tehran',
     'controllerNamespace' => 'app\controllers',
@@ -25,7 +24,8 @@ return [
             'tablePrefix' => TBL_PREFIX,
         ],
         'view' => [
-            'class' => 'app\components\web\View',
+//            'class' => 'app\components\web\View',
+            'class' => 'yii\web\View',
             'renderers' => [
                 'twig' => [
                     'class' => 'yii\twig\ViewRenderer',
