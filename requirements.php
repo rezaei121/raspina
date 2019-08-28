@@ -7,17 +7,40 @@
  *
  * In order to run this script from the web, you should copy it to the web root.
  * If you are using Linux you can create a hard link instead, using the following command:
- * ln requirements.php ../requirements.php
+ * ln ../requirements.php requirements.php
  */
 
 // you may need to adjust this path to the correct Yii framework path
-$frameworkPath = dirname(__FILE__) . '/vendor/yiisoft/yii2';
+// uncomment and adjust the following line if Yii is not located at the default path
+//$frameworkPath = dirname(__FILE__) . '/vendor/yiisoft/yii2';
 
-if (!is_dir($frameworkPath)) {
-    echo '<h1>Error</h1>';
-    echo '<p><strong>The path to yii framework seems to be incorrect.</strong></p>';
-    echo '<p>You need to install Yii framework via composer or adjust the framework path in file <abbr title="' . __FILE__ . '">' . basename(__FILE__) . '</abbr>.</p>';
-    echo '<p>Please refer to the <abbr title="' . dirname(__FILE__) . '/README.md">README</abbr> on how to install Yii.</p>';
+
+if (!isset($frameworkPath)) {
+    $searchPaths = array(
+        dirname(__FILE__) . '/vendor/yiisoft/yii2',
+        dirname(__FILE__) . '/../vendor/yiisoft/yii2',
+    );
+    foreach ($searchPaths as $path) {
+        if (is_dir($path)) {
+            $frameworkPath = $path;
+            break;
+        }
+    }
+}
+
+if (!isset($frameworkPath) || !is_dir($frameworkPath)) {
+    $message = "<h1>Error</h1>\n\n"
+        . "<p><strong>The path to yii framework seems to be incorrect.</strong></p>\n"
+        . '<p>You need to install Yii framework via composer or adjust the framework path in file <abbr title="' . __FILE__ . '">' . basename(__FILE__) . "</abbr>.</p>\n"
+        . '<p>Please refer to the <abbr title="' . dirname(__FILE__) . "/README.md\">README</abbr> on how to install Yii.</p>\n";
+
+    if (!empty($_SERVER['argv'])) {
+        // do not print HTML when used in console mode
+        echo strip_tags($message);
+    } else {
+        echo $message;
+    }
+    exit(1);
 }
 
 require_once($frameworkPath . '/requirements/YiiRequirementChecker.php');
@@ -85,12 +108,6 @@ $requirements = array(
         'by' => '<a href="http://www.yiiframework.com/doc-2.0/yii-caching-memcache.html">MemCache</a>',
         'memo' => extension_loaded('memcached') ? 'To use memcached set <a href="http://www.yiiframework.com/doc-2.0/yii-caching-memcache.html#$useMemcached-detail">MemCache::useMemcached</a> to <code>true</code>.' : ''
     ),
-    array(
-        'name' => 'APC extension',
-        'mandatory' => false,
-        'condition' => extension_loaded('apc'),
-        'by' => '<a href="http://www.yiiframework.com/doc-2.0/yii-caching-apccache.html">ApcCache</a>',
-    ),
     // CAPTCHA:
     array(
         'name' => 'GD PHP extension with FreeType support',
@@ -128,19 +145,18 @@ $requirements = array(
         'by' => 'Email sending',
         'memo' => 'PHP mail SMTP server required',
     ),
-    'phpIntl' => array(
-        'name' => 'PHP Intl Date Formatter',
-        'mandatory' => true,
-        'condition' => extension_loaded('intl'),
-        'by' => 'Date Formatter',
-        'memo' => '"php_intl" should be disabled at php.ini',
-    ),
-    'mod_rewrite' => array(
-        'name' => 'Rewrite Mode',
-        'mandatory' => true,
-        'condition' => in_array('mod_rewrite', apache_get_modules()),
-        'by' => 'Url',
-        'memo' => '"mod_rewrite" should be disabled',
-    ),
 );
-$requirementsChecker->checkYii()->check($requirements)->render();
+
+// OPcache check
+if (!version_compare(phpversion(), '5.5', '>=')) {
+    $requirements[] = array(
+        'name' => 'APC extension',
+        'mandatory' => false,
+        'condition' => extension_loaded('apc'),
+        'by' => '<a href="http://www.yiiframework.com/doc-2.0/yii-caching-apccache.html">ApcCache</a>',
+    );
+}
+
+$result = $requirementsChecker->checkYii()->check($requirements)->getResult();
+$requirementsChecker->render();
+exit($result['summary']['errors'] === 0 ? 0 : 1);

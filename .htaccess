@@ -1,6 +1,5 @@
-#Options -Indexes
-<IfModule mod_rewrite.c>
-    RewriteEngine on
-    RewriteRule [^.]*$ app/$1 [L]
-</IfModule>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 
+RewriteRule . index.php
