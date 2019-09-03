@@ -58,6 +58,7 @@ $config = [
                     ],
                     'globals' => [
                         'html' => ['class' => '\yii\helpers\Html'],
+                        'url' => ['class' => '\yii\helpers\Url'],
                         'raspina' => ['class' => '\app\components\helpers\Raspina'],
                         'captcha' => ['class' => '\developit\captcha\Captcha'],
                         'activeForm' => ['class' => '\yii\widgets\ActiveForm']
@@ -139,6 +140,21 @@ $config = [
                 [
                     'pattern' => 'app/web/captcha',
                     'route' => 'site/captcha',
+                ],
+                [
+                    'pattern' => 'post/index/<page:\d+>/<tag>',
+                    'route' => 'post/default/index',
+                    'suffix' => '.html',
+                ],
+                [
+                    'pattern' => 'post/index/<tag>',
+                    'route' => 'post/default/index',
+                    'suffix' => '.html',
+                ],
+                [
+                    'pattern' => '/post/index/<category:\d+>/<page:\d+>/<title>',
+                    'route' => '/post/default/index',
+                    'suffix' => '.html',
                 ],
                 [
                     'pattern' => '/post/index/<category:\d+>/<title>',

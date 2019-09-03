@@ -39,8 +39,8 @@ class CommentSearch extends Comment
      */
     public function search($params)
     {
-        $pageSize = \Yii::$app->setting->pageSize();
-        
+        $pageSize = Yii::$app->params['pageSize'];
+
         $query = Comment::find()->alias('comment');
         $query->joinWith('post');
 

@@ -110,4 +110,20 @@ class BasePost extends \app\components\Model
     {
         return $this->hasMany(BasePostCategory::className(), ['post_id' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPostTags()
+    {
+        return $this->hasMany(BasePostTag::className(), ['post_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->viaTable('rs_post_tag', ['post_id' => 'id']);
+    }
 }

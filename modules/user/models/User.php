@@ -41,11 +41,10 @@ class User extends \app\modules\user\models\base\BaseUser implements IdentityInt
         $rules[] = [['status'], 'integer'];
         $rules[] = [['username', 'last_name', 'surname', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255];
         $rules[] = [['auth_key'], 'string', 'max' => 32];
-        $rules[] = [['username'], 'unique'];
+        $rules[] = [['username'], 'unique', 'on' => 'create'];
         $rules[] = [['email'], 'unique'];
         $rules[] = [['password_reset_token'], 'unique'];
         $rules[] = [['old_password'], 'validateOldPassword'];
-
         return $rules;
     }
 

@@ -36,6 +36,13 @@
             <div class="post-text">
                 {{ model.short_text | raw }}
                 {{ model.more_text | raw }}
+
+                {% set tags = model.tags() %}
+                {%  if tags %}
+                    {% for tag,slug in tags %}
+                        <a href="{{ url.to({0: 'index', 'tag': slug}) }}">{{ tag }}</a>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
@@ -66,7 +73,7 @@
     <div class="panel panel-default post-panel">
         <div class="panel-body">
             <div class="post-title">{{ raspina.t('Comments') }}</div>
-            <br>
+            <br>f
             <div class="post-text">
                 <!-- -->
                 {% for comment in comments %}
@@ -98,7 +105,7 @@
                 {{ form.field(commentModel, 'email').textInput({'maxlength': true, 'class': 'input margin-17', 'placeholder': raspina.t('Email')}) | raw }}
                 {{ form.field(commentModel, 'text').textArea({'rows': 6, 'maxlength': true, 'class': 'input margin-17', 'placeholder': raspina.t('Comment')}) | raw }}
                 {{ form.field(commentModel, 'captcha').widget(captcha.className(), {
-                    'captchaAction': '../site/captcha',
+                    'captchaAction': '/app/web/captcha',
                     'options': {'class': 'input text-center', 'placeholder': raspina.t('Captcha')},
                     'template': '<div class="captcha-img">{image}</div><div class="captcha-txt">{input}</div>'
                 }) | raw }}

@@ -242,10 +242,10 @@ class Post extends \app\modules\post\models\base\BasePost
         return $model->one();
     }
 
-    public function tags()
-    {
-        return parent::getPostTags();
-    }
+//    public function tags()
+//    {
+//        return parent::getPostTags();
+//    }
 
     public function comments()
     {
@@ -355,9 +355,14 @@ class Post extends \app\modules\post\models\base\BasePost
                 $query->joinWith(['tag' => function (ActiveQuery $query) use($request){
                     $query->alias('tag');
                     $query->select(['tag.id', 'tag.title', 'tag.slug']);
-                    $query->onCondition(['tag.slug' => $request['tag']]);
                 }]);
             }]);
+            $postsModel->andWhere(['tag.slug' => $request['tag']]);
+        }
+
+        if(isset($request['limit']))
+        {
+            $postsModel->limit($request['limit']);
         }
 
         if(isset($request['Post']['search']) && !empty($request['Post']['search']))
@@ -366,14 +371,13 @@ class Post extends \app\modules\post\models\base\BasePost
             $postsModel->orWhere(['like','post.short_text', $request['Post']['search']]);
             $postsModel->orWhere(['like','post.more_text', $request['Post']['search']]);
         }
-
         return $postsModel;
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPostTags()
+    public function tags()
     {
         $result = $this->hasMany(BasePostTag::className(), ['post_id' => 'id'])
             ->select('t.*')
