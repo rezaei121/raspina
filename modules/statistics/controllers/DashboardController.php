@@ -16,7 +16,7 @@ class DashboardController extends \app\components\Controller
         $behaviors = parent::behaviors();
         $behaviors['access'] = [
             'class' => AccessControl::className(),
-            'only' => ['index'],
+            'only' => ['index','update','delete', 'home'],
             'rules' => [
                 [
                     'actions' => ['index','update','delete', 'home'],

@@ -95,7 +95,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\modules\user\models\User',
             'enableAutoLogin' => true,
-            'loginUrl' => ['user/default/login'],
+            'loginUrl' => ['dashboard/user/login'],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

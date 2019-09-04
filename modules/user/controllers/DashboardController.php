@@ -266,7 +266,7 @@ class DashboardController extends \app\components\Controller
     {
         $this->layout = 'login';
         if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect(Yii::$app->getHomeUrl() . 'dashboard');
         }
 
         $model = new LoginForm();
@@ -275,7 +275,7 @@ class DashboardController extends \app\components\Controller
             $visitor = new\app\modules\statistics\models\Visitor;
             $visitor->delete();
 
-            return $this->goHome();
+            return $this->redirect(Yii::$app->getHomeUrl() . 'dashboard');
         } else {
             return $this->render('login', [
                 'model' => $model,

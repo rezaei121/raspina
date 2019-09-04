@@ -26,6 +26,7 @@ $userUrl = "{$baseUrl}/user";
 $templateUrl = "{$baseUrl}/template";
 $settingUrl = "{$baseUrl}/setting/update";
 $avatarUrl = "{$baseUrl}/user/default/avatar";
+$logoutUrl = "{$baseUrl}/user/logout";
 
 $notApprovedCommentCount = \app\modules\post\models\Comment::getNotApprovedCount();
 $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount();
@@ -118,6 +119,10 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
                             <a href="<?= $settingUrl; ?>"><span class="fa fa-cog"></span> <div><?= Yii::t('app', 'Settings') ?></div></a>
                         </li>
                     <?php endif; ?>
+
+                    <li class="menu-item-child">
+                        <a href="<?= $logoutUrl; ?>"><span class="fa fa-sign-out"></span> <div><?= Yii::t('app', 'Logout') ?></div></a>
+                    </li>
                 </ul>
                 <!-- menu end -->
             <br>
@@ -253,6 +258,10 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
             <a href="<?= $settingUrl; ?>">
                 <span class="fa fa-cog"></span>
                 <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Settings') ?></div>
+            </a>
+            <a href="<?= $logoutUrl; ?>">
+                <span class="fa fa-sign-out"></span>
+                <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Logout') ?></div>
             </a>
         </div>
     </div>
