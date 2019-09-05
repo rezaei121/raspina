@@ -134,6 +134,10 @@ $config = [
                     'route' => '<module>/dashboard/index',
                 ],
                 [
+                    'pattern' => '/dashboard',
+                    'route' => '/statistics/dashboard/home',
+                ],
+                [
                     'pattern' => 'file/default/download/<id>',
                     'route' => 'file/default/download',
                 ],
@@ -142,17 +146,17 @@ $config = [
                     'route' => 'site/captcha',
                 ],
                 [
-                    'pattern' => 'post/index/<page:\d+>/<tag>',
-                    'route' => 'post/default/index',
+                    'pattern' => 'post/<page:\d+>/<per-page:\d+>/<tag>',
+                    'route' => 'post/default/tag',
                     'suffix' => '.html',
                 ],
                 [
-                    'pattern' => 'post/index/<tag>',
-                    'route' => 'post/default/index',
+                    'pattern' => 'post/tag/<tag>',
+                    'route' => 'post/default/tag',
                     'suffix' => '.html',
                 ],
                 [
-                    'pattern' => '/post/index/<category:\d+>/<page:\d+>/<title>',
+                    'pattern' => '/post/index/<category:\d+>/<page:\d+>/<per-page:\d+>/<title>',
                     'route' => '/post/default/index',
                     'suffix' => '.html',
                 ],
@@ -162,17 +166,12 @@ $config = [
                     'suffix' => '.html',
                 ],
                 [
-                    'pattern' => '/dashboard',
-                    'route' => '/statistics/dashboard/home',
+                    'pattern' => '/post/index/<page:\d+>/<per-page:\d+>',
+                    'route' => '/post/default/index',
                 ],
                 [
                     'pattern' => '/',
                     'route' => '/post/default/index',
-                ],
-                [
-                    'pattern' => 'home/default/index/<tag>',
-                    'route' => 'home/default/index',
-                    'suffix' => '.html',
                 ],
                 [
                     'pattern' => 'user/default/about/<username>',

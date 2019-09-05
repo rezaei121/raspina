@@ -52,10 +52,6 @@ class Setting implements BootstrapInterface
 //            Yii::$app->view->params['links'] = \common\models\Link::find()->where(['lang' => Yii::$app->language])->all();
 //            # model
 //            Yii::$app->view->params['newsletter'] = new \frontend\models\Newsletter;
-            if($settingModel->direction == 'rtl')
-            {
-                $app->view->registerCssFile(Yii::$app->homeUrl . 'web/css/bootstrap-rtl.min.css', ['depends' => ['yii\bootstrap\BootstrapAsset']]);
-            }
         }
         catch (\Exception $e)
         {

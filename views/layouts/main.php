@@ -42,6 +42,12 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
         <?= Html::csrfMetaTags() ?>
         <title><?= Yii::t('app', 'Raspina') ?> - <?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
+        <?php
+        if(Yii::$app->params['direction'] == 'rtl')
+        {
+            $this->registerCssFile(Yii::$app->homeUrl . 'web/css/bootstrap-rtl.min.css', ['depends' => ['yii\bootstrap\BootstrapAsset']]);
+        }
+        ?>
         <script type="text/javascript">
             var base_url = '<?= Url::base() ?>';
             var modules_name = '<?= $modules_id ?>';
