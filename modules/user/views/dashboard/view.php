@@ -9,7 +9,6 @@ use yii\widgets\Pjax;
 $this->title = "$model->last_name $model->surname - {$model->username}";
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-$setting = Yii::$app->setting->get();
 ?>
 
 <?= Html::beginPanel(Yii::t('app','Name'), 'col-md-3 col-sm-6 col-xs-12',['panel', 'panel-default'], ['panel-heading', 'panel-status'], ['panel-body', 'panel-body-detail']) ?>
@@ -77,8 +76,8 @@ $setting = Yii::$app->setting->get();
             'attribute' => 'name',
             'label' => Yii::t('app', 'File'),
             'format' => 'raw',
-            'value' => function($model) use($setting){
-                $url = $setting['url'] . 'file/download/' . Yii::$app->hashids->encode($model->id);
+            'value' => function($model) {
+                $url = \Yii::$app->params['url'] . 'file/download/' . Yii::$app->hashids->encode($model->id);
                 return '<input type="text" class="upload-box-link form-control ltr" value="'.$url.'">';
             },
         ],

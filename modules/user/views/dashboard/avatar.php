@@ -82,8 +82,8 @@ echo $form->field($model, 'avatar')->widget(\bilginnet\cropper\Cropper::classNam
 
 ]);
 ?>
-<div class="form-group">
-    <?= \yii\helpers\Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+<div class="form-group center">
+    <?= \yii\helpers\Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
 </div>
 <?php ActiveForm::end(); ?>
 <?= Html::endPanel() ?>

@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?= Html::beginPanel($this->title ) ?>
-    <?= Html::beginForm(['comment/group-actions'],'post') ?>
+    <?= Html::beginForm(['dashboard/comment/group-actions'],'post') ?>
     <?= Html::dropDownList('action','confirmed',['approve' => Yii::t('app','Approve'), 'delete' => Yii::t('app','Delete')],['class'=>'dropdown fa-bulk-dropdown',]) ?>
     <?= Html::submitButton(Yii::t('app','Apply'), ['class' => 'btn-sm btn-primary fa-bulk-button', 'data-confirm' => Yii::t('app', 'Are you sure you want to do?')]) ?>
     <div class="fa-br"></div>

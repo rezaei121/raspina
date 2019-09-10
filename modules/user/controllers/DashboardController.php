@@ -131,7 +131,7 @@ class DashboardController extends \app\components\Controller
      */
     public function actionView($id)
     {
-        $pageSize = \Yii::$app->setting->pageSize();
+        $pageSize = \Yii::$app->params['pageSize'];
 
         $postQuery = Post::find()->where(['created_by' => $id]);
         $postDataProvider = new ActiveDataProvider([

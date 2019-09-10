@@ -16,7 +16,6 @@ class Post extends \app\modules\post\models\base\BasePost
     /**
      * @inheritdoc
      */
-    public $comment_count;
     public $more;
     public $tags;
     public $post_id;
@@ -224,34 +223,6 @@ class Post extends \app\modules\post\models\base\BasePost
         $this->save(false);
     }
 
-    /**
-     * get a post with all details
-     * @return array|bool
-     */
-    public function get()
-    {
-        $commentTable = \frontend\models\Comment::tableName();
-
-        $model = Post::find()
-            ->alias('p')
-            ->select(['p.*', 'COUNT(c.id) comment_count'])
-            ->innerJoinWith('createdBy u1')
-            ->joinWith('updatedBy u2')
-            ->leftJoin(['c' => $commentTable], "p.id = c.post_id  AND c.status = 1 AND c.post_id = {$this->id}")
-            ->where(['p.id' => $this->id]);
-        return $model->one();
-    }
-
-//    public function tags()
-//    {
-//        return parent::getPostTags();
-//    }
-
-    public function comments()
-    {
-        return $this->getComments()->all();
-    }
-
     public function categories()
     {
         return $this->getPostCategories()->all();
@@ -313,11 +284,28 @@ class Post extends \app\modules\post\models\base\BasePost
         return Url::to(['/user/about', 'username' => $this->updatedBy->username]);
     }
 
+    public function commentCount()
+    {
+        return Comment::find()->where(['post_id' => $this->id, 'status' => self::PUBLISH_STATUS])->count();
+    }
+
     public static function getAll($request = null)
     {
         $postsModel = Post::find()
             ->alias('post')
-            ->select(['post.id', 'post.title', 'post.slug', 'post.short_text', 'post.created_at', 'post.updated_at', 'post.created_by', 'post.updated_by', 'post.pin_post', 'post.view', 'post.more_text', 'comment_count' => 'COUNT(post_comment.id)'])
+            ->select([
+                'post.id',
+                'post.title',
+                'post.slug',
+                'post.short_text',
+                'post.created_at',
+                'post.updated_at',
+                'post.created_by',
+                'post.updated_by',
+                'post.pin_post',
+                'post.view',
+                'post.more_text',
+                ])
             ->joinWith(['createdBy' => function (ActiveQuery $query) {
                 $query->alias('created_by');
                 $query->select(['created_by.id', 'created_by.last_name', 'created_by.surname']);
@@ -325,10 +313,6 @@ class Post extends \app\modules\post\models\base\BasePost
             ->joinWith(['updatedBy' => function (ActiveQuery $query) {
                 $query->alias('updated_by');
                 $query->select(['updated_by.id', 'updated_by.last_name', 'updated_by.surname']);
-            }])
-            ->joinWith(['comments' => function (ActiveQuery $query) {
-                $query->alias('post_comment');
-                $query->onCondition(['post_comment.status' => self::PUBLISH_STATUS]);
             }])
             ->joinWith(['postCategories' => function (ActiveQuery $query) {
                 $query->alias('post_categories');

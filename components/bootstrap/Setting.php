@@ -42,16 +42,9 @@ class Setting implements BootstrapInterface
             # csrfMetaTags
             Yii::$app->params['csrfMetaTags'] = Html::csrfMetaTags();
             Yii::$app->params['subject'] = $settingModel->title;
+            Yii::$app->view->title = $settingModel->title;
             Yii::$app->params['siteDescription'] = $settingModel->description;
             Yii::$app->params['keywords'] = $settingModel->keyword;
-//            # url
-//            Yii::$app->view->params['url'] = $setting['url'];
-//            # categories
-//            Yii::$app->view->params['categories'] = \common\models\Category::getAll();
-//            # links
-//            Yii::$app->view->params['links'] = \common\models\Link::find()->where(['lang' => Yii::$app->language])->all();
-//            # model
-//            Yii::$app->view->params['newsletter'] = new \frontend\models\Newsletter;
         }
         catch (\Exception $e)
         {

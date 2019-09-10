@@ -24,7 +24,7 @@
                 {{ raspina.date(model.created_at) }}
 			</span>
             <span class="post-detail">
-                {{ model.comment_count }}
+                {{ model.commentCount }}
                 {{ raspina.t('Comment') }}
 			</span>
             <span class="post-detail">
@@ -73,7 +73,7 @@
     <div class="panel panel-default post-panel">
         <div class="panel-body">
             <div class="post-title">{{ raspina.t('Comments') }}</div>
-            <br>f
+            <br>
             <div class="post-text">
                 <!-- -->
                 {% for comment in comments %}
