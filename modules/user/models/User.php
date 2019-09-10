@@ -45,6 +45,7 @@ class User extends \app\modules\user\models\base\BaseUser implements IdentityInt
         $rules[] = [['email'], 'unique'];
         $rules[] = [['password_reset_token'], 'unique'];
         $rules[] = [['old_password'], 'validateOldPassword'];
+        $rules[] = [['avatar'], 'required', 'on' => 'avatar'];
         return $rules;
     }
 
@@ -58,6 +59,7 @@ class User extends \app\modules\user\models\base\BaseUser implements IdentityInt
         $attributeLabels['password_repeat'] = Yii::t('app', 'Repeat Password');
         $attributeLabels['old_password'] = Yii::t('app', 'Old Password');
         $attributeLabels['new_password'] = Yii::t('app', 'New Password');
+        $attributeLabels['avatar'] = Yii::t('app', 'Avatar');
         return $attributeLabels;
     }
 

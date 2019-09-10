@@ -1019,6 +1019,10 @@ caption, th, td {
     text-align: left;
     direction: ltr;
 }
+
+.cropper-result {width: 250px; height: 250px; text-align: center; margin: 0 auto}
+.cropper-result img{width: 200px; height: 200px; margin: 0 auto; margin-top: 25px;}
+#cropper-modal-image_cropper .text-left {display: none}
 /**
 @media ...
 */

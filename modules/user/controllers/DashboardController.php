@@ -58,19 +58,6 @@ class DashboardController extends \app\components\Controller
         ];
     }
 
-
-    public function actions()
-    {
-        return [
-            'myavatar' => [
-                'class' => 'developit\jcrop\actions\Upload',
-                'url' => Url::home() . '../common/files/avatar/',
-                'path' => Yii::getAlias('@user_avatar'),
-                'name' => Yii::$app->hashids->encode(Yii::$app->user->id),
-            ]
-        ];
-    }
-
     /**
      * Lists all User models.
      * @return mixed
@@ -89,7 +76,32 @@ class DashboardController extends \app\components\Controller
 
     public function actionAvatar()
     {
+//        return [
+//            'myavatar' => [
+//                'class' => 'developit\jcrop\actions\Upload',
+//                'url' => Url::home() . '../common/files/avatar/',
+//                'path' => Yii::getAlias('@user_avatar'),
+//                'name' => Yii::$app->hashids->encode(Yii::$app->user->id),
+//            ]
+//        ];
+
         $model = $this->findModel(Yii::$app->user->id);
+        $model->scenario = 'avatar';
+        $request = Yii::$app->request->post();
+
+        if ($model->load($request) && is_string($model->avatar) && strstr($model->avatar, 'data:image')) {
+
+            // creating image file as png
+            $data = $model->avatar;
+            $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
+            $fileName = Yii::$app->hashids->encode(Yii::$app->user->id) . '.jpg';
+            file_put_contents(Yii::getAlias('@user_avatar') . '/' . $fileName, $data);
+
+            Yii::$app->session->setFlash('success', Yii::t('app','{object} updated.',[
+                'object' => Yii::t('app','Avatar')
+            ]));
+        }
+
         return $this->render('avatar', [
             'model' => $model
         ]);

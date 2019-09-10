@@ -19,7 +19,7 @@ class DashboardAsset extends AssetBundle
     public $baseUrl = '@web/web';
 
     public $css = [
-        'css/reset.css',
+//        'css/reset.css',
         'css/index.css',
         'css/font-awesome.min.css',
     ];

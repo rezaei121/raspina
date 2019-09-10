@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cba1aa7c37b2f819bb6bfe9b7f045fce",
+    "content-hash": "7b78df0bf91a2f4ffcef0548f24981d8",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -65,6 +65,55 @@
                 "yii2"
             ],
             "time": "2018-11-01T20:46:52+00:00"
+        },
+        {
+            "name": "bilginnet/yii2-cropper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bilginnet/yii2-cropper.git",
+                "reference": "6e988c4c63c02487b1323e87640889fa80104241"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bilginnet/yii2-cropper/zipball/6e988c4c63c02487b1323e87640889fa80104241",
+                "reference": "6e988c4c63c02487b1323e87640889fa80104241",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "bilginnet\\cropper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ercan Bilgin",
+                    "email": "bilginnet@gmail.com",
+                    "homepage": "https://github.com/bilginnet?tab=repositories"
+                }
+            ],
+            "description": "Yii2 Bootstrap Cropper Input Widget",
+            "keywords": [
+                "cropper",
+                "extension",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-11-11T19:45:40+00:00"
         },
         {
             "name": "bizley/migration",
@@ -158,21 +207,6 @@
             ]
         },
         {
-            "name": "bower-asset/jcrop",
-            "version": "v0.9.12",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tapmodo/Jcrop.git",
-                "reference": "1902fbc6afa14481dc019a17e0dcb7d62b808a98"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tapmodo/Jcrop/zipball/1902fbc6afa14481dc019a17e0dcb7d62b808a98",
-                "reference": "1902fbc6afa14481dc019a17e0dcb7d62b808a98"
-            },
-            "type": "bower-asset"
-        },
-        {
             "name": "bower-asset/jquery",
             "version": "3.4.1",
             "source": {
@@ -204,24 +238,6 @@
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "type": "bower-asset"
-        },
-        {
-            "name": "bower-asset/simple-ajax-uploader",
-            "version": "2.6.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LPology/Simple-Ajax-Uploader.git",
-                "reference": "576cfd4d94f21de63f4597411660e85b6e7abafd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LPology/Simple-Ajax-Uploader/zipball/576cfd4d94f21de63f4597411660e85b6e7abafd",
-                "reference": "576cfd4d94f21de63f4597411660e85b6e7abafd"
-            },
-            "type": "bower-asset",
-            "license": [
-                "MIT"
-            ]
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -344,51 +360,6 @@
                 "yii2 captcha"
             ],
             "time": "2017-09-05T17:50:18+00:00"
-        },
-        {
-            "name": "developit/yii2-jcrop",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rezaei121/yii2-jcrop.git",
-                "reference": "2e7d10458b232ca423f27507f178e0cd16fa4b54"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rezaei121/yii2-jcrop/zipball/2e7d10458b232ca423f27507f178e0cd16fa4b54",
-                "reference": "2e7d10458b232ca423f27507f178e0cd16fa4b54",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/jcrop": "=0.9.12",
-                "bower-asset/simple-ajax-uploader": "@dev",
-                "yiisoft/yii2": "*",
-                "yiisoft/yii2-imagine": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "developit\\jcrop\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Ehsan Rezaei",
-                    "email": "mr.rezaee121@gmail.com"
-                }
-            ],
-            "description": " yii2 image cropping extension ",
-            "keywords": [
-                "crop image",
-                "extension",
-                "jcrop",
-                "yii2"
-            ],
-            "time": "2017-01-22T20:47:13+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -622,64 +593,6 @@
                 "youtube"
             ],
             "time": "2017-10-28T11:24:20+00:00"
-        },
-        {
-            "name": "imagine/imagine",
-            "version": "1.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/avalanche123/Imagine.git",
-                "reference": "eec39b2092bc8008a92b8d63824476413dbe7511"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/eec39b2092bc8008a92b8d63824476413dbe7511",
-                "reference": "eec39b2092bc8008a92b8d63824476413dbe7511",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "2.2.*",
-                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5 || ^7.4"
-            },
-            "suggest": {
-                "ext-gd": "to use the GD implementation",
-                "ext-gmagick": "to use the Gmagick implementation",
-                "ext-imagick": "to use the Imagick implementation"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-develop": "0.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Imagine\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bulat Shakirzyanov",
-                    "email": "mallluhuct@gmail.com",
-                    "homepage": "http://avalanche123.com"
-                }
-            ],
-            "description": "Image processing for PHP 5.3",
-            "homepage": "http://imagine.readthedocs.org/",
-            "keywords": [
-                "drawing",
-                "graphics",
-                "image manipulation",
-                "image processing"
-            ],
-            "time": "2019-07-09T06:55:48+00:00"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
@@ -1460,16 +1373,16 @@
         },
         {
             "name": "yiisoft/yii2",
-            "version": "2.0.25",
+            "version": "2.0.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "c6148db8519b221d2485aa372267c063b2e198e9"
+                "reference": "5ca9036dd6eb75354fbd287cc57f79ca861fb7f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/c6148db8519b221d2485aa372267c063b2e198e9",
-                "reference": "c6148db8519b221d2485aa372267c063b2e198e9",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5ca9036dd6eb75354fbd287cc57f79ca861fb7f1",
+                "reference": "5ca9036dd6eb75354fbd287cc57f79ca861fb7f1",
                 "shasum": ""
             },
             "require": {
@@ -1556,7 +1469,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2019-08-13T20:04:44+00:00"
+            "time": "2019-09-03T21:38:33+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1675,57 +1588,6 @@
                 "yii2"
             ],
             "time": "2019-07-16T13:22:30+00:00"
-        },
-        {
-            "name": "yiisoft/yii2-imagine",
-            "version": "2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/yii2-imagine.git",
-                "reference": "8637f63ee2eb81b7fe1f4c0e16cc8cc474a68bae"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-imagine/zipball/8637f63ee2eb81b7fe1f4c0e16cc8cc474a68bae",
-                "reference": "8637f63ee2eb81b7fe1f4c0e16cc8cc474a68bae",
-                "shasum": ""
-            },
-            "require": {
-                "imagine/imagine": "^0.6 | ^0.7 | ^1.0",
-                "yiisoft/yii2": "~2.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "<7"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "yii\\imagine\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Antonio Ramirez",
-                    "email": "amigo.cobos@gmail.com"
-                }
-            ],
-            "description": "The Imagine integration for the Yii framework",
-            "keywords": [
-                "helper",
-                "image",
-                "imagine",
-                "yii2"
-            ],
-            "time": "2019-06-04T12:38:50+00:00"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -4667,7 +4529,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kartik-v/yii2-widget-select2": 20,
-        "kartik-v/yii2-widget-fileinput": 20
+        "kartik-v/yii2-widget-fileinput": 20,
+        "bilginnet/yii2-cropper": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

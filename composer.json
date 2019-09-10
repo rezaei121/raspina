@@ -19,11 +19,11 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "developit/yii2-captcha": "*",
-        "developit/yii2-jcrop": "1.0.0",
         "light/hashids" : "*",
         "2amigos/yii2-tinymce-widget" : "~1.1",
         "kartik-v/yii2-widget-select2": "@dev",
         "kartik-v/yii2-widget-fileinput": "@dev",
+        "bilginnet/yii2-cropper": "dev-master",
         "bizley/migration": "~3.0.0",
         "yiisoft/yii2-twig": "^2.2"
     },

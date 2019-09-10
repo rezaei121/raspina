@@ -25,7 +25,7 @@ $statisticsUrl = "{$baseUrl}/statistics";
 $userUrl = "{$baseUrl}/user";
 $templateUrl = "{$baseUrl}/template";
 $settingUrl = "{$baseUrl}/setting/update";
-$avatarUrl = "{$baseUrl}/user/default/avatar";
+$avatarUrl = "{$baseUrl}/user/avatar";
 $logoutUrl = "{$baseUrl}/user/logout";
 
 $notApprovedCommentCount = \app\modules\post\models\Comment::getNotApprovedCount();
