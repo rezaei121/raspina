@@ -170,6 +170,7 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
             </div>
             <div class="col-md-12">
                 <?= Breadcrumbs::widget([
+                    'homeLink' => ['label' => Yii::t('yii', 'Home'), 'url' => Yii::$app->getHomeUrl() . 'dashboard'],
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ]) ?>
                 <?= Alert::widget() ?>

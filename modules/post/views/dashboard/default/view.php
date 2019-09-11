@@ -58,9 +58,9 @@ $postStatus = $model->postStatus();
             <span class="bold"><?= Yii::t('app', 'Tags') ?>:</span>
             <?php
             $tags = [];
-            foreach ($model->getPostTags() as $t)
+            foreach ($model->tags() as $tag => $slug)
             {
-                $tags[] = $t;
+                $tags[] = $tag;
             }
             echo implode(', ', $tags);
             ?>

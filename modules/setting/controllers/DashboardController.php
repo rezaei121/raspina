@@ -2,7 +2,6 @@
 
 namespace app\modules\setting\controllers;
 
-use app\components\helpers\MysqlBackup;
 use Yii;
 use app\modules\setting\models\Setting;
 use yii\filters\AccessControl;
@@ -72,34 +71,6 @@ class DashboardController extends \app\components\Controller
         return $this->render('update', [
             'model' => $model,
         ]);
-    }
-
-    public function actionBackup()
-    {
-        $sql = new MysqlBackup();
-        $tables = $sql->getTables();
-        if (!$sql->StartBackup()) {
-            //render error
-            die;
-        }
-        foreach ($tables as $tableName) {
-            $sql->getColumns($tableName);
-        }
-        foreach ($tables as $tableName) {
-            $sql->getData($tableName);
-        }
-        $sqlFile = $sql->EndBackup();
-
-        $file_path = $sqlFile;
-        header('Content-Description: File Transfer');
-        header("Content-Type: application/sql");
-        header('Content-Disposition: inline; filename=backup_'. date("Y-m-d H-i-s"). '.sql');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($file_path));
-        readfile($file_path);
-        unlink($file_path);
     }
 
     /**

@@ -6,7 +6,7 @@ use app\components\helpers\Html;
 /* @var $model dashboard\modules\post\models\Category */
 
 $this->title = Yii::t('app', 'Categories');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['/dashboard/post/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
