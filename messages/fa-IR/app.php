@@ -193,5 +193,6 @@ return [
     'Latest Auto Save: (date)' => 'آخرین ذخیره خودکار: (date)',
     'New Post' => 'مطلب جدید',
     'Suggest' => 'پیشنهاد',
-    'Error' => 'خطا'
+    'Error' => 'خطا',
+    'You are not a valid user and cannot send!' => 'شما یک کاربر معتبر نیستید و نمی توانید ارسال کنید!'
 ];

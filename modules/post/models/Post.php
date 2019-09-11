@@ -3,6 +3,7 @@ namespace app\modules\post\models;
 use app\components\behaviors\SluggableBehavior;
 use app\modules\post\models\base\BasePostTag;
 use app\modules\post\models\base\BaseTag;
+use app\modules\statistics\models\Visitor;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
@@ -219,8 +220,11 @@ class Post extends \app\modules\post\models\base\BasePost
      */
     public function plusView()
     {
-        $this->view++;
-        $this->save(false);
+        if(Visitor::isValid())
+        {
+            $this->view++;
+            $this->save(false);
+        }
     }
 
     public function categories()

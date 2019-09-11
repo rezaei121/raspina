@@ -3,6 +3,8 @@ namespace app\modules\contact\controllers;
 
 use app\components\Controller;
 use app\modules\contact\models\Contact;
+use app\modules\post\models\Comment;
+use app\modules\statistics\models\Visitor;
 use Yii;
 
 
@@ -28,9 +30,19 @@ class DefaultController extends Controller
         $contact->ip = $_SERVER['REMOTE_ADDR'];
 
         $request = Yii::$app->request->post();
-        if($contact->load($request) && $contact->save())
+        if($contact->load($request))
         {
-            Yii::$app->getSession()->setFlash('success', Yii::t('app','Contact successfully sent'));
+            if(Visitor::isValid())
+            {
+                if($contact->save())
+                {
+                    Yii::$app->getSession()->setFlash('success', Yii::t('app','Contact successfully sent'));
+                }
+            }
+            else
+            {
+                Yii::$app->getSession()->setFlash('warning', Yii::t('app','You are not a valid user and cannot send!'));
+            }
         }
 
         $contact = new Contact;

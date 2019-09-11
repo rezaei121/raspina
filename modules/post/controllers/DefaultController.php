@@ -2,6 +2,7 @@
 namespace app\modules\post\controllers;
 use app\modules\post\models\Comment;
 use app\modules\post\models\Post;
+use app\modules\statistics\models\Visitor;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use Yii;
@@ -96,10 +97,20 @@ class DefaultController extends \app\components\Controller
         $commentModel->post_id = $id;
 
         $request = Yii::$app->request->post();
-        if($commentModel->load($request) && $postModel->enable_comments && $commentModel->save())
+        if($commentModel->load($request) && $postModel->enable_comments)
         {
-            Yii::$app->getSession()->setFlash('success', Yii::t('app','Comment successfully sent'));
-            $commentModel = new Comment();
+            if(Visitor::isValid())
+            {
+                if($commentModel->save())
+                {
+                    Yii::$app->getSession()->setFlash('success', Yii::t('app','Comment successfully sent'));
+                    $commentModel = new Comment();
+                }
+            }
+            else
+            {
+                Yii::$app->getSession()->setFlash('warning', Yii::t('app','You are not a valid user and cannot activity!'));
+            }
         }
 
         return $this->render('@theme/post.twig', [

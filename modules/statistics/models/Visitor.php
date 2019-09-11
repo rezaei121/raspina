@@ -6,11 +6,6 @@ use Yii;
 
 class Visitor extends \app\modules\statistics\models\base\BaseVisitor
 {
-    public function isValid()
-    {
-        return true;
-    }
-
     public static function add($data)
     {
         $visitor = new Visitor();
@@ -25,6 +20,15 @@ class Visitor extends \app\modules\statistics\models\base\BaseVisitor
         $visitor->os_version = $data['os_version'];
         $visitor->referer = isset($data['referrer']) ? $data['referrer'] : null;
         $visitor->save();
+    }
+
+    public static function isValid()
+    {
+        $currentDate = new \DateTime();
+        return Visitor::find()
+            ->where(['>=', 'visit_date', $currentDate->modify('-1 hours')->format('Y-m-d H:i:s')])
+            ->andWhere(['ip' => $_SERVER['REMOTE_ADDR']])
+            ->exists();
     }
 
     public function delete()
