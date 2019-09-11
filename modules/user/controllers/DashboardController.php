@@ -76,15 +76,6 @@ class DashboardController extends \app\components\Controller
 
     public function actionAvatar()
     {
-//        return [
-//            'myavatar' => [
-//                'class' => 'developit\jcrop\actions\Upload',
-//                'url' => Url::home() . '../common/files/avatar/',
-//                'path' => Yii::getAlias('@user_avatar'),
-//                'name' => Yii::$app->hashids->encode(Yii::$app->user->id),
-//            ]
-//        ];
-
         $model = $this->findModel(Yii::$app->user->id);
         $model->scenario = 'avatar';
         $request = Yii::$app->request->post();

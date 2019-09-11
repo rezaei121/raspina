@@ -26,6 +26,7 @@ $userUrl = "{$baseUrl}/user";
 $templateUrl = "{$baseUrl}/template";
 $settingUrl = "{$baseUrl}/setting/update";
 $avatarUrl = "{$baseUrl}/user/avatar";
+$profileUrl = "{$baseUrl}/user/profile";
 $logoutUrl = "{$baseUrl}/user/logout";
 
 $notApprovedCommentCount = \app\modules\post\models\Comment::getNotApprovedCount();
@@ -61,21 +62,23 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
     <div class="base-container">
         <div class="menu-container col-lg-2 col-md-2 col-sm-2">
                 <!-- menu start -->
-                <div class="top-menu v-center">
-                    <div>
-                        <div class="raspina-logo"></div>
-                        <div class="raspina-name">Raspina</div>
+                <a href="<?= $baseUrl ?>">
+                    <div class="top-menu v-center">
+                        <div>
+                            <div class="raspina-logo"></div>
+                            <div class="raspina-name">Raspina</div>
+                        </div>
                     </div>
-                </div>
-                        <a href="<?= $avatarUrl ?>">
+                </a>
                             <div class="rs-profile-content">
                                 <div class="rs-profile-image"><img src="<?= \app\modules\user\models\User::getAvatar(Yii::$app->user->id); ?>"></div>
                                 <div class="rs-profile-text">
                                     <span style="font-weight: bold"><?= Yii::$app->user->identity->last_name ?> <?= Yii::$app->user->identity->surname ?></span><br>
-                                    <span>مدیر وبلاگ</span>
+                                    <span>
+                                        <a href="<?= $profileUrl ?>" class="btn btn-primary edit-profile-btn"><?= Yii::t('app', 'Edit Profile') ?></a>
+                                    </span>
                                 </div>
                             </div>
-                        </a>
                         <div class="clear"></div>
                 <ul class="menu-item" style="width: 100%">
                     <?php if (Yii::$app->user->can('post')): ?>
@@ -266,6 +269,12 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
                 <span class="fa fa-cog"></span>
                 <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Settings') ?></div>
             </a>
+
+            <a href="<?= $profileUrl; ?>">
+                <span class="fa fa-pencil-square"></span>
+                <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Edit Profile') ?></div>
+            </a>
+            <div class="clear"></div>
             <a href="<?= $logoutUrl; ?>">
                 <span class="fa fa-sign-out"></span>
                 <div class="menu-section-2-menu-title"><?= Yii::t('app', 'Logout') ?></div>

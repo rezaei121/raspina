@@ -871,7 +871,7 @@ caption, th, td {
 
 .rs-profile-text {
     float: right;
-    padding-top: 6px;
+    padding-top: 0px;
     padding-right: 12px;
     line-height: 20px;
 }
@@ -957,7 +957,7 @@ caption, th, td {
     width: 100%;
     text-align: center;
     position: fixed;
-    top: 50%;
+    top: 49%;
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
@@ -1023,6 +1023,14 @@ caption, th, td {
 .cropper-result {width: 250px; height: 250px; text-align: center; margin: 0 auto}
 .cropper-result img{width: 200px; height: 200px; margin: 0 auto; margin-top: 25px;}
 #cropper-modal-image_cropper .text-left {display: none}
+
+.edit-profile-btn {
+    width: 100%;
+    padding: 3px 10px 4px 10px;
+    font-size: 11px;
+    margin-top: 5px;
+
+}
 /**
 @media ...
 */

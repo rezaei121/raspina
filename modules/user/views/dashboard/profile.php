@@ -13,6 +13,11 @@ $this->params['breadcrumbs'][] = "$model->last_name $model->surname - {$model->u
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?= Html::beginPanel($this->title) ?>
+    <div style="text-align: left">
+        <?= Html::a(Yii::t('app', 'Update Avatar'), ['avatar'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Update Password'), ['update-password'], ['class' => 'btn btn-primary']) ?>
+        <br>
+    </div>
     <?php $form = ActiveForm::begin(); ?>
         <?= $form->field($model, 'username')->textInput(['maxlength' => true, 'class' => 'form-control ltr']) ?>
         <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
@@ -36,7 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'toolbar' => "underline italic bold styleselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image  table link | codesample | code"
             ]
         ]) ?>
-        <?= Html::a(Yii::t('app', 'Update password.'), ['update-password']) ?>
             <div class="form-group center">
                 <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
             </div>
