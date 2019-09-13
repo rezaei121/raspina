@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+    $('.main-container').css({'min-height': $(window).height()});
+
     $('.s-link-copy').click(function(){
 
         // reset
@@ -12,7 +14,7 @@ $(document).ready(function(){
         $(this).html('Copied!');
     });
 
-    if(controller_name == 'default' && action_name == 'index')
+    if(controller_name == 'dashboard' && action_name == 'home')
     {
         $("#content-2").mCustomScrollbar({
             autoHideScrollbar:false,

@@ -74,7 +74,7 @@ echo $form->field($model, 'avatar')->widget(\bilginnet\cropper\Cropper::classNam
 
     // optional // defaults following code
     // you can customize
-    'label' => 'Select a photo from your computer',
+    'label' => Yii::t('app', 'Select From Your Device'),
 
     // optional // default following code
     // you can customize

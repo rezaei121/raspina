@@ -194,5 +194,6 @@ return [
     'New Post' => 'مطلب جدید',
     'Suggest' => 'پیشنهاد',
     'Error' => 'خطا',
-    'You are not a valid user and cannot send!' => 'شما یک کاربر معتبر نیستید و نمی توانید ارسال کنید!'
+    'You are not a valid user and cannot send!' => 'شما یک کاربر معتبر نیستید و نمی توانید ارسال کنید!',
+    'Select From Your Device' => 'انتخاب از دستگاه شما',
 ];

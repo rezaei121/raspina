@@ -8,7 +8,7 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Comments');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['/dashboard/post/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?= Html::beginPanel($this->title ) ?>
@@ -31,8 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'post_title',
                 'format' => 'raw',
                 'value' => function($model){
-                    $link = Html::a($model->post->title,['default/view', 'id' => $model->post_id]);
-                    return $link . '<br><div class="comment-preview">' .nl2br($model->text) . '</div>';
+                    $status = $model->getCommentStatus();
+
+                    $classLabel = 'label-blue';
+                    if($model->status == 0) $classLabel = 'label-yellow';
+                    if($model->status == 1) $classLabel = 'label-green';
+
+                    $link = Html::a($model->post->title,['view', 'id' => $model->post_id]);
+                    return "<div class=\"label-sm-view label {$classLabel}\">{$status[$model->status]}</div><div class=\"clear\"></div>" . $link . '<br><div class="comment-preview">' .nl2br($model->text) . '</div>';
                 },
                 'headerOptions' => ['class'=>'low-display-priority'],
                 'filterOptions' => ['class'=>'low-display-priority'],
@@ -41,10 +47,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'name',
                 'format' => 'raw',
-                'value' => function($model){
-                    $link = Html::a($model->name,['comment/view', 'id' => $model->id]);
-                    return $link;
-                },
+                'headerOptions' => ['class'=>'auto-fit'],
+                'filterOptions' => ['class'=>'auto-fit'],
+                'contentOptions' => ['class' => 'auto-fit center'],
             ],
             [
                 'attribute' => 'email',
@@ -65,9 +70,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     return  "<span class=\"label {$classLabel}\">{$status[$model->status]}</span>";
                 },
-                'contentOptions' => ['class' => 'fit'],
-                'headerOptions' => ['class'=>'fit'],
-                'filter' => $model->getCommentStatus()
+                'filter' => $model->getCommentStatus(),
+                'headerOptions' => ['class'=>'auto-fit'],
+                'filterOptions' => ['class'=>'auto-fit'],
+                'contentOptions' => ['class' => 'auto-fit'],
             ],
             [
                 'attribute' => 'created_at',

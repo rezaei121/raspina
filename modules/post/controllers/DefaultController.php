@@ -86,7 +86,6 @@ class DefaultController extends \app\components\Controller
         $postModel = $this->findModel($id,$title);
         $postModel->plusView();
 
-//        $model->tags = !empty($model->tags)? explode(',',$model->tags) : null;
         $this->view->params['keywords'] = $postModel->keywords;
         $this->view->params['description'] = $postModel->meta_description;
 
@@ -126,12 +125,11 @@ class DefaultController extends \app\components\Controller
 
         $posts = Post::find()
             ->select(["p.id","p.title","p.short_text","p.created_at","u.username"])
-            ->from('{{%post}}')
             ->alias('p')
             ->leftJoin("{{%user}} AS u","p.created_by = u.id")
             ->groupBy("p.id")
             ->orderBy(['p.pin_post' => SORT_DESC, 'p.id' => SORT_DESC])
-            ->where(['p.status' => 1])
+            ->where(['p.status' => Post::PUBLISH_STATUS])
             ->limit(Yii::$app->params['pageSize'])
             ->all();
 

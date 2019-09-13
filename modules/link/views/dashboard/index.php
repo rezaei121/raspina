@@ -27,7 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'url',
-                'contentOptions' => ['style' => 'text-align:left;direction:ltr'],
+                'headerOptions' => ['class'=>'auto-fit'],
+                'filterOptions' => ['class'=>'auto-fit'],
+                'contentOptions' => ['class' => 'auto-fit center ltr'],
             ],
             [
                 'class' => \app\components\grid\ActionColumn::className(),

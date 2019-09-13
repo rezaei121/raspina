@@ -182,7 +182,7 @@ html, body {
 
 .panel-status {
     text-align: center !important;
-    padding: 25px 0px 25px 0px;
+    padding: 25px 0px 10px 0px !important;
     white-space: nowrap;
 }
 
@@ -194,6 +194,7 @@ html, body {
     font-size: 48px;
     color: #f0ac3f;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .panel-body-detail {
@@ -930,7 +931,7 @@ caption, th, td {
     bottom: 0px;
     background-color: #333D4B;
     text-align: center;
-    z-index: 1;
+    z-index: 999999999999999;
 }
 
 .sm-menu a {
@@ -1031,6 +1032,8 @@ caption, th, td {
     margin-top: 5px;
 
 }
+
+.label-sm-view {display: none; float: left; padding: 8px 12px 8px 12px; margin-bottom: 8px;}
 /**
 @media ...
 */
@@ -1126,6 +1129,7 @@ caption, th, td {
     /*display: table-cell;*/
     /*}*/
     /*.last-visitors table {font-size: 8px;}*/
-    /*.auto-fit {display: none}*/
+    .auto-fit {display: none}
+    .label-sm-view {display: block}
     /*.low-display-priority {display: none}*/
 }

@@ -39,9 +39,14 @@ $status = $model->getStatusList();
             [
                 'attribute' => 'name',
                 'format' => 'raw',
-                'value' => function($model){
-                    $link = Html::a($model->name,['default/view', 'id' => $model->id]);
-                    return $link . '<br><div class="comment-preview">' .nl2br($model->message) . '</div>';
+                'value' => function($model) use($status) {
+
+                    $classLabel = 'label-blue';
+                    if($model->status == 0) $classLabel = 'label-yellow';
+                    if($model->status == 1) $classLabel = 'label-green';
+
+                    $link = Html::a($model->name,['view', 'id' => $model->id]);
+                    return "<div class=\"label-sm-view label {$classLabel}\">{$status[$model->status]}</div><div class=\"clear\"></div> " . $link . '<br><div class="comment-preview">' .nl2br($model->message) . '</div>';
                 },
             ],
             [
@@ -71,9 +76,9 @@ $status = $model->getStatusList();
 
                     return  "<span class=\"label {$classLabel}\">{$status[$model->status]}</span>";
                 },
-                'headerOptions' => ['class'=>'fit'],
-                'filterOptions' => ['class'=>'fit'],
-                'contentOptions' => ['class' => 'fit center'],
+                'headerOptions' => ['class'=>'auto-fit'],
+                'filterOptions' => ['class'=>'auto-fit'],
+                'contentOptions' => ['class' => 'auto-fit center'],
                 'filter' => $status
             ],
             [

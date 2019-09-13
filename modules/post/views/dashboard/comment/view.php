@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 /* @var $model dashboard\modules\post\models\Comment */
 
 $this->title = Yii::t('app', 'View Comment');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['/dashboard/post/default/index']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comments'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
