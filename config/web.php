@@ -10,10 +10,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
         '@user_avatar' => '@app/files/avatar',
         '@file_upload' => '@app/files/upload',
-//        '@template' => 'templates',
-//        '@templateUrl' => 'frontend/views/templates',
         'templatePath' => '@app/themes',
-//        '@app'   => '@vendor/npm-asset',
     ],
     'modules' => [
         'contact' => [
@@ -146,7 +143,7 @@ $config = [
                     'route' => 'site/captcha',
                 ],
                 [
-                    'pattern' => 'post/<page:\d+>/<per-page:\d+>/<tag>',
+                    'pattern' => 'post/<page:\d+>/<tag>',
                     'route' => 'post/default/tag',
                     'suffix' => '.html',
                 ],
@@ -156,7 +153,7 @@ $config = [
                     'suffix' => '.html',
                 ],
                 [
-                    'pattern' => '/post/index/<category:\d+>/<page:\d+>/<per-page:\d+>/<title>',
+                    'pattern' => '/post/index/<category:\d+>/<page:\d+>/<title>',
                     'route' => '/post/default/index',
                     'suffix' => '.html',
                 ],
@@ -166,8 +163,8 @@ $config = [
                     'suffix' => '.html',
                 ],
                 [
-                    'pattern' => '/post/index/<page:\d+>/<per-page:\d+>',
-                    'route' => '/post/default/index',
+                    'pattern' => 'post/index/<page:\d+>',
+                    'route' => 'post/default/index',
                 ],
                 [
                     'pattern' => '/',
@@ -201,7 +198,7 @@ $config = [
     'params' => $params,
 ];
 
-if (YII_ENV_DEV && 0) {
+if (1) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [

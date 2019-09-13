@@ -17,11 +17,6 @@ class DefaultController extends Controller
     {
         $this->module->layoutPath = Yii::$app->params['templateLayout'];
         $this->layout = 'main.twig';
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ]
-        ];
     }
 
     public function actionIndex()

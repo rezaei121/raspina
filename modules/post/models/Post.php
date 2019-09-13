@@ -153,6 +153,14 @@ class Post extends \app\modules\post\models\base\BasePost
         }
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getApprovedComments()
+    {
+        return $this->hasMany(Comment::className(), ['post_id' => 'id'])->where(['status' => self::PUBLISH_STATUS]);
+    }
+
     public function getSelectedCategoriesTitle($resultType = 'string')
     {
         $query = new \yii\db\Query;
@@ -352,12 +360,11 @@ class Post extends \app\modules\post\models\base\BasePost
         {
             $postsModel->limit($request['limit']);
         }
-
-        if(isset($request['Post']['search']) && !empty($request['Post']['search']))
+        if(isset($request['search']) && !empty($request['search']))
         {
-            $postsModel->andWhere(['like','post.title', $request['Post']['search']]);
-            $postsModel->orWhere(['like','post.short_text', $request['Post']['search']]);
-            $postsModel->orWhere(['like','post.more_text', $request['Post']['search']]);
+            $postsModel->andWhere(['like','post.title', $request['search']]);
+            $postsModel->orWhere(['like','post.short_text', $request['search']]);
+            $postsModel->orWhere(['like','post.more_text', $request['search']]);
         }
         return $postsModel;
     }

@@ -45,7 +45,6 @@ class ContactSearch extends Contact
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
-            'pagination' => ['pageSize' => Yii::$app->params['pageSize']]
         ]);
 
         $this->load($params);

@@ -43,9 +43,15 @@ class SiteController extends Controller
      */
     public function actions()
     {
+        $this->module->layoutPath = Yii::$app->params['templateLayout'];
+        $this->layout = 'main.twig';
+        $this->viewPath = Yii::$app->params['templateLayout'];
+
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+                'layout' => $this->layout,
+                'view' => 'error.twig'
             ],
             'captcha' => [
                 'class' => 'developit\captcha\CaptchaAction',

@@ -61,7 +61,7 @@
 							<span class="menu-title-text">{{ raspina.t('Search') }}</span>
 						</div>
 						<div class="menu-title-line"></div>
-						{% set form = activeForm.begin({'action': 'home/default', 'method': 'GET'}) %}
+						{% set form = activeForm.begin({'action': url.to({0: '/post/index'}), 'method': 'GET'}) %}
 							{{ html.textInput('search', '', {'class': 'input margin-17', 'placeholder': raspina.t('Text')}) | raw }}
 							{{ html.submitButton(raspina.t('Go'), {'class': 'submit margin-17'}) | raw }}
 						{% set end = activeForm.end() %}

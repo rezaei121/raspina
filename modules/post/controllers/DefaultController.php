@@ -6,6 +6,7 @@ use app\modules\statistics\models\Visitor;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use Yii;
+use yii\web\NotFoundHttpException;
 
 
 /**
@@ -32,11 +33,6 @@ class DefaultController extends \app\components\Controller
     {
         $this->module->layoutPath = Yii::$app->params['templateLayout'];
         $this->layout = 'main.twig';
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-        ];
     }
 
     /**
@@ -48,9 +44,6 @@ class DefaultController extends \app\components\Controller
         $postModel = Post::getAll(Yii::$app->request->get());
         $dataProvider = new ActiveDataProvider([
             'query' => $postModel,
-            'pagination' => [
-                'pageSize' => Yii::$app->params['pageSize']
-            ]
         ]);
 
         return $this->render('@theme/posts.twig', [
