@@ -31,7 +31,10 @@ class Setting implements BootstrapInterface
 
             Yii::$app->params['url'] = $settingModel->url;
             Yii::$app->params['direction'] = $settingModel->direction;
-            Yii::$app->params['lang'] = (explode('-',$settingModel->language))[0];
+
+            $publicLanguage = explode('-', Yii::$app->language);
+            Yii::$app->params['lang'] = $publicLanguage[0];
+
             Yii::$app->params['template'] = $settingModel->template;
             Yii::$app->params['templateUrl'] = $settingModel->url . 'themes/' . $settingModel->template;
             Yii::$app->params['templateDir'] = \Yii::getAlias('@app') . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . $settingModel->template;

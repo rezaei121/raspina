@@ -7,7 +7,6 @@ use app\modules\post\models\PostCategory;
 use app\modules\post\models\Tag;
 use dosamigos\tinymce\TinyMce;
 use kartik\select2\Select2;
-
 ?>
 <?= Html::beginPanel($this->title . Html::submitButton(Yii::t('app', 'Get Auto Saved Text'), ['class' => 'btn btn-primary auto-saved-btn'])) ?>
     <?php $form = ActiveForm::begin(); ?>
@@ -31,7 +30,7 @@ use kartik\select2\Select2;
         'language' =>  Yii::$app->params['lang'],
         'clientOptions' => [
             'init_instance_callback' => 'done_typing',
-            'content_css' => Raspina::url() . 'app/web/css/tinymce.css',
+            'content_css' => Raspina::url() . 'web/css/tinymce.css',
             'directionality' => Yii::$app->params['direction'],
             'entity_encoding' => "utf-8",
             'relative_urls' => false,
@@ -55,7 +54,7 @@ use kartik\select2\Select2;
             'clientOptions' => [
                 'init_instance_callback' => 'done_typing',
                 'directionality' => Yii::$app->params['direction'],
-                'content_css' => Raspina::url() . 'app/web/css/tinymce.css',
+                'content_css' => Raspina::url() . 'web/css/tinymce.css',
                 'relative_urls' => false,
                 'entity_encoding' => "utf-8",
                 'menubar' => false,

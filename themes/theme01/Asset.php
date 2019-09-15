@@ -18,7 +18,7 @@ class Asset extends AssetBundle
     public $basePath = '@theme';
     public $baseUrl = '@themeUrl';
     public $css = [
-        'css/reset222.css',
+        'css/reset.css',
         'css/font-awesome.min.css',
         'css/style.css',
     ];

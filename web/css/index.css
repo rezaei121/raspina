@@ -903,7 +903,7 @@ caption, th, td {
     transition: all 0.1s ease;
 }
 
-.menu-item li a {
+.menu-item a {
     color: #B3BEC4;
     text-decoration: none;
 }
@@ -921,6 +921,7 @@ caption, th, td {
 
 .menu-item-child div {
     margin-top: 4px;
+    height: 100%;
 }
 
 .sm-menu {

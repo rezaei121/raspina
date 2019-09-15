@@ -1,22 +1,57 @@
-/*html, body, .panel-heading, .breadcrumb, .form-control, .help-block, .table, option {*/
-    /*text-align: left;*/
-    /*direction: ltr*/
-/*}*/
+html, body, .panel-heading, .breadcrumb, .form-control, .help-block, .table, option {
+    text-align: left;
+    direction: ltr
+}
 
-/*.table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {*/
-    /*text-align: left;*/
-    /*direction: ltr*/
-/*}*/
+.table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    text-align: left;
+    direction: ltr
+}
 
-/*th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {*/
-    /*text-align: left;*/
-    /*direction: ltr;*/
-/*}*/
+th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    text-align: left;
+    direction: ltr;
+}
 
-/*.fa-bulk-dropdown {*/
-    /*float: left;*/
-    /*margin-right: 13px;*/
-    /*margin-left: 0px;*/
-/*}*/
+.fa-bulk-dropdown {
+    float: left;
+    margin-right: 13px;
+    margin-left: 0px;
+}
 
-/*.center { text-align: center !important;}*/
+.center {text-align: center !important;}
+
+.rs-profile-image {
+    float: left
+}
+
+.rs-profile-text {
+    float: left;
+    padding-left: 12px;
+    padding-right: 0px;
+}
+
+.menu-item li {
+    border-left: 4px solid #333D4B;
+    border-right: none;
+}
+
+.menu-item-child span {
+    padding: 0px 15px 0px 9%;
+    float: left
+}
+
+.new-post {
+    float: left;
+    margin-right: 0px;
+    margin-left: 20px;
+}
+
+.header-split {
+    float: left;
+    padding: 9px 0px 0px 20px;
+}
+
+.auto-saved-btn {
+    float: right;
+}

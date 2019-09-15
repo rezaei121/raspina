@@ -117,6 +117,11 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'normalizer' => [
+                'class' => 'yii\web\UrlNormalizer',
+                // use temporary redirection instead of permanent for debugging
+                'action' => \yii\web\UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
+            ],
             'rules' => [
                 [
                     'pattern' => 'dashboard/<module>/<controller>/<action>',
@@ -135,7 +140,7 @@ $config = [
                     'route' => '/statistics/dashboard/home',
                 ],
                 [
-                    'pattern' => 'file/default/download/<id>',
+                    'pattern' => 'file/download/<id>',
                     'route' => 'file/default/download',
                 ],
                 [
@@ -198,7 +203,7 @@ $config = [
     'params' => $params,
 ];
 
-if (1) {
+if (0) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [

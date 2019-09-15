@@ -21,7 +21,7 @@ $this->registerJsFile(Yii::$app->homeUrl . 'web/js/chart_config.js');
 
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="panel panel-default">
-        <div class="panel-heading panel-status"><?= Yii::t('app','Visits today') ?></div>
+        <div class="panel-heading panel-status"><?= Yii::t('app','Today Visits ') ?></div>
         <div class="panel-body">
             <!-- -->
             <div class="panel-body-status"><?= $chart['today_visit'] ?></div>
@@ -32,7 +32,7 @@ $this->registerJsFile(Yii::$app->homeUrl . 'web/js/chart_config.js');
 
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="panel panel-default">
-        <div class="panel-heading panel-status"><?= Yii::t('app','Visitors today') ?></div>
+        <div class="panel-heading panel-status"><?= Yii::t('app','Today Visitors') ?></div>
         <div class="panel-body">
             <!-- -->
             <div class="panel-body-status"><?= $chart['today_visitors'] ?></div>
@@ -43,7 +43,7 @@ $this->registerJsFile(Yii::$app->homeUrl . 'web/js/chart_config.js');
 
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="panel panel-default">
-        <div class="panel-heading panel-status"><?= Yii::t('app','Visits yesterday') ?></div>
+        <div class="panel-heading panel-status"><?= Yii::t('app','Yesterday Visits') ?></div>
         <div class="panel-body">
             <!-- -->
             <div class="panel-body-status"><?= $chart['yesterday_visit'] ?></div>
@@ -54,7 +54,7 @@ $this->registerJsFile(Yii::$app->homeUrl . 'web/js/chart_config.js');
 
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="panel panel-default">
-        <div class="panel-heading panel-status"><?= Yii::t('app','Visitors yesterday') ?></div>
+        <div class="panel-heading panel-status"><?= Yii::t('app','Yesterday Visitors') ?></div>
         <div class="panel-body">
             <!-- -->
             <div class="panel-body-status"><?= $chart['yesterday_visitors'] ?></div>
@@ -66,7 +66,7 @@ $this->registerJsFile(Yii::$app->homeUrl . 'web/js/chart_config.js');
 
 <div class="col-md-12">
     <div class="panel panel-default">
-        <div class="panel-heading"><?= Yii::t('app','Last hits') ?></div>
+        <div class="panel-heading"><?= Yii::t('app','Last Hits') ?></div>
         <div class="panel-body">
             <!-- -->
             <div class="last-visitors-lock">
@@ -135,7 +135,7 @@ $this->registerJsFile(Yii::$app->homeUrl . 'web/js/chart_config.js');
 </div>
 <div class="col-md-12" style="margin-bottom: 25px;">
     <div class="panel panel-default">
-        <div class="panel-heading"><?= Yii::t('app','Hits in last 30 days') ?></div>
+        <div class="panel-heading"><?= Yii::t('app','Hits In Last 30 Days') ?></div>
         <div class="panel-body">
             <!-- -->
             <div style="width:100%; margin-top: -15px;">

@@ -211,11 +211,6 @@ function set_content_to_local_storage() {
     localStorage.setItem("temp_post_title"+post_id, $('#post-title').val());
     localStorage.setItem("temp_post_short_text"+post_id, tinymce.get('post-short_text').getContent());
     localStorage.setItem("temp_post_more_text"+post_id, tinymce.get('post-more_text').getContent());
-
-    var text = $('.alert-info').html();
-    var dt = new Date();
-    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    $('.alert-info').html(text.replace(/\((.*)\)/gm, '(' + time + ')'));
 }
 
 $.urlParam = function(name){

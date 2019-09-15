@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'name',
                 'format' => 'raw',
                 'value' => function($model) {
-                    $url = Yii::$app->params['url'] . 'file/default/download/' . Yii::$app->hashids->encode($model->id);
+                    $url = Yii::$app->params['url'] . 'file/download/' . Yii::$app->hashids->encode($model->id);
                     $owner_url = Url::to(['/user/default/view', 'id' => $model->user_id]);
                     return '
                     <a href="'.$owner_url.'" target="_blank"><input style="background-color:#EFEFEF; cursor: pointer; width:49%; float:right; margin-left:2%;" type="text" class="form-control readonly" value="'.$model->last_name.' '.$model->surname.'"></a>

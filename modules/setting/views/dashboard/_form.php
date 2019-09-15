@@ -39,8 +39,6 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'language')->dropDownList($model->languageList(), ['maxlength' => true, 'class'=>'form-control ltr']) ?>
     <?= $form->field($model, 'time_zone')->dropDownList($model->timezoneList(), ['maxlength' => true, 'class'=>'form-control ltr']) ?>
 
-    <?= $form->field($model, 'page_size')->textInput() ?>
-
     <?= $form->field($model, 'date_format')->dropDownList($model->dateTimeFormats(), ['class'=>'form-control ltr'])?>
 
     <div class="form-group center">

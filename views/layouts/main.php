@@ -48,6 +48,10 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
         {
             $this->registerCssFile(Yii::$app->homeUrl . 'web/css/bootstrap-rtl.min.css', ['depends' => ['yii\bootstrap\BootstrapAsset']]);
         }
+        else
+        {
+            $this->registerCssFile(Yii::$app->homeUrl . 'web/css/ltr.css', ['depends' => ['yii\bootstrap\BootstrapAsset', 'app\assets\DashboardAsset']]);
+        }
         ?>
         <script type="text/javascript">
             var base_url = '<?= Url::base() ?>';
@@ -82,56 +86,73 @@ $notViewedContactCount = \app\modules\contact\models\Contact::getNotViewedCount(
                         <div class="clear"></div>
                 <ul class="menu-item" style="width: 100%">
                     <?php if (Yii::$app->user->can('post')): ?>
+                        <a href="<?= $postUrl; ?>">
                         <li class="menu-item-child">
-                            <a href="<?= $postUrl; ?>"><span class="fa fa-file-text"></span> <div><?= Yii::t('app', 'Posts') ?></div></a>
+                            <span class="fa fa-file-text"></span> <div><?= Yii::t('app', 'Posts') ?></div>
                         </li>
+                        </a>
                     <?php endif; ?>
 
                     <?php if (Yii::$app->user->can('category')): ?>
+                        <a href="<?= $categoryUrl; ?>">
                         <li class="menu-item-child">
-                            <a href="<?= $categoryUrl; ?>"><span class="fa fa-book"></span> <div><?= Yii::t('app', 'Categories') ?></div></a>
+                            <span class="fa fa-book"></span> <div><?= Yii::t('app', 'Categories') ?></div>
                         </li>
+                        </a>
                     <?php endif; ?>
 
                     <?php if (Yii::$app->user->can('file')): ?>
+                        <a href="<?= $fileUrl; ?>">
                         <li class="menu-item-child">
-                            <a href="<?= $fileUrl; ?>"><span class="fa fa-upload"></span> <div><?= Yii::t('app', 'Files') ?></div></a>
+                            <span class="fa fa-upload"></span> <div><?= Yii::t('app', 'Files') ?></div>
                         </li>
+                        </a>
                     <?php endif; ?>
 
                     <?php if (Yii::$app->user->can('link')): ?>
+                        <a href="<?= $linkUrl; ?>">
                         <li class="menu-item-child">
-                            <a href="<?= $linkUrl; ?>"><span class="fa fa-link"></span> <div><?= Yii::t('app', 'Links') ?></div></a>
+                            <span class="fa fa-link"></span> <div><?= Yii::t('app', 'Links') ?></div>
                         </li>
+                        </a>
                     <?php endif; ?>
 
                     <?php if (Yii::$app->user->can('statistics')): ?>
+                        <a href="<?= $statisticsUrl; ?>">
                         <li class="menu-item-child">
-                            <a href="<?= $statisticsUrl; ?>"><span class="fa fa-line-chart"></span> <div><?= Yii::t('app', 'Statistics') ?></div></a>
+                            <span class="fa fa-line-chart"></span> <div><?= Yii::t('app', 'Statistics') ?></div>
                         </li>
+                        </a>
                     <?php endif; ?>
 
                     <?php if (Yii::$app->user->can('user')): ?>
+                        <a href="<?= $userUrl; ?>">
                         <li class="menu-item-child">
-                            <a href="<?= $userUrl; ?>"><span class="fa fa-user"></span> <div><?= Yii::t('app', 'Users') ?></div></a>
+                            <span class="fa fa-user"></span> <div><?= Yii::t('app', 'Users') ?></div>
                         </li>
+                        </a>
                     <?php endif; ?>
 
                     <?php if (Yii::$app->user->can('template')): ?>
+                        <a href="<?= $templateUrl; ?>">
                         <li class="menu-item-child">
-                            <a href="<?= $templateUrl; ?>"><span class="fa fa-file-code-o"></span> <div><?= Yii::t('app', 'Template') ?></div></a>
+                            <span class="fa fa-file-code-o"></span> <div><?= Yii::t('app', 'Template') ?></div>
                         </li>
+                        </a>
                     <?php endif; ?>
 
                     <?php if (Yii::$app->user->can('settings')): ?>
+                        <a href="<?= $settingUrl; ?>">
                         <li class="menu-item-child">
-                            <a href="<?= $settingUrl; ?>"><span class="fa fa-cog"></span> <div><?= Yii::t('app', 'Settings') ?></div></a>
+                            <span class="fa fa-cog"></span> <div><?= Yii::t('app', 'Settings') ?></div>
                         </li>
+                        </a>
                     <?php endif; ?>
-
+                    <a href="<?= $logoutUrl; ?>">
                     <li class="menu-item-child">
-                        <a href="<?= $logoutUrl; ?>"><span class="fa fa-sign-out"></span> <div><?= Yii::t('app', 'Logout') ?></div></a>
+                        <span class="fa fa-sign-out"></span> <div><?= Yii::t('app', 'Logout') ?></div>
                     </li>
+                    </a>
                 </ul>
                 <!-- menu end -->
             <br>

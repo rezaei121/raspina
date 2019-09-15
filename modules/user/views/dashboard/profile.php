@@ -2,7 +2,7 @@
 
 use app\components\helpers\Html;
 use dosamigos\tinymce\TinyMce;
-use yii\widgets\ActiveForm;
+use app\components\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model dashboard\modules\user\models\User */
@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Update Password'), ['update-password'], ['class' => 'btn btn-primary']) ?>
         <br>
     </div>
+    <br>
     <?php $form = ActiveForm::begin(); ?>
         <?= $form->field($model, 'username')->textInput(['maxlength' => true, 'class' => 'form-control ltr']) ?>
         <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
