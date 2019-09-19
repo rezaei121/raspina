@@ -39,6 +39,13 @@ class Install extends Model
         return [
             [['dbms', 'db_host', 'db_name', 'db_username', 'username', 'password', 're_password', 'email', 'url', 'title', 'description', 'language', 'time_zone', 'last_name', 'surname'], 'required'],
             ['email', 'email'],
+            ['db_password', 'safe'],
+            [['last_name','surname'], 'string', 'max' => 255, 'min' => 3],
+            [['username','email', 'password', 're_password', 'url', 'title', 'description'], 'string', 'max' => 255],
+            [['username'], 'string', 'min' => 5],
+            [['password', 're_password'], 'string', 'min' => 7],
+            [['language'], 'string', 'max' => 12],
+            [['time_zone'], 'string', 'max' => 25],
         ];
     }
 
@@ -64,5 +71,17 @@ class Install extends Model
             'language' => 'Language',
             'time_zone' => 'Time Zone',
         ];
+    }
+
+    public function runMigration()
+    {
+        $consoleApp = new \yii\console\Application([
+            'id' => 'Command runner',
+            'basePath' => '@app',
+                'components' => [
+                    'db' => \Yii::$app->db,
+                ],
+        ]);
+        $result = $consoleApp->runAction('migrate/up', ['interactive' => false]);
     }
 }

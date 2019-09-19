@@ -43,7 +43,13 @@ $baseAssetUrl = Yii::getAlias('@web/web/install');
 <!-- /section-1 -->
 
 <!-- sections -->
-<?= Alert::widget() ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <?= Alert::widget() ?>
+        </div>
+    </div>
+</div>
 <?= $content ?>
 <!-- /sections -->
 <!-- section-d -->
