@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\assets\InstallAsset;
 use app\components\Model;
 use Yii;
 
@@ -75,13 +76,32 @@ class Install extends Model
 
     public function runMigration()
     {
-        $consoleApp = new \yii\console\Application([
+        $this->dbms = 'mysql';
+        $this->db_host = 'localhost';
+        $this->db_name = 'raspina-2';
+        $this->db_username = 'root';
+        $this->db_password = '123';
+        $this->table_prefix = 'rs_';
+
+
+
+        $connection = new \yii\db\Connection([
+            'dsn' => $this->dbms . ':host=' . $this->db_host . ';dbname=' . $this->db_name,
+            'username' => $this->db_username,
+            'password' => $this->db_password,
+            'charset' => 'utf8',
+            'tablePrefix' => $this->table_prefix,
+        ]);
+        $connection->open();
+        $webApp = \Yii::$app;
+        new \yii\console\Application([
             'id' => 'Command runner',
             'basePath' => '@app',
                 'components' => [
-                    'db' => \Yii::$app->db,
+                    'db' => $connection,
                 ],
         ]);
-        $result = $consoleApp->runAction('migrate/up', ['interactive' => false]);
+        \Yii::$app->runAction('migrate/up', ['interactive' => false]);
+        \Yii::$app = $webApp;
     }
 }

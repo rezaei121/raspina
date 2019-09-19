@@ -53,7 +53,6 @@ class InstallController extends Controller
         $model->db_host = 'localhost';
         $model->table_prefix = 'rs_';
         $model->url = 'http://www.';
-
         if ($model->load(Yii::$app->request->post()) && $model->validate())
         {
             $dbConfig = '<?php' . "\n";
@@ -69,29 +68,28 @@ class InstallController extends Controller
             {
                 file_put_contents(Yii::getAlias('@webroot') . '/config/db_config.php',$dbConfig);
                 $model->runMigration();
+//                $settingModel = new Setting();
+//                $settingModel->title = $model->title;
+//                $settingModel->description = $model->description;
+//                $settingModel->language = 'fa-IR';
+//                $settingModel->time_zone = '';
+//                $settingModel->page_size = 20;
+//                $settingModel->template = 'default';
+//                $settingModel->date_format = 'HH:mm - yyyy/MM/dd';
+//                $settingModel->sult = substr(md5(time()),0,10);
+//                $settingModel->direction = $settingModel->getLanguageDir($settingModel->language);
+//                $settingModel->save(false);
 
-                $settingModel = new Setting();
-                $settingModel->title = $model->title;
-                $settingModel->description = $model->description;
-                $settingModel->language = 'fa-IR';
-                $settingModel->time_zone = '';
-                $settingModel->page_size = 20;
-                $settingModel->template = 'default';
-                $settingModel->date_format = 'HH:mm - yyyy/MM/dd';
-                $settingModel->sult = substr(md5(time()),0,10);
-                $settingModel->direction = $settingModel->getLanguageDir($settingModel->language);
-                $settingModel->save(false);
-
-                $userModel = new User();
-                $userModel->scenario = 'create';
-                $userModel->status = 10;
-                $userModel->username = $model->username;
-                $userModel->last_name = $model->last_name;
-                $userModel->surname = $model->surname;
-                $userModel->email = $model->email;
-                $userModel->setPassword($model->password);
-                $userModel->generateAuthKey();
-                $userModel->save(false);
+//                $userModel = new User();
+//                $userModel->scenario = 'create';
+//                $userModel->status = 10;
+//                $userModel->username = $model->username;
+//                $userModel->last_name = $model->last_name;
+//                $userModel->surname = $model->surname;
+//                $userModel->email = $model->email;
+//                $userModel->setPassword($model->password);
+//                $userModel->generateAuthKey();
+//                $userModel->save(false);
 
 //                $assignmentModel = new AuthAssignment();
 //                $assignmentModel->item_name = 'admin';
@@ -103,8 +101,26 @@ class InstallController extends Controller
 //                Yii::$app->session->setFlash('error', '[config/db_config.php] is exist. to continue, delete this file first');
 //            }
         }
-
+        $model = new Install();
+        $model->dbms = 'mysql';
+        $model->db_host = 'localhost';
+        $model->table_prefix = 'rs_';
+        $model->url = 'http://www.';
         return $this->render('index', ['model' => $model]);
+    }
+
+    public function actionMigration()
+    {
+        $webApp = \Yii::$app;
+        new \yii\console\Application([
+            'id' => 'Command runner',
+            'basePath' => '@app',
+            'components' => [
+                'db' => $webApp->db,
+            ],
+        ]);
+        \Yii::$app->runAction('migrate/up', ['interactive' => false]);
+        exit();
     }
 
 }

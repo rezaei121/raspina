@@ -124,6 +124,10 @@ $config = [
             ],
             'rules' => [
                 [
+                    'pattern' => 'install/migration',
+                    'route' => 'install/migration',
+                ],
+                [
                     'pattern' => 'dashboard/<module>/<controller>/<action>',
                     'route' => '<module>/dashboard/<controller>/<action>',
                 ],
