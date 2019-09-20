@@ -2,6 +2,7 @@
 use app\assets\InstallAsset;
 use app\components\widgets\Alert;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 InstallAsset::register($this);
 $baseAssetUrl = Yii::getAlias('@web/web/install');
@@ -17,6 +18,9 @@ $baseAssetUrl = Yii::getAlias('@web/web/install');
     <link href="css/index.css" rel="stylesheet">
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
+    <script type="text/javascript">
+        var base_url = '<?= Url::base() ?>';
+    </script>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -70,11 +74,19 @@ $baseAssetUrl = Yii::getAlias('@web/web/install');
 </div>
 <!-- /section-d -->
 <br><br><br>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/prism.js"></script>
-<script src="js/ua-parser.min.js"></script>
-<script src="js/mycode.js"></script>
+<div class="hole">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <textarea id="db-log" readonly>Import database. please wait...</textarea>
+                <div class="form-group center">
+                    <br>
+                    <div class="btn btn-danger install-button" id="close-db-log">CLOSE</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <?php $this->endBody() ?>
 </body>
 </html>

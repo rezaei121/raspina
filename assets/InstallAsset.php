@@ -16,12 +16,13 @@ use yii\web\AssetBundle;
 class InstallAsset extends AssetBundle
 {
     public $basePath = '@webroot/web/assets';
-    public $baseUrl = '@web/web/install';
+    public $baseUrl = '@web/web';
 
     public $css = [
-        'css/index.css',
+        'install/css/index.css',
     ];
     public $js = [
+        'install/js/mycode.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

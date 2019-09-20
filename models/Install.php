@@ -47,6 +47,7 @@ class Install extends Model
             [['password', 're_password'], 'string', 'min' => 7],
             [['language'], 'string', 'max' => 12],
             [['time_zone'], 'string', 'max' => 25],
+            ['re_password', 'compare', 'compareAttribute' => 'password'],
         ];
     }
 
@@ -72,36 +73,5 @@ class Install extends Model
             'language' => 'Language',
             'time_zone' => 'Time Zone',
         ];
-    }
-
-    public function runMigration()
-    {
-        $this->dbms = 'mysql';
-        $this->db_host = 'localhost';
-        $this->db_name = 'raspina-2';
-        $this->db_username = 'root';
-        $this->db_password = '123';
-        $this->table_prefix = 'rs_';
-
-
-
-        $connection = new \yii\db\Connection([
-            'dsn' => $this->dbms . ':host=' . $this->db_host . ';dbname=' . $this->db_name,
-            'username' => $this->db_username,
-            'password' => $this->db_password,
-            'charset' => 'utf8',
-            'tablePrefix' => $this->table_prefix,
-        ]);
-        $connection->open();
-        $webApp = \Yii::$app;
-        new \yii\console\Application([
-            'id' => 'Command runner',
-            'basePath' => '@app',
-                'components' => [
-                    'db' => $connection,
-                ],
-        ]);
-        \Yii::$app->runAction('migrate/up', ['interactive' => false]);
-        \Yii::$app = $webApp;
     }
 }

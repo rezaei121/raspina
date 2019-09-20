@@ -124,6 +124,10 @@ $config = [
             ],
             'rules' => [
                 [
+                    'pattern' => 'install/test-connection',
+                    'route' => 'install/test-connection',
+                ],
+                [
                     'pattern' => 'install/migration',
                     'route' => 'install/migration',
                 ],
