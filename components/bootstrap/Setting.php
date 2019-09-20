@@ -21,8 +21,15 @@ class Setting implements BootstrapInterface
             Yii::$app->language = $settingModel->language;
             Yii::$app->timeZone = $settingModel->time_zone;
             Yii::$app->date->locale = $settingModel->language;
+
+            if(Yii::$app->date->locale == 'fa-IR')
+            {
+                Yii::$app->date->locale .= '@calendar=persian';
+            }
+
             Yii::$app->date->defaultTimeZone = $settingModel->time_zone;
             Yii::$app->date->datetimeFormat = $settingModel->date_format;
+
             Yii::$app->params['pageSize'] = $settingModel->page_size;
 
             \Yii::$container->set('yii\data\Pagination', [

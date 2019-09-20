@@ -145,6 +145,13 @@ $requirements = array(
         'by' => 'Email sending',
         'memo' => 'PHP mail SMTP server required',
     ),
+    'phpIntl' => array(
+        'name' => 'PHP Intl Date Formatter',
+        'mandatory' => true,
+        'condition' => extension_loaded('intl'),
+        'by' => 'Date Formatter',
+        'memo' => '"php_intl" should be enabled at php.ini',
+    ),
 );
 
 // OPcache check
