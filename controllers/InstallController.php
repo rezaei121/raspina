@@ -7,6 +7,7 @@ use app\modules\setting\models\Setting;
 use app\modules\user\models\AuthAssignment;
 use app\modules\user\models\User;
 use Yii;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
