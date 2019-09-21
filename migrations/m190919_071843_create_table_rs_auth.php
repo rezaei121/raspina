@@ -54,7 +54,7 @@ class m190919_071843_create_table_rs_auth extends Migration
         $this->addForeignKey('rs_auth_item_child_ibfk_2', '{{%auth_item_child}}', 'child', '{{%auth_item}}', 'name', 'CASCADE', 'CASCADE');
 
         $this->batchInsert('{{%auth_rule}}', ['name', 'data'], [
-            ['AuthorRule', 'O:36:"dashboard\components\rbac\AuthorRule":3:{s:4:"name";s:10:"AuthorRule";s:9:"createdAt";i:1501851319;s:9:"updatedAt";i:1501851319;}']
+            ['AuthorRule', 'O:30:"app\components\rbac\AuthorRule":5:{s:4:"name";s:10:"AuthorRule";s:38:"']
         ]);
 
         $this->batchInsert('{{%auth_item}}', ['name', 'type', 'rule_name'], [

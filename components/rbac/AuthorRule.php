@@ -1,11 +1,11 @@
 <?php
-namespace dashboard\components\rbac;
+namespace app\components\rbac;
 
+use app\modules\file\models\File;
+use app\modules\post\models\Category;
+use app\modules\post\models\Comment;
+use app\modules\post\models\Post;
 use Yii;
-use dashboard\modules\file\models\File;
-use dashboard\modules\post\models\Category;
-use dashboard\modules\post\models\Comment;
-use dashboard\modules\post\models\Post;
 use yii\rbac\Rule;
 use yii\web\NotFoundHttpException;
 
