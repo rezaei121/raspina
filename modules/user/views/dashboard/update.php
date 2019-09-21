@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $form->field($model, 'email')->textInput(['class' => 'form-control ltr', 'maxlength' => true]) ?>
 <?= $form->field($model, 'status')->dropDownList($model->getStatus()) ?>
 <?= $form->field($model, 'role')->dropDownList($model->getRols()) ?>
-<?= Html::a(Yii::t('app', 'Update Password'), ['update-password', 'id' => $model->id]) ?>
+<?= Html::a(Yii::t('app', 'Update Password'), ['update-user-password', 'id' => $model->id]) ?>
 <div class="form-group center">
 
     <?= Html::submitButton(Yii::t('app', 'Update'), ['class' => 'btn btn-primary']) ?>

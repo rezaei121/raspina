@@ -30,13 +30,16 @@ class User extends \app\modules\user\models\base\BaseUser implements IdentityInt
         $rules[] = [['username', 'last_name', 'surname', 'password', 'password_repeat', 'email'], 'required', 'on' => 'create'];
         $rules[] = [['username', 'last_name', 'surname', 'password', 'password_repeat', 'email'], 'trim', 'on' => 'create'];
         $rules[] = ['password_repeat', 'compare', 'compareAttribute' => 'password', 'on' => ['create']];
-        $rules[] = ['password_repeat', 'compare', 'compareAttribute' => 'new_password', 'on' => ['update-password']];
+        $rules[] = ['password_repeat', 'compare', 'compareAttribute' => 'new_password', 'on' => ['update-password', 'update-user-password']];
 
         $rules[] = [['username', 'last_name', 'surname', 'email'], 'required', 'on' => 'update'];
         $rules[] = [['username', 'last_name', 'surname', 'email'], 'trim', 'on' => 'update'];
 
         $rules[] = [['old_password', 'new_password', 'password_repeat'], 'required', 'on' => 'update-password'];
         $rules[] = [['old_password', 'new_password', 'password_repeat'], 'trim', 'on' => 'update-password'];
+
+        $rules[] = [['new_password', 'password_repeat'], 'required', 'on' => 'update-user-password'];
+        $rules[] = [['new_password', 'password_repeat'], 'trim', 'on' => 'update-user-password'];
 
         $rules[] = [['status'], 'integer'];
         $rules[] = [['username', 'last_name', 'surname', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255];

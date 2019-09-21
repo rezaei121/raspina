@@ -246,6 +246,32 @@ class DashboardController extends \app\components\Controller
     }
 
     /**
+     * Updates an existing passwoird User model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdateUserPassword($id)
+    {
+        $model = $this->findModel($id);
+        $model->scenario = 'update-user-password';
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->setPassword($model->new_password);
+            $model->generateAuthKey();
+            $model->save();
+
+            Yii::$app->session->setFlash('success', Yii::t('app','{object} updated.',[
+                'object' => Yii::t('app','Password')
+            ]));
+        }
+
+        return $this->render('update-user-password', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
