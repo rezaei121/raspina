@@ -30,7 +30,7 @@ class AuthItemChild extends \app\components\Model
     {
         return [
             [['parent', 'child'], 'required'],
-            [['parent', 'child'], 'string', 'max' => 64],
+            [['parent', 'child'], 'string', 'max' => 128],
             [['parent'], 'exist', 'skipOnError' => true, 'targetClass' => AuthItem::className(), 'targetAttribute' => ['parent' => 'name']],
             [['child'], 'exist', 'skipOnError' => true, 'targetClass' => AuthItem::className(), 'targetAttribute' => ['child' => 'name']],
         ];

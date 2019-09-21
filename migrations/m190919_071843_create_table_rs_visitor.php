@@ -27,7 +27,6 @@ class m190919_071843_create_table_rs_visitor extends Migration
         ], $tableOptions);
 
         $this->createIndex('id', '{{%visitor}}', 'id');
-        $this->createIndex('id_2', '{{%visitor}}', 'id');
     }
 
     public function down()

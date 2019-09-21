@@ -13,21 +13,20 @@ class m190918_071843_create_table_rs_user extends Migration
 
         $this->createTable('{{%user}}', [
             'id' => $this->bigPrimaryKey()->unsigned(),
-            'username' => $this->string()->notNull(),
+            'username' => $this->string(128)->notNull(),
             'last_name' => $this->string(),
             'surname' => $this->string(),
             'about_text' => $this->text(),
             'auth_key' => $this->string()->notNull(),
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string(),
-            'email' => $this->string()->notNull(),
+            'email' => $this->string(128)->notNull(),
             'status' => $this->smallInteger()->unsigned()->notNull()->defaultValue('1'),
             'created_at' => $this->dateTime()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->dateTime(),
         ], $tableOptions);
 
         $this->createIndex('username', '{{%user}}', 'username', true);
-        $this->createIndex('password_reset_token', '{{%user}}', 'password_reset_token', true);
         $this->createIndex('email', '{{%user}}', 'email', true);
     }
 

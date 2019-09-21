@@ -33,7 +33,7 @@ class AuthRule extends \app\components\Model
             [['name'], 'required'],
             [['data'], 'string'],
             [['created_at', 'updated_at'], 'integer'],
-            [['name'], 'string', 'max' => 64],
+            [['name'], 'string', 'max' => 128],
         ];
     }
 

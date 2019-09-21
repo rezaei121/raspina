@@ -32,7 +32,7 @@ class AuthAssignment extends \app\components\Model
         return [
             [['item_name', 'user_id'], 'required'],
             [['user_id', 'created_at'], 'integer'],
-            [['item_name'], 'string', 'max' => 64],
+            [['item_name'], 'string', 'max' => 128],
             [['item_name'], 'exist', 'skipOnError' => true, 'targetClass' => AuthItem::className(), 'targetAttribute' => ['item_name' => 'name']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];

@@ -20,7 +20,7 @@ class User extends \app\modules\user\models\base\BaseUser implements IdentityInt
         $rules[] = [['old_password','new_password','password_repeat'], 'required','on' => 'changepassword'];
         $rules[] = [['last_name','surname'], 'string', 'max' => 255, 'min' => 3];
         $rules[] = [['email'], 'email'];
-        $rules[] = [['username','email'], 'string', 'max' => 255];
+        $rules[] = [['username','email'], 'string', 'max' => 128];
         $rules[] = [['about_text'], 'string'];
         $rules[] = [['password', 'old_password','new_password','password_repeat'], 'string', 'max' => 255];
 

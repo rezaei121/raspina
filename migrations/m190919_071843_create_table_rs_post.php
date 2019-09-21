@@ -31,14 +31,14 @@ class m190919_071843_create_table_rs_post extends Migration
 
         $this->createTable('{{%category}}', [
             'id' => $this->bigPrimaryKey()->unsigned(),
-            'title' => $this->string()->notNull(),
+            'title' => $this->string(128)->notNull(),
             'slug' => $this->string()->notNull(),
             'created_by' => $this->bigInteger()->unsigned()->notNull(),
         ], $tableOptions);
 
         $this->createTable('{{%tag}}', [
             'id' => $this->bigPrimaryKey()->unsigned(),
-            'title' => $this->string()->notNull(),
+            'title' => $this->string(128)->notNull(),
             'slug' => $this->string(),
         ], $tableOptions);
 

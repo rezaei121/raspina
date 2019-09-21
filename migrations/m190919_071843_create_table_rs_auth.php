@@ -12,28 +12,28 @@ class m190919_071843_create_table_rs_auth extends Migration
         }
 
         $this->createTable('{{%auth_assignment}}', [
-            'item_name' => $this->string()->notNull(),
+            'item_name' => $this->string(128)->notNull(),
             'user_id' => $this->bigInteger()->unsigned()->notNull(),
             'created_at' => $this->integer(),
         ], $tableOptions);
 
         $this->createTable('{{%auth_item}}', [
-            'name' => $this->string()->notNull()->append('PRIMARY KEY'),
+            'name' => $this->string(128)->notNull()->append('PRIMARY KEY'),
             'type' => $this->smallInteger()->notNull(),
             'description' => $this->text(),
-            'rule_name' => $this->string(),
+            'rule_name' => $this->string(128),
             'data' => $this->binary(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
         ], $tableOptions);
 
         $this->createTable('{{%auth_item_child}}', [
-            'parent' => $this->string()->notNull(),
-            'child' => $this->string()->notNull(),
+            'parent' => $this->string(128)->notNull(),
+            'child' => $this->string(128)->notNull(),
         ], $tableOptions);
 
         $this->createTable('{{%auth_rule}}', [
-            'name' => $this->string()->notNull()->append('PRIMARY KEY'),
+            'name' => $this->string(128)->notNull()->append('PRIMARY KEY'),
             'data' => $this->binary(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),

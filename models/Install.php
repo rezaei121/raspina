@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\assets\InstallAsset;
 use app\components\Model;
 use Yii;
 
