@@ -27,6 +27,7 @@ class ResetPasswordForm extends Model
             throw new InvalidParamException('Password reset token cannot be blank.');
         }
         $this->_user = User::findByPasswordResetToken($token);
+
         if (!$this->_user) {
             throw new InvalidParamException('Wrong password reset token.');
         }

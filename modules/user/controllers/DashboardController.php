@@ -3,6 +3,7 @@
 namespace app\modules\user\controllers;
 
 use app\modules\user\models\PasswordResetRequestForm;
+use app\modules\user\models\ResetPasswordForm;
 use app\modules\user\models\User;
 use app\modules\file\models\File;
 use app\modules\post\models\Comment;
@@ -13,7 +14,6 @@ use Yii;
 use yii\base\InvalidParamException;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
-use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
