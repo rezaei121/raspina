@@ -2,6 +2,7 @@
 
 namespace app\modules\user\controllers;
 
+use app\modules\user\models\PasswordResetRequestForm;
 use app\modules\user\models\User;
 use app\modules\file\models\File;
 use app\modules\post\models\Comment;
