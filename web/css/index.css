@@ -1047,7 +1047,7 @@ caption, th, td {
 }
 
 /* Medium Devices, Desktops */
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 756px) {
     .menu-container, .top-main-container {
         display: none
     }
