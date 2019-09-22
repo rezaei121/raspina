@@ -1,0 +1,20 @@
+html, body {
+    direction: rtl;
+    text-align: right;
+}
+
+.post-detail {
+    float: right;
+    margin-left: 15px;
+}
+
+.post-detail .fa {
+    float: right;
+}
+.menu-title-text {
+    padding-right: 5px;
+}
+
+.menu-title-line {
+    float: right
+}

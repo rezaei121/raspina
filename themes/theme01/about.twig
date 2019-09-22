@@ -1,0 +1,22 @@
+﻿{{ void(raspina.title('About')) }}
+<div class="post-border shadow">
+    <div class="panel panel-default post-panel">
+        <div class="panel-body">
+            <div class="post-title">{{ raspina.t('About') }}</div>
+            <div class="post-text">
+                <br>
+                {% for user in model %}
+                <div class="col-md-2 user-about-img">
+                    <img style="" src="{{  user.avatar() }}">
+                </div>
+                <div class="col-md-10 user-about-text">
+                    <h4 style="font-weight: bold; font-size: 14px; margin-bottom: 6px;">{{ user.name }}</h4>
+                    <p>{{ user.about|raw }}</p>
+                </div>
+                    <div class="clear"></div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

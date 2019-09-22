@@ -1,0 +1,177 @@
+@font-face {
+    font-family: Quicksand;
+    src: url("../font/OpenSans-Light.ttf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Quicksand;
+    src: url("../font/OpenSans-Bold.ttf");
+    font-weight: bold;
+}
+
+html, body {
+    font-family: Quicksand, sans-serif;
+    font-size: 14px;
+    background-color: #f7f5f2;
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    text-decoration-line: none !important;
+}
+
+.clear {
+    clear: both;
+}
+
+.logo img {
+    width: 100%;
+}
+
+
+.section-1 {
+    width: 100%;
+    padding-top: 50px;
+}
+
+.section-2, .section-3 {
+    padding-top: 100px;
+}
+
+.v-center {
+    align-items: center !important;
+    display: flex;
+}
+
+.center {
+    text-align: center
+}
+
+.download-link {
+    font-weight: bold;
+    color: #E78402;
+    border-bottom: 3px solid #E78402;
+    margin-right: 30px;
+    float: left;
+    font-size: 1.5rem
+}
+
+.download-link:hover {
+    font-weight: bold;
+    color: #d37502;
+    border-color: #d37502
+}
+
+.github-link {
+    font-weight: bold;
+    color: #6c98c6;
+    border-bottom: 3px solid #6c98c6;
+    font-size: 1.5rem;
+    float: left;
+}
+
+.github-link:hover {
+    font-weight: bold;
+    color: #6186b2;
+    border-color: #6186b2
+}
+
+.screenshot img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.desc {
+    margin-bottom: 35px;
+}
+
+.text {
+    font-weight: bold;
+    padding-left: 10px
+}
+
+.desc img {
+    float: left;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+
+.section-3 .col-md-3 img {
+    max-width: 100%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.install-button {
+    font-weight: bold;
+    padding: 10px 30px 10px 30px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.line {
+    border-bottom: 2px solid #333333;
+    margin-top: -30px;
+}
+
+.developer, .developer h5, .developer h6 {
+    font-weight: bold
+}
+
+.developer span {
+    display: none
+}
+
+.hole {
+    background-color: #000000;
+    opacity: 0.9;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+.hole textarea {
+    margin-top: 50px;
+    width: 100%;
+    height: 400px;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 15px 10px 15px ;
+}
+
+#user-section, #setting-section {
+    display: none;}
+
+@media screen and (max-width: 980px) {
+
+}
+
+@media screen and (max-width: 650px) {
+
+}
+
+@media screen and (max-width: 570px) {
+
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        text-align: center
+    }
+
+    .rs-sm {
+        margin-top: 20px;
+    }
+
+    .logo img {
+        width: 50%;
+        margin-bottom: 30px;
+    }
+}

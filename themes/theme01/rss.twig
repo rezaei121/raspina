@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss version="2.0">
+    <channel>
+        <title>{{ raspina.title }}</title>
+        <link>{{ raspina.url }}</link>
+        <description>{{ raspina.description }}</description>
+        <language>{{ raspina.lang }}</language>
+        {% for model in posts %}
+        <item>
+            <title>{{ model.title }}</title>
+            <description>{{ model.short_text | raw}}</description>
+            <link>{{ model.url }}</link>
+            <pubDate>{{ model.created_at }}</pubDate>
+        </item>
+        {% endfor %}
+    </channel>
+</rss>

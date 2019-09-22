@@ -1,0 +1,18 @@
+﻿{{ void(raspina.title(raspina.t('Error'))) }}
+
+<div class="post-border shadow">
+    <div class="panel panel-default post-panel">
+        <div class="panel-body">
+            <div class="post-title" style="direction: ltr">{{ raspina.t('Error') }} {{ exception.statusCode }}</div>
+            <br>
+            <div class="post-text">
+                <div class="site-error">
+                    <div class="alert alert-danger">
+                        {{ exception.getMessage | raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
