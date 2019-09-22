@@ -75,7 +75,7 @@ class CommentController extends \app\components\Controller
                 'object' => Yii::t('app','Comment')
             ]));
         }
-        return $this->redirect(['comment/view', 'id' => $id]);
+        return $this->redirect(['/dashboard/post/comment/view', 'id' => $id]);
     }
 
     /**
