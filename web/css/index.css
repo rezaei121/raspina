@@ -1039,6 +1039,7 @@ caption, th, td {
 @media ...
 */
 
+.tox-textarea {direction: ltr !important; text-align: left !important;}
 
 /* */
 /* Large Devices, Wide Screens */

@@ -30,7 +30,7 @@ use kartik\select2\Select2;
         'language' =>  Yii::$app->params['lang'],
         'clientOptions' => [
             'init_instance_callback' => 'done_typing',
-            'content_css' => Raspina::url() . 'web/css/tinymce.css',
+//            'content_css' => Raspina::url() . 'web/css/tinymce.css',
             'directionality' => Yii::$app->params['direction'],
             'entity_encoding' => "utf-8",
             'relative_urls' => false,
