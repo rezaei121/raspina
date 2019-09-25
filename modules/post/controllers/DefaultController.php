@@ -52,6 +52,22 @@ class DefaultController extends \app\components\Controller
     }
 
     /**
+     * Lists all Post models.
+     * @return mixed
+     */
+    public function actionTag($tag)
+    {
+        $postModel = Post::getAll(Yii::$app->request->get());
+        $dataProvider = new ActiveDataProvider([
+            'query' => $postModel,
+        ]);
+
+        return $this->render('@theme/posts.twig', [
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    /**
      * Displays a single Post model.
      * @param string $id
      * @return mixed

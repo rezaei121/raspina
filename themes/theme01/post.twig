@@ -40,7 +40,7 @@
                 {% set tags = model.tags() %}
                 {%  if tags %}
                     {% for tag,slug in tags %}
-                        <a href="{{ url.to({0: 'index', 'tag': slug}) }}">{{ tag }}</a>
+                        <a href="{{ url.to({0: 'tag', 'tag': slug}) }}">{{ tag }}</a>
                     {% endfor %}
                 {% endif %}
             </div>
