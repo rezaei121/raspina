@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if($model->status == 0) $classLabel = 'label-yellow';
                     if($model->status == 1) $classLabel = 'label-green';
 
-                    $link = Html::a($model->post->title,['view', 'id' => $model->post_id]);
+                    $link = Html::a($model->post->title,['view', 'id' => $model->id]);
                     return "<div class=\"label-sm-view label {$classLabel}\">{$status[$model->status]}</div><div class=\"clear\"></div>" . $link . '<br><div class="comment-preview">' .nl2br($model->text) . '</div>';
                 },
                 'headerOptions' => ['class'=>'low-display-priority'],

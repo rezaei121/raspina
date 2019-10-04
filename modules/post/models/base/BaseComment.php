@@ -41,7 +41,7 @@ class BaseComment extends \app\components\Model
     public function rules()
     {
         return [
-            [['post_id', 'name', 'email', 'text'], 'required'],
+            [['post_id', 'name', 'text'], 'required'],
             [['post_id', 'status', 'created_by', 'updated_by'], 'integer'],
             [['text', 'reply_text'], 'string'],
             [['created_at', 'updated_at'], 'safe'],

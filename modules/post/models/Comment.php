@@ -16,6 +16,7 @@ class Comment extends \app\modules\post\models\base\BaseComment
         $rules = parent::rules();
         $rules[] = ['reply_text', 'required','on' => 'reply'];
         $rules[] = ['captcha', 'captcha', 'on' => 'post-view'];
+        $rules[] = ['email', 'email', 'on' => 'post-view'];
         return $rules;
     }
 

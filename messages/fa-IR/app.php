@@ -189,11 +189,11 @@ return [
     'This post was last updated on {date} by {user}.' => 'این مطلب آخرین بار در تاریخ {date} توسط {user} بروزرسانی شده است.',
     'Related' => 'مرتبط ها',
     'New Password Was Saved' => 'کلمه عبور جدید ذخیره شد',
-    'Unsubscribe Newsletter' => 'لغو عضویت خبرنامه',
-    'Latest Auto Save: (date)' => 'آخرین ذخیره خودکار: (date)',
     'New Post' => 'مطلب جدید',
     'Suggest' => 'پیشنهاد',
     'Error' => 'خطا',
     'You are not a valid user and cannot send!' => 'شما یک کاربر معتبر نیستید و نمی توانید ارسال کنید!',
     'Select From Your Device' => 'انتخاب از دستگاه شما',
+    'Your Comment Approved.' => 'نظر شما تایید شد.',
+    'Your Comment Has Been Answered.' => 'به نظر شما پاسخ داده شد.',
 ];

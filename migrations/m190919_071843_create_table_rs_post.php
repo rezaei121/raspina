@@ -46,7 +46,7 @@ class m190919_071843_create_table_rs_post extends Migration
             'id' => $this->bigPrimaryKey()->unsigned(),
             'post_id' => $this->bigInteger()->unsigned()->notNull(),
             'name' => $this->string()->notNull(),
-            'email' => $this->string()->notNull(),
+            'email' => $this->string()->null(),
             'text' => $this->text()->notNull(),
             'status' => $this->integer()->unsigned()->notNull()->defaultValue('0'),
             'reply_text' => $this->text(),

@@ -270,6 +270,11 @@ class Post extends \app\modules\post\models\base\BasePost
         return Url::to(['/post/default/view','id' => $this->id,'title' => $this->slug]);
     }
 
+    public function shareUrl()
+    {
+        return Yii::$app->params['url'] . 'post/default/share-link/' . Yii::$app->hashids->encode($this->id);
+    }
+
     public function author()
     {
         return "{$this->createdBy->last_name} {$this->createdBy->surname}";

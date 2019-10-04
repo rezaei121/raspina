@@ -307,6 +307,7 @@ class DashboardController extends \app\components\Controller
 
             return $this->redirect(Yii::$app->getHomeUrl() . 'dashboard');
         } else {
+            sleep(3);
             return $this->render('login', [
                 'model' => $model,
             ]);

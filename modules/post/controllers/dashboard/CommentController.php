@@ -1,8 +1,10 @@
 <?php
 namespace app\modules\post\controllers\dashboard;
 
+use app\components\helpers\Raspina;
 use app\modules\post\models\Comment;
 use app\modules\post\models\CommentSearch;
+use app\modules\post\models\Post;
 use Yii;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -74,6 +76,22 @@ class CommentController extends \app\components\Controller
             Yii::$app->session->setFlash('success', Yii::t('app','{object} approved.',[
                 'object' => Yii::t('app','Comment')
             ]));
+
+            try {
+                if(!empty($model->email))
+                {
+                    $postModel = Post::findOne($model->post_id);
+                    Yii::$app->mailer->compose()
+                        ->setFrom(Yii::$app->params['senderEmail'])
+                        ->setTo($model->email)
+                        ->setSubject(Raspina::title() . ' - ' . Yii::t('app', 'Your Comment Approved.'))
+                        ->setHtmlBody(Yii::t('app', 'Your Comment Approved.') . '<br>' . $postModel->shareUrl())
+                        ->send();
+                }
+            }
+            catch(\Exception $e) {
+
+            }
         }
         return $this->redirect(['/dashboard/post/comment/view', 'id' => $id]);
     }
@@ -108,6 +126,21 @@ class CommentController extends \app\components\Controller
             if($model->save())
             {
                 Yii::$app->session->setFlash('success', Yii::t('app','Reply saved.'));
+                try {
+                    if(!empty($model->email))
+                    {
+                        $postModel = Post::findOne($model->post_id);
+                        Yii::$app->mailer->compose()
+                            ->setFrom(Yii::$app->params['senderEmail'])
+                            ->setTo($model->email)
+                            ->setSubject(Raspina::title() . ' - ' . Yii::t('app', 'Your Comment Has Been Answered.'))
+                            ->setHtmlBody(Yii::t('app', 'Your Comment Has Been Answered.') . '<br>' . $postModel->shareUrl())
+                            ->send();
+                    }
+                }
+                catch(\Exception $e) {
+
+                }
             }
         }
 
@@ -159,6 +192,22 @@ class CommentController extends \app\components\Controller
                 {
                     $model->status = 1;
                     $model->save();
+
+                    try {
+                        if(!empty($model->email))
+                        {
+                            $postModel = Post::findOne($model->post_id);
+                            Yii::$app->mailer->compose()
+                                ->setFrom(Yii::$app->params['senderEmail'])
+                                ->setTo($model->email)
+                                ->setSubject(Raspina::title() . ' - ' . Yii::t('app', 'Your Comment Approved.'))
+                                ->setHtmlBody(Yii::t('app', 'Your Comment Approved.') . '<br>' . $postModel->shareUrl())
+                                ->send();
+                        }
+                    }
+                    catch(\Exception $e) {
+
+                    }
                 }
             }
 
