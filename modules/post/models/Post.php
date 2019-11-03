@@ -62,7 +62,7 @@ class Post extends \app\modules\post\models\base\BasePost
             $this->created_by = Yii::$app->user->id;
         }
 
-        if(!$insert)
+        if(!$insert && Yii::$app->controller->action->id != 'view')
         {
             $this->updated_by = Yii::$app->user->id;
             $this->updated_at = (new \DateTime())->format('Y-m-d H:i:s');
@@ -225,12 +225,13 @@ class Post extends \app\modules\post\models\base\BasePost
      * plus view count
      * @throws \yii\db\Exception
      */
-    public function plusView()
+    public static function addView($id)
     {
-        if(Visitor::isValid())
+        $postModel = Post::findOne($id);
+        if($postModel !== null && Visitor::isValid())
         {
-            $this->view++;
-            $this->save(false);
+            $postModel->view++;
+            $postModel->save(false);
         }
     }
 

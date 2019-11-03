@@ -183,6 +183,9 @@ class Raspina
         params += "os=" + result.os.name + "&";
         params += "os_version=" + result.os.version + "&";
         params += "referrer=" + document.referrer + "&";
+        params += "module=" + "'.Yii::$app->controller->module->id.'" + "&";
+        params += "action=" + "'.Yii::$app->controller->action->id.'" + "&";
+        params += "id=" + "'.Yii::$app->request->get("id").'" + "&";
         params += "_csrf=" + yii.getCsrfToken();
         var http = new XMLHttpRequest();
         var url = " ' .Yii::$app->params['url']. 'statistics/visitor/add";

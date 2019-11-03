@@ -93,7 +93,6 @@ class DefaultController extends \app\components\Controller
     public function actionView($id,$title)
     {
         $postModel = $this->findModel($id,$title);
-        $postModel->plusView();
 
         $this->view->params['keywords'] = $postModel->keywords;
         $this->view->params['description'] = $postModel->meta_description;
@@ -156,7 +155,7 @@ class DefaultController extends \app\components\Controller
      */
     protected function findModel($id,$title)
     {
-        if (($model = Post::findOne(['id' => $id, 'slug' => $title])) !== null) {
+        if (($model = Post::findOne(['id' => $id, 'slug' => $title, 'status' => Post::PUBLISH_STATUS])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

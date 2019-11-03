@@ -44,7 +44,7 @@ echo $postStatus[$model->status];
     $buttons[] = 'delete';
     echo Html::actionButtons($model, $buttons);
     ?>
-    <?= Yii::t('app', 'Sent in') . ' ' . Html::a($model->post->title,['default/view', 'id' => $model->post_id]) ?>
+    <?= Yii::t('app', 'Sent in') . ' ' . Html::a($model->post->title,['/dashboard/post/default/view', 'id' => $model->post_id]) ?>
     <br><br>
     <?= $model->text ?>
     <br><br>

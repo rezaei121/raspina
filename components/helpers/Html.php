@@ -35,7 +35,7 @@ class Html extends \yii\helpers\Html
     public static function beginPanel($title, $size = 'col-md-12', $panelClass = ['panel', 'panel-default'], $headingClass = ['panel-heading'], $bodyClass = ['panel-body'])
     {
         $panelClass = (!$panelClass)? ['panel', 'panel-default'] : $panelClass;
-        $headingClass = (!$headingClass)? ['panel-heading'] : $headingClass;
+        $headingClass = (empty($headingClass))? ['panel-heading'] : $headingClass;
         $bodyClass = (!$bodyClass)? ['panel-body'] : $bodyClass;
         $title = ($title !== null)? '<div class="' . implode(' ', $headingClass) . '">' . $title . '</div>' : null;
 

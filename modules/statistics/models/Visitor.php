@@ -2,6 +2,7 @@
 
 namespace app\modules\statistics\models;
 
+use app\modules\post\models\Post;
 use Yii;
 
 class Visitor extends \app\modules\statistics\models\base\BaseVisitor
@@ -20,13 +21,19 @@ class Visitor extends \app\modules\statistics\models\base\BaseVisitor
         $visitor->os_version = $data['os_version'];
         $visitor->referer = isset($data['referrer']) ? $data['referrer'] : null;
         $visitor->save();
+
+        // post view ++
+        if($data['module'] == 'post' && $data['action'] == 'view' && !empty($data['id']))
+        {
+            Post::addView($data['id']);
+        }
     }
 
     public static function isValid()
     {
         $currentDate = new \DateTime();
         return Visitor::find()
-            ->where(['>=', 'visit_date', $currentDate->modify('-1 hours')->format('Y-m-d H:i:s')])
+            ->where(['>=', 'visit_date', $currentDate->modify('-6 hours')->format('Y-m-d H:i:s')])
             ->andWhere(['ip' => $_SERVER['REMOTE_ADDR']])
             ->exists();
     }

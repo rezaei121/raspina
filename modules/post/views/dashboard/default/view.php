@@ -10,6 +10,8 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['
 $this->params['breadcrumbs'][] = $this->title;
 
 $postStatus = $model->postStatus();
+
+$shareLink = Yii::$app->params['url'] . 'post/default/share-link/' . Yii::$app->hashids->encode($model->id);
 ?>
 
 <?= Html::beginPanel(Yii::t('app','Author'), 'col-md-2 col-xs-12 col-sm-4',['panel', 'panel-default'], ['panel-heading', 'panel-status'], ['panel-body', 'panel-body-detail']) ?>
@@ -40,6 +42,14 @@ $postStatus = $model->postStatus();
 <?= Html::endPanel() ?>
 
 <div class="clear"></div>
+
+<?= Html::beginPanel("", 'col-md-12', ['panel', 'panel-default'], ['']) ?>
+<div class="input-group input-group-s-link">
+    <span class="input-group-addon s-link-copy" id="basic-addon1">Copy</span>
+    <input type="text" class="form-control s-link" value="<?= $shareLink ?>" aria-describedby="basic-addon2">
+</div>
+<?= Html::endPanel() ?>
+
 
 <?= Html::beginPanel($this->title) ?>
     <div class="post-view">
